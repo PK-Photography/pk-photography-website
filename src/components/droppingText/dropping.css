@@ -1,0 +1,74 @@
+.dropping-headings {
+    position: relative;
+    height: 100px; /* Default height of the container */
+    overflow: hidden; /* Ensure only the word is visible */
+    font-size: 80px; /* Default font size */
+    font-family: sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: black;
+    text-align: center;
+  }
+  
+  .animated-word {
+    position: absolute;
+    top: -40px; /* Start slightly above */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: dropping 1.5s ease-in-out infinite;
+  }
+  
+  /* Keyframes for dropping effect */
+  @keyframes dropping {
+    0% {
+      top: -40px; /* Start above */
+      opacity: 0; /* Start invisible */
+    }
+    33% {
+      top: 0; /* Drop into position */
+      opacity: 1; /* Fade in */
+    }
+    66% {
+      top: 0; /* Stay in position */
+      opacity: 1; /* Keep visible */
+    }
+    100% {
+      top: 40px; /* Move down */
+      opacity: 0; /* Fade out */
+    }
+  }
+  
+  /* Media Query for Tablets and Smaller Screens */
+  @media (max-width: 1024px) {
+    .dropping-headings {
+      font-size: 60px; /* Smaller font size for tablets */
+      height: 80px; /* Adjust container height */
+    }
+    .animated-word {
+      top: -30px; /* Adjust drop position */
+    }
+  }
+  
+  /* Media Query for Mobile Screens */
+  @media (max-width: 768px) {
+    .dropping-headings {
+      font-size: 50px; /* Smaller font size for mobiles */
+      height: 70px; /* Adjust container height */
+    }
+    .animated-word {
+      top: -20px; /* Adjust drop position */
+    }
+  }
+  
+  /* Media Query for Very Small Screens (Small Mobile) */
+  @media (max-width: 480px) {
+    .dropping-headings {
+      font-size: 40px; /* Even smaller font size */
+      height: 60px; /* Adjust container height */
+    }
+    .animated-word {
+      top: -10px; /* Adjust drop position */
+    }
+  }
+  

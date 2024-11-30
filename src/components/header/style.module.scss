@@ -1,0 +1,110 @@
+/* Container for the header (curved background and icon) */
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px; /* Set width for mobile */
+    height: 100vh;
+    // background-color: rgb(41, 41, 41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 21;
+    transition: all 0.3s ease; /* Smooth transition for header background */
+    box-sizing: border-box;
+
+    /* Large screen styles: Curved left side */
+    @media (min-width: 769px) {
+        width: 40px; /* Adjust for large screens */
+        border-radius: 100% 0 0 100%; /* Increased curve for more curvature */
+        
+    // background-image: url('../../assets/menuicon.png');
+    z-index: 30;
+    }
+
+    /* Mobile screen styles */
+    @media (max-width: 768px) {
+        background-color: transparent; /* Remove background on small screens */
+        border-radius: 0; /* No curve */
+        top: 20px; /* Space from top */
+        right: 20px; /* Align to the right corner */
+        width: 60px; /* Hamburger icon width */
+        height: 60px;
+    }
+}
+
+/* Button to toggle menu (centered in the header) */
+.button {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 10px; /* Ensure better touch target size */
+}
+
+/* Hamburger icon container (flexbox for vertical alignment) */
+.burger {
+    width: 100%;
+    height: 18px; /* Adjust overall height */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Even spacing between lines */
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Dash lines */
+.dash {
+    width: 60%;
+    height: 5px; /* Standard height for middle line */
+    background-color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Top and bottom smaller lines */
+.top {
+    height: 2px;
+    width: 25px;
+
+}
+.middle{
+    height: 2px;
+    width: 22px;
+}
+
+.bottom {
+    height: 2px;
+    width: 25px;
+}
+
+/* Active state (turns into an X) */
+.burgerActive .top {
+    transform: rotate(45deg) translateY(10px);
+}
+
+.burgerActive .middle {
+    opacity: 0;
+}
+
+.burgerActive .bottom {
+    transform: rotate(-45deg) translateY(-10px);
+}
+
+/* Styles for small screen: no curve, dashed lines visible */
+@media (max-width: 768px) {
+    .burger {
+        position: absolute;
+        top: 10px; /* Align to the top of the header */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .burger div {
+        background-color: black; /* Set lines to black on small screens */
+    }
+}

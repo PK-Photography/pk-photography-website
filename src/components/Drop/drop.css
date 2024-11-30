@@ -1,0 +1,30 @@
+.water-drop {
+    width: 15px;
+    height: 15px;
+    background-color: #000000; /* Color of the drop */
+    clip-path: ellipse(50% 50% at 50% 50%);
+  }
+  
+  @keyframes drop-down {
+    0% {
+      opacity: 0;
+      transform: translateY(0); /* Start higher */
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(10px); /* Reaches the starting position */
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(60px); /* Increased height for fall */
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(70px); /* End a bit lower for a natural fade-out */
+    }
+  }
+  
+  .animate-drop-down {
+    animation: drop-down 1.5s ease-in-out infinite; /* Slowed down for a more graceful fall */
+  }
+  

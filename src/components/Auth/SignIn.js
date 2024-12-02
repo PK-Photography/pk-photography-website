@@ -57,7 +57,6 @@ export default function Login() {
       });
       if (res.data.success) {
         setIsLoggedIn(true);
-        console.log("User info:", res.data.user);
       } else {
         alert("Google authentication failed.");
       }

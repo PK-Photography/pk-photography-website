@@ -48,17 +48,16 @@ const ClientAdmin = () => {
         }
       );
       alert("Category updated successfully!");
-      console.log("Updated Card:", response.data);
 
       // Clear form fields
       setCategoryName("");
       setImageLink("");
       setSelectedClientId("");
     } catch (error) {
-      console.error(
-        "Error updating category:",
-        error?.response?.data || error.message
-      );
+      // console.error(
+      //   "Error updating category:",
+      //   error?.response?.data || error.message
+      // );
       alert("Failed to update category. Please try again.");
     }
   };
@@ -85,16 +84,15 @@ const ClientAdmin = () => {
       );
   
       alert("Category deleted successfully!");
-      console.log("Deleted Category:", response.data);
   
       // Clear form fields
       setCategoryName("");
       setSelectedClientId("");
     } catch (error) {
-      console.error(
-        "Error deleting category:",
-        error?.response?.data || error.message
-      );
+      // console.error(
+      //   "Error deleting category:",
+      //   error?.response?.data || error.message
+      // );
       alert("Failed to delete category. Please try again.");
     }
   };

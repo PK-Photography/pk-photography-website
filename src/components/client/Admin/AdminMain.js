@@ -14,7 +14,6 @@ const AdminMain = () => {
       const response = await axios.get('https://client-ra9o.onrender.com/api/cards');
       setCards(response.data);
     } catch (err) {
-      console.error('Error fetching cards:', err);
     }
   };
 
@@ -47,7 +46,6 @@ const AdminMain = () => {
       alert('Client uploaded successfully!');
       fetchCards(); 
     } catch (err) {
-      console.error(err);
       alert('Failed to upload');
     }
   };
@@ -61,7 +59,6 @@ const AdminMain = () => {
       await axios.delete(`https://client-ra9o.onrender.com/api/cards/${id}`);
       alert('Card deleted successfully!');
     } catch (err) {
-      console.error('Error deleting card:', err);
       alert('Failed to delete card');
 
       fetchCards();

@@ -57,7 +57,7 @@ const ClientHome = () => {
     const fetchSelectedCard = async () => {
       try {
         const response = await axios.get(
-          `https://client-ra9o.onrender.com/api/client/cards`
+          `http://localhost:4000/api/client/cards`
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
@@ -308,10 +308,10 @@ const ClientHome = () => {
       alert("No images available to download.");
       return;
     }
-  
+
     const zip = new JSZip();
     const failedImages = [];
-  
+
     // Process all images in the selected category
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
@@ -320,10 +320,10 @@ const ClientHome = () => {
         failedImages.push(image.highRes);
         return;
       }
-  
+
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
       // console.log('Fetching from proxy URL:', proxyUrl);
-  
+
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
@@ -331,16 +331,16 @@ const ClientHome = () => {
           failedImages.push(image.highRes);
           return;
         }
-  
+
         const blob = await response.blob();
         const arrayBuffer = await blob.arrayBuffer();
-  
+
         // Determine a valid file extension
         const defaultExtension = "jpg";
         const fileExtension = image.highRes.split('.').pop().match(/^(jpg|jpeg|png|gif)$/i)
           ? image.highRes.split('.').pop()
           : defaultExtension;
-  
+
         const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
@@ -348,20 +348,20 @@ const ClientHome = () => {
         failedImages.push(image.highRes);
       }
     });
-  
+
     // Wait for all fetches to complete
     await Promise.all(fetchPromises);
-  
+
     // Check if any files were successfully added
     if (Object.keys(zip.files).length === 0) {
       alert("No images were successfully added to the ZIP file.");
       return;
     }
-  
+
     // Generate and download the ZIP file
     const content = await zip.generateAsync({ type: "blob" });
     saveAs(content, `${activeCategory || "all-images"}.zip`);
-  
+
     // Log and alert about failed downloads, if any
     if (failedImages.length > 0) {
       console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
@@ -405,86 +405,85 @@ const ClientHome = () => {
     const regex = /[?&]id=([^&]+)/;
     const match = url.match(regex);
     return match ? match[1] : null;
-};
+  };
 
-const handleDownloadFavorites = async () => {
-  if (!favorites || favorites.length === 0) {
+  const handleDownloadFavorites = async () => {
+    if (!favorites || favorites.length === 0) {
       alert("No favorite images available to download.");
       return;
-  }
+    }
 
-  const zip = new JSZip();
-  const failedImages = [];
+    const zip = new JSZip();
+    const failedImages = [];
 
-  // Use fetchPromises to download all files
-  const fetchPromises = favorites.map(async (image, index) => {
+    // Use fetchPromises to download all files
+    const fetchPromises = favorites.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-          console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-          failedImages.push(image.highRes);
-          return;
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        failedImages.push(image.highRes);
+        return;
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
       // console.log('Fetching from proxy URL:', proxyUrl);
 
       try {
-          const response = await fetch(proxyUrl);
-          if (!response.ok) {
-              console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-              failedImages.push(image.highRes);
-              return;
-          }
-
-          const blob = await response.blob();
-          const arrayBuffer = await blob.arrayBuffer();
-
-          // Ensure a valid file extension
-          const defaultExtension = "jpg";
-          const fileExtension = image.highRes.split('.').pop().match(/^(jpg|jpeg|png|gif)$/i)
-              ? image.highRes.split('.').pop()
-              : defaultExtension;
-
-          const fileName = `favorite_${index + 1}.${fileExtension}`;
-          zip.file(fileName, arrayBuffer); // Add file directly to the zip
-      } catch (error) {
-          console.error(`Error downloading file: ${image.highRes}`, error);
+        const response = await fetch(proxyUrl);
+        if (!response.ok) {
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
+          return;
+        }
+
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
+
+        // Ensure a valid file extension
+        const defaultExtension = "jpg";
+        const fileExtension = image.highRes.split('.').pop().match(/^(jpg|jpeg|png|gif)$/i)
+          ? image.highRes.split('.').pop()
+          : defaultExtension;
+
+        const fileName = `favorite_${index + 1}.${fileExtension}`;
+        zip.file(fileName, arrayBuffer); // Add file directly to the zip
+      } catch (error) {
+        console.error(`Error downloading file: ${image.highRes}`, error);
+        failedImages.push(image.highRes);
       }
-  });
+    });
 
-  await Promise.all(fetchPromises);
+    await Promise.all(fetchPromises);
 
-  // If no files were added, show an alert
-  if (Object.keys(zip.files).length === 0) {
+    // If no files were added, show an alert
+    if (Object.keys(zip.files).length === 0) {
       alert("No images were successfully added to the ZIP file.");
       return;
-  }
+    }
 
-  // Generate and download the ZIP file
-  const content = await zip.generateAsync({ type: "blob" });
-  saveAs(content, "favorite-images.zip");
+    // Generate and download the ZIP file
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "favorite-images.zip");
 
-  // Log failed downloads
-  if (failedImages.length > 0) {
+    // Log failed downloads
+    if (failedImages.length > 0) {
       console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
       alert("Some images could not be downloaded. Check the console for details.");
-  }
-};
+    }
+  };
 
 
-  
+
   return (
     <>
       <Head>
         <title>{selectedCard.name || "PK Photography"}</title>
         <meta
           name="description"
-          content={`Explore stunning images and categories from ${
-            selectedCard.name || "PK Photography"
-          }. Find high-quality pictures organized by categories like ${categories
-            .map((category) => category.name)
-            .join(", ")}.`}
+          content={`Explore stunning images and categories from ${selectedCard.name || "PK Photography"
+            }. Find high-quality pictures organized by categories like ${categories
+              .map((category) => category.name)
+              .join(", ")}.`}
         />
         <meta
           name="keywords"
@@ -498,9 +497,8 @@ const handleDownloadFavorites = async () => {
         />
         <meta
           property="og:description"
-          content={`View the best moments captured by ${
-            selectedCard.name || "PK Photography"
-          }.`}
+          content={`View the best moments captured by ${selectedCard.name || "PK Photography"
+            }.`}
         />
         <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
@@ -532,11 +530,10 @@ const handleDownloadFavorites = async () => {
           {categories.slice(0, 4).map((category, index) => (
             <li
               key={index}
-              className={`px-4 py-2 rounded-lg cursor-pointer shadow-sm transition duration-300 ease-in-out ${
-                activeCategory === category.name
+              className={`px-4 py-2 rounded-lg cursor-pointer shadow-sm transition duration-300 ease-in-out ${activeCategory === category.name
                   ? "bg-yellow-300 text-black"
                   : "bg-gray-100 hover:bg-gray-300"
-              }`}
+                }`}
               onClick={() =>
                 fetchImagesFromDrive(category.images, category.name)
               }
@@ -561,9 +558,8 @@ const handleDownloadFavorites = async () => {
                   {categories.slice(4).map((category, index) => (
                     <li
                       key={index}
-                      className={`px-4 py-2 cursor-pointer hover:bg-gray-200 transition duration-200 ${
-                        activeCategory === category.name ? "font-bold" : ""
-                      }`}
+                      className={`px-4 py-2 cursor-pointer hover:bg-gray-200 transition duration-200 ${activeCategory === category.name ? "font-bold" : ""
+                        }`}
                       onClick={() => {
                         fetchImagesFromDrive(category.images, category.name);
                         setDropdownVisible(false);
@@ -619,9 +615,9 @@ const handleDownloadFavorites = async () => {
               Your Favorite Images
             </h3>
             {favorites.length === 0 ? (
-             <p className="text-gray-500 text-center">
-             You haven&apos;t added any favorites yet.
-           </p>
+              <p className="text-gray-500 text-center">
+                You haven&apos;t added any favorites yet.
+              </p>
             ) : (
               <>
                 <ul className="grid grid-cols-2 gap-6 overflow-y-auto max-h-80 p-2">
@@ -691,11 +687,10 @@ const handleDownloadFavorites = async () => {
             />
             <div className="absolute inset-0 flex justify-end items-end gap-2 p-2 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
               <button
-                className={`p-2 ${
-                  favorites.find((fav) => fav.id === image.id)
+                className={`p-2 ${favorites.find((fav) => fav.id === image.id)
                     ? "text-red-600"
                     : "text-white"
-                } hover:text-red-600`}
+                  } hover:text-red-600`}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleFavorite(image);
@@ -832,11 +827,10 @@ const handleDownloadFavorites = async () => {
                 {["High Resolution", "Web Size"].map((size) => (
                   <div
                     key={size}
-                    className={`p-4 border rounded-lg cursor-pointer transition ${
-                      selectedSize === size
+                    className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
                         ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
                         : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                    }`}
+                      }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
@@ -859,9 +853,8 @@ const handleDownloadFavorites = async () => {
       {/* When we click on any image this page opens and there are download, share and but photo options */}
       {modalVisible && currentImage && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${
-            modalVisible ? "modal-enter" : "modal-exit"
-          } ${clicked ? "z-0" : "z-50"}`}
+          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${modalVisible ? "modal-enter" : "modal-exit"
+            } ${clicked ? "z-0" : "z-50"}`}
           style={{ fontFamily: "Times New Roman, serif" }}
         >
           <div className="relative bg-[#ffffff] w-full h-full flex flex-col justify-center items-center shadow-lg">
@@ -874,9 +867,8 @@ const handleDownloadFavorites = async () => {
               </button>
               <div className="flex items-center gap-4">
                 <button
-                  className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${
-                    clicked ? "z-0" : "z-50"
-                  }`}
+                  className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${clicked ? "z-0" : "z-50"
+                    }`}
                   onClick={() => handleOpenDownloadModal(currentImage)}
                 >
                   <FaDownload className="group-hover:text-[#3c2e21]" />

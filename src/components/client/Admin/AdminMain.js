@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Image from "next/image";
+import imageCompression from 'browser-image-compression';
 
 const AdminMain = () => {
   const [cards, setCards] = useState([]);
@@ -14,6 +14,7 @@ const AdminMain = () => {
       const response = await axios.get('https://client-ra9o.onrender.com/api/cards');
       setCards(response.data);
     } catch (err) {
+      console.error('Error fetching cards:', err);
     }
   };
 
@@ -21,20 +22,36 @@ const AdminMain = () => {
     fetchCards();
   }, []);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
-    if (file && file.size > 10 * 1024 * 1024) {
-      alert('File size should be less than 2MB');
-      return;
+    if (!file) return;
+  
+    if (file.size > 10 * 1024 * 1024) {
+      alert('Large file detected. Compressing the image...');
     }
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
+  
+    try {
+      const options = {
+        maxSizeMB: 10, // Target size
+        maxWidthOrHeight: 1920, // Resize if needed
+        useWebWorker: true,
+      };
+  
+      const start = performance.now();
+      const compressedFile = await imageCompression(file, options);
+      const end = performance.now();
+      
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(compressedFile);
+    } catch (error) {
+      console.error('Error compressing image:', error);
+      alert('Image compression failed. Please try again.');
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +63,7 @@ const AdminMain = () => {
       alert('Client uploaded successfully!');
       fetchCards(); 
     } catch (err) {
+      console.error(err);
       alert('Failed to upload');
     }
   };
@@ -59,6 +77,7 @@ const AdminMain = () => {
       await axios.delete(`https://client-ra9o.onrender.com/api/cards/${id}`);
       alert('Card deleted successfully!');
     } catch (err) {
+      console.error('Error deleting card:', err);
       alert('Failed to delete card');
 
       fetchCards();
@@ -145,7 +164,7 @@ const AdminMain = () => {
           >
             <h3 className="text-md font-bold">{card.name}</h3>
             <p className="text-sm text-gray-600">{card.date}</p>
-            <Image
+            <img
               src={card.image}
               alt={`Wedding card for ${card.name}`}
               className="w-full h-32 object-cover mt-2"

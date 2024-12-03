@@ -69,7 +69,7 @@ const ClientHome = () => {
           fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
         }
       } catch (error) {
-        // console.error("Error fetching selected card:", error);
+        console.error("Error fetching selected card:", error);
       }
     };
 
@@ -89,6 +89,7 @@ const ClientHome = () => {
 
   const fetchImagesFromDrive = useCallback(async (driveLink, categoryName) => {
     if (!driveLink) {
+      // console.error("No drive link provided.");
       return;
     }
 
@@ -100,17 +101,46 @@ const ClientHome = () => {
         );
         const driveImages = response.data.files.map((file, index) => ({
           id: `${categoryName}-${index}`, // Unique ID based on category and index
+          lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
+          mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
           highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
-          webSize: `https://drive.google.com/uc?export=download&id=${file.id}&webp=true`,
         }));
         setImages(driveImages);
         setActiveCategory(categoryName);
       } catch (error) {
+        console.error("Error fetching images from Google Drive:", error);
       }
     } else {
-      // console.error("Invalid drive link:", driveLink);
+      console.error("Invalid drive link:", driveLink);
     }
   });
+
+  useEffect(() => {
+    const connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const loadImages = () => {
+      document.querySelectorAll(".progressive-image").forEach((img) => {
+        const mediumRes = img.dataset.medium;
+        const highRes = img.dataset.high;
+
+        const finalSrc =
+          connection && connection.effectiveType.includes("4g")
+            ? highRes
+            : mediumRes;
+
+        const preloader = new window.Image(); // Use native browser Image
+        preloader.src = finalSrc;
+        preloader.onload = () => {
+          img.src = finalSrc;
+        };
+      });
+    };
+
+    // Load higher resolutions after initial render
+    loadImages();
+  }, [images]);
 
   const extractFolderId = (driveLink) => {
     const match = driveLink.match(/[-\w]{25,}/);
@@ -201,8 +231,8 @@ const ClientHome = () => {
           title: "Check out this image",
           url: imageUrl,
         })
-        .catch(() => {
-          alert("An error occurred while trying to share the image. Please try again.");
+        .catch((error) => {
+          alert("Error sharing image: " + error.message);
         });
     } else {
       alert("Sharing is not supported on this browser.");
@@ -323,7 +353,7 @@ const ClientHome = () => {
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -345,7 +375,7 @@ const ClientHome = () => {
         }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        // console.error(`Error downloading file: ${image.highRes}`, error);
+        console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -426,7 +456,7 @@ const ClientHome = () => {
     const fetchPromises = favorites.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        // console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
@@ -436,7 +466,7 @@ const ClientHome = () => {
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -456,7 +486,7 @@ const ClientHome = () => {
         const fileName = `favorite_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        // console.error(`Error downloading file: ${image.highRes}`, error);
+        console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -702,13 +732,48 @@ const ClientHome = () => {
               breakInside: "avoid",
             }}
           >
-            <Image
-              src={image.highRes}
-              layout="intrinsic"
-              width={800}
-              height={500}
-              style={{ display: "block", width: "100%" }}
-            />
+            <div className="relative">
+              {/* Low-Resolution Blurry Image */}
+              <Image
+                src={image.lowRes}
+                alt="Blurry placeholder"
+                width={200}
+                height={200}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  filter: "blur(10px)",
+                  transition: "filter 1s ease-in-out",
+                }}
+                onLoad={(e) => {
+                  // Transition to clear once loaded
+                  setTimeout(() => {
+                    e.target.style.filter = "none"; // Remove blur
+                  }, 1000);
+                }}
+              />
+              {/* High-Resolution Progressive Image */}
+              <Image
+                src={image.highRes}
+                alt="High-resolution image"
+                width={800}
+                height={600}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  opacity: 0,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  transition: "opacity 1s ease-in-out",
+                }}
+                onLoad={(e) => {
+                  setTimeout(() => {
+                    e.target.style.opacity = 1;
+                  }, index * 500);
+                }}
+              />
+            </div>
             <div className="absolute inset-0 flex justify-end items-end gap-2 p-2 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
               <button
                 className={`p-2 ${

@@ -92,7 +92,7 @@ const ClientHome = () => {
       console.error("No drive link provided.");
       return;
     }
-  
+
     const folderId = extractFolderId(driveLink);
     if (folderId) {
       try {
@@ -225,21 +225,20 @@ const ClientHome = () => {
     setCurrentImage(null);
   };
 
-  const handleShare = (imageUrl) => {
+  const handleShare = (shareableLink) => {
     if (navigator.share) {
       navigator
         .share({
-          title: "Check out this image",
-          url: imageUrl,
+          title: "Check out this image!",
+          url: shareableLink,
         })
-        .catch((error) => {
-          alert("Error sharing image: " + error.message);
+        .catch(() => {
+          // Error handling without console
         });
     } else {
       alert("Sharing is not supported on this browser.");
     }
   };
-  
 
   const handleBuyPhoto = (image) => {
     handleAddToCart(image);
@@ -520,33 +519,6 @@ const ClientHome = () => {
     <>
       <Head>
         <title>{selectedCard.name || "PK Photography"}</title>
-        <meta
-          name="description"
-          content={`Explore stunning images and categories from ${
-            selectedCard.name || "PK Photography"
-          }. Find high-quality pictures organized by categories like ${categories
-            .map((category) => category.name)
-            .join(", ")}.`}
-        />
-        <meta
-          name="keywords"
-          content="PK Photography, Wedding Photos, Slideshow, Image Gallery, Photography Categories"
-        />
-        <meta name="author" content="PK Photography" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          property="og:title"
-          content={selectedCard.name || "PK Photography"}
-        />
-        <meta
-          property="og:description"
-          content={`View the best moments captured by ${
-            selectedCard.name || "PK Photography"
-          }.`}
-        />
-        <meta property="og:image" content="/path-to-default-image.jpg" />
-        <meta property="og:url" content={window.location.href} />
-        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       {/* Header */}
@@ -843,7 +815,9 @@ const ClientHome = () => {
                       />
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText(currentImage?.shareableLink);
+                          navigator.clipboard.writeText(
+                            currentImage?.shareableLink
+                          );
                           alert("Link copied to clipboard!");
                         }}
                         className="bg-gray-400 text-white rounded-r px-4 py-2 hover:bg-gray-600 transition-all"
@@ -973,7 +947,7 @@ const ClientHome = () => {
                 </button>
                 <button
                   className="group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm"
-                  onClick={() => handleShare(currentImage)}
+                  onClick={() => handleShare(currentImage.shareableLink)}
                 >
                   <FaShareAlt className="group-hover:text-[#3c2e21]" />
                   <span>Share</span>

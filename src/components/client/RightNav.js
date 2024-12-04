@@ -1,4 +1,3 @@
-// components/RightNav.js
 import React from "react";
 import { FaHeart, FaPlay, FaCartArrowDown } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
@@ -18,7 +17,7 @@ const RightNav = ({
         onClick={toggleFavoritesModal}
       >
         <FaHeart className="text-lg" />
-        <span>Favourite ({favorites.length})</span>
+        <span className="hidden sm:inline">Favourite ({favorites.length})</span>
       </div>
 
       <div
@@ -26,7 +25,7 @@ const RightNav = ({
         onClick={handleDownloadAll}
       >
         <GoDownload className="text-lg" />
-        <span>Download All</span>
+        <span className="hidden sm:inline">Download All</span>
       </div>
 
       <div
@@ -34,7 +33,7 @@ const RightNav = ({
         onClick={handleSlideshow}
       >
         <FaPlay className="text-lg" />
-        <span>Slideshow</span>
+        <span className="hidden sm:inline">Slideshow</span>
       </div>
 
       <Link
@@ -42,7 +41,7 @@ const RightNav = ({
         className="flex items-center space-x-2 cursor-pointer hover:text-black"
       >
         <FaCartArrowDown className="text-lg" />
-        <span>Cart ({cartItems.length})</span>
+        <span className="hidden sm:inline">Cart ({cartItems.length})</span>
       </Link>
     </div>
   );

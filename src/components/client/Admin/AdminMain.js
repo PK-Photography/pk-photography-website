@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
 
 const AdminMain = () => {
@@ -158,7 +159,7 @@ const AdminMain = () => {
           >
             <h3 className="text-md font-bold">{card.name}</h3>
             <p className="text-sm text-gray-600">{card.date}</p>
-            <img
+            <Image
               src={card.image}
               alt={`Wedding card for ${card.name}`}
               className="w-full h-32 object-cover mt-2"

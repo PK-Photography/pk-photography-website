@@ -18,7 +18,7 @@ const FavouriteModal = ({
         </h3>
         {favorites.length === 0 ? (
           <p className="text-gray-500 text-center sm:text-sm">
-            You haven't added any favorites yet.
+            You have not added any favorites yet.
           </p>
         ) : (
           <>

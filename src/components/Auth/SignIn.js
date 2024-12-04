@@ -75,25 +75,6 @@ export default function Login() {
       {/* Metadata for SEO */}
       <Head>
         <title>Login - Secure OTP & Google Authentication</title>
-        <meta
-          name="description"
-          content="Login securely using OTP authentication or Google Login. Simple, fast, and reliable authentication process."
-        />
-        <meta
-          name="keywords"
-          content="Login, OTP Login, Google Authentication, Secure Login, Fast Login"
-        />
-        <meta name="author" content="Mohit Kumar" />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Login - Secure OTP & Google Authentication" />
-        <meta
-          property="og:description"
-          content="Login securely using OTP authentication or Google Login. Simple, fast, and reliable authentication process."
-        />
-        <meta property="og:image" content="/images/login-thumbnail.png" />
-        <meta property="og:url" content="http://localhost:3000/login" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="UTF-8" />
       </Head>
 
       <div className="flex items-center justify-center h-screen bg-gray-100">

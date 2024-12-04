@@ -8,14 +8,13 @@ import Head from "next/head";
 const UserCards = () => {
   const [cards, setCards] = useState([]);
 
-  // Fetch all cards when the component mounts
   useEffect(() => {
     const fetchCards = async () => {
       try {
         const { data } = await axios.get("https://client-ra9o.onrender.com/api/cards");
         setCards(data);
       } catch (error) {
-        // console.error("Error fetching cards:", error);
+        alert("Failed to fetch cards. Please try again later.");
       }
     };
 
@@ -23,25 +22,40 @@ const UserCards = () => {
   }, []);
 
   const handleClick = useCallback(
-  debounce((cardId) => {
-    const selectedCard = cards.find((card) => card._id === cardId);
-    if (selectedCard) {
-      localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
-    }
-  }, 300),
-  [cards]
-);
+    debounce((cardId) => {
+      const selectedCard = cards.find((card) => card._id === cardId);
+      if (selectedCard) {
+        localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
+      }
+    }, 300),
+    [cards]
+  );
 
   return (
     <>
       <Head>
         <title>PK Photography</title>
-        <meta name="description" content="Browse through a collection of dynamic user cards with details including names, images, and dates. Click to view more information." />
-        <meta name="keywords" content="user cards, dynamic gallery, card details, view cards, image cards" />
+        <meta
+          name="description"
+          content="Browse through a collection of dynamic user cards with details including names, images, and dates. Click to view more information."
+        />
+        <meta
+          name="keywords"
+          content="user cards, dynamic gallery, card details, view cards, image cards"
+        />
         <meta name="author" content="Mohit Kumar" />
-        <meta property="og:title" content="Explore User Cards - Dynamic Content Gallery" />
-        <meta property="og:description" content="Discover a range of dynamic user cards, including names, dates, and images. Click to explore detailed views." />
-        <meta property="og:image" content={cards[0]?.imageUrl || "/default-image.jpg"} />
+        <meta
+          property="og:title"
+          content="Explore User Cards - Dynamic Content Gallery"
+        />
+        <meta
+          property="og:description"
+          content="Discover a range of dynamic user cards, including names, dates, and images. Click to explore detailed views."
+        />
+        <meta
+          property="og:image"
+          content={cards[0]?.imageUrl || "/default-image.jpg"}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pkphotography.io/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

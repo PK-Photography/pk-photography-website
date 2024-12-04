@@ -89,21 +89,22 @@ const ClientHome = () => {
 
   const fetchImagesFromDrive = useCallback(async (driveLink, categoryName) => {
     if (!driveLink) {
-      // console.error("No drive link provided.");
+      console.error("No drive link provided.");
       return;
     }
-
+  
     const folderId = extractFolderId(driveLink);
     if (folderId) {
       try {
         const response = await axios.get(
-          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyBDDP0ztWvQAtYFkyF6USF8bU-8OHw1uAY`
         );
         const driveImages = response.data.files.map((file, index) => ({
           id: `${categoryName}-${index}`, // Unique ID based on category and index
           lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
           mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
           highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+          shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
         }));
         setImages(driveImages);
         setActiveCategory(categoryName);
@@ -836,12 +837,15 @@ const ClientHome = () => {
                     <div className="flex items-center mb-6">
                       <input
                         type="text"
-                        value={currentImage?.highRes || "Image Link Here"} // Dynamic placeholder
+                        value={currentImage?.shareableLink}
                         readOnly
                         className="border border-gray-300 rounded-l p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                       />
                       <button
-                        onClick={handleCopyLink}
+                        onClick={() => {
+                          navigator.clipboard.writeText(currentImage?.shareableLink);
+                          alert("Link copied to clipboard!");
+                        }}
                         className="bg-gray-400 text-white rounded-r px-4 py-2 hover:bg-gray-600 transition-all"
                       >
                         Copy

@@ -97,7 +97,7 @@ const ClientHome = () => {
     if (folderId) {
       try {
         const response = await axios.get(
-          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyBDDP0ztWvQAtYFkyF6USF8bU-8OHw1uAY`
+          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
         );
         const driveImages = response.data.files.map((file, index) => ({
           id: `${categoryName}-${index}`, // Unique ID based on category and index

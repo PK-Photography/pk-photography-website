@@ -88,12 +88,6 @@ const AdminMain = () => {
     <div className="max-w-lg mx-auto">
       <header>
         <title>Admin Panel - PK PHOTOGRAPHY</title>
-        <meta
-          name="description"
-          content="Admin panel for managing and uploading wedding cards with names, dates, and images. Easily add, view, and delete wedding card details."
-        />
-        <meta name="keywords" content="Wedding Cards, Admin Panel, Upload Cards, Manage Cards" />
-        <meta name="author" content="Your Name" />
       </header>
 
       <form onSubmit={handleSubmit} className="mb-8">

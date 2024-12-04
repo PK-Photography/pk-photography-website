@@ -562,7 +562,6 @@
 
 // export default MultiStepForm;
 
-
 "use client";
 
 import React, { useState } from "react";
@@ -573,6 +572,7 @@ import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
 import Image from "next/image";
 import Header from "@/components/header/Header";
 import PKLogo from "@/assets/logo.webp";
+import { toast } from "react-toastify";
 
 const BookingForm = () => {
     // State to hold form data
@@ -587,8 +587,9 @@ const BookingForm = () => {
         time: "",
     });
 
-    // State to manage submission status
+    // State to manage submission and loading status
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Handle form field changes
     const handleChange = (e) => {
@@ -602,10 +603,13 @@ const BookingForm = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true ); // Start loading
+        
+
         try {
             // Send POST request to the API
             const response = await axios.post(
-                "http://localhost:8081/api/booking/request",
+                "https://client-ra9o.onrender.com/api/booking/request",
                 formData,
                 {
                     headers: {
@@ -617,8 +621,12 @@ const BookingForm = () => {
             if (response.status === 201) {
                 setIsSubmitted(true); // Show success message
             }
+            toast.success("Booked Successfully!")
         } catch (error) {
             console.error("Error submitting form:", error.message);
+            toast.error("Failed to submit the booking form. Please try again later!")
+        } finally {
+            setIsLoading(false); // Stop loading
         }
     };
 
@@ -629,7 +637,7 @@ const BookingForm = () => {
                 <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
 
                 <Header />
-                <div className="flex flex-col items-center justify-center p-10">
+                <div className="flex flex-col items-center justify-center p-10 min-h-[100vh]">
                     <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md text-center">
                         <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
                         <h2 className="text-2xl font-semibold text-green-600">
@@ -644,15 +652,12 @@ const BookingForm = () => {
                     </Link>
                 </div>
             </>
-
         );
     }
 
     // Booking form UI
     return (
-
         <>
-
             <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
 
             <Header />
@@ -661,8 +666,8 @@ const BookingForm = () => {
                 <div className="bg-white shadow-md rounded-md p-8 w-full max-w-2xl">
                     <h2 className="text-2xl font-bold mb-6 text-center">Your Information</h2>
                     <p className="mb-5 text-gray-500">
-                        Please provide required information, We assure that we will not
-                        share any of your information to anyone.
+                        Please provide required information. We assure that we will not
+                        share any of your information with anyone.
                     </p>
                     <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Form Fields */}
@@ -724,7 +729,6 @@ const BookingForm = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                required
                             />
                         </div>
 
@@ -733,20 +737,11 @@ const BookingForm = () => {
                             <label htmlFor="service" className="block text-sm font-medium">
                                 Service
                             </label>
-                            <input
-                                type="text"
-                                id="service"
+                            <select
                                 name="service"
                                 value={formData.service}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                required
-                            />
-                            {/* <select
-                                name="service"
-                                value={formData.service}
-                                onChange={handleChange}
-                                className="w-full mb-3 border border-gray-300 p-2 rounded-md"
                                 required
                             >
                                 <option value="">Select a Service</option>
@@ -754,8 +749,8 @@ const BookingForm = () => {
                                 <option value="Portrait">Portrait</option>
                                 <option value="Wedding & Events">Wedding & Events</option>
                                 <option value="Interior">Interior</option>
-                            </select> */}
-
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
 
                         {/* Date */}
@@ -770,7 +765,6 @@ const BookingForm = () => {
                                 value={formData.date}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                required
                             />
                         </div>
 
@@ -786,7 +780,6 @@ const BookingForm = () => {
                                 value={formData.time}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                required
                             />
                         </div>
 
@@ -801,28 +794,23 @@ const BookingForm = () => {
                                 value={formData.message}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                required
                             />
                         </div>
-
 
                         <div className="form-group col-span-2">
                             <button
                                 type="submit"
-                                className="bg-gray-700 hover:bg-black  text-white py-2 px-4 rounded w-full"
+                                className="bg-gray-700 hover:bg-black text-white py-2 px-4 rounded w-full"
+                                disabled={isLoading} // Disable the button while loading
                             >
-                                Submit
+                                {isLoading ? "Submitting..." : "Submit"}
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-
         </>
     );
 };
 
 export default BookingForm;
-
-
-

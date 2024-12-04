@@ -52,16 +52,14 @@ const ClientHome = () => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
-    console.log("Last ID:", lastId);
 
     const fetchSelectedCard = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/client/cards`
+          `https://client-ra9o.onrender.com/api/client/cards`
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
-        // console.log("Selected card:", selectedCard);
         setCategories(selectedCard.category || []);
 
         // Set the first category as the default active category
@@ -71,7 +69,7 @@ const ClientHome = () => {
           fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
         }
       } catch (error) {
-        console.error("Error fetching selected card:", error);
+        // console.error("Error fetching selected card:", error);
       }
     };
 
@@ -83,7 +81,6 @@ const ClientHome = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownVisible(false);
-        console.log(handleClickOutside);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -92,7 +89,6 @@ const ClientHome = () => {
 
   const fetchImagesFromDrive = useCallback(async (driveLink, categoryName) => {
     if (!driveLink) {
-      console.error("No drive link provided.");
       return;
     }
 
@@ -110,10 +106,9 @@ const ClientHome = () => {
         setImages(driveImages);
         setActiveCategory(categoryName);
       } catch (error) {
-        console.error("Error fetching images from Google Drive:", error);
       }
     } else {
-      console.error("Invalid drive link:", driveLink);
+      // console.error("Invalid drive link:", driveLink);
     }
   });
 
@@ -206,12 +201,14 @@ const ClientHome = () => {
           title: "Check out this image",
           url: imageUrl,
         })
-        .then(() => console.log("Image shared successfully"))
-        .catch((error) => console.error("Error sharing image:", error));
+        .catch(() => {
+          alert("An error occurred while trying to share the image. Please try again.");
+        });
     } else {
       alert("Sharing is not supported on this browser.");
     }
   };
+  
 
   const handleBuyPhoto = (image) => {
     handleAddToCart(image);
@@ -256,7 +253,7 @@ const ClientHome = () => {
 
       handleCloseDownloadModal();
     } catch (error) {
-      console.error("Error downloading the image:", error);
+      // console.error("Error downloading the image:", error);
     }
   };
 
@@ -266,14 +263,14 @@ const ClientHome = () => {
       navigator.clipboard.writeText(websiteLink);
       alert("Website link copied to clipboard!");
     } else {
-      console.error("No image data to copy.");
+      // console.error("No image data to copy.");
       alert("Unable to copy. No image selected.");
     }
   };
 
   const handleSocialShare = (platform) => {
     if (!currentImage?.id) {
-      console.error("No image data to share.");
+      // console.error("No image data to share.");
       alert("Unable to share. No image selected.");
       return;
     }
@@ -316,18 +313,17 @@ const ClientHome = () => {
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        // console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
-      // console.log('Fetching from proxy URL:', proxyUrl);
 
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -337,14 +333,19 @@ const ClientHome = () => {
 
         // Determine a valid file extension
         const defaultExtension = "jpg";
-        const fileExtension = image.highRes.split('.').pop().match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split('.').pop()
+        const fileExtension = image.highRes
+          .split(".")
+          .pop()
+          .match(/^(jpg|jpeg|png|gif)$/i)
+          ? image.highRes.split(".").pop()
           : defaultExtension;
 
-        const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
+        // console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -364,8 +365,13 @@ const ClientHome = () => {
 
     // Log and alert about failed downloads, if any
     if (failedImages.length > 0) {
-      console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
-      alert("Some images could not be downloaded. Check the console for details.");
+      console.warn(
+        `Failed to download ${failedImages.length} images.`,
+        failedImages
+      );
+      alert(
+        "Some images could not be downloaded. Check the console for details."
+      );
     }
   };
 
@@ -420,18 +426,17 @@ const ClientHome = () => {
     const fetchPromises = favorites.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        // console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
-      // console.log('Fetching from proxy URL:', proxyUrl);
 
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -441,14 +446,17 @@ const ClientHome = () => {
 
         // Ensure a valid file extension
         const defaultExtension = "jpg";
-        const fileExtension = image.highRes.split('.').pop().match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split('.').pop()
+        const fileExtension = image.highRes
+          .split(".")
+          .pop()
+          .match(/^(jpg|jpeg|png|gif)$/i)
+          ? image.highRes.split(".").pop()
           : defaultExtension;
 
         const fileName = `favorite_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
+        // console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -467,12 +475,15 @@ const ClientHome = () => {
 
     // Log failed downloads
     if (failedImages.length > 0) {
-      console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
-      alert("Some images could not be downloaded. Check the console for details.");
+      console.warn(
+        `Failed to download ${failedImages.length} images.`,
+        failedImages
+      );
+      alert(
+        "Some images could not be downloaded. Check the console for details."
+      );
     }
   };
-
-
 
   return (
     <>
@@ -480,10 +491,11 @@ const ClientHome = () => {
         <title>{selectedCard.name || "PK Photography"}</title>
         <meta
           name="description"
-          content={`Explore stunning images and categories from ${selectedCard.name || "PK Photography"
-            }. Find high-quality pictures organized by categories like ${categories
-              .map((category) => category.name)
-              .join(", ")}.`}
+          content={`Explore stunning images and categories from ${
+            selectedCard.name || "PK Photography"
+          }. Find high-quality pictures organized by categories like ${categories
+            .map((category) => category.name)
+            .join(", ")}.`}
         />
         <meta
           name="keywords"
@@ -497,8 +509,9 @@ const ClientHome = () => {
         />
         <meta
           property="og:description"
-          content={`View the best moments captured by ${selectedCard.name || "PK Photography"
-            }.`}
+          content={`View the best moments captured by ${
+            selectedCard.name || "PK Photography"
+          }.`}
         />
         <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
@@ -524,103 +537,114 @@ const ClientHome = () => {
       </section>
 
       {/* Categories Navbar */}
-      <nav className="flex justify-between items-center py-4 px-6 bg-white shadow-md">
-        <ul className="flex flex-wrap gap-4 text-sm font-semibold text-gray-700">
-          {/* Display the first 4 categories */}
-          {categories.slice(0, 4).map((category, index) => (
-            <li
-              key={index}
-              className={`px-4 py-2 rounded-lg cursor-pointer shadow-sm transition duration-300 ease-in-out ${activeCategory === category.name
-                  ? "bg-yellow-300 text-black"
-                  : "bg-gray-100 hover:bg-gray-300"
-                }`}
-              onClick={() =>
-                fetchImagesFromDrive(category.images, category.name)
-              }
-            >
-              <span className="hover:font-bold transition duration-200">
-                {category.name}
-              </span>
-            </li>
-          ))}
+      <nav className="bg-white shadow-md py-4 px-6">
+        <div className="container mx-auto">
+          {/* Categories Section */}
+          <div className="mb-6">
+            <ul className="flex flex-wrap gap-4 justify-center">
+              {/* Display categories */}
+              {categories.slice(0, 4).map((category, index) => (
+                <li
+                  key={index}
+                  className={`px-4 py-2 rounded-full cursor-pointer shadow-sm transition duration-300 ease-in-out text-sm font-semibold ${
+                    activeCategory === category.name
+                      ? "bg-yellow-400 text-black"
+                      : "bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  onClick={() =>
+                    fetchImagesFromDrive(category.images, category.name)
+                  }
+                >
+                  {category.name}
+                </li>
+              ))}
 
-          {/* "More" Dropdown for remaining categories */}
-          {categories.length > 4 && (
-            <li className="relative">
-              <div
-                className="px-4 py-2 rounded-lg cursor-pointer shadow-sm bg-gray-100 hover:bg-gray-300 transition duration-300 ease-in-out"
-                onClick={toggleDropdown}
-              >
-                More
-              </div>
-              {dropdownVisible && (
-                <ul className="absolute mt-2 bg-white shadow-lg rounded-lg overflow-hidden z-50">
-                  {categories.slice(4).map((category, index) => (
-                    <li
-                      key={index}
-                      className={`px-4 py-2 cursor-pointer hover:bg-gray-200 transition duration-200 ${activeCategory === category.name ? "font-bold" : ""
-                        }`}
-                      onClick={() => {
-                        fetchImagesFromDrive(category.images, category.name);
-                        setDropdownVisible(false);
-                      }}
-                    >
-                      {category.name}
-                    </li>
-                  ))}
-                </ul>
+              {/* "More" Dropdown for remaining categories */}
+              {categories.length > 4 && (
+                <li className="relative">
+                  <div
+                    className="px-4 py-2 rounded-full cursor-pointer shadow-sm bg-gray-200 hover:bg-gray-300 transition duration-300 ease-in-out text-sm font-semibold"
+                    onClick={toggleDropdown}
+                  >
+                    More
+                  </div>
+                  {dropdownVisible && (
+                    <ul className="absolute mt-2 bg-white shadow-lg rounded-lg overflow-hidden z-50">
+                      {categories.slice(4).map((category, index) => (
+                        <li
+                          key={index}
+                          className={`px-4 py-2 cursor-pointer hover:bg-gray-200 transition duration-200 text-sm ${
+                            activeCategory === category.name ? "font-bold" : ""
+                          }`}
+                          onClick={() => {
+                            fetchImagesFromDrive(
+                              category.images,
+                              category.name
+                            );
+                            setDropdownVisible(false);
+                          }}
+                        >
+                          {category.name}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
               )}
-            </li>
-          )}
-        </ul>
+            </ul>
+          </div>
 
-        {/* Client Page Right-aligned Icons */}
-        <ul className="flex space-x-6 text-sm font-semibold text-gray-600 items-center">
-          <li
-            className="flex items-center space-x-1 hover:text-black cursor-pointer"
-            onClick={toggleFavoritesModal}
-          >
-            <FaHeart />
-            <span>Favourite ({favorites.length})</span>
-          </li>
+          {/* Actions Section */}
+          <div className="flex justify-center gap-6 text-sm font-semibold text-gray-700">
+            <div
+              className="flex items-center space-x-2 cursor-pointer hover:text-black"
+              onClick={toggleFavoritesModal}
+            >
+              <FaHeart className="text-lg" />
+              <span>Favourite ({favorites.length})</span>
+            </div>
 
-          <li
-            className="flex items-center space-x-1 hover:text-black cursor-pointer"
-            onClick={handleDownloadAll}
-          >
-            <GoDownload />
-            <span>Download All</span>
-          </li>
-          <li
-            className="flex items-center space-x-1 hover:text-black cursor-pointer"
-            onClick={handleSlideshow}
-          >
-            <FaPlay />
-            <span>Slideshow</span>
-          </li>
-          <li className="flex items-center space-x-1 hover:text-black cursor-pointer">
-            <Link href="/Cart" className="flex items-center space-x-1">
-              <FaCartArrowDown />
+            <div
+              className="flex items-center space-x-2 cursor-pointer hover:text-black"
+              onClick={handleDownloadAll}
+            >
+              <GoDownload className="text-lg" />
+              <span>Download All</span>
+            </div>
+
+            <div
+              className="flex items-center space-x-2 cursor-pointer hover:text-black"
+              onClick={handleSlideshow}
+            >
+              <FaPlay className="text-lg" />
+              <span>Slideshow</span>
+            </div>
+
+            <Link
+              href="/Cart"
+              className="flex items-center space-x-2 cursor-pointer hover:text-black"
+            >
+              <FaCartArrowDown className="text-lg" />
               <span>Cart ({cartItems.length})</span>
             </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </nav>
 
       {/* favourite model/page */}
       {showFavoritesModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-6 shadow-2xl w-full max-w-lg max-h-screen overflow-hidden">
-            <h3 className="text-2xl font-semibold text-gray-700 mb-4 text-center">
+          <div className="bg-white rounded-lg p-6 shadow-2xl w-full max-w-lg max-h-screen overflow-hidden sm:w-11/12 sm:rounded-md">
+            <h3 className="text-2xl font-semibold text-gray-700 mb-4 text-center sm:text-xl">
               Your Favorite Images
             </h3>
             {favorites.length === 0 ? (
-              <p className="text-gray-500 text-center">
-                You haven&apos;t added any favorites yet.
+              <p className="text-gray-500 text-center sm:text-sm">
+                You haven't added any favorites yet.
               </p>
             ) : (
               <>
-                <ul className="grid grid-cols-2 gap-6 overflow-y-auto max-h-80 p-2">
+                <ul className="grid grid-cols-2 gap-4 sm:gap-2 overflow-y-auto max-h-80 p-2 sm:max-h-64">
                   {favorites.map((image) => (
                     <li key={image.id} className="relative group">
                       <Image
@@ -628,11 +652,11 @@ const ClientHome = () => {
                         alt="Favorite"
                         width={150}
                         height={100}
-                        className="rounded-lg shadow-md transform transition duration-300 hover:scale-105"
+                        className="rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105"
                       />
                       <button
                         onClick={() => toggleFavorite(image)}
-                        className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 sm:text-[10px] sm:px-1"
                       >
                         ✕
                       </button>
@@ -640,7 +664,7 @@ const ClientHome = () => {
                   ))}
                 </ul>
                 <button
-                  className="mt-4 w-full py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-green-600 shadow-md transition duration-300"
+                  className="mt-4 w-full py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 shadow-md transition duration-300 sm:text-sm sm:py-1"
                   onClick={handleDownloadFavorites}
                 >
                   Download All Favorites
@@ -648,7 +672,7 @@ const ClientHome = () => {
               </>
             )}
             <button
-              className="mt-4 w-full py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-green-600 shadow-md transition duration-300"
+              className="mt-4 w-full py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 shadow-md transition duration-300 sm:text-sm sm:py-1"
               onClick={toggleFavoritesModal}
             >
               Close
@@ -687,10 +711,11 @@ const ClientHome = () => {
             />
             <div className="absolute inset-0 flex justify-end items-end gap-2 p-2 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
               <button
-                className={`p-2 ${favorites.find((fav) => fav.id === image.id)
+                className={`p-2 ${
+                  favorites.find((fav) => fav.id === image.id)
                     ? "text-red-600"
                     : "text-white"
-                  } hover:text-red-600`}
+                } hover:text-red-600`}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleFavorite(image);
@@ -827,10 +852,11 @@ const ClientHome = () => {
                 {["High Resolution", "Web Size"].map((size) => (
                   <div
                     key={size}
-                    className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
+                    className={`p-4 border rounded-lg cursor-pointer transition ${
+                      selectedSize === size
                         ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
                         : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                      }`}
+                    }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
@@ -853,8 +879,9 @@ const ClientHome = () => {
       {/* When we click on any image this page opens and there are download, share and but photo options */}
       {modalVisible && currentImage && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${modalVisible ? "modal-enter" : "modal-exit"
-            } ${clicked ? "z-0" : "z-50"}`}
+          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${
+            modalVisible ? "modal-enter" : "modal-exit"
+          } ${clicked ? "z-0" : "z-50"}`}
           style={{ fontFamily: "Times New Roman, serif" }}
         >
           <div className="relative bg-[#ffffff] w-full h-full flex flex-col justify-center items-center shadow-lg">
@@ -867,8 +894,9 @@ const ClientHome = () => {
               </button>
               <div className="flex items-center gap-4">
                 <button
-                  className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${clicked ? "z-0" : "z-50"
-                    }`}
+                  className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${
+                    clicked ? "z-0" : "z-50"
+                  }`}
                   onClick={() => handleOpenDownloadModal(currentImage)}
                 >
                   <FaDownload className="group-hover:text-[#3c2e21]" />
@@ -948,8 +976,8 @@ const ClientHome = () => {
               src={images[currentImageIndex].highRes}
               alt="Slideshow Image"
               className="object-contain max-h-full max-w-full"
-              width={800}
-              height={600}
+              width={600}
+              height={400}
             />
           </motion.div>
           ;

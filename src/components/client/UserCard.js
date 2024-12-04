@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import debounce from "lodash.debounce";
 import axios from "axios";
-import Head from 'next/head';
-import Image from "next/image";
+import Head from "next/head";
 
 const UserCards = () => {
   const [cards, setCards] = useState([]);
@@ -14,20 +14,23 @@ const UserCards = () => {
       try {
         const { data } = await axios.get("https://client-ra9o.onrender.com/api/cards");
         setCards(data);
-        console.log(data);
       } catch (error) {
-        console.error("Error fetching cards:", error);
+        // console.error("Error fetching cards:", error);
       }
     };
 
     fetchCards();
   }, []);
 
-  const handleClick = (cardId) => {
+  const handleClick = useCallback(
+  debounce((cardId) => {
     const selectedCard = cards.find((card) => card._id === cardId);
-    console.log(selectedCard);
-    localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
-  };
+    if (selectedCard) {
+      localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
+    }
+  }, 300),
+  [cards]
+);
 
   return (
     <>
@@ -40,7 +43,7 @@ const UserCards = () => {
         <meta property="og:description" content="Discover a range of dynamic user cards, including names, dates, and images. Click to explore detailed views." />
         <meta property="og:image" content={cards[0]?.imageUrl || "/default-image.jpg"} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.pkphotography.io/user-cards" />
+        <meta property="og:url" content="https://pkphotography.io/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
       </Head>

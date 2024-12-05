@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import FavouriteModal from "../client/FavouriteModal.js";
+import ShareModal from "./shareModal.js";
+import SlideshowModal from "../client/SlideshowModal.js";
+import CategoryNav from "../client/CategoryNav.js";
+import RightNav from "../client/RightNav.js";
+import ImageModal from "../client/ImageModal.js";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { GoDownload } from "react-icons/go";
@@ -14,11 +19,6 @@ import {
   FaShareAlt,
   FaPlay,
   FaArrowLeft,
-  FaFacebook,
-  FaTwitter,
-  FaPinterest,
-  FaEnvelope,
-  FaCopy,
   FaArrowRight,
   FaShare,
   FaCartArrowDown,
@@ -52,6 +52,7 @@ const ClientHome = () => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
+    console.log("Last ID:", lastId);
 
     const fetchSelectedCard = async () => {
       try {
@@ -60,6 +61,7 @@ const ClientHome = () => {
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
+        console.log("Selected card:", selectedCard);
         setCategories(selectedCard.category || []);
 
         // Set the first category as the default active category
@@ -69,7 +71,7 @@ const ClientHome = () => {
           fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
         }
       } catch (error) {
-        // console.error("Error fetching selected card:", error);
+        console.error("Error fetching selected card:", error);
       }
     };
 
@@ -89,6 +91,7 @@ const ClientHome = () => {
 
   const fetchImagesFromDrive = useCallback(async (driveLink, categoryName) => {
     if (!driveLink) {
+      console.error("No drive link provided.");
       return;
     }
 
@@ -96,21 +99,51 @@ const ClientHome = () => {
     if (folderId) {
       try {
         const response = await axios.get(
-          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
         );
         const driveImages = response.data.files.map((file, index) => ({
           id: `${categoryName}-${index}`, // Unique ID based on category and index
+          lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
+          mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
           highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
-          webSize: `https://drive.google.com/uc?export=download&id=${file.id}&webp=true`,
+          shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
         }));
         setImages(driveImages);
         setActiveCategory(categoryName);
       } catch (error) {
+        console.error("Error fetching images from Google Drive:", error);
       }
     } else {
-      // console.error("Invalid drive link:", driveLink);
+      console.error("Invalid drive link:", driveLink);
     }
   });
+
+  useEffect(() => {
+    const connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const loadImages = () => {
+      document.querySelectorAll(".progressive-image").forEach((img) => {
+        const mediumRes = img.dataset.medium;
+        const highRes = img.dataset.high;
+
+        const finalSrc =
+          connection && connection.effectiveType.includes("4g")
+            ? highRes
+            : mediumRes;
+
+        const preloader = new window.Image(); // Use native browser Image
+        preloader.src = finalSrc;
+        preloader.onload = () => {
+          img.src = finalSrc;
+        };
+      });
+    };
+
+    // Load higher resolutions after initial render
+    loadImages();
+  }, [images]);
 
   const extractFolderId = (driveLink) => {
     const match = driveLink.match(/[-\w]{25,}/);
@@ -194,21 +227,20 @@ const ClientHome = () => {
     setCurrentImage(null);
   };
 
-  const handleShare = (imageUrl) => {
+  const handleShare = (shareableLink) => {
     if (navigator.share) {
       navigator
         .share({
-          title: "Check out this image",
-          url: imageUrl,
+          title: "Check out this image!",
+          url: shareableLink,
         })
         .catch(() => {
-          alert("An error occurred while trying to share the image. Please try again.");
+          // Error handling without console
         });
     } else {
       alert("Sharing is not supported on this browser.");
     }
   };
-  
 
   const handleBuyPhoto = (image) => {
     handleAddToCart(image);
@@ -253,7 +285,7 @@ const ClientHome = () => {
 
       handleCloseDownloadModal();
     } catch (error) {
-      // console.error("Error downloading the image:", error);
+      console.error("Error downloading the image:", error);
     }
   };
 
@@ -263,14 +295,14 @@ const ClientHome = () => {
       navigator.clipboard.writeText(websiteLink);
       alert("Website link copied to clipboard!");
     } else {
-      // console.error("No image data to copy.");
+      console.error("No image data to copy.");
       alert("Unable to copy. No image selected.");
     }
   };
 
   const handleSocialShare = (platform) => {
     if (!currentImage?.id) {
-      // console.error("No image data to share.");
+      console.error("No image data to share.");
       alert("Unable to share. No image selected.");
       return;
     }
@@ -313,17 +345,18 @@ const ClientHome = () => {
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        // console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+      console.log("Fetching from proxy URL:", proxyUrl);
 
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -345,7 +378,7 @@ const ClientHome = () => {
         }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        // console.error(`Error downloading file: ${image.highRes}`, error);
+        console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -426,17 +459,18 @@ const ClientHome = () => {
     const fetchPromises = favorites.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        // console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+      console.log("Fetching from proxy URL:", proxyUrl);
 
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
-          // console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
           failedImages.push(image.highRes);
           return;
         }
@@ -456,7 +490,7 @@ const ClientHome = () => {
         const fileName = `favorite_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        // console.error(`Error downloading file: ${image.highRes}`, error);
+        console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
@@ -513,7 +547,7 @@ const ClientHome = () => {
             selectedCard.name || "PK Photography"
           }.`}
         />
-        <meta property="og:image" content="/path-to-default-image.jpg" />
+        <meta property="og:image" content="" />
         <meta property="og:url" content={window.location.href} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -539,147 +573,33 @@ const ClientHome = () => {
       {/* Categories Navbar */}
       <nav className="bg-white shadow-md py-4 px-6">
         <div className="container mx-auto">
-          {/* Categories Section */}
-          <div className="mb-6">
-            <ul className="flex flex-wrap gap-4 justify-center">
-              {/* Display categories */}
-              {categories.slice(0, 4).map((category, index) => (
-                <li
-                  key={index}
-                  className={`px-4 py-2 rounded-full cursor-pointer shadow-sm transition duration-300 ease-in-out text-sm font-semibold ${
-                    activeCategory === category.name
-                      ? "bg-yellow-400 text-black"
-                      : "bg-gray-200 hover:bg-gray-300"
-                  }`}
-                  onClick={() =>
-                    fetchImagesFromDrive(category.images, category.name)
-                  }
-                >
-                  {category.name}
-                </li>
-              ))}
+          <CategoryNav
+            categories={categories}
+            activeCategory={activeCategory}
+            fetchImagesFromDrive={fetchImagesFromDrive}
+            toggleDropdown={toggleDropdown}
+            dropdownVisible={dropdownVisible}
+            setDropdownVisible={setDropdownVisible}
+          />
 
-              {/* "More" Dropdown for remaining categories */}
-              {categories.length > 4 && (
-                <li className="relative">
-                  <div
-                    className="px-4 py-2 rounded-full cursor-pointer shadow-sm bg-gray-200 hover:bg-gray-300 transition duration-300 ease-in-out text-sm font-semibold"
-                    onClick={toggleDropdown}
-                  >
-                    More
-                  </div>
-                  {dropdownVisible && (
-                    <ul className="absolute mt-2 bg-white shadow-lg rounded-lg overflow-hidden z-50">
-                      {categories.slice(4).map((category, index) => (
-                        <li
-                          key={index}
-                          className={`px-4 py-2 cursor-pointer hover:bg-gray-200 transition duration-200 text-sm ${
-                            activeCategory === category.name ? "font-bold" : ""
-                          }`}
-                          onClick={() => {
-                            fetchImagesFromDrive(
-                              category.images,
-                              category.name
-                            );
-                            setDropdownVisible(false);
-                          }}
-                        >
-                          {category.name}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              )}
-            </ul>
-          </div>
-
-          {/* Actions Section */}
-          <div className="flex justify-center gap-6 text-sm font-semibold text-gray-700">
-            <div
-              className="flex items-center space-x-2 cursor-pointer hover:text-black"
-              onClick={toggleFavoritesModal}
-            >
-              <FaHeart className="text-lg" />
-              <span>Favourite ({favorites.length})</span>
-            </div>
-
-            <div
-              className="flex items-center space-x-2 cursor-pointer hover:text-black"
-              onClick={handleDownloadAll}
-            >
-              <GoDownload className="text-lg" />
-              <span>Download All</span>
-            </div>
-
-            <div
-              className="flex items-center space-x-2 cursor-pointer hover:text-black"
-              onClick={handleSlideshow}
-            >
-              <FaPlay className="text-lg" />
-              <span>Slideshow</span>
-            </div>
-
-            <Link
-              href="/Cart"
-              className="flex items-center space-x-2 cursor-pointer hover:text-black"
-            >
-              <FaCartArrowDown className="text-lg" />
-              <span>Cart ({cartItems.length})</span>
-            </Link>
-          </div>
+          {/* Right-Side Actions */}
+          <RightNav
+            toggleFavoritesModal={toggleFavoritesModal}
+            handleDownloadAll={handleDownloadAll}
+            handleSlideshow={handleSlideshow}
+            favorites={favorites}
+            cartItems={cartItems}
+          />
         </div>
       </nav>
 
-      {/* favourite model/page */}
-      {showFavoritesModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-6 shadow-2xl w-full max-w-lg max-h-screen overflow-hidden sm:w-11/12 sm:rounded-md">
-            <h3 className="text-2xl font-semibold text-gray-700 mb-4 text-center sm:text-xl">
-              Your Favorite Images
-            </h3>
-            {favorites.length === 0 ? (
-              <p className="text-gray-500 text-center sm:text-sm">
-                You haven't added any favorites yet.
-              </p>
-            ) : (
-              <>
-                <ul className="grid grid-cols-2 gap-4 sm:gap-2 overflow-y-auto max-h-80 p-2 sm:max-h-64">
-                  {favorites.map((image) => (
-                    <li key={image.id} className="relative group">
-                      <Image
-                        src={image.highRes}
-                        alt="Favorite"
-                        width={150}
-                        height={100}
-                        className="rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105"
-                      />
-                      <button
-                        onClick={() => toggleFavorite(image)}
-                        className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 sm:text-[10px] sm:px-1"
-                      >
-                        ✕
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className="mt-4 w-full py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 shadow-md transition duration-300 sm:text-sm sm:py-1"
-                  onClick={handleDownloadFavorites}
-                >
-                  Download All Favorites
-                </button>
-              </>
-            )}
-            <button
-              className="mt-4 w-full py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 shadow-md transition duration-300 sm:text-sm sm:py-1"
-              onClick={toggleFavoritesModal}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <FavouriteModal
+        showFavoritesModal={showFavoritesModal}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+        toggleFavoritesModal={toggleFavoritesModal}
+        handleDownloadFavorites={handleDownloadFavorites}
+      />
 
       {/* here we are fetching the drive images and Display Images */}
       <ul
@@ -702,13 +622,48 @@ const ClientHome = () => {
               breakInside: "avoid",
             }}
           >
-            <Image
-              src={image.highRes}
-              layout="intrinsic"
-              width={800}
-              height={500}
-              style={{ display: "block", width: "100%" }}
-            />
+            <div className="relative">
+              {/* Low-Resolution Blurry Image */}
+              <Image
+                src={image.lowRes}
+                alt="Blurry placeholder"
+                width={200}
+                height={200}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  filter: "blur(10px)",
+                  transition: "filter 1s ease-in-out",
+                }}
+                onLoad={(e) => {
+                  // Transition to clear once loaded
+                  setTimeout(() => {
+                    e.target.style.filter = "none"; // Remove blur
+                  }, 1000);
+                }}
+              />
+              {/* High-Resolution Progressive Image */}
+              <Image
+                src={image.highRes}
+                alt="High-resolution image"
+                width={800}
+                height={600}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  opacity: 0,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  transition: "opacity 1s ease-in-out",
+                }}
+                onLoad={(e) => {
+                  setTimeout(() => {
+                    e.target.style.opacity = 1;
+                  }, index * 500);
+                }}
+              />
+            </div>
             <div className="absolute inset-0 flex justify-end items-end gap-2 p-2 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
               <button
                 className={`p-2 ${
@@ -745,80 +700,13 @@ const ClientHome = () => {
                 <FaShare className="w-5 h-5" />
               </button>
 
-              {showModal && currentImage && (
-                <div
-                  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out"
-                  onClick={() => setShowModal(false)} // Close modal when clicking outside
-                >
-                  <div
-                    className="relative bg-white p-8 rounded-lg shadow-lg w-full max-w-sm transform transition-transform duration-300 ease-in-out scale-100"
-                    onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up
-                  >
-                    {/* Close Button */}
-                    <button
-                      className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                      onClick={() => setShowModal(false)}
-                    >
-                      ✕
-                    </button>
-
-                    {/* Modal Header */}
-                    <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                      Share This Image
-                    </h3>
-
-                    {/* Input Field */}
-                    <div className="flex items-center mb-6">
-                      <input
-                        type="text"
-                        value={currentImage?.highRes || "Image Link Here"} // Dynamic placeholder
-                        readOnly
-                        className="border border-gray-300 rounded-l p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-                      />
-                      <button
-                        onClick={handleCopyLink}
-                        className="bg-gray-400 text-white rounded-r px-4 py-2 hover:bg-gray-600 transition-all"
-                      >
-                        Copy
-                      </button>
-                    </div>
-
-                    {/* Social Sharing Icons */}
-                    <div className="flex justify-around items-center mb-6">
-                      <FaFacebook
-                        onClick={() => handleSocialShare("facebook")}
-                        className="cursor-pointer text-blue-600 hover:scale-110 transition-transform duration-200"
-                        size={28}
-                      />
-                      <FaTwitter
-                        onClick={() => handleSocialShare("twitter")}
-                        className="cursor-pointer text-blue-400 hover:scale-110 transition-transform duration-200"
-                        size={28}
-                      />
-                      <FaPinterest
-                        onClick={() => handleSocialShare("pinterest")}
-                        className="cursor-pointer text-red-600 hover:scale-110 transition-transform duration-200"
-                        size={28}
-                      />
-                      <FaEnvelope
-                        onClick={() => handleSocialShare("email")}
-                        className="cursor-pointer text-gray-600 hover:scale-110 transition-transform duration-200"
-                        size={28}
-                      />
-                    </div>
-
-                    {/* Footer */}
-                    <div className="text-center">
-                      <button
-                        className="text-blue-500 font-medium hover:underline"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Close
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <ShareModal
+                showModal={showModal}
+                currentImage={currentImage}
+                setShowModal={setShowModal}
+                handleCopyLink={handleCopyLink}
+                handleSocialShare={handleSocialShare}
+              />
             </div>
           </li>
         ))}
@@ -878,116 +766,28 @@ const ClientHome = () => {
 
       {/* When we click on any image this page opens and there are download, share and but photo options */}
       {modalVisible && currentImage && (
-        <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${
-            modalVisible ? "modal-enter" : "modal-exit"
-          } ${clicked ? "z-0" : "z-50"}`}
-          style={{ fontFamily: "Times New Roman, serif" }}
-        >
-          <div className="relative bg-[#ffffff] w-full h-full flex flex-col justify-center items-center shadow-lg">
-            <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-              <button
-                className="text-[#5a4b3b] hover:text-[#3c2e21] focus:outline-none text-sm"
-                onClick={closeModal}
-              >
-                <FaTimes size={20} />
-              </button>
-              <div className="flex items-center gap-4">
-                <button
-                  className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${
-                    clicked ? "z-0" : "z-50"
-                  }`}
-                  onClick={() => handleOpenDownloadModal(currentImage)}
-                >
-                  <FaDownload className="group-hover:text-[#3c2e21]" />
-                  <span>Download</span>
-                </button>
-                <button
-                  className="group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm"
-                  onClick={() => handleShare(currentImage)}
-                >
-                  <FaShareAlt className="group-hover:text-[#3c2e21]" />
-                  <span>Share</span>
-                </button>
-                <button
-                  className="flex items-center gap-1 px-4 py-2 bg-[#a67c52] text-white shadow-md hover:bg-[#8b6a45] focus:outline-none text-sm"
-                  onClick={handleBuyPhoto}
-                >
-                  <FaCartPlus />
-                  Buy Photo
-                </button>
-              </div>
-            </div>
-
-            {/* Image and Navigation */}
-            <div
-              ref={imageContainerRef}
-              id="image-container"
-              className="flex justify-center h-2/3 w-full mt-16 relative"
-            >
-              <button
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-200 hover:text-gray-800"
-                onClick={handlePreviousImage}
-              >
-                <FaArrowLeft size={30} />
-              </button>
-              <Image
-                src={currentImage.highRes}
-                alt="Current"
-                className="rounded-md object-contain"
-                style={{ maxWidth: "100%", height: "auto" }}
-                width={1200}
-                height={800}
-              />
-              <button
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-200 hover:text-gray-800"
-                onClick={handleNextImage}
-              >
-                <FaArrowRight size={30} />
-              </button>
-            </div>
-          </div>
-        </div>
+        <ImageModal
+          modalVisible={modalVisible}
+          currentImage={currentImage}
+          closeModal={closeModal}
+          handleOpenDownloadModal={handleOpenDownloadModal}
+          handleShare={handleShare}
+          handleBuyPhoto={handleBuyPhoto}
+          handlePreviousImage={handlePreviousImage}
+          handleNextImage={handleNextImage}
+          clicked={clicked}
+        />
       )}
 
       {/* Slideshow Modal */}
       {slideshowVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-          <button
-            className="absolute top-4 right-4 text-white"
-            onClick={closeSlideshow}
-          >
-            <FaTimes size={30} />
-          </button>
-          <button
-            className="absolute left-4 text-white"
-            onClick={handlePreviousImage}
-          >
-            <FaArrowLeft size={30} />
-          </button>
-          <motion.div
-            key={currentImageIndex} // Key changes to trigger animation
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Image
-              src={images[currentImageIndex].highRes}
-              alt="Slideshow Image"
-              className="object-contain max-h-full max-w-full"
-              width={600}
-              height={400}
-            />
-          </motion.div>
-          ;
-          <button
-            className="absolute right-4 text-white"
-            onClick={handleNextImage}
-          >
-            <FaArrowRight size={30} />
-          </button>
-        </div>
+        <SlideshowModal
+          images={images}
+          currentImageIndex={currentImageIndex}
+          closeSlideshow={closeSlideshow}
+          handlePreviousImage={handlePreviousImage}
+          handleNextImage={handleNextImage}
+        />
       )}
     </>
   );

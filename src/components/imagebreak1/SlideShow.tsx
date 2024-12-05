@@ -2,6 +2,7 @@ import React from "react";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import Image from "next/image";
 
 const Slideshow = () => {
   const images = [
@@ -46,7 +47,7 @@ const Slideshow = () => {
             key={index}
             className="flex justify-center items-center w-full h-full relative"
           >
-            <img
+            <Image
               className="w-full h-full object-contain"
               src={each}
               alt={`Slide ${index + 1}`}

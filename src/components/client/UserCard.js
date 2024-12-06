@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Head from "next/head";
-import Image from "next/image"; // Import Image from next/image
 
 const UserCards = () => {
   const [cards, setCards] = useState([]);
@@ -66,7 +65,7 @@ const UserCards = () => {
             className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
           >
             <div className="relative h-48 w-full">
-              <Image
+              <img
                 src={card.imageUrl}
                 alt={card.name}
                 className="object-cover w-full h-full rounded-t-lg"

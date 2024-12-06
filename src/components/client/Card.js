@@ -12,7 +12,7 @@ const ClientPage = () => {
     const fetchCardData = async () => {
       if (id) {
         try {
-          const { data } = await axios.get(`https://client-ra9o.onrender.com/api/cards/${id}`);
+          const { data } = await axios.get(`http://localhost:4000/api/cards/${id}`);
           setCard(data);
         } catch (error) {
           console.error('Error fetching card data:', error);

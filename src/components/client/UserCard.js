@@ -70,8 +70,6 @@ const UserCards = () => {
                 src={card.imageUrl}
                 alt={card.name}
                 className="object-cover w-full h-full rounded-t-lg"
-                layout="fill" // Automatically fill the container dimensions
-                objectFit="cover" // Ensure the image covers the container area
               />
             </div>
             <div className="p-4 flex flex-col h-full">

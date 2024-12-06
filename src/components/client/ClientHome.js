@@ -44,16 +44,56 @@ const ClientHome = () => {
   const [clicked, setClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
+  const isMobile =
+    typeof window !== "undefined" &&
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const dropdownRef = useRef(null);
   const imageContainerRef = useRef(null);
 
+  const fetchImagesFromDrive = useCallback(
+    async (driveLink, categoryName) => {
+      const extractFolderId = (driveLink) => {
+        const match = driveLink.match(/[-\w]{25,}/);
+        return match ? match[0] : null;
+      };
+  
+      if (!driveLink) {
+        console.error("No drive link provided.");
+        return;
+      }
+  
+      const folderId = extractFolderId(driveLink);
+      if (folderId) {
+        try {
+          const response = await axios.get(
+            `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+          );
+          const driveImages = response.data.files.map((file, index) => ({
+            id: `${categoryName}-${index}`,
+            lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
+            mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
+            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+            shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
+          }));
+          setImages(driveImages);
+          setActiveCategory(categoryName);
+        } catch (error) {
+          console.error("Error fetching images from Google Drive:", error);
+        }
+      } else {
+        console.error("Invalid drive link:", driveLink);
+      }
+    },
+    [] // No dependencies for `extractFolderId` as it is inside the callback
+  );
+  
   useEffect(() => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
     console.log("Last ID:", lastId);
-
+  
     const fetchSelectedCard = async () => {
       try {
         const response = await axios.get(
@@ -63,7 +103,7 @@ const ClientHome = () => {
         setSelectedCard(selectedCard);
         console.log("Selected card:", selectedCard);
         setCategories(selectedCard.category || []);
-
+  
         // Set the first category as the default active category
         if (selectedCard.category && selectedCard.category.length > 0) {
           const firstCategory = selectedCard.category[0];
@@ -74,11 +114,27 @@ const ClientHome = () => {
         console.error("Error fetching selected card:", error);
       }
     };
-
+  
     fetchSelectedCard();
-  }, []);
+  }, [fetchImagesFromDrive]); 
+  
 
   useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth <= 480) {
+        setColumns(2);
+      } else if (window.innerWidth <= 768) {
+        setColumns(3);
+      } else {
+        setColumns(4);
+      }
+    };
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
+
+    useEffect(() => {
     // Close dropdown if clicked outside
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -88,35 +144,6 @@ const ClientHome = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const fetchImagesFromDrive = useCallback(async (driveLink, categoryName) => {
-    if (!driveLink) {
-      console.error("No drive link provided.");
-      return;
-    }
-
-    const folderId = extractFolderId(driveLink);
-    if (folderId) {
-      try {
-        const response = await axios.get(
-          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
-        );
-        const driveImages = response.data.files.map((file, index) => ({
-          id: `${categoryName}-${index}`, // Unique ID based on category and index
-          lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
-          mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-          highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
-          shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
-        }));
-        setImages(driveImages);
-        setActiveCategory(categoryName);
-      } catch (error) {
-        console.error("Error fetching images from Google Drive:", error);
-      }
-    } else {
-      console.error("Invalid drive link:", driveLink);
-    }
-  });
 
   useEffect(() => {
     const connection =
@@ -145,25 +172,6 @@ const ClientHome = () => {
     loadImages();
   }, [images]);
 
-  const extractFolderId = (driveLink) => {
-    const match = driveLink.match(/[-\w]{25,}/);
-    return match ? match[0] : null;
-  };
-
-  useEffect(() => {
-    const updateColumns = () => {
-      if (window.innerWidth <= 480) {
-        setColumns(2);
-      } else if (window.innerWidth <= 768) {
-        setColumns(3);
-      } else {
-        setColumns(4);
-      }
-    };
-    updateColumns();
-    window.addEventListener("resize", updateColumns);
-    return () => window.removeEventListener("resize", updateColumns);
-  }, []);
 
   const handleSlideshow = () => {
     if (images.length > 0) {
@@ -664,7 +672,21 @@ const ClientHome = () => {
                 }}
               />
             </div>
-            <div className="absolute inset-0 flex justify-end items-end gap-2 p-2 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out">
+            <div
+              className={`absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${
+                isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+                if (!isMobile) return; // Ensure behavior only for mobile
+
+                // Simulate hover behavior
+                e.currentTarget.classList.add("opacity-100");
+                setTimeout(() => {
+                  e.currentTarget.classList.remove("opacity-100");
+                }, 3000); // Hide again after 3 seconds
+              }}
+            >
               <button
                 className={`p-2 ${
                   favorites.find((fav) => fav.id === image.id)
@@ -693,8 +715,8 @@ const ClientHome = () => {
                 className="text-white p-2 hover:text-gray-600"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCurrentImage(image); // Set the selected image
-                  setShowModal(true); // Then show the modal
+                  setCurrentImage(image);
+                  setShowModal(true);
                 }}
               >
                 <FaShare className="w-5 h-5" />

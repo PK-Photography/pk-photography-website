@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Image from 'next/image';
-import imageCompression from 'browser-image-compression';
+import Image from "next/image";
 
 const AdminMain = () => {
   const [cards, setCards] = useState([]);
@@ -23,36 +22,22 @@ const AdminMain = () => {
     fetchCards();
   }, []);
 
-  const handleImageChange = async (e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-  
+
+    // Restrict image size to 10MB
     if (file.size > 10 * 1024 * 1024) {
-      alert('Large file detected. Compressing the image...');
+      alert('File size exceeds 10MB. Please upload a smaller file.');
+      return;
     }
-  
-    try {
-      const options = {
-        maxSizeMB: 10, // Target size
-        maxWidthOrHeight: 1920, // Resize if needed
-        useWebWorker: true,
-      };
-  
-      const start = performance.now();
-      const compressedFile = await imageCompression(file, options);
-      const end = performance.now();
-      
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(compressedFile);
-    } catch (error) {
-      console.error('Error compressing image:', error);
-      alert('Image compression failed. Please try again.');
-    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,6 +74,12 @@ const AdminMain = () => {
     <div className="max-w-lg mx-auto">
       <header>
         <title>Admin Panel - PK PHOTOGRAPHY</title>
+        <meta
+          name="description"
+          content="Admin panel for managing and uploading wedding cards with names, dates, and images. Easily add, view, and delete wedding card details."
+        />
+        <meta name="keywords" content="Wedding Cards, Admin Panel, Upload Cards, Manage Cards" />
+        <meta name="author" content="Your Name" />
       </header>
 
       <form onSubmit={handleSubmit} className="mb-8">
@@ -152,26 +143,28 @@ const AdminMain = () => {
 
       <div>
         <h2 className="text-lg font-bold mb-4">Uploaded Cards</h2>
-        {cards.map((card) => (
-          <article
-            key={card._id}
-            className="mb-4 p-4 border border-gray-300 rounded-md"
-          >
-            <h3 className="text-md font-bold">{card.name}</h3>
-            <p className="text-sm text-gray-600">{card.date}</p>
-            <Image
-              src={card.image}
-              alt={`Wedding card for ${card.name}`}
-              className="w-full h-32 object-cover mt-2"
-            />
-            <button
-              onClick={() => handleDelete(card._id)}
-              className="mt-2 px-4 py-2 bg-red-600 text-white rounded-md"
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {cards.map((card) => (
+            <article
+              key={card._id}
+              className="p-4 border border-gray-300 rounded-md"
             >
-              Delete
-            </button>
-          </article>
-        ))}
+              <h3 className="text-md font-bold">{card.name}</h3>
+              <p className="text-sm text-gray-600">{card.date}</p>
+              <Image
+                src={card.image}
+                alt={`Wedding card for ${card.name}`}
+                className="w-full h-32 object-cover mt-2"
+              />
+              <button
+                onClick={() => handleDelete(card._id)}
+                className="mt-2 px-4 py-2 bg-red-600 text-white rounded-md"
+              >
+                Delete
+              </button>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

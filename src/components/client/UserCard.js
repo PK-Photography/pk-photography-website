@@ -1,8 +1,18 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
+import debounce from "lodash.debounce";
 import axios from "axios";
 import Head from "next/head";
+import Image from "next/image";
+
+// Create the debounced function outside the component
+const debounceHandleClick = debounce((cardId, cards) => {
+  const selectedCard = cards.find((card) => card._id === cardId);
+  if (selectedCard) {
+    localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
+  }
+}, 300);
 
 const UserCards = () => {
   const [cards, setCards] = useState([]);
@@ -14,7 +24,7 @@ const UserCards = () => {
         const { data } = await axios.get("https://client-ra9o.onrender.com/api/cards");
         setCards(data);
       } catch (error) {
-        // console.error("Error fetching cards:", error);
+        // Handle error
       }
     };
 
@@ -22,15 +32,10 @@ const UserCards = () => {
   }, []);
 
   const handleClick = useCallback(
-    (cardId) => {
-      const selectedCard = cards.find((card) => card._id === cardId);
-      if (selectedCard) {
-        localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
-      }
-    },
-    [cards]
+    (cardId) => debounceHandleClick(cardId, cards),
+    [cards] // cards is still a dependency, but the debounce function is stable
   );
-  
+
   return (
     <>
       <Head>
@@ -39,7 +44,10 @@ const UserCards = () => {
           name="description"
           content="Browse through a collection of dynamic user cards with details including names, images, and dates. Click to view more information."
         />
-        <meta name="keywords" content="user cards, dynamic gallery, card details, view cards, image cards" />
+        <meta
+          name="keywords"
+          content="user cards, dynamic gallery, card details, view cards, image cards"
+        />
         <meta name="author" content="Mohit Kumar" />
         <meta
           property="og:title"
@@ -54,7 +62,7 @@ const UserCards = () => {
           content={cards[0]?.imageUrl || "/default-image.jpg"}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://pkphotography.io/" />
+        <meta property="og:url" content="http://localhost:3000/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
       </Head>
@@ -65,12 +73,15 @@ const UserCards = () => {
             className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
           >
             <div className="relative h-48 w-full">
-              <img
+              <Image
                 src={card.imageUrl}
                 alt={card.name}
-                className="object-cover w-full h-full rounded-t-lg"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-lg"
               />
             </div>
+
             <div className="p-4 flex flex-col h-full">
               <h2 className="text-lg font-semibold text-gray-800 text-center">
                 {card.name}

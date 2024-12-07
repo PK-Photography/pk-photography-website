@@ -11,11 +11,7 @@ import axios from "axios";
 import { GoDownload } from "react-icons/go";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import {
-  FaHeart,
-  FaShare,
-  FaTimes,
-} from "react-icons/fa";
+import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -28,6 +24,7 @@ const ClientHome = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
   const [selectedSize, setSelectedSize] = useState("High Resolution");
   const [columns, setColumns] = useState(4);
@@ -36,306 +33,358 @@ const ClientHome = () => {
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
   const isMobile =
-  typeof window !== "undefined" &&
-  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-const dropdownRef = useRef(null);
-const imageContainerRef = useRef(null);
+    typeof window !== "undefined" &&
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const dropdownRef = useRef(null);
+  const imageContainerRef = useRef(null);
 
-const fetchImagesFromDrive = useCallback(
-  async (driveLink, categoryName) => {
-    const extractFolderId = (driveLink) => {
-      const match = driveLink.match(/[-\w]{25,}/);
-      return match ? match[0] : null;
-    };
+  const fetchImagesFromDrive = useCallback(
+    async (driveLink, categoryName) => {
+      const extractFolderId = (driveLink) => {
+        const match = driveLink.match(/[-\w]{25,}/);
+        return match ? match[0] : null;
+      };
 
-    if (!driveLink) {
-      return;
-    }
+      if (!driveLink) {
+        console.error("No drive link provided.");
+        return;
+      }
 
-    const folderId = extractFolderId(driveLink);
-    if (folderId) {
+      const folderId = extractFolderId(driveLink);
+      if (folderId) {
+        try {
+          const response = await axios.get(
+            `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+          );
+          const driveImages = response.data.files.map((file, index) => ({
+            id: `${categoryName}-${index}`,
+            lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
+            mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
+            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+            shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
+          }));
+          setImages(driveImages);
+          setActiveCategory(categoryName);
+        } catch (error) {
+          console.error("Error fetching images from Google Drive:", error);
+        }
+      } else {
+        console.error("Invalid drive link:", driveLink);
+      }
+    },
+    [] // No dependencies for `extractFolderId` as it is inside the callback
+  );
+
+  useEffect(() => {
+    const url = window.location.pathname;
+    const parts = url.split("/");
+    const lastId = parts[parts.length - 1];
+    // console.log("Last ID:", lastId);
+
+    const fetchSelectedCard = async () => {
       try {
         const response = await axios.get(
-          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+          `https://client-ra9o.onrender.com/api/client/cards`
         );
-        const driveImages = response.data.files.map((file, index) => ({
-          id: `${categoryName}-${index}`,
-          lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
-          mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-          highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
-          shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
-        }));
-        setImages(driveImages);
-        setActiveCategory(categoryName);
-      } catch (error) {}
-    }
-  },
-  []
-);
+        const selectedCard = response.data.find((card) => card._id === lastId);
+        setSelectedCard(selectedCard);
+        // console.log("Selected card:", selectedCard);
+        setCategories(selectedCard.category || []);
 
-useEffect(() => {
-  const url = window.location.pathname;
-  const parts = url.split("/");
-  const lastId = parts[parts.length - 1];
-
-  const fetchSelectedCard = async () => {
-    try {
-      const response = await axios.get(
-        `https://client-ra9o.onrender.com/api/client/cards`
-      );
-      const selectedCard = response.data.find((card) => card._id === lastId);
-      setSelectedCard(selectedCard);
-      setCategories(selectedCard.category || []);
-
-      if (selectedCard.category && selectedCard.category.length > 0) {
-        const firstCategory = selectedCard.category[0];
-        setActiveCategory(firstCategory.name);
-        fetchImagesFromDrive(firstCategory.images, firstCategory.name);
+        // Set the first category as the default active category
+        if (selectedCard.category && selectedCard.category.length > 0) {
+          const firstCategory = selectedCard.category[0];
+          setActiveCategory(firstCategory.name); // Set the first category as active
+          fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
+        }
+      } catch (error) {
+        console.error("Error fetching selected card:", error);
       }
-    } catch (error) {}
-  };
+    };
 
-  fetchSelectedCard();
-}, [fetchImagesFromDrive]);
+    fetchSelectedCard();
+  }, [fetchImagesFromDrive]); // Now `fetchImagesFromDrive` is initialized before this effect is used
 
-useEffect(() => {
-  const updateColumns = () => {
-    if (window.innerWidth <= 480) {
-      setColumns(2);
-    } else if (window.innerWidth <= 768) {
-      setColumns(3);
+  useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth <= 480) {
+        setColumns(2);
+      } else if (window.innerWidth <= 768) {
+        setColumns(3);
+      } else {
+        setColumns(4);
+      }
+    };
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
+
+  useEffect(() => {
+    // Close dropdown if clicked outside
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const loadImages = () => {
+      document.querySelectorAll(".progressive-image").forEach((img) => {
+        const mediumRes = img.dataset.medium;
+        const highRes = img.dataset.high;
+
+        const finalSrc =
+          connection && connection.effectiveType.includes("4g")
+            ? highRes
+            : mediumRes;
+
+        const preloader = new window.Image(); // Use native browser Image
+        preloader.src = finalSrc;
+        preloader.onload = () => {
+          img.src = finalSrc;
+        };
+      });
+    };
+
+    // Load higher resolutions after initial render
+    loadImages();
+  }, [images]);
+
+  const handleSlideshow = () => {
+    if (images.length > 0) {
+      setSlideshowVisible(true);
+      setCurrentImageIndex(0); // Start from the first image
+      startAutoPlay(); // Start automatic slideshow
     } else {
-      setColumns(4);
+      alert("No images available for the slideshow.");
     }
   };
-  updateColumns();
-  window.addEventListener("resize", updateColumns);
-  return () => window.removeEventListener("resize", updateColumns);
-}, []);
 
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownVisible(false);
-    }
-  };
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => document.removeEventListener("mousedown", handleClickOutside);
-}, []);
-
-useEffect(() => {
-  const connection =
-    navigator.connection ||
-    navigator.mozConnection ||
-    navigator.webkitConnection;
-  const loadImages = () => {
-    document.querySelectorAll(".progressive-image").forEach((img) => {
-      const mediumRes = img.dataset.medium;
-      const highRes = img.dataset.high;
-
-      const finalSrc =
-        connection && connection.effectiveType.includes("4g")
-          ? highRes
-          : mediumRes;
-
-      const preloader = new window.Image();
-      preloader.src = finalSrc;
-      preloader.onload = () => {
-        img.src = finalSrc;
-      };
-    });
-  };
-
-  loadImages();
-}, [images]);
-
-const handleSlideshow = () => {
-  if (images.length > 0) {
-    setSlideshowVisible(true);
-    setCurrentImageIndex(0);
-    startAutoPlay();
-  } else {
-    alert("No images available for the slideshow.");
-  }
-};
-
-const handleNextImage = () => {
-  setCurrentImageIndex((prevIndex) =>
-    prevIndex === images.length - 1 ? 0 : prevIndex + 1
-  );
-
-  if (imageContainerRef.current) {
-    imageContainerRef.current.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
-const handlePreviousImage = () => {
-  setCurrentImageIndex((prevIndex) =>
-    prevIndex === 0 ? images.length - 1 : prevIndex - 1
-  );
-};
-
-const closeSlideshow = () => {
-  setSlideshowVisible(false);
-  stopAutoPlay();
-};
-
-const startAutoPlay = () => {
-  if (autoPlayInterval) return;
-  const interval = setInterval(() => {
+  const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  }, 3000);
-  setAutoPlayInterval(interval);
-};
 
-const stopAutoPlay = () => {
-  if (autoPlayInterval) {
-    clearInterval(autoPlayInterval);
-    setAutoPlayInterval(null);
-  }
-};
+    if (imageContainerRef.current) {
+      imageContainerRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-const toggleDropdown = () => {
-  setDropdownVisible((prev) => !prev);
-};
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
 
-const openModal = (image) => {
-  setModalVisible(true);
-  setCurrentImage(image);
-};
+  const closeSlideshow = () => {
+    setSlideshowVisible(false);
+    stopAutoPlay(); // Stop automatic slideshow
+  };
 
-const closeModal = () => {
-  setModalVisible(false);
-  setCurrentImage(null);
-};
+  const startAutoPlay = () => {
+    if (autoPlayInterval) return; // Prevent multiple intervals
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+    setAutoPlayInterval(interval);
+  };
 
-const handleShare = (shareableLink) => {
-  if (navigator.share) {
-    navigator.share({
-      title: "Check out this image!",
-      url: shareableLink,
-    });
-  } else {
-    alert("Sharing is not supported on this browser.");
-  }
-};
+  const stopAutoPlay = () => {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      setAutoPlayInterval(null);
+    }
+  };
 
-const handleOpenDownloadModal = (image) => {
-  setClicked(true);
-  setCurrentImage(image);
-  setDownloadModalVisible(true);
-};
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev);
+  };
 
-const handleCloseDownloadModal = () => {
-  setClicked(true);
-  setDownloadModalVisible(false);
-  setSelectedSize("High Resolution");
-};
+  const openModal = (image) => {
+    setModalVisible(true);
+    setCurrentImage(image);
+  };
 
-const handleDownloadPhoto = async () => {
-  try {
-    const downloadUrl =
-      selectedSize === "High Resolution"
-        ? currentImage.highRes
-        : currentImage.webSize;
+  const closeModal = () => {
+    setModalVisible(false);
+    setCurrentImage(null);
+  };
 
-    const link = document.createElement("a");
-    link.href = downloadUrl;
-    link.download = `image_${Date.now()}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleShare = (shareableLink) => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out this image!",
+          url: shareableLink,
+        })
+        .catch(() => {
+          // Error handling without console
+        });
+    } else {
+      alert("Sharing is not supported on this browser.");
+    }
+  };
 
-    handleCloseDownloadModal();
-  } catch (error) {}
-};
+  const handleBuyPhoto = (image) => {
+    handleAddToCart(image);
+    // Optionally redirect to the Cart page
+    window.location.href = "/Cart";
+  };
 
+  const handleAddToCart = (image) => {
+    setCartItems((prevItems) => [...prevItems, image]);
+    alert("Photo added to cart!");
+  };
 
-const handleDownloadAll = async () => {
-  if (!images || images.length === 0) {
-    alert("No images available to download.");
-    return;
-  }
+  const handleOpenDownloadModal = (image) => {
+    setClicked(true);
+    setCurrentImage(image);
+    setDownloadModalVisible(true);
+  };
 
-  const zip = new JSZip();
-  const failedImages = [];
+  const handleCloseDownloadModal = () => {
+    setClicked(true);
+    setDownloadModalVisible(false);
+    // setCurrentImage(null);
+    setSelectedSize("High Resolution");
+  };
 
-  const fetchPromises = images.map(async (image, index) => {
-    const fileId = extractFileIdFromUrl(image.highRes);
-    if (!fileId) {
-      failedImages.push(image.highRes);
+  const handleDownloadPhoto = async () => {
+    try {
+      // Use the correct download URL based on the selected size
+      const downloadUrl =
+        selectedSize === "High Resolution"
+          ? currentImage.highRes // This should already point to the original size file on Google Drive
+          : currentImage.webSize;
+
+      // Create a link element and trigger the download
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      // link.target = "_blank";
+      link.download = `image_${Date.now()}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      handleCloseDownloadModal();
+    } catch (error) {
+      console.error("Error downloading the image:", error);
+    }
+  };
+
+  const handleDownloadAll = async () => {
+    if (!images || images.length === 0) {
+      alert("No images available to download.");
       return;
     }
 
-    const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+    const zip = new JSZip();
+    const failedImages = [];
 
-    try {
-      const response = await fetch(proxyUrl);
-      if (!response.ok) {
+    // Process all images in the selected category
+    const fetchPromises = images.map(async (image, index) => {
+      const fileId = extractFileIdFromUrl(image.highRes);
+      if (!fileId) {
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
 
-      const blob = await response.blob();
-      const arrayBuffer = await blob.arrayBuffer();
+      const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+      // console.log("Fetching from proxy URL:", proxyUrl);
 
-      const defaultExtension = "jpg";
-      const fileExtension = image.highRes
-        .split(".")
-        .pop()
-        .match(/^(jpg|jpeg|png|gif)$/i)
-        ? image.highRes.split(".").pop()
-        : defaultExtension;
+      try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) {
+          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+          failedImages.push(image.highRes);
+          return;
+        }
 
-      const fileName = `${activeCategory || "category"}_${
-        index + 1
-      }.${fileExtension}`;
-      zip.file(fileName, arrayBuffer);
-    } catch (error) {
-      failedImages.push(image.highRes);
-    }
-  });
+        const blob = await response.blob();
+        const arrayBuffer = await blob.arrayBuffer();
 
-  await Promise.all(fetchPromises);
+        // Determine a valid file extension
+        const defaultExtension = "jpg";
+        const fileExtension = image.highRes
+          .split(".")
+          .pop()
+          .match(/^(jpg|jpeg|png|gif)$/i)
+          ? image.highRes.split(".").pop()
+          : defaultExtension;
 
-  if (Object.keys(zip.files).length === 0) {
-    alert("No images were successfully added to the ZIP file.");
-    return;
-  }
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
+        zip.file(fileName, arrayBuffer); // Add file directly to the zip
+      } catch (error) {
+        console.error(`Error downloading file: ${image.highRes}`, error);
+        failedImages.push(image.highRes);
+      }
+    });
 
-  const content = await zip.generateAsync({ type: "blob" });
-  saveAs(content, `${activeCategory || "all-images"}.zip`);
+    // Wait for all fetches to complete
+    await Promise.all(fetchPromises);
 
-  if (failedImages.length > 0) {
-    alert("Some images could not be downloaded.");
-  }
-};
-
-useEffect(() => {
-  const storedFavorites = localStorage.getItem("favorites");
-  if (storedFavorites) {
-    setFavorites(JSON.parse(storedFavorites));
-  }
-}, []);
-
-const toggleFavorite = (image) => {
-  setFavorites((prevFavorites) => {
-    const isFavorited = prevFavorites.find((fav) => fav.id === image.id);
-    let updatedFavorites;
-
-    if (isFavorited) {
-      updatedFavorites = prevFavorites.filter((fav) => fav.id !== image.id);
-    } else {
-      updatedFavorites = [...prevFavorites, image];
+    // Check if any files were successfully added
+    if (Object.keys(zip.files).length === 0) {
+      alert("No images were successfully added to the ZIP file.");
+      return;
     }
 
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    return updatedFavorites;
-  });
-};
+    // Generate and download the ZIP file
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, `${activeCategory || "all-images"}.zip`);
 
+    // Log and alert about failed downloads, if any
+    if (failedImages.length > 0) {
+      console.warn(
+        `Failed to download ${failedImages.length} images.`,
+        failedImages
+      );
+      alert(
+        "Some images could not be downloaded. Check the console for details."
+      );
+    }
+  };
+
+  useEffect(() => {
+    // Load favorites from localStorage on page load
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  const toggleFavorite = (image) => {
+    setFavorites((prevFavorites) => {
+      const isFavorited = prevFavorites.find((fav) => fav.id === image.id);
+      let updatedFavorites;
+
+      if (isFavorited) {
+        // Remove the image from favorites
+        updatedFavorites = prevFavorites.filter((fav) => fav.id !== image.id);
+      } else {
+        // Add the image to favorites
+        updatedFavorites = [...prevFavorites, image];
+      }
+
+      // Save to localStorage
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+      return updatedFavorites;
+    });
+  };
 
   const toggleFavoritesModal = () => {
     setShowFavoritesModal((prev) => !prev);
@@ -366,7 +415,7 @@ const toggleFavorite = (image) => {
       }
 
       const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
-      console.log("Fetching from proxy URL:", proxyUrl);
+      // console.log("Fetching from proxy URL:", proxyUrl);
 
       try {
         const response = await fetch(proxyUrl);
@@ -415,11 +464,10 @@ const toggleFavorite = (image) => {
         failedImages
       );
       alert(
-        "Some images could not be downloaded"
+        "Some images could not be downloaded. Check the console for details."
       );
     }
   };
-
 
   return (
     <>
@@ -449,7 +497,7 @@ const toggleFavorite = (image) => {
             selectedCard.name || "PK Photography"
           }.`}
         />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -566,6 +614,7 @@ const toggleFavorite = (image) => {
                 }}
               />
             </div>
+
             <div
               className={`absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${
                 isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
@@ -609,8 +658,7 @@ const toggleFavorite = (image) => {
                 className="text-white p-2 hover:text-gray-600"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCurrentImage(image);
-                  setShowModal(true);
+                  handleShare(image.shareableLink); // Pass the shareable link directly to handleShare
                 }}
               >
                 <FaShare className="w-5 h-5" />

@@ -28,7 +28,6 @@ const ClientHome = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
   const [selectedSize, setSelectedSize] = useState("High Resolution");
   const [columns, setColumns] = useState(4);
@@ -223,16 +222,6 @@ const handleShare = (shareableLink) => {
   }
 };
 
-// const handleBuyPhoto = (image) => {
-//   handleAddToCart(image);
-//   window.location.href = "/Cart";
-// };
-
-// const handleAddToCart = (image) => {
-//   setCartItems((prevItems) => [...prevItems, image]);
-//   alert("Photo added to cart!");
-// };
-
 const handleOpenDownloadModal = (image) => {
   setClicked(true);
   setCurrentImage(image);
@@ -263,15 +252,6 @@ const handleDownloadPhoto = async () => {
   } catch (error) {}
 };
 
-const handleCopyLink = () => {
-  if (currentImage?.id) {
-    const websiteLink = `${window.location.origin}/image/${currentImage.id}`;
-    navigator.clipboard.writeText(websiteLink);
-    alert("Website link copied to clipboard!");
-  } else {
-    alert("Unable to copy. No image selected.");
-  }
-};
 
 const handleDownloadAll = async () => {
   if (!images || images.length === 0) {

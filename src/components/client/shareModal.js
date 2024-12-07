@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebook, FaTwitter, FaPinterest, FaEnvelope } from "react-icons/fa";
 
 const ShareModal = ({
   showModal,
   currentImage,
   setShowModal,
-  handleCopyLink,
   handleSocialShare,
 }) => {
+  const [isCopied, setIsCopied] = useState(false); // State to manage button text
+
   if (!showModal || !currentImage) return null;
+
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(currentImage?.shareableLink);
+    setIsCopied(true); // Change button text to "Copied"
+
+    // Reset the button text back to "Copy" after 2 seconds
+    setTimeout(() => setIsCopied(false), 2000);
+  };
 
   return (
     <div
@@ -36,13 +45,10 @@ const ShareModal = ({
             className="border border-gray-300 rounded-l p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
-            onClick={() => {
-              navigator.clipboard.writeText(currentImage?.shareableLink);
-              alert("Link copied to clipboard!");
-            }}
+            onClick={handleCopyClick}
             className="bg-gray-400 text-white rounded-r px-4 py-2 hover:bg-gray-600 transition-all"
           >
-            Copy
+            {isCopied ? "Copied" : "Copy"} {/* Toggle text */}
           </button>
         </div>
         <div className="flex justify-around items-center mb-6">

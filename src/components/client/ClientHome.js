@@ -2,7 +2,6 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import FavouriteModal from "../client/FavouriteModal.js";
-import ShareModal from "./shareModal.js";
 import SlideshowModal from "../client/SlideshowModal.js";
 import CategoryNav from "../client/CategoryNav.js";
 import RightNav from "../client/RightNav.js";
@@ -13,15 +12,8 @@ import { GoDownload } from "react-icons/go";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import {
-  FaCartPlus,
   FaHeart,
-  FaDownload,
-  FaShareAlt,
-  FaPlay,
-  FaArrowLeft,
-  FaArrowRight,
   FaShare,
-  FaCartArrowDown,
   FaTimes,
 } from "react-icons/fa";
 
@@ -45,404 +37,325 @@ const ClientHome = () => {
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
   const isMobile =
-    typeof window !== "undefined" &&
-    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  typeof window !== "undefined" &&
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const dropdownRef = useRef(null);
+const imageContainerRef = useRef(null);
 
-  const dropdownRef = useRef(null);
-  const imageContainerRef = useRef(null);
+const fetchImagesFromDrive = useCallback(
+  async (driveLink, categoryName) => {
+    const extractFolderId = (driveLink) => {
+      const match = driveLink.match(/[-\w]{25,}/);
+      return match ? match[0] : null;
+    };
 
-  const fetchImagesFromDrive = useCallback(
-    async (driveLink, categoryName) => {
-      const extractFolderId = (driveLink) => {
-        const match = driveLink.match(/[-\w]{25,}/);
-        return match ? match[0] : null;
-      };
-  
-      if (!driveLink) {
-        console.error("No drive link provided.");
-        return;
-      }
-  
-      const folderId = extractFolderId(driveLink);
-      if (folderId) {
-        try {
-          const response = await axios.get(
-            `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
-          );
-          const driveImages = response.data.files.map((file, index) => ({
-            id: `${categoryName}-${index}`,
-            lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
-            mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
-            shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
-          }));
-          setImages(driveImages);
-          setActiveCategory(categoryName);
-        } catch (error) {
-          console.error("Error fetching images from Google Drive:", error);
-        }
-      } else {
-        console.error("Invalid drive link:", driveLink);
-      }
-    },
-    [] // No dependencies for `extractFolderId` as it is inside the callback
-  );
-  
-  useEffect(() => {
-    const url = window.location.pathname;
-    const parts = url.split("/");
-    const lastId = parts[parts.length - 1];
-    console.log("Last ID:", lastId);
-  
-    const fetchSelectedCard = async () => {
+    if (!driveLink) {
+      return;
+    }
+
+    const folderId = extractFolderId(driveLink);
+    if (folderId) {
       try {
         const response = await axios.get(
-          `https://client-ra9o.onrender.com/api/client/cards`
+          `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
         );
-        const selectedCard = response.data.find((card) => card._id === lastId);
-        setSelectedCard(selectedCard);
-        console.log("Selected card:", selectedCard);
-        setCategories(selectedCard.category || []);
-  
-        // Set the first category as the default active category
-        if (selectedCard.category && selectedCard.category.length > 0) {
-          const firstCategory = selectedCard.category[0];
-          setActiveCategory(firstCategory.name); // Set the first category as active
-          fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
-        }
-      } catch (error) {
-        console.error("Error fetching selected card:", error);
-      }
-    };
-  
-    fetchSelectedCard();
-  }, [fetchImagesFromDrive]); 
-  
-
-  useEffect(() => {
-    const updateColumns = () => {
-      if (window.innerWidth <= 480) {
-        setColumns(2);
-      } else if (window.innerWidth <= 768) {
-        setColumns(3);
-      } else {
-        setColumns(4);
-      }
-    };
-    updateColumns();
-    window.addEventListener("resize", updateColumns);
-    return () => window.removeEventListener("resize", updateColumns);
-  }, []);
-
-    useEffect(() => {
-    // Close dropdown if clicked outside
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownVisible(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    const connection =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
-    const loadImages = () => {
-      document.querySelectorAll(".progressive-image").forEach((img) => {
-        const mediumRes = img.dataset.medium;
-        const highRes = img.dataset.high;
-
-        const finalSrc =
-          connection && connection.effectiveType.includes("4g")
-            ? highRes
-            : mediumRes;
-
-        const preloader = new window.Image(); // Use native browser Image
-        preloader.src = finalSrc;
-        preloader.onload = () => {
-          img.src = finalSrc;
-        };
-      });
-    };
-
-    // Load higher resolutions after initial render
-    loadImages();
-  }, [images]);
-
-
-  const handleSlideshow = () => {
-    if (images.length > 0) {
-      setSlideshowVisible(true);
-      setCurrentImageIndex(0); // Start from the first image
-      startAutoPlay(); // Start automatic slideshow
-    } else {
-      alert("No images available for the slideshow.");
+        const driveImages = response.data.files.map((file, index) => ({
+          id: `${categoryName}-${index}`,
+          lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
+          mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
+          highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+          shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
+        }));
+        setImages(driveImages);
+        setActiveCategory(categoryName);
+      } catch (error) {}
     }
+  },
+  []
+);
+
+useEffect(() => {
+  const url = window.location.pathname;
+  const parts = url.split("/");
+  const lastId = parts[parts.length - 1];
+
+  const fetchSelectedCard = async () => {
+    try {
+      const response = await axios.get(
+        `https://client-ra9o.onrender.com/api/client/cards`
+      );
+      const selectedCard = response.data.find((card) => card._id === lastId);
+      setSelectedCard(selectedCard);
+      setCategories(selectedCard.category || []);
+
+      if (selectedCard.category && selectedCard.category.length > 0) {
+        const firstCategory = selectedCard.category[0];
+        setActiveCategory(firstCategory.name);
+        fetchImagesFromDrive(firstCategory.images, firstCategory.name);
+      }
+    } catch (error) {}
   };
 
-  const handleNextImage = () => {
+  fetchSelectedCard();
+}, [fetchImagesFromDrive]);
+
+useEffect(() => {
+  const updateColumns = () => {
+    if (window.innerWidth <= 480) {
+      setColumns(2);
+    } else if (window.innerWidth <= 768) {
+      setColumns(3);
+    } else {
+      setColumns(4);
+    }
+  };
+  updateColumns();
+  window.addEventListener("resize", updateColumns);
+  return () => window.removeEventListener("resize", updateColumns);
+}, []);
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownVisible(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
+
+useEffect(() => {
+  const connection =
+    navigator.connection ||
+    navigator.mozConnection ||
+    navigator.webkitConnection;
+  const loadImages = () => {
+    document.querySelectorAll(".progressive-image").forEach((img) => {
+      const mediumRes = img.dataset.medium;
+      const highRes = img.dataset.high;
+
+      const finalSrc =
+        connection && connection.effectiveType.includes("4g")
+          ? highRes
+          : mediumRes;
+
+      const preloader = new window.Image();
+      preloader.src = finalSrc;
+      preloader.onload = () => {
+        img.src = finalSrc;
+      };
+    });
+  };
+
+  loadImages();
+}, [images]);
+
+const handleSlideshow = () => {
+  if (images.length > 0) {
+    setSlideshowVisible(true);
+    setCurrentImageIndex(0);
+    startAutoPlay();
+  } else {
+    alert("No images available for the slideshow.");
+  }
+};
+
+const handleNextImage = () => {
+  setCurrentImageIndex((prevIndex) =>
+    prevIndex === images.length - 1 ? 0 : prevIndex + 1
+  );
+
+  if (imageContainerRef.current) {
+    imageContainerRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const handlePreviousImage = () => {
+  setCurrentImageIndex((prevIndex) =>
+    prevIndex === 0 ? images.length - 1 : prevIndex - 1
+  );
+};
+
+const closeSlideshow = () => {
+  setSlideshowVisible(false);
+  stopAutoPlay();
+};
+
+const startAutoPlay = () => {
+  if (autoPlayInterval) return;
+  const interval = setInterval(() => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
+  }, 3000);
+  setAutoPlayInterval(interval);
+};
 
-    if (imageContainerRef.current) {
-      imageContainerRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const stopAutoPlay = () => {
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval);
+    setAutoPlayInterval(null);
+  }
+};
 
-  const handlePreviousImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+const toggleDropdown = () => {
+  setDropdownVisible((prev) => !prev);
+};
 
-  const closeSlideshow = () => {
-    setSlideshowVisible(false);
-    stopAutoPlay(); // Stop automatic slideshow
-  };
+const openModal = (image) => {
+  setModalVisible(true);
+  setCurrentImage(image);
+};
 
-  const startAutoPlay = () => {
-    if (autoPlayInterval) return; // Prevent multiple intervals
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-    setAutoPlayInterval(interval);
-  };
+const closeModal = () => {
+  setModalVisible(false);
+  setCurrentImage(null);
+};
 
-  const stopAutoPlay = () => {
-    if (autoPlayInterval) {
-      clearInterval(autoPlayInterval);
-      setAutoPlayInterval(null);
-    }
-  };
+const handleShare = (shareableLink) => {
+  if (navigator.share) {
+    navigator.share({
+      title: "Check out this image!",
+      url: shareableLink,
+    });
+  } else {
+    alert("Sharing is not supported on this browser.");
+  }
+};
 
-  const toggleDropdown = () => {
-    setDropdownVisible((prev) => !prev);
-  };
+// const handleBuyPhoto = (image) => {
+//   handleAddToCart(image);
+//   window.location.href = "/Cart";
+// };
 
-  const openModal = (image) => {
-    setModalVisible(true);
-    setCurrentImage(image);
-  };
+// const handleAddToCart = (image) => {
+//   setCartItems((prevItems) => [...prevItems, image]);
+//   alert("Photo added to cart!");
+// };
 
-  const closeModal = () => {
-    setModalVisible(false);
-    setCurrentImage(null);
-  };
+const handleOpenDownloadModal = (image) => {
+  setClicked(true);
+  setCurrentImage(image);
+  setDownloadModalVisible(true);
+};
 
-  const handleShare = (shareableLink) => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Check out this image!",
-          url: shareableLink,
-        })
-        .catch(() => {
-          // Error handling without console
-        });
-    } else {
-      alert("Sharing is not supported on this browser.");
-    }
-  };
+const handleCloseDownloadModal = () => {
+  setClicked(true);
+  setDownloadModalVisible(false);
+  setSelectedSize("High Resolution");
+};
 
-  const handleBuyPhoto = (image) => {
-    handleAddToCart(image);
-    // Optionally redirect to the Cart page
-    window.location.href = "/Cart";
-  };
+const handleDownloadPhoto = async () => {
+  try {
+    const downloadUrl =
+      selectedSize === "High Resolution"
+        ? currentImage.highRes
+        : currentImage.webSize;
 
-  const handleAddToCart = (image) => {
-    setCartItems((prevItems) => [...prevItems, image]);
-    alert("Photo added to cart!");
-  };
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = `image_${Date.now()}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-  const handleOpenDownloadModal = (image) => {
-    setClicked(true);
-    setCurrentImage(image);
-    setDownloadModalVisible(true);
-  };
+    handleCloseDownloadModal();
+  } catch (error) {}
+};
 
-  const handleCloseDownloadModal = () => {
-    setClicked(true);
-    setDownloadModalVisible(false);
-    // setCurrentImage(null);
-    setSelectedSize("High Resolution");
-  };
-
-  const handleDownloadPhoto = async () => {
-    try {
-      // Use the correct download URL based on the selected size
-      const downloadUrl =
-        selectedSize === "High Resolution"
-          ? currentImage.highRes // This should already point to the original size file on Google Drive
-          : currentImage.webSize;
-
-      // Create a link element and trigger the download
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      // link.target = "_blank";
-      link.download = `image_${Date.now()}.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      handleCloseDownloadModal();
-    } catch (error) {
-      console.error("Error downloading the image:", error);
-    }
-  };
-
-  const handleCopyLink = () => {
-    if (currentImage?.id) {
-      const websiteLink = `${window.location.origin}/image/${currentImage.id}`;
-      navigator.clipboard.writeText(websiteLink);
-      alert("Website link copied to clipboard!");
-    } else {
-      console.error("No image data to copy.");
-      alert("Unable to copy. No image selected.");
-    }
-  };
-
-  const handleSocialShare = (platform) => {
-    if (!currentImage?.id) {
-      console.error("No image data to share.");
-      alert("Unable to share. No image selected.");
-      return;
-    }
-
+const handleCopyLink = () => {
+  if (currentImage?.id) {
     const websiteLink = `${window.location.origin}/image/${currentImage.id}`;
-    const encodedUrl = encodeURIComponent(websiteLink);
-    let shareUrl = "";
+    navigator.clipboard.writeText(websiteLink);
+    alert("Website link copied to clipboard!");
+  } else {
+    alert("Unable to copy. No image selected.");
+  }
+};
 
-    switch (platform) {
-      case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-        break;
-      case "twitter":
-        shareUrl = `https://twitter.com/share?url=${encodedUrl}`;
-        break;
-      case "pinterest":
-        shareUrl = `https://pinterest.com/pin/create/button/?url=${encodedUrl}`;
-        break;
-      case "email":
-        shareUrl = `mailto:?subject=Check this out&body=${websiteLink}`;
-        break;
-      default:
-        console.error("Invalid platform for sharing.");
-        return;
-    }
+const handleDownloadAll = async () => {
+  if (!images || images.length === 0) {
+    alert("No images available to download.");
+    return;
+  }
 
-    window.open(shareUrl, "_blank");
-  };
+  const zip = new JSZip();
+  const failedImages = [];
 
-  const handleDownloadAll = async () => {
-    if (!images || images.length === 0) {
-      alert("No images available to download.");
+  const fetchPromises = images.map(async (image, index) => {
+    const fileId = extractFileIdFromUrl(image.highRes);
+    if (!fileId) {
+      failedImages.push(image.highRes);
       return;
     }
 
-    const zip = new JSZip();
-    const failedImages = [];
+    const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
 
-    // Process all images in the selected category
-    const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.highRes);
-      if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+    try {
+      const response = await fetch(proxyUrl);
+      if (!response.ok) {
         failedImages.push(image.highRes);
         return;
       }
 
-      const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
-      console.log("Fetching from proxy URL:", proxyUrl);
+      const blob = await response.blob();
+      const arrayBuffer = await blob.arrayBuffer();
 
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.highRes);
-          return;
-        }
+      const defaultExtension = "jpg";
+      const fileExtension = image.highRes
+        .split(".")
+        .pop()
+        .match(/^(jpg|jpeg|png|gif)$/i)
+        ? image.highRes.split(".").pop()
+        : defaultExtension;
 
-        const blob = await response.blob();
-        const arrayBuffer = await blob.arrayBuffer();
+      const fileName = `${activeCategory || "category"}_${
+        index + 1
+      }.${fileExtension}`;
+      zip.file(fileName, arrayBuffer);
+    } catch (error) {
+      failedImages.push(image.highRes);
+    }
+  });
 
-        // Determine a valid file extension
-        const defaultExtension = "jpg";
-        const fileExtension = image.highRes
-          .split(".")
-          .pop()
-          .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split(".").pop()
-          : defaultExtension;
+  await Promise.all(fetchPromises);
 
-        const fileName = `${activeCategory || "category"}_${
-          index + 1
-        }.${fileExtension}`;
-        zip.file(fileName, arrayBuffer); // Add file directly to the zip
-      } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
-        failedImages.push(image.highRes);
-      }
-    });
+  if (Object.keys(zip.files).length === 0) {
+    alert("No images were successfully added to the ZIP file.");
+    return;
+  }
 
-    // Wait for all fetches to complete
-    await Promise.all(fetchPromises);
+  const content = await zip.generateAsync({ type: "blob" });
+  saveAs(content, `${activeCategory || "all-images"}.zip`);
 
-    // Check if any files were successfully added
-    if (Object.keys(zip.files).length === 0) {
-      alert("No images were successfully added to the ZIP file.");
-      return;
+  if (failedImages.length > 0) {
+    alert("Some images could not be downloaded.");
+  }
+};
+
+useEffect(() => {
+  const storedFavorites = localStorage.getItem("favorites");
+  if (storedFavorites) {
+    setFavorites(JSON.parse(storedFavorites));
+  }
+}, []);
+
+const toggleFavorite = (image) => {
+  setFavorites((prevFavorites) => {
+    const isFavorited = prevFavorites.find((fav) => fav.id === image.id);
+    let updatedFavorites;
+
+    if (isFavorited) {
+      updatedFavorites = prevFavorites.filter((fav) => fav.id !== image.id);
+    } else {
+      updatedFavorites = [...prevFavorites, image];
     }
 
-    // Generate and download the ZIP file
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, `${activeCategory || "all-images"}.zip`);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    return updatedFavorites;
+  });
+};
 
-    // Log and alert about failed downloads, if any
-    if (failedImages.length > 0) {
-      console.warn(
-        `Failed to download ${failedImages.length} images.`,
-        failedImages
-      );
-      alert(
-        "Some images could not be downloaded. Check the console for details."
-      );
-    }
-  };
-
-  useEffect(() => {
-    // Load favorites from localStorage on page load
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  const toggleFavorite = (image) => {
-    setFavorites((prevFavorites) => {
-      const isFavorited = prevFavorites.find((fav) => fav.id === image.id);
-      let updatedFavorites;
-
-      if (isFavorited) {
-        // Remove the image from favorites
-        updatedFavorites = prevFavorites.filter((fav) => fav.id !== image.id);
-      } else {
-        // Add the image to favorites
-        updatedFavorites = [...prevFavorites, image];
-      }
-
-      // Save to localStorage
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-
-      return updatedFavorites;
-    });
-  };
 
   const toggleFavoritesModal = () => {
     setShowFavoritesModal((prev) => !prev);
@@ -522,10 +435,11 @@ const ClientHome = () => {
         failedImages
       );
       alert(
-        "Some images could not be downloaded. Check the console for details."
+        "Some images could not be downloaded"
       );
     }
   };
+
 
   return (
     <>
@@ -722,13 +636,13 @@ const ClientHome = () => {
                 <FaShare className="w-5 h-5" />
               </button>
 
-              <ShareModal
+              {/* <ShareModal
                 showModal={showModal}
                 currentImage={currentImage}
                 setShowModal={setShowModal}
                 handleCopyLink={handleCopyLink}
                 handleSocialShare={handleSocialShare}
-              />
+              /> */}
             </div>
           </li>
         ))}

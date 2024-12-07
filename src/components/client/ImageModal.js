@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaTimes,
   FaDownload,
@@ -8,18 +8,42 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import Image from "next/image";
+import ShareModal from "../client/shareModal.js";
 
 const ImageModal = ({
   modalVisible,
   currentImage,
   closeModal,
   handleOpenDownloadModal,
-  handleShare,
   handleBuyPhoto,
   handlePreviousImage,
   handleNextImage,
   clicked,
 }) => {
+  const [shareModalVisible, setShareModalVisible] = useState(false); // State for ShareModal visibility
+
+  const handleSocialShare = (platform) => {
+    const url = currentImage?.shareableLink;
+    if (!url) return;
+
+    switch (platform) {
+      case "facebook":
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+        break;
+      case "twitter":
+        window.open(`https://twitter.com/intent/tweet?url=${url}`, "_blank");
+        break;
+      case "pinterest":
+        window.open(`https://pinterest.com/pin/create/button/?url=${url}`, "_blank");
+        break;
+      case "email":
+        window.open(`mailto:?subject=Check this out!&body=${url}`, "_self");
+        break;
+      default:
+        break;
+    }
+  };
+
   if (!modalVisible || !currentImage) return null;
 
   return (
@@ -50,19 +74,19 @@ const ImageModal = ({
             </button>
             <button
               className="group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm"
-              onClick={() => handleShare(currentImage.shareableLink)}
+              onClick={() => setShareModalVisible(true)} // Toggle ShareModal
             >
               <FaShareAlt className="group-hover:text-[#3c2e21]" />
               <span>Share</span>
             </button>
 
-            <button
+            {/* <button
               className="flex items-center gap-1 px-4 py-2 bg-[#a67c52] text-white shadow-md hover:bg-[#8b6a45] focus:outline-none text-sm"
               onClick={handleBuyPhoto}
             >
               <FaCartPlus />
               Buy Photo
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -93,6 +117,17 @@ const ImageModal = ({
           </button>
         </div>
       </div>
+
+      {/* ShareModal Component */}
+      <ShareModal
+        showModal={shareModalVisible}
+        currentImage={currentImage}
+        setShowModal={setShareModalVisible}
+        handleCopyLink={() =>
+          navigator.clipboard.writeText(currentImage?.shareableLink)
+        }
+        handleSocialShare={handleSocialShare}
+      />
     </div>
   );
 };

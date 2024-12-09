@@ -1,10 +1,10 @@
-import React from "react";
-import { Zoom } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
-import Image from "next/image";
 
-const Slideshow = () => {
+import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const Slideshow: React.FC = () => {
   const images = [
     "imgbrk1/imgbrk1.png",
     "imgbrk1/imgbrk2.jpg",
@@ -19,44 +19,48 @@ const Slideshow = () => {
     "imgbrk1/imgbrk11.jpg",
     "imgbrk1/imgbrk12.jpg",
     "imgbrk1/imgbrk13.jpg",
-    "imgbrk1/imgbrk14.png"
+    "imgbrk1/imgbrk14.png",
   ];
 
-  const zoomInProperties = {
-    scale: 1,
-    duration: 5000,
-    transitionDuration: 300,
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+
+  const settings = {
+    dots: true,
     infinite: true,
-    prevArrow: (
-      <div className="ml-10 top-40 md:top-72">
-        <ArrowLeftIcon className="h-8 w-8 text-white cursor-pointer" />
-      </div>
-    ),
-    nextArrow: (
-      <div className="mr-10 top-40 md:top-72">
-        <ArrowRightIcon className="h-8 w-8 text-white cursor-pointer" />
-      </div>
-    ),
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    beforeChange: (current: number, next: number) => setCurrentSlide(next),
+    draggable: true, // Enable dragging
   };
 
   return (
-    <div className="w-full h-1/2 overflow-hidden">
-      <Zoom {...zoomInProperties}>
+    <div className="w-full relative overflow-hidden">
+      {/* Slider */}
+      <Slider {...settings}>
         {images.map((each, index) => (
-          <div
-            key={index}
-            className="flex justify-center items-center w-full h-full relative"
-          >
-            <Image
-              className="w-full h-full object-contain"
+          <div key={index} className="flex justify-center items-center w-full">
+            <img
+              className="w-full h-[500px] md:h-[700px] lg:h-[900px] object-contain" // Fixed height for responsiveness, adjust as needed
               src={each}
               alt={`Slide ${index + 1}`}
             />
-            <h1 className="absolute top-1/4 inset-x-1/4 text-center z-10 md:text-6xl text-4xl font-bold text-white"></h1>
-            <p className="absolute top-1/2 inset-x-1/4 text-center z-10 md:text-2xl text-xl font-bold text-white"></p>
           </div>
         ))}
-      </Zoom>
+      </Slider>
+
+      {/* Circle Indicators */}
+      <div className="absolute bottom-4 w-full flex justify-center items-center">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
+              index === currentSlide ? "bg-white" : "bg-gray-400"
+            }`}
+            onClick={() => setCurrentSlide(index)} // Allow clicking on an indicator to navigate
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };

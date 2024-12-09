@@ -31,8 +31,8 @@
     "react-slideshow-image": "^4.3.2",
     "react-toastify": "^10.0.6",
     "sass": "^1.82.0",
-    "slick-carousel": "^1.8.1",
     "sharp": "^0.33.5",
+    "slick-carousel": "^1.8.1",
     "split-text-js": "^1.0.3",
     "typewriter-effect": "^2.21.0"
   },
@@ -41,7 +41,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-     "@types/react-slick": "^0.23.13",
+    "@types/react-slick": "^0.23.13",
     "babel-preset-next": "^1.4.0",
     "eslint": "^8",
     "eslint-config-next": "^14.2.4",

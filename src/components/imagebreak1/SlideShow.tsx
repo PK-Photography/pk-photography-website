@@ -70,10 +70,14 @@
 
 // export default Slideshow;
 
+
 import React, { useState, useRef } from "react";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+// Dynamically import react-slick
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const Slideshow: React.FC = () => {
   const images = [
@@ -87,7 +91,7 @@ const Slideshow: React.FC = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const sliderRef = useRef<Slider>(null); // Correctly typed ref for Slider
+  const sliderRef = useRef<any>(null);
 
   const settings = {
     dots: false,
@@ -97,24 +101,20 @@ const Slideshow: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    beforeChange: (current: number, next: number) => setCurrentSlide(next),
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
     draggable: true,
   };
 
   const goToSlide = (index: number) => {
-    sliderRef.current?.slickGoTo(index); // Use the ref directly to call slickGoTo
+    sliderRef.current?.slickGoTo(index);
     setCurrentSlide(index);
   };
 
   return (
     <div className="w-full max-h-[500px] overflow-hidden relative">
-      {/* Slider */}
-      <Slider {...settings} ref={sliderRef}>
+      <Slider {...settings} ref={sliderRef as any}>
         {images.map((each, index) => (
-          <div
-            key={index}
-            className="w-full h-[500px] flex justify-center items-center"
-          >
+          <div key={index} className="w-full h-[500px] flex justify-center items-center">
             <img
               className="w-full h-full object-cover"
               src={each}
@@ -124,7 +124,6 @@ const Slideshow: React.FC = () => {
         ))}
       </Slider>
 
-      {/* Custom Circle Indicators */}
       <div className="absolute bottom-4 w-full flex justify-center items-center">
         {images.map((_, index) => (
           <div
@@ -141,3 +140,4 @@ const Slideshow: React.FC = () => {
 };
 
 export default Slideshow;
+

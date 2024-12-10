@@ -58,8 +58,10 @@
 // };
 
 // export default Slideshow;
+
+
 import React, { useState, useRef } from "react";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick"; // Ensure correct import
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -75,9 +77,9 @@ const Slideshow: React.FC = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const sliderRef = useRef<Slider>(null);
+  const sliderRef = useRef<Slider | null>(null); // Correctly type the ref
 
-  const settings = {
+  const settings: Settings = {
     dots: false, // Custom dots handled below
     infinite: true,
     speed: 300,
@@ -104,7 +106,7 @@ const Slideshow: React.FC = () => {
             className="w-full h-[500px] flex justify-center items-center"
           >
             <img
-              className="w-full h-full object-cover" // Ensures proper scaling and cropping
+              className="w-full h-full object-cover"
               src={each}
               alt={`Slide ${index + 1}`}
             />

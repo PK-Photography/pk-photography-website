@@ -1,5 +1,5 @@
-// import React, { useState } from "react";
-// import Slider from "react-slick";
+// import React, { useState, useRef } from "react";
+// import Slider, { Settings } from "react-slick"; // Ensure correct import
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
@@ -15,25 +15,36 @@
 //   ];
 
 //   const [currentSlide, setCurrentSlide] = useState<number>(0);
+//   const sliderRef = useRef<Slider | null>(null); // Correctly type the ref
 
-//   const settings = {
-//     dots: true,
+//   const settings: Settings = {
+//     dots: false, // Custom dots handled below
 //     infinite: true,
 //     speed: 300,
 //     slidesToShow: 1,
 //     slidesToScroll: 1,
+//     autoplay: true,
+//     autoplaySpeed: 3000,
 //     beforeChange: (current: number, next: number) => setCurrentSlide(next),
-//     draggable: true, // Enable dragging
+//     draggable: true,
+//   };
+
+//   const goToSlide = (index: number) => {
+//     sliderRef.current?.slickGoTo(index); // Navigate to specific slide
+//     setCurrentSlide(index); // Update current slide state
 //   };
 
 //   return (
-//     <div className="w-full relative overflow-hidden">
+//     <div className="w-full max-h-[500px] overflow-hidden relative">
 //       {/* Slider */}
-//       <Slider {...settings}>
+//       <Slider ref={sliderRef} {...settings}>
 //         {images.map((each, index) => (
-//           <div key={index} className="flex justify-center items-center w-full">
+//           <div
+//             key={index}
+//             className="w-full h-[500px] flex justify-center items-center"
+//           >
 //             <img
-//               className="w-full  object-contain" // Fixed height for responsiveness, adjust as needed
+//               className="w-full h-full object-cover"
 //               src={each}
 //               alt={`Slide ${index + 1}`}
 //             />
@@ -41,7 +52,7 @@
 //         ))}
 //       </Slider>
 
-//       {/* Circle Indicators */}
+//       {/* Custom Circle Indicators */}
 //       <div className="absolute bottom-4 w-full flex justify-center items-center">
 //         {images.map((_, index) => (
 //           <div
@@ -49,7 +60,7 @@
 //             className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
 //               index === currentSlide ? "bg-white" : "bg-gray-400"
 //             }`}
-//             onClick={() => setCurrentSlide(index)} // Allow clicking on an indicator to navigate
+//             onClick={() => goToSlide(index)} // Navigate to slide on click
 //           ></div>
 //         ))}
 //       </div>
@@ -59,9 +70,8 @@
 
 // export default Slideshow;
 
-
 import React, { useState, useRef } from "react";
-import Slider, { Settings } from "react-slick"; // Ensure correct import
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -77,10 +87,10 @@ const Slideshow: React.FC = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const sliderRef = useRef<Slider | null>(null); // Correctly type the ref
+  const sliderRef = useRef<Slider>(null); // Correctly typed ref for Slider
 
-  const settings: Settings = {
-    dots: false, // Custom dots handled below
+  const settings = {
+    dots: false,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
@@ -92,14 +102,14 @@ const Slideshow: React.FC = () => {
   };
 
   const goToSlide = (index: number) => {
-    sliderRef.current?.slickGoTo(index); // Navigate to specific slide
-    setCurrentSlide(index); // Update current slide state
+    sliderRef.current?.slickGoTo(index); // Use the ref directly to call slickGoTo
+    setCurrentSlide(index);
   };
 
   return (
     <div className="w-full max-h-[500px] overflow-hidden relative">
       {/* Slider */}
-      <Slider ref={sliderRef} {...settings}>
+      <Slider {...settings} ref={sliderRef}>
         {images.map((each, index) => (
           <div
             key={index}
@@ -122,7 +132,7 @@ const Slideshow: React.FC = () => {
             className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
               index === currentSlide ? "bg-white" : "bg-gray-400"
             }`}
-            onClick={() => goToSlide(index)} // Navigate to slide on click
+            onClick={() => goToSlide(index)}
           ></div>
         ))}
       </div>

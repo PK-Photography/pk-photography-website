@@ -11,6 +11,7 @@
   "dependencies": {
     "@fontsource/montserrat": "^5.1.0",
     "@heroicons/react": "^2.2.0",
+    "@jridgewell/gen-mapping": "^0.3.5",
     "@react-oauth/google": "^0.12.1",
     "@studio-freight/lenis": "^1.0.42",
     "axios": "^1.7.7",

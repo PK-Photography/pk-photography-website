@@ -44,32 +44,52 @@ const ClientHome = () => {
         const match = driveLink.match(/[-\w]{25,}/);
         return match ? match[0] : null;
       };
-
+  
       if (!driveLink) {
         console.error("No drive link provided.");
         return;
       }
-
+  
       const folderId = extractFolderId(driveLink);
-      if (folderId) {
-        try {
+      if (!folderId) {
+        console.error("Invalid drive link:", driveLink);
+        return;
+      }
+  
+      let allImages = [];
+      let pageToken = null;
+  
+      try {
+        do {
           const response = await axios.get(
-            `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name)&key=AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM`
+            `https://www.googleapis.com/drive/v3/files`,
+            {
+              params: {
+                q: `'${folderId}' in parents`,
+                fields: "nextPageToken, files(id, name)",
+                key: "AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM",
+                pageSize: 1000, // Fetch up to 1000 items per request
+                pageToken: pageToken, // Use token to get the next batch
+              },
+            }
           );
-          const driveImages = response.data.files.map((file, index) => ({
-            id: `${categoryName}-${index}`,
+  
+          const files = response.data.files.map((file, index) => ({
+            id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
             mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
             highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
-          setImages(driveImages);
-          setActiveCategory(categoryName);
-        } catch (error) {
-          console.error("Error fetching images from Google Drive:", error);
-        }
-      } else {
-        console.error("Invalid drive link:", driveLink);
+  
+          allImages = [...allImages, ...files];
+          pageToken = response.data.nextPageToken; // Get the next page token
+        } while (pageToken);
+  
+        setImages(allImages);
+        setActiveCategory(categoryName);
+      } catch (error) {
+        console.error("Error fetching images from Google Drive:", error);
       }
     },
     [] // No dependencies for `extractFolderId` as it is inside the callback
@@ -79,7 +99,6 @@ const ClientHome = () => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
-    // console.log("Last ID:", lastId);
 
     const fetchSelectedCard = async () => {
       try {
@@ -88,7 +107,6 @@ const ClientHome = () => {
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
-        // console.log("Selected card:", selectedCard);
         setCategories(selectedCard.category || []);
 
         // Set the first category as the default active category
@@ -505,10 +523,13 @@ const ClientHome = () => {
       {/* Header */}
       <header className="flex justify-between items-center p-4 bg-gray-50 shadow-sm">
         <div className="flex items-center">
-          <Image src="" alt="Logo" width={40} height={40} className="h-10" />
-          <span className="ml-4 text-lg font-bold">
-            {selectedCard.name || "PK PHOTOGRAPHY"}
-          </span>
+          <Image
+            src="/logo.webp"
+            alt="Logo"
+            width={180}
+            height={180}
+            className="h-10"
+          />
         </div>
       </header>
 

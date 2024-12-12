@@ -46,7 +46,7 @@ const BookingForm = () => {
         try {
             // Send POST request to the API
             const response = await axios.post(
-                "https://client-ra9o.onrender.com/api/booking/request",
+                "https://pk-backend-jzxv.onrender.com/api/booking/request",
                 formData,
                 {
                     headers: {

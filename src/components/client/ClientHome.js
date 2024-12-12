@@ -84,7 +84,7 @@ const ClientHome = () => {
     const fetchSelectedCard = async () => {
       try {
         const response = await axios.get(
-          `https://client-ra9o.onrender.com/api/client/cards`
+          `https://pk-backend-jzxv.onrender.com/api/client/cards`
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
@@ -300,7 +300,7 @@ const ClientHome = () => {
         return;
       }
 
-      const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+      const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
       // console.log("Fetching from proxy URL:", proxyUrl);
 
       try {
@@ -414,7 +414,7 @@ const ClientHome = () => {
         return;
       }
 
-      const proxyUrl = `https://client-ra9o.onrender.com/api/download/${fileId}`;
+      const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
       // console.log("Fetching from proxy URL:", proxyUrl);
 
       try {

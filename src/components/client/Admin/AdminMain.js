@@ -11,7 +11,7 @@ const AdminMain = () => {
   // Fetch cards from the backend
   const fetchCards = async () => {
     try {
-      const response = await axios.get('https://client-ra9o.onrender.com/api/cards');
+      const response = await axios.get('https://pk-backend-jzxv.onrender.com/api/cards');
       setCards(response.data);
     } catch (err) {
       console.error('Error fetching cards:', err);
@@ -45,7 +45,7 @@ const AdminMain = () => {
     const cardData = { name, date, image };
 
     try {
-      await axios.post('https://client-ra9o.onrender.com/api/upload', cardData);
+      await axios.post('https://pk-backend-jzxv.onrender.com/api/upload', cardData);
       alert('Client uploaded successfully!');
       fetchCards(); 
     } catch (err) {
@@ -60,7 +60,7 @@ const AdminMain = () => {
     try {
       setCards((prevCards) => prevCards.filter((card) => card._id !== id));
 
-      await axios.delete(`https://client-ra9o.onrender.com/api/cards/${id}`);
+      await axios.delete(`https://pk-backend-jzxv.onrender.com/api/cards/${id}`);
       alert('Card deleted successfully!');
     } catch (err) {
       console.error('Error deleting card:', err);

@@ -16,7 +16,7 @@ export default function Login() {
       return;
     }
     try {
-      const res = await axios.post("https://client-ra9o.onrender.com/api/send-otp", {
+      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/send-otp", {
         phoneNumber,
       });
       if (res.data.success) {
@@ -29,7 +29,7 @@ export default function Login() {
 
   const handleVerifyOtp = async () => {
     try {
-      const res = await axios.post("https://client-ra9o.onrender.com/api/verify-otp", {
+      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/verify-otp", {
         phoneNumber,
         otp,
       });
@@ -52,7 +52,7 @@ export default function Login() {
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
     try {
-      const res = await axios.post("https://client-ra9o.onrender.com/api/google-auth", {
+      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/google-auth", {
         token,
       });
       if (res.data.success) {

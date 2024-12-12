@@ -11,7 +11,7 @@ const ClientAdmin = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const { data } = await axios.get("https://client-ra9o.onrender.com/api/cards");
+        const { data } = await axios.get("https://pk-backend-jzxv.onrender.com/api/cards");
         setClients(data);
       } catch (error) {
         console.error("Error fetching clients:", error);
@@ -36,7 +36,7 @@ const ClientAdmin = () => {
 
     try {
       const response = await axios.put(
-        "https://client-ra9o.onrender.com/api/cards/update-category",
+        "https://pk-backend-jzxv.onrender.com/api/cards/update-category",
         {
           id: selectedClientId,
           category: newCategory,
@@ -71,7 +71,7 @@ const ClientAdmin = () => {
   
     try {
       const response = await axios.delete(
-        "https://client-ra9o.onrender.com/api/cards/delete-category",
+        "https://pk-backend-jzxv.onrender.com/api/cards/delete-category",
         {
           data: {
             id: selectedClientId,

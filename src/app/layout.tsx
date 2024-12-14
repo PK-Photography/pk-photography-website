@@ -37,7 +37,7 @@ export default function RootLayout({
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         {/* ToastContainer for global toast notifications */}
-        <ToastContainer 
+        <ToastContainer
           position="top-right" // Position of the toast
           autoClose={5000} // Auto close after 5 seconds
           hideProgressBar={false} // Show progress bar
@@ -48,12 +48,12 @@ export default function RootLayout({
           draggable // Allow drag to dismiss
           pauseOnHover // Pause on hover
         />
-        
+
         {children}
 
         {/* Footer component */}
         <Footer />
-   
+
         {/* WhatsApp icon displayed globally */}
         <WhatsAppIcon />
       </body>
@@ -67,8 +67,6 @@ export default function RootLayout({
 // import clsx from "clsx";
 // import { toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
-
-
 
 // import { Footer } from "@/sections/Footer";
 // import WhatsAppIcon from "@/components/globalIcons/WhatAppIcon";
@@ -88,7 +86,7 @@ export default function RootLayout({
 // };
 
 // export default function RootLayout({
-  
+
 //   children,
 // }: Readonly<{
 //   children: React.ReactNode;
@@ -106,7 +104,7 @@ export default function RootLayout({
 
 //         {/* Footer component */}
 //         <Footer />
-   
+
 //         {/* WhatsApp icon displayed globally */}
 //         <WhatsAppIcon />
 //       </body>

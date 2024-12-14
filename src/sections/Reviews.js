@@ -86,6 +86,85 @@
 
 // export default Reviews;
 
+
+
+
+// import React from "react";
+// import Slider from "react-slick";
+// import ReviewCard from "@/components/reviews/ReviewCard";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// // Import avatar images
+// import avatar1 from "@/assets/avatar-1.png";
+// import avatar2 from "@/assets/avatar-2.png";
+// import avatar3 from "@/assets/avatar-3.png";
+// import avatar4 from "@/assets/avatar-4.png";
+// import avatar5 from "@/assets/avatar-5.png";
+// import avatar6 from "@/assets/avatar-6.png";
+// import avatar7 from "@/assets/avatar-7.png";
+// import avatar8 from "@/assets/avatar-8.png";
+// import avatar9 from "@/assets/avatar-9.png";
+
+// // New review data
+// const reviews = [
+//   {
+//     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
+//     imageSrc: avatar1.src,
+//     name: "Photography",
+//     username: "@jamietechguru00",
+//   },
+// ];
+
+// const Reviews: React.FC = () => {
+//   const settings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 3,
+//     slidesToScroll: 1,
+//     autoplay: true,
+//     autoplaySpeed: 3000,
+//     responsive: [
+//       {
+//         breakpoint: 1024,
+//         settings: {
+//           slidesToShow: 2,
+//           slidesToScroll: 1,
+//           infinite: true,
+//           dots: true,
+//         },
+//       },
+//       {
+//         breakpoint: 768,
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1,
+//           dots: false,
+//         },
+//       },
+//     ],
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <Slider {...settings}>
+//         {reviews.map((review, index) => (
+//           <div key={index} className="px-2">
+//             <ReviewCard {...review} />
+//           </div>
+//         ))}
+//       </Slider>
+//     </div>
+//   );
+// };
+
+// export default Reviews;
+
+
+
+
+
 import React from "react";
 import Slider from "react-slick";
 import ReviewCard from "@/components/reviews/ReviewCard";
@@ -102,6 +181,7 @@ import avatar6 from "@/assets/avatar-6.png";
 import avatar7 from "@/assets/avatar-7.png";
 import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
+
 
 // New review data
 const reviews = [
@@ -232,8 +312,7 @@ const reviews = [
     username: "@mumbai_manager",
   },
 ];
-
-const Reviews: React.FC = () => {
+const Reviews = () => {
   const settings = {
     dots: true,
     infinite: true,

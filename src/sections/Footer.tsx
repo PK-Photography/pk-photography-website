@@ -66,7 +66,7 @@ const FooterLink = ({
         href={href}
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}
-        style={{ textDecoration: "none", fontSize: "1.6rem" }} // Applying link styles
+        style={{ textDecoration: "none", fontSize: "1.2rem" }} // Applying link styles
         className={className}
       >
         {linkText}
@@ -165,7 +165,7 @@ export const Footer = () => {
           </div>
 
           <div className="ml-10">
-            <li className="text-4xl list-none font-semibold text-black py-2 uppercase text-center">
+            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
               Services
             </li>
             <FooterLink
@@ -196,7 +196,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <li className="text-4xl list-none font-semibold text-black py-2 uppercase text-center">
+            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
               Videography
             </li>
             <FooterLink
@@ -215,7 +215,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <li className="text-4xl list-none font-semibold text-black py-2 uppercase text-center">
+            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
               Navigate
             </li>
             {/* <FooterLink text="Sign-Up" href="/sign-up" className="text-black" /> */}

@@ -17,6 +17,7 @@ import { ImageBreak } from "@/components/imagebreak1/ImageBreak";
 import { Do } from "@/components/WhatWeDo/Do";
 import Reviews from "@/sections/Reviews";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
+import GoogleReviews from "@/sections/GoogleReviews";
 
 // import Project  from "@/sections/Project";
 
@@ -39,6 +40,7 @@ export default function Home() {
           <Header />
           <Hero />
           <ImageBreak />
+          <GoogleReviews />
           {/* <LogoTicker/> */}
           <Service />
           {/* <ProductShowcase/> */}
@@ -46,7 +48,6 @@ export default function Home() {
           {/* <Project/> */}
           <Do />
           {/* <Featured/> */}
-
           {/* <Testimonials /> */}
           <CallToAction />
           <BubbleText text="Testimonial" />

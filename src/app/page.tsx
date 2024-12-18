@@ -18,6 +18,7 @@ import { Do } from "@/components/WhatWeDo/Do";
 import Reviews from "@/sections/Reviews";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import GoogleReviews from "@/sections/GoogleReviews";
+import FeaturedGallery from "@/components/featuredCard/FeaturedGallery";
 
 // import Project  from "@/sections/Project";
 
@@ -40,7 +41,10 @@ export default function Home() {
           <Header />
           <Hero />
           <ImageBreak />
-          <GoogleReviews />
+          {/* <GoogleReviews /> */}
+          <BubbleText text="Featured Gallery" />
+
+          <FeaturedGallery/>
           {/* <LogoTicker/> */}
           <Service />
           {/* <ProductShowcase/> */}

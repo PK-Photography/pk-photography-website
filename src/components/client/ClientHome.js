@@ -12,6 +12,7 @@ import { GoDownload } from "react-icons/go";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
+import axiosInstance from "../../utils/axiosConfig.jsx";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -102,8 +103,8 @@ const ClientHome = () => {
 
     const fetchSelectedCard = async () => {
       try {
-        const response = await axios.get(
-          `https://pk-backend-jzxv.onrender.com/api/client/cards`
+        const response = await axiosInstance.get(
+          `/client/cards`
         );
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
@@ -310,6 +311,48 @@ const ClientHome = () => {
     const failedImages = [];
 
     // Process all images in the selected category
+    // const fetchPromises = images.map(async (image, index) => {
+    //   const fileId = extractFileIdFromUrl(image.highRes);
+    //   if (!fileId) {
+    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+    //     failedImages.push(image.highRes);
+    //     return;
+    //   }
+
+    //   const proxyUrl = `https://pk-backend-jzxv.onrender.co/api/download/${fileId}`;
+    //   // console.log("Fetching from proxy URL:", proxyUrl);
+
+    //   try {
+    //     const response = await fetch(proxyUrl);
+    //     if (!response.ok) {
+    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+    //       failedImages.push(image.highRes);
+    //       return;
+    //     }
+
+    //     const blob = await response.blob();
+    //     const arrayBuffer = await blob.arrayBuffer();
+
+    //     // Determine a valid file extension
+    //     const defaultExtension = "jpg";
+    //     const fileExtension = image.highRes
+    //       .split(".")
+    //       .pop()
+    //       .match(/^(jpg|jpeg|png|gif)$/i)
+    //       ? image.highRes.split(".").pop()
+    //       : defaultExtension;
+
+    //     const fileName = `${activeCategory || "category"}_${
+    //       index + 1
+    //     }.${fileExtension}`;
+    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
+    //   } catch (error) {
+    //     console.error(`Error downloading file: ${image.highRes}`, error);
+    //     failedImages.push(image.highRes);
+    //   }
+    // });
+
+
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
@@ -317,10 +360,10 @@ const ClientHome = () => {
         failedImages.push(image.highRes);
         return;
       }
-
-      const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
-      // console.log("Fetching from proxy URL:", proxyUrl);
-
+    
+      // Use baseURL from axiosInstance to construct the proxy URL
+      const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
+    
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
@@ -328,10 +371,10 @@ const ClientHome = () => {
           failedImages.push(image.highRes);
           return;
         }
-
+    
         const blob = await response.blob();
         const arrayBuffer = await blob.arrayBuffer();
-
+    
         // Determine a valid file extension
         const defaultExtension = "jpg";
         const fileExtension = image.highRes
@@ -340,16 +383,15 @@ const ClientHome = () => {
           .match(/^(jpg|jpeg|png|gif)$/i)
           ? image.highRes.split(".").pop()
           : defaultExtension;
-
-        const fileName = `${activeCategory || "category"}_${
-          index + 1
-        }.${fileExtension}`;
+    
+        const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
+
 
     // Wait for all fetches to complete
     await Promise.all(fetchPromises);
@@ -424,17 +466,55 @@ const ClientHome = () => {
     const failedImages = [];
 
     // Use fetchPromises to download all files
-    const fetchPromises = favorites.map(async (image, index) => {
+    // const fetchPromises = favorites.map(async (image, index) => {
+    //   const fileId = extractFileIdFromUrl(image.highRes);
+    //   if (!fileId) {
+    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+    //     failedImages.push(image.highRes);
+    //     return;
+    //   }
+
+    //   const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
+    //   // console.log("Fetching from proxy URL:", proxyUrl);
+
+    //   try {
+    //     const response = await fetch(proxyUrl);
+    //     if (!response.ok) {
+    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+    //       failedImages.push(image.highRes);
+    //       return;
+    //     }
+
+    //     const blob = await response.blob();
+    //     const arrayBuffer = await blob.arrayBuffer();
+
+    //     // Ensure a valid file extension
+    //     const defaultExtension = "jpg";
+    //     const fileExtension = image.highRes
+    //       .split(".")
+    //       .pop()
+    //       .match(/^(jpg|jpeg|png|gif)$/i)
+    //       ? image.highRes.split(".").pop()
+    //       : defaultExtension;
+
+    //     const fileName = `favorite_${index + 1}.${fileExtension}`;
+    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
+    //   } catch (error) {
+    //     console.error(`Error downloading file: ${image.highRes}`, error);
+    //     failedImages.push(image.highRes);
+    //   }
+    // });
+
+    const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
         console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
         failedImages.push(image.highRes);
         return;
       }
-
-      const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
-      // console.log("Fetching from proxy URL:", proxyUrl);
-
+    
+      const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
+    
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
@@ -442,11 +522,11 @@ const ClientHome = () => {
           failedImages.push(image.highRes);
           return;
         }
-
+    
         const blob = await response.blob();
         const arrayBuffer = await blob.arrayBuffer();
-
-        // Ensure a valid file extension
+    
+        // Determine a valid file extension
         const defaultExtension = "jpg";
         const fileExtension = image.highRes
           .split(".")
@@ -454,14 +534,17 @@ const ClientHome = () => {
           .match(/^(jpg|jpeg|png|gif)$/i)
           ? image.highRes.split(".").pop()
           : defaultExtension;
-
-        const fileName = `favorite_${index + 1}.${fileExtension}`;
+    
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
+
 
     await Promise.all(fetchPromises);
 

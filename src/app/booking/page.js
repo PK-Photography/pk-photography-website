@@ -10,6 +10,7 @@ import Image from "next/image";
 import Header from "@/components/header/Header";
 import PKLogo from "@/assets/logo.webp";
 import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosConfig";
 
 const BookingForm = () => {
     // State to hold form data
@@ -45,8 +46,8 @@ const BookingForm = () => {
 
         try {
             // Send POST request to the API
-            const response = await axios.post(
-                "https://pk-backend-jzxv.onrender.com/api/booking/request",
+            const response = await axiosInstance.post(
+                "/booking/request",
                 formData,
                 {
                     headers: {

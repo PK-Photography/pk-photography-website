@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import Head from "next/head";
+import axiosInstance from "../../utils/axiosConfig";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -16,7 +17,7 @@ export default function Login() {
       return;
     }
     try {
-      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/send-otp", {
+      const res = await axiosInstance.post("/send-otp", {
         phoneNumber,
       });
       if (res.data.success) {
@@ -29,7 +30,7 @@ export default function Login() {
 
   const handleVerifyOtp = async () => {
     try {
-      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/verify-otp", {
+      const res = await axiosInstance.post("/verify-otp", {
         phoneNumber,
         otp,
       });
@@ -52,7 +53,7 @@ export default function Login() {
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
     try {
-      const res = await axios.post("https://pk-backend-jzxv.onrender.com/api/google-auth", {
+      const res = await axiosInstance.post("/google-auth", {
         token,
       });
       if (res.data.success) {

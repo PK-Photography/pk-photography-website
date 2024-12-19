@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from "next/image";
+import axiosInstance from '../../../utils/axiosConfig';
 
 const AdminMain = () => {
   const [cards, setCards] = useState([]);
@@ -11,7 +12,7 @@ const AdminMain = () => {
   // Fetch cards from the backend
   const fetchCards = async () => {
     try {
-      const response = await axios.get('https://pk-backend-jzxv.onrender.com/api/cards');
+      const response = await axiosInstance.get('/cards');
       setCards(response.data);
     } catch (err) {
       console.error('Error fetching cards:', err);
@@ -45,7 +46,7 @@ const AdminMain = () => {
     const cardData = { name, date, image };
 
     try {
-      await axios.post('https://pk-backend-jzxv.onrender.com/api/upload', cardData);
+      await axiosInstance.post('/upload', cardData);
       alert('Client uploaded successfully!');
       fetchCards(); 
     } catch (err) {
@@ -60,7 +61,7 @@ const AdminMain = () => {
     try {
       setCards((prevCards) => prevCards.filter((card) => card._id !== id));
 
-      await axios.delete(`https://pk-backend-jzxv.onrender.com/api/cards/${id}`);
+      await axiosInstance.delete(`/cards/${id}`);
       alert('Card deleted successfully!');
     } catch (err) {
       console.error('Error deleting card:', err);

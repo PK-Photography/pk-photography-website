@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import ClientHome from '../../components/ClientHome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axiosInstance from '../../utils/axiosConfig';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -12,7 +13,7 @@ const ClientPage = () => {
     const fetchCardData = async () => {
       if (id) {
         try {
-          const { data } = await axios.get(`http://localhost:4000/api/cards/${id}`);
+          const { data } = await axiosInstance.get(`/cards/${id}`);
           setCard(data);
         } catch (error) {
           console.error('Error fetching card data:', error);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import axiosInstance from "../../../utils/axiosConfig";
 
 const ClientAdmin = () => {
   const [clients, setClients] = useState([]); // List of clients
@@ -11,7 +12,7 @@ const ClientAdmin = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const { data } = await axios.get("https://pk-backend-jzxv.onrender.com/api/cards");
+        const { data } = await axiosInstance.get("/cards");
         setClients(data);
       } catch (error) {
         console.error("Error fetching clients:", error);
@@ -35,8 +36,8 @@ const ClientAdmin = () => {
     };
 
     try {
-      const response = await axios.put(
-        "https://pk-backend-jzxv.onrender.com/api/cards/update-category",
+      const response = await axiosInstance.put(
+        "/cards/update-category",
         {
           id: selectedClientId,
           category: newCategory,
@@ -70,8 +71,8 @@ const ClientAdmin = () => {
     }
   
     try {
-      const response = await axios.delete(
-        "https://pk-backend-jzxv.onrender.com/api/cards/delete-category",
+      const response = await axiosInstance.delete(
+        "/cards/delete-category",
         {
           data: {
             id: selectedClientId,

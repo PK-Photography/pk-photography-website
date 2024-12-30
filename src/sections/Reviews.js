@@ -16,108 +16,109 @@ import avatar6 from "@/assets/avatar-6.png";
 import avatar7 from "@/assets/avatar-7.png";
 import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
+import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
 
 
 // New review data
 const reviews = [
   {
-    text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
+    text: "We had an amazing experience shooting with them. Prabhakar was very cooperative and made us feel comfortable throughout the shoot. Overall, I would definitely recommend PK photography!",
     imageSrc: avatar1.src,
     name: "Photography",
     username: "@jamietechguru00",
   },
   {
-    text: "Our team's productivity has skyrocketed since we started using this tool.",
+    text: "Had an amazing shoot and absolutely love my photos! He made me feel super comfortable and even though it was our first time shooting together he knew exactly how to shoot me and which angles would work for me. I would highly recommend booking your next portfolio shoot with him. The photos are very well shot and I can’t wait to see the final edits.",
     imageSrc: avatar2.src,
     name: "Videography",
     username: "@jjsmith",
   },
   {
-    text: "This app has completely transformed how I manage my projects and deadlines.",
+    text: "Photos turned out really nice (corporate shots), make-up artist provided was great, a lot of flexibility. Studio is a makeshift one in an apartment But it works for the purpose. don’t expect a posh commercial studio though.",
     imageSrc: avatar3.src,
     name: "Events",
     username: "@morganleewhiz",
   },
   {
-    text: "I was amazed at how quickly we were able to integrate this app into our workflow.",
+    text: "I had a great experience with Prabhakar at PK Photography. I had professional headshots taken and I am not usually very comfortable in front of the camera. Prabhakar took time to make sure that I was comfortable and let me see the photos in real time on an iPad. He guided me to help make sure that the poses captured the photos I was looking for. It was a good experience and I am very pleased with the photos.",
     imageSrc: avatar4.src,
     name: "Corporate",
     username: "@caseyj",
   },
   {
-    text: "Planning and executing events has never been easier. This app helps me keep track of all the moving parts, ensuring nothing slips through the cracks.",
+    text: "PK Photography did an excellent job with our testimonial photos. They made our clients look great and comfortable, which really added authenticity to our testimonials. Highly recommend their services!",
     imageSrc: avatar5.src,
     name: "Headshots",
     username: "@taylorkimm",
   },
   {
-    text: "The customizability and integration capabilities of this app are top-notch.",
+    text: "Our product photos came out stunning thanks to PK Photography. Their attention to detail and lighting techniques truly made our products shine. The best product photography service in Mumbai!",
     imageSrc: avatar6.src,
     name: "Weddings",
     username: "@rileysmith1",
   },
   {
-    text: "Adopting this app for our team has streamlined our project management and improved communication across the board.",
+    text: "The photography is taking away my breathe PK Photography did an amazing job with our newborn photoshoot.They were patient and gentle, capturing precious moments we will treasure forever.",
     imageSrc: avatar7.src,
     name: "Live Streaming",
     username: "@jpatelsdesign",
   },
   {
-    text: "With this app, we can easily assign tasks, track progress, and manage documents all in one place.",
+    text: "PK Photography delivered exceptional corporate ads for our brand. Their creativity and professionalism are unmatched. Highly recommended for anyone needing high-quality corporate photography in Mumbai.",
     imageSrc: avatar8.src,
     name: "Editing",
     username: "@dawsontechtips",
   },
   {
-    text: "Its user-friendly interface and robust features support our diverse needs.",
+    text: "Our industrial shoot with PK Photography was impressive. They understood our requirements and delivered high-quality images that showcased our facilities and operations brilliantly. The go-to for industrial photography in Mumbai.",
     imageSrc: avatar9.src,
     name: "Design",
     username: "@casey09",
   },
   {
-    text: "The level of creativity this app unlocks for content creation is unmatched.",
+    text: "I had a portfolio shoot with PK Photography headed by very talented, dedicated & polite Mr Prabhakar. His team, all young guys, is highly professional, gives a comfortable environment during shoot. Mr Prabhakar along with his team was busy taking my shots, almost the entire day, with superb lighting effects, trending poses  using high tech cameras. Overall, a very satisfying experience with Prabhakar.",
     imageSrc: avatar1.src,
     name: "UI/UX",
     username: "@creativeuser",
   },
   {
-    text: "We've transformed our brand with the app's unique features and support.",
+    text: "I would like to express my deep gratitude to the photographer Prabhakar! They turned out to be very good photos for my portfolio. I recommend working with him",
     imageSrc: avatar2.src,
     name: "Branding",
     username: "@brandmaster",
   },
   {
-    text: "This app is a must-have tool for anyone managing multiple talents.",
+    text: "Our fashion line has never looked better thanks to PK Photography. Their creative direction and photography skills are exceptional. Highly recommend for fashion shoots.",
     imageSrc: avatar3.src,
     name: "Talent",
     username: "@talentpro",
   },
   {
-    text: "It’s revolutionized our marketing strategy with easy-to-use analytics.",
+    text: "PK Photography's corporate headshots are top-notch. They made our team look professional and approachable. Perfect for any business needing polished headshots.",
     imageSrc: avatar4.src,
     name: "Marketing",
     username: "@marketguru",
   },
   {
-    text: "The app has made influencer management so much simpler.",
+    text: "I was offered a photo shoot . To which I agreed. I didn't know who he was, but many of my friends worked with him. After I met Prabhakar, I realized that this is my man. It's very easy to work with. The man is clearly a professional in his field. He also has good taste, vision and style. The photo session was very cool. Pleasant atmosphere, good music and funny friends. I was absolutely comfortable and I enjoyed the whole process . Anyone who wants to make a cool portfolio for themselves, I recommend going to him. Thank you so much for the offer, I will definitely come back again.",
     imageSrc: avatar5.src,
     name: "Influencers",
     username: "@influencemanager",
   },
   {
-    text: "We rely on this app to develop effective strategies that keep us ahead.",
+    text: "Our corporate event was captured perfectly by PK Photography. The team was discreet yet thorough, ensuring all key moments were photographed. Exceptional event photography service in Mumbai.",
     imageSrc: avatar6.src,
     name: "Strategy",
     username: "@strategist",
   },
   {
-    text: "It's the ultimate tool for digital media management.",
+    text: "PK Photography in Mumbai is an outstanding studio! I had a remarkable shoot experience with their skilled team. They captured my best moments flawlessly, showcasing their expertise in photography. The studio's professionalism, creativity, and attention to detail truly impressed me. Highly recommended for exceptional photography services!",
     imageSrc: avatar7.src,
     name: "Digital Media",
     username: "@digitalmediapro",
   },
   {
-    text: "The creativity we’ve been able to unlock with this app is phenomenal.",
+    text: "Prabhakar sir is a skilled Person , i do Shoot and its really wonderful and amazing experience with him, Small Budget and get proffessional shoot its rarely i found in mumbai , thnkx for that..",
     imageSrc: avatar8.src,
     name: "Creativity",
     username: "@creativemind",
@@ -129,23 +130,23 @@ const reviews = [
     username: "@contentpro",
   },
   {
-    text: "It's our go-to solution for streamlined production workflows.",
+    text: "The food photography by PK Photography is simply mouth-watering. They captured the essence of our dishes beautifully, making our menu look irresistible.T",
     imageSrc: avatar1.src,
     name: "Production",
     username: "@productionwiz",
   },
-  {
-    text: "We use this app to bring our visuals to life in the most stunning way.",
-    imageSrc: avatar2.src,
-    name: "Visuals",
-    username: "@visualartist",
-  },
-  {
-    text: "This app has made managing our projects in Mumbai much smoother.",
-    imageSrc: avatar3.src,
-    name: "Mumbai",
-    username: "@mumbai_manager",
-  },
+  // {
+  //   text: "We use this app to bring our visuals to life in the most stunning way.",
+  //   imageSrc: avatar2.src,
+  //   name: "Visuals",
+  //   username: "@visualartist",
+  // },
+  // {
+  //   text: "This app has made managing our projects in Mumbai much smoother.",
+  //   imageSrc: avatar3.src,
+  //   name: "Mumbai",
+  //   username: "@mumbai_manager",
+  // },
 ];
 const Reviews = () => {
   const settings = {
@@ -181,11 +182,13 @@ const Reviews = () => {
     <div className="p-6">
       <Slider {...settings}>
         {reviews.map((review, index) => (
-          <div key={index} className="px-2">
+          <div key={index} className="">
             <ReviewCard {...review} />
           </div>
         ))}
       </Slider>
+
+      {/* <h1 cl>Post a Review</h1> */}
     </div>
   );
 };

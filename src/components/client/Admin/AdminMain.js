@@ -47,8 +47,8 @@ const AdminMain = () => {
 
     try {
       await axiosInstance.post('/upload', cardData);
-      alert('Client uploaded successfully!');
-      fetchCards(); 
+      alert('Client uploaded successfullyyyyyy!');
+      fetchCards();
     } catch (err) {
       console.error(err);
       alert('Failed to upload');

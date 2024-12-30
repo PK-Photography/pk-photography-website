@@ -19,6 +19,8 @@ import Reviews from "@/sections/Reviews";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import GoogleReviews from "@/sections/GoogleReviews";
 import FeaturedGallery from "@/components/featuredCard/FeaturedGallery";
+import Image from "next/image";
+import Logo from "@/assets/logo.webp";
 
 // import Project  from "@/sections/Project";
 
@@ -39,12 +41,22 @@ export default function Home() {
         <div className="bg-[#eae8e4]">
           {/* <Header1/> */}
           <Header />
+          <div className="top-0 left-10 md:top-0 md:left-8">
+            <Image
+              src={Logo}
+              alt="Saas Logo"
+              width={120} // Set width to control aspect ratio
+              height={120} // Set height to control aspect ratio
+              className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] object-contain  z-50"
+            />
+          </div>
+
           <Hero />
           <ImageBreak />
           {/* <GoogleReviews /> */}
           <BubbleText text="Featured Gallery" />
 
-          <FeaturedGallery/>
+          <FeaturedGallery />
           {/* <LogoTicker/> */}
           <Service />
           {/* <ProductShowcase/> */}
@@ -53,7 +65,7 @@ export default function Home() {
           <Do />
           {/* <Featured/> */}
           {/* <Testimonials /> */}
-          <CallToAction />
+          {/* <CallToAction /> */}
           <BubbleText text="Testimonial" />
           <Reviews />
         </div>

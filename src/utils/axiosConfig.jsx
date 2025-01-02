@@ -9,11 +9,7 @@ const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
 
 const axiosInstance = axios.create({
   baseURL,
-  // headers: {
-  //   "x-spj-host": "spj.sarkariprivatejobs.com",
-  //   "x-spj-key": "dwff230a1ad4msh4243dsd2s1bd075jsn11c95bb6bsdf33",
-  // },
-  // You can add other default configurations here, such as headers
+ 
 });
 
 export default axiosInstance;

@@ -21,6 +21,7 @@ import GoogleReviews from "@/sections/GoogleReviews";
 import FeaturedGallery from "@/components/featuredCard/FeaturedGallery";
 import Image from "next/image";
 import Logo from "@/assets/logo.webp";
+import OurClients from "@/sections/OurClients";
 
 // import Project  from "@/sections/Project";
 
@@ -68,6 +69,8 @@ export default function Home() {
           {/* <CallToAction /> */}
           <BubbleText text="Testimonial" />
           <Reviews />
+          <BubbleText text="Our Clients" />
+          <OurClients/>
         </div>
       )}
     </>

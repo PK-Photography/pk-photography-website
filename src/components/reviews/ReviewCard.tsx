@@ -16,14 +16,14 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   return (
     <>
       <div className="flex flex-col items-center p-4 border rounded-lg shadow-lg max-w-sm bg-white">
-        <img
+        {/* <img
           src={imageSrc}
           alt={name}
           className="w-16 h-16 rounded-full mb-4"
-        />
+        /> */}
         <h3 className="text-lg font-semibold">{name}</h3>
         <p className="text-sm text-gray-500 mb-2">{username}</p>
-        <div className="flex mb-4">
+        <div className="flex mb-2">
           {[...Array(5)].map((_, index) => (
             <svg
               key={index}

@@ -11,7 +11,7 @@ import {
 import { useState, useRef } from "react";
 import PKLogo from "@/assets/logo.webp";
 import Image from "next/image";
-
+import { FaYoutube } from "react-icons/fa";
 // Scrambling effect component for the links
 const FooterLink = ({
   text,
@@ -113,13 +113,23 @@ export const Footer = () => {
               {/* Email with Icon */}
               <div className="flex items-center gap-2 mt-4">
                 <FaEnvelope className="text-xl" />
-                <p className="text-2xl">prabhakar@photography.com</p>
+                <a
+                  href="mailto:prabhakar@photography.com"
+                  className="text-2xl hover:underline"
+                >
+                  prabhakar@photography.com
+                </a>
               </div>
 
               {/* Phone with Icon */}
               <div className="flex items-center gap-2 mt-4">
                 <FaPhoneAlt className="text-xl" />
-                <p className="text-2xl">+91 8888766739</p>
+                <a
+                  href="tel:+918888766739"
+                  className="text-2xl hover:underline"
+                >
+                  +91 8888766739
+                </a>
               </div>
             </div>
 
@@ -129,10 +139,19 @@ export const Footer = () => {
                 href="https://www.facebook.com/pkfashionphotography"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:text-pink-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
+                className="text-black hover:text-blue-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
                 style={iconStyle}
               >
                 <FaFacebook />
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-black hover:text-red-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
+                style={iconStyle}
+              >
+                <FaYoutube />
               </a>
               <a
                 href="https://www.instagram.com/itspkphotography.in/"

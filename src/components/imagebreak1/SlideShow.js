@@ -92,12 +92,12 @@ const Slideshow = () => {
       try {
         const response = await axiosInstance.get("/carousel/all");
         if (response.data && response.data.data) {
-          setImages(response.data.data.map((item) => item.imageUrl)); 
+          setImages(response.data.data.map((item) => item.imageUrl));
         }
       } catch (error) {
         console.error("Error fetching images:", error);
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
@@ -118,7 +118,7 @@ const Slideshow = () => {
 
   const goToSlide = (index) => {
     if (sliderRef.current) {
-      sliderRef.current.slickGoTo(index); 
+      sliderRef.current.slickGoTo(index);
     }
     setCurrentSlide(index);
   };
@@ -128,7 +128,7 @@ const Slideshow = () => {
       {isLoading ? (
         // Shadow loading effect
         <div className="w-full h-[500px] flex justify-center items-center">
-          <div className="w-full h-full bg-gray-200 animate-pulse">
+          <div className="w-full h-full bg-gray-400 animate-pulse">
             {/* Add your shimmer background */}
           </div>
         </div>
@@ -155,9 +155,8 @@ const Slideshow = () => {
             {images.map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
-                  index === currentSlide ? "bg-white" : "bg-gray-400"
-                }`}
+                className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${index === currentSlide ? "bg-white" : "bg-gray-400"
+                  }`}
                 onClick={() => goToSlide(index)}
               ></div>
             ))}

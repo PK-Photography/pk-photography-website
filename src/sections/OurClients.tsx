@@ -6,11 +6,11 @@
 //     "/clients/tiktok.png",
 //     "/clients/google.png",
 //     "/clients/netflx.png",
-   
+
 //   ];
 
 //   return (
-    
+
 //     <div className="overflow-hidden bg-transparent py-10 p-10">
 //       <div
 //         className="flex items-center animate-marquee whitespace-nowrap hover:pause-marquee"
@@ -44,16 +44,24 @@
 
 // export default OurClients;
 
-
-
 import React from "react";
 
 const OurClients: React.FC = () => {
   const logos = [
-    "/clients/yt.png",
-    "/clients/tiktok.png",
-    "/clients/google.png",
-    "/clients/netflx.png",
+    "/clients/c1.webp",
+    "/clients/c2.webp",
+    "/clients/c3.webp",
+    "/clients/c4.webp",
+    "/clients/c5.webp",
+    "/clients/c6.webp",
+    // "/clients/c7.webp",
+    "/clients/c8.webp",
+    "/clients/c9.webp",
+    "/clients/c10.webp",
+    "/clients/c11.webp",
+    "/clients/c12.webp",
+    "/clients/c13.webp",
+    "/clients/c14.webp",
   ];
 
   return (
@@ -61,8 +69,12 @@ const OurClients: React.FC = () => {
       <div
         className="flex items-center animate-marquee whitespace-nowrap"
         style={{ animation: "marquee 20s linear infinite" }}
-        onMouseEnter={(e) => e.currentTarget.style.animationPlayState = "paused"}
-        onMouseLeave={(e) => e.currentTarget.style.animationPlayState = "running"}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.animationPlayState = "paused")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.animationPlayState = "running")
+        }
       >
         {logos.map((logo, index) => (
           <img
@@ -73,6 +85,7 @@ const OurClients: React.FC = () => {
           />
         ))}
       </div>
+
       <style jsx>{`
         @keyframes marquee {
           from {

@@ -8,14 +8,18 @@ export const Do = () => {
         {/* Left content */}
         <div className="md:w-2/3 px-4">
           <div className="tag mt-3">What we do</div>
-          <div className="md:flex items-start mt-5">
-            <div className="md:w-[700px]">
-              <h1 className="text-2xl md:text-4xl tracking-tighter bg-clip-text mt-6">
-                We bridge creativity and expertise to make brands visible and engaging everywhere people connect.
+          <div className="md:flex items-start mt-5  w-full">
+            <div className=" w-full">
+              <h1 className="text-2xl  tracking-tighter bg-clip-text mt-6  w-full">
+                We bridge creativity and expertise to make brands visible and
+                engaging everywhere people connect.
               </h1>
               <br />
-              <div className="text-1xl md:text-2xl tracking-tighter bg-clip-text mt-6">
-                Based in Mumbai, PK Photography is your partner in creating impactful moments. From photography and videography to website design, branding, influencer marketing, and talent management, our expertise empowers brands to resonate deeply with audiences.
+              <div className="text-xl tracking-tighter bg-clip-text mt-6  w-full">
+                Based in Mumbai, PK Photography is your partner in creating
+                impactful moments. From photography and videography to website
+                design, branding, influencer marketing, and talent management,
+                our expertise empowers brands to resonate deeply with audiences.
               </div>
             </div>
           </div>
@@ -23,7 +27,7 @@ export const Do = () => {
         </div>
 
         {/* Right content - ScrollText */}
-        <div className="md:w-1/3 flex justify-center items-center">
+        <div className="md:w-1/3 lg:flex justify-center items-center sm:hidden  md:hidden">
           <ScrollText />
         </div>
       </div>

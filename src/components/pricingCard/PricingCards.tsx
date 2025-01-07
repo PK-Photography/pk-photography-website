@@ -54,7 +54,7 @@ const PricingCards: React.FC<PricingCardsProps> = ({ packages }) => {
               }}
             >
               <h3 className="text-xl font-semibold text-gray-800 text-center">{pkg.title}</h3>
-              <p className="text-blue-600 font-bold text-2xl mt-2 text-center">{pkg.price}</p>
+              <p className="text-[#2874A6] font-bold text-2xl mt-2 text-center">{pkg.price}</p>
               <div className="mt-4">
                 <Slider {...settings}>
                   {pkg.images.map((image, i) => (
@@ -75,9 +75,10 @@ const PricingCards: React.FC<PricingCardsProps> = ({ packages }) => {
               <p className="text-gray-600 mt-2">{pkg.deliverables}</p>
               <p className="text-sm text-gray-500 mt-1">{pkg.note}</p>
               <Link href="/booking">
-              <button className="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                Book Now
-              </button>
+              <button className="mt-6 w-full bg-[#2874A6] text-white py-2 rounded-lg hover:bg-[#1b4b7a] transform transition-transform duration-200 hover:scale-105">
+  Book Now
+</button>
+
               </Link>
             </div>
           ))}

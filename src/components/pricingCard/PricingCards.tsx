@@ -43,12 +43,13 @@ const PricingCards: React.FC<PricingCardsProps> = ({ packages }) => {
           {packages.map((pkg, index) => (
             <div
               key={index}
-              className={`bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 ${
+              className={`bg-gray-100 rounded-lg shadow-lg p-6 transform transition-all duration-300 ${
                 index === 1 ? "scale-105 z-10 -mt-6" : "scale-100"
               }`}
               style={{
                 minWidth: "300px",
                 maxWidth: "350px",
+                backgroundColor: index ===1 ? "white":"",
                 marginTop: index === 1 ? "-20px" : "0",
               }}
             >

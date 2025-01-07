@@ -22,6 +22,7 @@ import FeaturedGallery from "@/components/featuredCard/FeaturedGallery";
 import Image from "next/image";
 import Logo from "@/assets/logo.webp";
 import OurClients from "@/sections/OurClients";
+import PricingCardIndex from "@/sections/PricingCardIndex";
 
 // import Project  from "@/sections/Project";
 
@@ -71,6 +72,8 @@ export default function Home() {
           <Reviews />
           <BubbleText text="Our Clients" />
           <OurClients/>
+          <BubbleText text="Shoot Pricing " />
+          <PricingCardIndex/>
         </div>
       )}
     </>

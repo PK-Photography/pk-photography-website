@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/components/WeAlsoDo",
     "src/sections/Reviews.js"
-  ],
+, "src/components/pricingCard/PricingCards.js"  ],
   "exclude": ["node_modules"]
 }

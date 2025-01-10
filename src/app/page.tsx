@@ -70,7 +70,7 @@ export default function Home() {
           {/* <CallToAction /> */}
           <BubbleText text="Testimonial" />
           <Reviews />
-          <BubbleText text="Our Clients" />
+          <BubbleText text="Brands We Have Worked With" />
           <OurClients/>
           <BubbleText text="Shoot Pricing " />
           <PricingCardIndex/>

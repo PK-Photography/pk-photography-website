@@ -11,7 +11,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   text,
   imageSrc,
   name,
-  username,
+  // username,
 }) => {
   return (
     <>
@@ -22,7 +22,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
           className="w-16 h-16 rounded-full mb-4"
         /> */}
         <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm text-gray-500 mb-2">{username}</p>
+        {/* <p className="text-sm text-gray-500 mb-2">{username}</p> */}
         <div className="flex mb-2">
           {[...Array(5)].map((_, index) => (
             <svg

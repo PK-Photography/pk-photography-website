@@ -20,13 +20,12 @@ const PricingCards = ({ packages }) => {
       <div className="max-w-6xl mx-auto px-4">
         {/* Scrolling container only for mobile */}
         <div className="overflow-x-auto md:overflow-hidden scrollbar-hide">
-          <div className="flex md:justify-center gap-6 md:gap-10">
+          <div className="flex md:justify-center gap-6 md:gap-10 ">
             {packages.map((pkg, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 bg-gray-100 rounded-lg shadow-lg p-6 transform transition-all duration-300 ${
-                  index === 1 ? "md:scale-105 md:z-10 md:-mt-6 scale-100" : "scale-100"
-                }`}
+                className={`flex-shrink-0 bg-gray-100 rounded-lg shadow-lg p-6  transform transition-transform duration-200 hover:scale-105 "
+                  }`}
                 style={{
                   minWidth: "300px",
                   maxWidth: "350px",
@@ -76,6 +75,9 @@ const PricingCards = ({ packages }) => {
 };
 
 export default PricingCards;
+
+
+
 
 
 // import React from "react";

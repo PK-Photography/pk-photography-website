@@ -29,6 +29,7 @@ const Slideshow = () => {
     const fetchImages = async () => {
       try {
         const response = await axiosInstance.get("/carousel/all");
+
         if (response.data && response.data.data) {
           setImages(response.data.data);
         }
@@ -115,11 +116,6 @@ const Slideshow = () => {
 };
 
 export default Slideshow;
-
-
-
-
-
 
 
 

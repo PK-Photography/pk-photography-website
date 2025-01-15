@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const OurClients: React.FC = () => {
@@ -18,12 +17,13 @@ const OurClients: React.FC = () => {
     "/clients/c13.webp",
     "/clients/c14.webp",
   ];
-
   return (
     <div className="overflow-hidden bg-transparent py-10 p-10">
       <div
         className="flex items-center animate-marquee whitespace-nowrap"
-        style={{ animation: "marquee 20s linear infinite" }}
+        style={{
+          animation: "marquee 20s linear infinite",
+        }}
         onMouseEnter={(e) =>
           (e.currentTarget.style.animationPlayState = "paused")
         }
@@ -31,12 +31,23 @@ const OurClients: React.FC = () => {
           (e.currentTarget.style.animationPlayState = "running")
         }
       >
+        {/* First set of logos */}
         {logos.map((logo, index) => (
           <img
             key={index}
             src={logo}
             alt={`Client Logo ${index + 1}`}
-            className="h-24  object-contain"
+            className="h-24 object-contain mx-4"
+          />
+        ))}
+
+        {/* Duplicate set of logos for seamless effect */}
+        {logos.map((logo, index) => (
+          <img
+            key={`duplicate-${index}`}
+            src={logo}
+            alt={`Duplicate Client Logo ${index + 1}`}
+            className="h-24 object-contain mx-4"
           />
         ))}
       </div>
@@ -44,11 +55,15 @@ const OurClients: React.FC = () => {
       <style jsx>{`
         @keyframes marquee {
           from {
-            transform: translateX(100%);
+            transform: translateX(0);
           }
           to {
-            transform: translateX(-100%);
+            transform: translateX(-50%);
           }
+        }
+        .animate-marquee {
+          display: inline-flex;
+          width: 200%; /* Double the width to accommodate duplicate logos */
         }
       `}</style>
     </div>
@@ -56,7 +71,6 @@ const OurClients: React.FC = () => {
 };
 
 export default OurClients;
-
 
 // import React from "react";
 

@@ -169,7 +169,7 @@ const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({
 const Service: React.FC = () => {
   return (
     <div className="">
-      <div className="flex h-30 mt-5 items-center justify-center">
+      <div className="flex h-30 mt-5 items-center justify-center mb-10">
         {/* <h2 className="section-title">Our Services</h2> */}
         <BubbleText text="Our Services" />
       </div>

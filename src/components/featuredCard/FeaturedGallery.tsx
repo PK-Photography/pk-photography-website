@@ -1,109 +1,48 @@
-// import React from "react";
-
-// const videos = [
-//   {
-//     src: "featuredVdo/L1.MP4",
-//     title: "Google Gemini - Generative AI Apps",
-//     tags: ["Experiences"],
-//   },
-//   {
-//     src: "featuredVdo/L2.MP4",
-//     title: "The best delivery experience not on earth.",
-//     tags: ["Platform", "Experiences"],
-//   },
-//   {
-//     src: "featuredVdo/L3.MP4",
-//     title: "Bang & Olufsen - See yourself in Sound",
-//     tags: ["Experiences"],
-//   },
-//   {
-//     src: "featuredVdo/L5.MP4",
-//     title: "Strava - Year In Sport 2023",
-//     tags: ["Platform", "Products", "Experiences"],
-//   },
-// ];
-
-// const FeaturedGallery: React.FC = () => {
-//   return (
-//     <div className="p-6 flex flex-wrap justify-center gap-10">
-//       {videos.map((video, index) => (
-//         <div
-//           key={index}
-//           className="group cursor-pointer flex flex-col items-start "
-//         >
-//           {/* Video Container */}
-//           <div className="relative overflow-hidden rounded-lg w-full h-[200px]">
-//             <video
-//               src={video.src}
-//               muted
-//               loop
-//               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-//               onMouseEnter={(e) => e.currentTarget.play()}
-//               onMouseLeave={(e) => {
-//                 e.currentTarget.pause();
-//                 e.currentTarget.currentTime = 0;
-//               }}
-//             ></video>
-//           </div>
-
-//           {/* Title and Tags */}
-//           <div className="mt-4">
-//             <h3 className="text-lg  font-semibold text-black leading-snug">
-//               {video.title}
-//             </h3>
-//             <div className="flex gap-4 mt-2">
-//               {video.tags.map((tag, idx) => (
-//                 <a
-//                   key={idx}
-//                   href="#"
-//                   className="text-sm font-medium text-gray-500 hover:underline"
-//                 >
-//                   {tag}
-//                 </a>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default FeaturedGallery;
-
 import React from "react";
+import { motion } from "framer-motion";
 
 const videos = [
   {
-    src: "featuredVdo/L1.MP4",
-    title: "Google Gemini - Generative AI Apps",
-    tags: ["Experiences"],
+    src: "featuredVdo/Nitakshi Goe (1).MP4",
+    title: "Nitakshi Goe - Having a great experience.",
+    tags: ["Experiences", "Photography"],
     gridSpan: { row: 2, col: 1 }, // Custom spans
   },
   {
-    src: "featuredVdo/L2.MP4",
-    title: "The best delivery experience not on earth.",
-    tags: ["Platform", "Experiences"],
+    src: "featuredVdo/Rohit Rashmi (1).MP4",
+    title: "Rohit Rashmi - Amazing photgraphy.",
+    tags: ["Platform", "Experiences", "PhotoShoot"],
     gridSpan: { row: 1, col: 2 },
   },
-
   {
-    src: "featuredVdo/L1.MP4",
-    title: "Google Gemini - Generative AI Apps",
-    tags: ["Experiences"],
+    src: "featuredVdo/Kashish (1).MP4",
+    title: "Kashish - Happy to see his Photography.",
+    tags: ["Great Shoot"],
     gridSpan: { row: 2, col: 1 }, // Custom spans
   },
   {
-    src: "featuredVdo/L3.MP4",
-    title: "Bang & Olufsen - See yourself in Sound",
-    tags: ["Experiences"],
+    src: "featuredVdo/Aspen (1).MP4",
+    title: "Aspen - PK Photography is simply mouth-watering.",
+    tags: ["Love Photography"],
     gridSpan: { row: 1, col: 2 },
   },
   {
-    src: "featuredVdo/L5.MP4",
-    title: "Strava - Year In Sport 2023",
+    src: "featuredVdo/Kajal agarwal.MP4",
+    title: "Kajal agarwal - Great shoot, as I expected.",
     tags: ["Platform", "Products", "Experiences"],
     gridSpan: { row: 2, col: 2 },
+  },
+  {
+    src: "featuredVdo/FAMILY PHOTO.MP4",
+    title: "FAMILY PHOTO - Best For family photo shoot. ",
+    tags: ["Family", "Photos"],
+    gridSpan: { row: 2, col: 2 },
+  },
+  {
+    src: "featuredVdo/Amd.MP4",
+    title: "AMD - Having amazing experience with PK Photography.",
+    tags: ["Photography", "Experiences"],
+    gridSpan: { row: 3, col: 3 },
   },
 ];
 
@@ -111,11 +50,12 @@ const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
+
 const FeaturedGallery: React.FC = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen w-full ">
+    <div className="flex justify-center items-center min-h-screen w-full px-4 sm:px-6 lg:px-8 pt-10">
       <div
-        className="grid grid-cols-6 gap-8 items-center max-w-[1200px] mx-auto"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center max-w-[1200px] mx-auto"
         style={{
           justifyContent: "center",
         }}
@@ -155,15 +95,15 @@ const FeaturedGallery: React.FC = () => {
 
             {/* Title and Tags */}
             <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold text-black leading-snug">
+              <h3 className="text-sm sm:text-base font-semibold text-black leading-snug">
                 {video.title}
               </h3>
-              <div className="flex gap-4 justify-center mt-2">
+              <div className="flex gap-2 justify-center mt-2">
                 {video.tags.map((tag, idx) => (
                   <a
                     key={idx}
                     href="#"
-                    className="text-sm font-medium text-gray-500 hover:underline"
+                    className="text-xs sm:text-sm font-medium text-gray-500 hover:underline"
                   >
                     {tag}
                   </a>
@@ -178,69 +118,3 @@ const FeaturedGallery: React.FC = () => {
 };
 
 export default FeaturedGallery;
-
-// =================================
-
-// import React from "react";
-// import { motion } from "framer-motion";
-import { motion } from "framer-motion";
-
-// const videos = [
-//   { src: "featuredVdo/L1.MP4", title: "Google Gemini - Generative AI Apps", tags: ["Experiences"] },
-//   { src: "featuredVdo/L2.MP4", title: "The best delivery experience not on earth.", tags: ["Platform", "Experiences"] },
-//   { src: "featuredVdo/L3.MP4", title: "Bang & Olufsen - See yourself in Sound", tags: ["Experiences"] },
-//   { src: "featuredVdo/L5.MP4", title: "Strava - Year In Sport 2023", tags: ["Platform", "Products", "Experiences"] },
-// ];
-
-// const FeaturedGallery: React.FC = () => {
-//   return (
-//     <div className="p-6 flex flex-wrap justify-center gap-10">
-//       {videos.map((video, index) => (
-//         <motion.div
-//           key={index}
-//           className="group cursor-pointer flex flex-col items-start max-w-[280px] w-full"
-//           initial={{ opacity: 0, y: 50 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.5, delay: index * 0.2 }}
-//           whileHover={{ scale: 1.05 }}
-//         >
-//           {/* Video Container */}
-//           <div className="relative overflow-hidden rounded-md w-full h-[200px]">
-//             <motion.video
-//               src={video.src}
-//               muted
-//               loop
-//               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-//               onMouseEnter={(e) => e.currentTarget.play()}
-//               onMouseLeave={(e) => {
-//                 e.currentTarget.pause();
-//                 e.currentTarget.currentTime = 0;
-//               }}
-//               whileHover={{ scale: 1.1 }}
-//             ></motion.video>
-//           </div>
-
-//           {/* Title and Tags */}
-//           <div className="mt-4">
-//             <h3 className="text-lg font-semibold text-black leading-snug">
-//               {video.title}
-//             </h3>
-//             <div className="flex gap-4 mt-2">
-//               {video.tags.map((tag, idx) => (
-//                 <a
-//                   key={idx}
-//                   href="#"
-//                   className="text-sm font-medium text-gray-500 hover:underline"
-//                 >
-//                   {tag}
-//                 </a>
-//               ))}
-//             </div>
-//           </div>
-//         </motion.div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default FeaturedGallery;

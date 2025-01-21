@@ -91,7 +91,11 @@ const navItems = [
     href: "/client",
   },
   {
-    title: "Book Now",
+    title: "Gallery",
+    href: "/galleries",
+  },
+  {
+    title: "Bookings",
     href: "/booking",
   },
   {

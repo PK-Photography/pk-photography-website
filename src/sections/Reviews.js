@@ -154,6 +154,7 @@ const reviews = [
     username: "@mumbai_manager",
   },
 ];
+
 const Reviews = () => {
   const settings = {
     dots: true,

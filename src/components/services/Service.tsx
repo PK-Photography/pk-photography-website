@@ -171,7 +171,6 @@ const Service: React.FC = () => {
     <div className="">
       <div className="flex h-30 mt-5 items-center justify-center mb-10">
         {/* <h2 className="section-title">Our Services</h2> */}
-        <BubbleText text="Our Services" />
       </div>
       <HorizontalScrollCarousel cards={cards} />
     </div>

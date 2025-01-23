@@ -39,7 +39,7 @@ const BubbleText: React.FC<BubbleTextProps> = ({ text, id }) => {
     >
       <a
         href={`#${id}`} // Create a clickable link to the section
-        className="hover:underline cursor-pointer"
+        className="cursor-pointer"
       >
         {text.split("").map((child, idx) => (
           <span className={styles.hoverText} key={idx}>

@@ -56,7 +56,7 @@ export default function Home() {
           <Hero />
           <ImageBreak />
           {/* <GoogleReviews /> */}
-          <BubbleText text="Featured Gallery" />
+          <BubbleText text="Featured Gallery" id="Featured-Gallery" />
 
           <FeaturedGallery />
           {/* <LogoTicker/> */}
@@ -68,11 +68,11 @@ export default function Home() {
           {/* <Featured/> */}
           {/* <Testimonials /> */}
           {/* <CallToAction /> */}
-          <BubbleText text="Testimonial" />
+          <BubbleText text="Testimonial" id="#Testimonial" />
           <Reviews />
-          <BubbleText text="Our Clients" />
+          <BubbleText text="Our Clients" id="#Our-Clients" />
           <OurClients />
-          <BubbleText text="Shoot Pricing " />
+          <BubbleText text="Shoot Pricing " id="#Shoot-Pricing" />
           <PricingCardIndex />
         </div>
       )}

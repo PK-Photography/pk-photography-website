@@ -20,6 +20,7 @@ import { BubbleText } from "../BubbleText/BubbolTextProps";
 interface CardProps {
   id: number;
   url: string;
+  link: string;
   title: string;
   subtitle: string;
   isLightBackground?: boolean; // New prop to identify light backgrounds
@@ -31,6 +32,7 @@ const cards: CardProps[] = [
     title: "Portfolio",
     subtitle: "Crafting your visual stories",
     id: 1,
+    link: "/galleries?category=Portfolio",
   },
   {
     url: service2.src,
@@ -38,42 +40,49 @@ const cards: CardProps[] = [
     subtitle: "Timeless portraits that reflect you",
     id: 2,
     isLightBackground: true,
+    link: "/galleries?category=Portrait",
   },
   {
     url: service3.src,
     title: "Headshots",
     subtitle: "Professional headshots that speak success",
     id: 3,
+    link: "/galleries?category=Headshots",
   },
   {
     url: service4.src,
     title: "Editorial",
     subtitle: "Magazine-Worthy Shots for Every Story Headshots",
     id: 4,
+    link: "/galleries?category=Editorial",
   },
   {
     url: service5.src,
     title: "Celebrity",
     subtitle: "Reflect your stardom with every shot",
     id: 5,
+    link: "/galleries?category=Celebrity",
   },
   {
     url: service6.src,
     title: "Ads",
     subtitle: "Highlights your products with flawless imagery",
     id: 6,
+    link: "/galleries?category=Ads",
   },
   {
     url: service7.src,
     title: "Wedding",
     subtitle: "Your Big Day, perfectly captured",
     id: 7,
+    link: "/galleries?category=Wedding",
   },
   {
     url: service8.src,
     title: "Boudoir",
     subtitle: "Empower your confidence",
     id: 8,
+    link: "/galleries?category=Boudoir",
   },
   {
     url: service9.src,
@@ -81,6 +90,7 @@ const cards: CardProps[] = [
     subtitle: "Mouth watering images for culinary Delights",
     id: 9,
     isLightBackground: true,
+    link: "/galleries?category=Food",
   },
   {
     url: service10.src,
@@ -88,18 +98,21 @@ const cards: CardProps[] = [
     subtitle: "Boost your sales: crisp, e-commerce photos",
     id: 10,
     isLightBackground: true,
+    link: "/galleries?category=E-Commerce",
   },
   {
     url: service11.src,
     title: "Real Estate",
     subtitle: "Highlighting the beauty of every property",
     id: 11,
+    link: "/galleries?category=Real%20Estate",
   },
   {
     url: service12.src,
     title: "Design",
     subtitle: "Your vision, our expertise in design",
     id: 12,
+    link: "/galleries?category=Design",
   },
 ];
 
@@ -133,9 +146,11 @@ const Card: React.FC<{ card: CardProps }> = ({ card }) => {
         </p>
         <p className="px-4 py-1 mt-2 text-lg font-medium">{card.subtitle}</p>
         <div className="mt-1 flex justify-center">
-          <Btn
-            className={card.isLightBackground ? "text-black" : "text-white"}
-          />{" "}
+          <a href={card.link}>
+            <Btn
+              className={card.isLightBackground ? "text-black" : "text-white"}
+            />
+          </a>
           {/* Pass className */}
         </div>
       </div>

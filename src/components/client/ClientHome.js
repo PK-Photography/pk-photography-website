@@ -13,6 +13,9 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
+import Header from "@/components/header/Header";
+import PKLogo from "@/assets/logo.webp";
+import bgImg from "@/assets/5.webp"
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -45,21 +48,21 @@ const ClientHome = () => {
         const match = driveLink.match(/[-\w]{25,}/);
         return match ? match[0] : null;
       };
-  
+
       if (!driveLink) {
         console.error("No drive link provided.");
         return;
       }
-  
+
       const folderId = extractFolderId(driveLink);
       if (!folderId) {
         console.error("Invalid drive link:", driveLink);
         return;
       }
-  
+
       let allImages = [];
       let pageToken = null;
-  
+
       try {
         do {
           const response = await axios.get(
@@ -74,7 +77,7 @@ const ClientHome = () => {
               },
             }
           );
-  
+
           const files = response.data.files.map((file, index) => ({
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
@@ -82,11 +85,11 @@ const ClientHome = () => {
             highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
-  
+
           allImages = [...allImages, ...files];
           pageToken = response.data.nextPageToken; // Get the next page token
         } while (pageToken);
-  
+
         setImages(allImages);
         setActiveCategory(categoryName);
       } catch (error) {
@@ -360,10 +363,10 @@ const ClientHome = () => {
         failedImages.push(image.highRes);
         return;
       }
-    
+
       // Use baseURL from axiosInstance to construct the proxy URL
       const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
-    
+
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
@@ -371,10 +374,10 @@ const ClientHome = () => {
           failedImages.push(image.highRes);
           return;
         }
-    
+
         const blob = await response.blob();
         const arrayBuffer = await blob.arrayBuffer();
-    
+
         // Determine a valid file extension
         const defaultExtension = "jpg";
         const fileExtension = image.highRes
@@ -383,7 +386,7 @@ const ClientHome = () => {
           .match(/^(jpg|jpeg|png|gif)$/i)
           ? image.highRes.split(".").pop()
           : defaultExtension;
-    
+
         const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
@@ -512,9 +515,9 @@ const ClientHome = () => {
         failedImages.push(image.highRes);
         return;
       }
-    
+
       const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
-    
+
       try {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
@@ -522,10 +525,10 @@ const ClientHome = () => {
           failedImages.push(image.highRes);
           return;
         }
-    
+
         const blob = await response.blob();
         const arrayBuffer = await blob.arrayBuffer();
-    
+
         // Determine a valid file extension
         const defaultExtension = "jpg";
         const fileExtension = image.highRes
@@ -534,10 +537,9 @@ const ClientHome = () => {
           .match(/^(jpg|jpeg|png|gif)$/i)
           ? image.highRes.split(".").pop()
           : defaultExtension;
-    
-        const fileName = `${activeCategory || "category"}_${
-          index + 1
-        }.${fileExtension}`;
+
+        const fileName = `${activeCategory || "category"}_${index + 1
+          }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.highRes}`, error);
@@ -576,11 +578,10 @@ const ClientHome = () => {
         <title>{selectedCard.name || "PK Photography"}</title>
         <meta
           name="description"
-          content={`Explore stunning images and categories from ${
-            selectedCard.name || "PK Photography"
-          }. Find high-quality pictures organized by categories like ${categories
-            .map((category) => category.name)
-            .join(", ")}.`}
+          content={`Explore stunning images and categories from ${selectedCard.name || "PK Photography"
+            }. Find high-quality pictures organized by categories like ${categories
+              .map((category) => category.name)
+              .join(", ")}.`}
         />
         <meta
           name="keywords"
@@ -594,9 +595,8 @@ const ClientHome = () => {
         />
         <meta
           property="og:description"
-          content={`View the best moments captured by ${
-            selectedCard.name || "PK Photography"
-          }.`}
+          content={`View the best moments captured by ${selectedCard.name || "PK Photography"
+            }.`}
         />
         <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
@@ -604,7 +604,7 @@ const ClientHome = () => {
       </Head>
 
       {/* Header */}
-      <header className="flex justify-between items-center p-4 bg-gray-50 shadow-sm">
+      {/* <header className="flex justify-between items-center p-4 bg-gray-50 shadow-sm">
         <div className="flex items-center">
           <Image
             src="/logo.webp"
@@ -614,15 +614,37 @@ const ClientHome = () => {
             className="h-10"
           />
         </div>
-      </header>
+      </header> */}
+      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
 
       {/* Title Section */}
-      <section className="text-center py-12 bg-pink-50">
+      {/* <section className="text-center py-12 bg-pink-500">
         <h1 className="text-4xl font-serif font-light">{selectedCard.name}</h1>
         <p className="text-gray-500 text-sm mt-2">
           {new Date(selectedCard.date).toLocaleDateString()}
         </p>
+      </section> */}
+      <section
+        className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-gray-400"
+        style={{
+          backgroundImage: "url('/pk-cover.png')",
+        }}
+      >
+        {/* Gray Overlay */}
+        <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
+
+        {/* Content */}
+        <div className="relative z-10">
+          <h1 className="text-4xl font-serif font-light text-white">{selectedCard.name}</h1>
+          <p className="text-gray-200 text-lg mt-2">
+            {selectedCard.date ? new Date(selectedCard.date).toLocaleDateString() : "Loading..."}
+          </p>
+        </div>
       </section>
+
+
+
+
 
       {/* Categories Navbar */}
       <nav className="bg-white shadow-md py-4 px-6">
@@ -720,9 +742,8 @@ const ClientHome = () => {
             </div>
 
             <div
-              className={`absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${
-                isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-              }`}
+              className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}
               onTouchStart={(e) => {
                 e.stopPropagation();
                 if (!isMobile) return; // Ensure behavior only for mobile
@@ -735,11 +756,10 @@ const ClientHome = () => {
               }}
             >
               <button
-                className={`p-2 ${
-                  favorites.find((fav) => fav.id === image.id)
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
+                className={`p-2 ${favorites.find((fav) => fav.id === image.id)
+                  ? "text-red-600"
+                  : "text-white"
+                  } hover:text-red-600`}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleFavorite(image);
@@ -768,13 +788,7 @@ const ClientHome = () => {
                 <FaShare className="w-5 h-5" />
               </button>
 
-              {/* <ShareModal
-                showModal={showModal}
-                currentImage={currentImage}
-                setShowModal={setShowModal}
-                handleCopyLink={handleCopyLink}
-                handleSocialShare={handleSocialShare}
-              /> */}
+
             </div>
           </li>
         ))}
@@ -808,11 +822,10 @@ const ClientHome = () => {
                 {["High Resolution", "Web Size"].map((size) => (
                   <div
                     key={size}
-                    className={`p-4 border rounded-lg cursor-pointer transition ${
-                      selectedSize === size
-                        ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
-                        : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                    }`}
+                    className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
+                      ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
+                      : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
+                      }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}

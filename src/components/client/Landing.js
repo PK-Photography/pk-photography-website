@@ -4,12 +4,15 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import { CgMail } from "react-icons/cg";
 import { FaInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
+import Image from "next/image";
+import Header from "@/components/header/Header";
+import PKLogo from "@/assets/logo.webp";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
       <Head>
-        
+
         <title>PK Photography | Client Portal</title>
         <meta
           name="description"
@@ -19,7 +22,7 @@ export default function Home() {
         <meta name="author" content="PK Photography" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        
+
         <meta property="og:title" content="PK Photography | Client Portal" />
         <meta
           property="og:description"
@@ -29,7 +32,7 @@ export default function Home() {
         <meta property="og:url" content="https://pkphotography.com" />
         <meta property="og:type" content="website" />
 
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="PK Photography | Client Portal" />
         <meta
@@ -41,7 +44,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center flex-1 w-full px-4 text-center mt-20"> 
+      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="pt-5" />
+
+
+      <main className="flex flex-col items-center justify-center flex-1 w-full px-4 text-center mt-20">
         <div className="flex space-x-4 mt-4">
           <Link href="https://facebook.com" target="_blank" rel="noreferrer">
             <FaFacebook alt="Facebook" className="w-6 h-6" />
@@ -56,10 +62,10 @@ export default function Home() {
         </h1>
 
         <p>
-  Welcome to the client portal. Here is where you can view, download, and share your photos.
-  OH! You can also order prints if you&apos;d like :). Please contact me for your password
-  or any other assistance needed!
-</p>
+          Welcome to the client portal. Here is where you can view, download, and share your photos.
+          OH! You can also order prints if you&apos;d like :). Please contact me for your password
+          or any other assistance needed!
+        </p>
 
         <div className="mt-10 space-y-4 text-sm text-gray-500 md:text-base">
           <div className="flex items-center justify-center space-x-2">

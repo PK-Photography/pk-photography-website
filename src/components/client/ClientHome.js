@@ -615,8 +615,9 @@ const ClientHome = () => {
           />
         </div>
       </header> */}
-      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
+      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2  " />
 
+      <Header />
       {/* Title Section */}
       {/* <section className="text-center py-12 bg-pink-500">
         <h1 className="text-4xl font-serif font-light">{selectedCard.name}</h1>
@@ -625,7 +626,7 @@ const ClientHome = () => {
         </p>
       </section> */}
       <section
-        className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-gray-400"
+        className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-[#eae8e4]"
         style={{
           backgroundImage: "url('/pk-cover.png')",
         }}
@@ -647,7 +648,7 @@ const ClientHome = () => {
 
 
       {/* Categories Navbar */}
-      <nav className="bg-white shadow-md py-4 px-6">
+      <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
           <CategoryNav
             categories={categories}

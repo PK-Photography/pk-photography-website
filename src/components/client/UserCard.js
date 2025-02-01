@@ -185,7 +185,7 @@ const UserCards = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
       </Head>
-      <div className="p-4">
+      <div className="bg-[#eae8e4] p-5">
         {isLoading ? (
           <div className="text-center">
             <p className="text-lg font-semibold mb-4">
@@ -195,17 +195,17 @@ const UserCards = () => {
               {Array.from({ length: 8 }).map((_, index) => (
                 <div
                   key={index}
-                  className="bg-gray-200 rounded-lg shadow-lg animate-pulse h-64"
+                  className="bg-[#eae8e4] rounded-lg shadow-lg animate-pulse h-64"
                 ></div>
               ))}
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 bg-[#eae8e4]  mt-20">
             {cards.map((card) => (
               <div
                 key={card._id}
-                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                className="bg-[#eae8e4] rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
               >
                 <div className="relative h-48 w-full">
                   <Image
@@ -217,7 +217,7 @@ const UserCards = () => {
                   />
                 </div>
 
-                <div className="p-4 flex flex-col h-full">
+                <div className=" flex flex-col h-full">
                   <h2 className="text-lg font-semibold text-gray-800 text-center">
                     {card.name}
                   </h2>
@@ -227,7 +227,7 @@ const UserCards = () => {
                   <div className="mt-4 text-center">
                     <Link href={`/client/${card._id}`}>
                       <button
-                        className="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all duration-200"
+                        className="bg-black text-white px-4 py-2 mb-2 rounded-md hover:bg-gray-600 transition-all duration-200"
                         onClick={() => handleClick(card._id)}
                       >
                         View Details

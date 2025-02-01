@@ -10,7 +10,7 @@ import PKLogo from "@/assets/logo.webp";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-center  bg-[#eae8e4]">
       <Head>
 
         <title>PK Photography | Client Portal</title>
@@ -44,10 +44,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="pt-5" />
+      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="pt-5 bg-[#eae8e4]" />
 
 
-      <main className="flex flex-col items-center justify-center flex-1 w-full px-4 text-center mt-20">
+      <main className="flex flex-col items-center justify-center flex-1 w-full px-4 text-center mt-20 bg-[#eae8e4]">
         <div className="flex space-x-4 mt-4">
           <Link href="https://facebook.com" target="_blank" rel="noreferrer">
             <FaFacebook alt="Facebook" className="w-6 h-6" />

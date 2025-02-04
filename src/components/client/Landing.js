@@ -68,7 +68,7 @@ export default function Home() {
         </p>
 
         <div className="mt-10 space-y-4 text-sm text-gray-500 md:text-base">
-          <div className="flex items-center justify-center space-x-2">
+          {/* <div className="flex items-center justify-center space-x-2">
             <AiOutlineGlobal className="w-5 h-5" />
             <Link href="" target="_blank" rel="noreferrer" className="hover:underline">
               pkphotography.com
@@ -79,7 +79,7 @@ export default function Home() {
             <Link href="mailto:pkphotography@gmail.com" className="hover:underline">
               pkphotography@gmail.com
             </Link>
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

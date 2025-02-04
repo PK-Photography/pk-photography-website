@@ -1,13 +1,17 @@
-
-import styles from './style.module.scss';
+import styles from "./style.module.scss";
 
 export default function Footer() {
   return (
     <div className={styles.footer}>
-        <a>Awwwards</a>
-        <a>Instagram</a>
-        <a>Dribble</a>
-        <a>LinkedIn</a>
+      <a href="https://www.instagram.com/itspkphotography.in/" target="_blank">
+        Instagram
+      </a>
+      <a href="https://x.com/pkphotographym" target="_blank">
+        Twitter
+      </a>
+      <a href="https://www.linkedin.com/company/pkphotography" target="_blank">
+        LinkedIn
+      </a>
     </div>
-  )
+  );
 }

@@ -36,13 +36,13 @@ const RightNav = ({
         <span className="hidden sm:inline">Slideshow</span>
       </div>
 
-      <Link
+      {/* <Link
         href="/Cart"
         className="flex items-center space-x-2 cursor-pointer hover:text-black"
       >
         <FaCartArrowDown className="text-lg" />
         <span className="hidden sm:inline">Cart ({cartItems.length})</span>
-      </Link>
+      </Link> */}
     </div>
   );
 };

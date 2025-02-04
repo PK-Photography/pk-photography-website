@@ -3,12 +3,14 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 60px; /* Set width for mobile */
-    height: 100vh;
+    // width: 60px; /* Set width for mobile */
+    width: 100%;
+    // height: 100vh;
     // background-color: rgb(41, 41, 41);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
+padding-right: 70px;
     z-index: 21;
     transition: all 0.3s ease; /* Smooth transition for header background */
     box-sizing: border-box;
@@ -20,6 +22,8 @@
         
     // background-image: url('../../assets/menuicon.png');
     z-index: 30;
+    background-color:#eae8e4 ;
+
     }
 
     /* Mobile screen styles */
@@ -27,9 +31,12 @@
         background-color: transparent; /* Remove background on small screens */
         border-radius: 0; /* No curve */
         top: 20px; /* Space from top */
+      
         right: 20px; /* Align to the right corner */
         width: 60px; /* Hamburger icon width */
         height: 60px;
+        background-color:#eae8e4 ;
+        border-radius: 20px;
     }
 }
 
@@ -102,6 +109,9 @@
         top: 10px; /* Align to the top of the header */
         left: 50%;
         transform: translateX(-50%);
+      
+
+        
     }
 
     .burger div {

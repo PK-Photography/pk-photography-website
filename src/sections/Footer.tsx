@@ -114,10 +114,10 @@ export const Footer = () => {
               <div className="flex items-center gap-2 mt-4">
                 <FaEnvelope className="text-xl" />
                 <a
-                  href="mailto:prabhakar@photography.com"
+                  href="mailto:prabhakar@pkphotography.in"
                   className="text-2xl hover:underline"
                 >
-                  prabhakar@photography.com
+                  prabhakar@pkphotography.in
                 </a>
               </div>
 
@@ -145,7 +145,7 @@ export const Footer = () => {
                 <FaFacebook />
               </a>
               <a
-                href="https://www.youtube.com/"
+                href="https://www.youtube.com/@itspkphotography"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-red-500 transform hover:scale-150 transition-all duration-150 ease-in-out"

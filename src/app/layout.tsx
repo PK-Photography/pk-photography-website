@@ -69,6 +69,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Footer } from "@/sections/Footer";
 import WhatsAppIcon from "@/components/globalIcons/WhatAppIcon";
+import { Toaster } from "react-hot-toast";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -116,6 +117,7 @@ export default function RootLayout({
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         {/* ToastContainer for global toast notifications */}
+        <Toaster />
         <ToastContainer
           position="top-right" // Position of the toast
           autoClose={5000} // Auto close after 5 seconds

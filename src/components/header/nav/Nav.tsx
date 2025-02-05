@@ -102,6 +102,10 @@ const navItems = [
     title: "Blogs",
     href: "https://pkblogs-dev.onrender.com/",
   },
+  {
+    title: "Sign-Up",
+    href: "/signup",
+  },
   // {
   //   title: "Admin",
   //   href: "/Admin",

@@ -27,11 +27,11 @@ export default function VerifyOtp() {
 
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/user/verify-otp", { email, otp });
+      const res = await axiosInstance.post("/user/verify_otp", { email, otp });
 
       if (res.data.success) {
         toast.success("OTP Verified! Redirecting...");
-        router.push("/"); // Redirect after successful verification
+        router.push("/login"); // Redirect after successful verification
       } else {
         toast.error(res.data.message || "OTP verification failed.");
       }

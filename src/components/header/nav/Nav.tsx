@@ -1,3 +1,5 @@
+
+
 // "use client";
 // import React, { useState } from "react";
 // import styles from "./style.module.scss";
@@ -18,7 +20,11 @@
 //     href: "/client",
 //   },
 //   {
-//     title: "Book Now",
+//     title: "Gallery",
+//     href: "/galleries",
+//   },
+//   {
+//     title: "Bookings",
 //     href: "/booking",
 //   },
 //   {
@@ -26,9 +32,10 @@
 //     href: "https://pkblogs-dev.onrender.com/",
 //   },
 //   {
-//     title: "Admin",
-//     href: "/Admin",
+//     title: "Sign-Up",
+//     href: "/signup",
 //   },
+  
 // ];
 
 // export default function Nav() {
@@ -54,13 +61,15 @@
 //             <p>PKPhotography</p>
 //           </div>
 //           {navItems.map((data, index) => {
+//             const isExternal = data.href.startsWith("http");
 //             return (
 //               <Link1
 //                 key={index}
 //                 data={{ ...data, index }}
 //                 isActive={selectedIndicator == data.href}
 //                 setSelectedIndicator={setSelectedIndicator}
-//               ></Link1>
+//                 target={isExternal ? "_blank" : "_self"} // Add target attribute
+//               />
 //             );
 //           })}
 //         </div>
@@ -71,15 +80,23 @@
 //   );
 // }
 
+
+
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { menuSlide } from "../anim";
 import Link1 from "./Link/Link1";
 import Curve from "./Curve/Curve";
 import Footer from "./Footer/Footer";
+import axiosInstance from "@/utils/axiosConfig";
+import { toast } from "react-hot-toast";
+
+interface User {
+  fullName: string;
+}
 
 const navItems = [
   {
@@ -102,19 +119,36 @@ const navItems = [
     title: "Blogs",
     href: "https://pkblogs-dev.onrender.com/",
   },
-  {
-    title: "Sign-Up",
-    href: "/signup",
-  },
-  // {
-  //   title: "Admin",
-  //   href: "/Admin",
-  // },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
-  const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+  const router = useRouter();
+  const [selectedIndicator, setSelectedIndicator] = useState<string>(pathname);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      axiosInstance
+        .get<{ success: boolean; data: User }>("/user/profile")
+        .then((res) => {
+          if (res.data.success) {
+            setUser(res.data.data);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching profile:", error);
+        });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    router.push("/login");
+    toast.success("Logout Sucessfull!");
+  };
 
   return (
     <motion.div
@@ -140,12 +174,26 @@ export default function Nav() {
               <Link1
                 key={index}
                 data={{ ...data, index }}
-                isActive={selectedIndicator == data.href}
+                isActive={selectedIndicator === data.href}
                 setSelectedIndicator={setSelectedIndicator}
-                target={isExternal ? "_blank" : "_self"} // Add target attribute
+                target={isExternal ? "_blank" : "_self"}
               />
             );
           })}
+          {user ? (
+            <div className={styles.profileSection}>
+              <p className={styles.username}>Welcome Back {user.fullName || "User"}!</p>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link1
+              data={{ title: "Sign-Up", href: "/signup", index: navItems.length }}
+              isActive={selectedIndicator === "/signup"}
+              setSelectedIndicator={setSelectedIndicator}
+            />
+          )}
         </div>
         <Footer />
       </div>

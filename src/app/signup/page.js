@@ -32,7 +32,7 @@ export default function Signup() {
       if (res.data.success) {
         toast.success("Signup successful! Please check your email for OTP.");
         localStorage.setItem("userEmail", formData.email); // Store email for OTP verification
-        router.push("/auth/verify-otp");
+        router.push("/verify-otp");
       } else {
         toast.error(res.data.message || "Signup failed.");
       }
@@ -115,7 +115,7 @@ export default function Signup() {
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-4">
-          Already have an account? <a href="/auth/login" className="text-indigo-600 font-medium">Login</a>
+          Already have an account? <a href="/login" className="text-indigo-600 font-medium">Login</a>
         </p>
       </div>
     </div>

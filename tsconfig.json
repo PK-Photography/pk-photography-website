@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/components/WeAlsoDo",
     "src/sections/Reviews.js"
-, "src/components/pricingCard/PricingCards.js"  ],
+, "src/components/pricingCard/PricingCards.js", "src/app/api/auth/[...nextauth]/route.ts"  ],
   "exclude": ["node_modules"]
 }

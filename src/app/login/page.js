@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axiosInstance from "@/utils/axiosConfig";
 import Header from "@/components/header/Header";
+import GoogleLoginButton from "../../components/GoogleLoginButton";
 
 export default function Login() {
   const router = useRouter();
@@ -105,7 +106,9 @@ export default function Login() {
               Sign Up
             </a>
           </p>
+          <GoogleLoginButton/>
         </div>
+       
       </div>
     </>
   );

@@ -42,7 +42,7 @@ export default function GoogleLoginButton() {
           className="flex items-center bg-white border border-gray-300 shadow-md py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300"
         >
           <FcGoogle className="text-2xl mr-2" />
-          <span className="text-gray-700 font-medium">Login with Google</span>
+          <span className="text-gray-700 font-medium">Sign-in with Google</span>
         </button>
       )}
     </div>

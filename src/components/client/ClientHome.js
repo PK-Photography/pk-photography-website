@@ -15,7 +15,7 @@ import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
 import Header from "@/components/header/Header";
 import PKLogo from "@/assets/logo.webp";
-import bgImg from "@/assets/5.webp"
+import bgImg from "@/assets/5.webp";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -36,6 +36,9 @@ const ClientHome = () => {
   const [clicked, setClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
+  const [canDownload, setCanDownload] = useState(false);
+  const [canView, setCanView] = useState(false);
+
   const isMobile =
     typeof window !== "undefined" &&
     /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -106,9 +109,7 @@ const ClientHome = () => {
 
     const fetchSelectedCard = async () => {
       try {
-        const response = await axiosInstance.get(
-          `/client/cards`
-        );
+        const response = await axiosInstance.get(`/client/cards`);
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
         setCategories(selectedCard.category || []);
@@ -355,7 +356,6 @@ const ClientHome = () => {
     //   }
     // });
 
-
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
@@ -387,14 +387,15 @@ const ClientHome = () => {
           ? image.highRes.split(".").pop()
           : defaultExtension;
 
-        const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
-
 
     // Wait for all fetches to complete
     await Promise.all(fetchPromises);
@@ -538,15 +539,15 @@ const ClientHome = () => {
           ? image.highRes.split(".").pop()
           : defaultExtension;
 
-        const fileName = `${activeCategory || "category"}_${index + 1
-          }.${fileExtension}`;
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.highRes}`, error);
         failedImages.push(image.highRes);
       }
     });
-
 
     await Promise.all(fetchPromises);
 
@@ -572,16 +573,35 @@ const ClientHome = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await axiosInstance.get("/cards");
+        const data = response.data;
+
+        if (data.length > 0) {
+          setCanDownload(data.some((card) => card.canDownload));
+          setCanView(data.some((card) => card.canView));
+        }
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchCards();
+  }, []);
+
   return (
     <>
       <Head>
         <title>{selectedCard.name || "PK Photography"}</title>
         <meta
           name="description"
-          content={`Explore stunning images and categories from ${selectedCard.name || "PK Photography"
-            }. Find high-quality pictures organized by categories like ${categories
-              .map((category) => category.name)
-              .join(", ")}.`}
+          content={`Explore stunning images and categories from ${
+            selectedCard.name || "PK Photography"
+          }. Find high-quality pictures organized by categories like ${categories
+            .map((category) => category.name)
+            .join(", ")}.`}
         />
         <meta
           name="keywords"
@@ -595,8 +615,9 @@ const ClientHome = () => {
         />
         <meta
           property="og:description"
-          content={`View the best moments captured by ${selectedCard.name || "PK Photography"
-            }.`}
+          content={`View the best moments captured by ${
+            selectedCard.name || "PK Photography"
+          }.`}
         />
         <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
@@ -615,7 +636,13 @@ const ClientHome = () => {
           />
         </div>
       </header> */}
-      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2  " />
+      <Image
+        src={PKLogo}
+        alt="Saas Logo"
+        height={120}
+        width={160}
+        className="p-2  "
+      />
 
       <Header />
       {/* Title Section */}
@@ -636,16 +663,16 @@ const ClientHome = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <h1 className="text-4xl font-serif font-light text-white">{selectedCard.name}</h1>
+          <h1 className="text-4xl font-serif font-light text-white">
+            {selectedCard.name}
+          </h1>
           <p className="text-gray-200 text-lg mt-2">
-            {selectedCard.date ? new Date(selectedCard.date).toLocaleDateString() : "Loading..."}
+            {selectedCard.date
+              ? new Date(selectedCard.date).toLocaleDateString()
+              : "Loading..."}
           </p>
         </div>
       </section>
-
-
-
-
 
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
@@ -709,30 +736,8 @@ const ClientHome = () => {
                 style={{
                   display: "block",
                   width: "100%",
-                  filter: "blur(10px)",
+                  filter: canView ? "none" : "blur(10px)",
                   transition: "filter 1s ease-in-out",
-                }}
-                onLoad={(e) => {
-                  // Transition to clear once loaded
-                  setTimeout(() => {
-                    e.target.style.filter = "none"; // Remove blur
-                  }, 1000);
-                }}
-              />
-              {/* High-Resolution Progressive Image */}
-              <Image
-                src={image.highRes}
-                alt="High-resolution image"
-                width={800}
-                height={600}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  opacity: 0,
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  transition: "opacity 1s ease-in-out",
                 }}
                 onLoad={(e) => {
                   setTimeout(() => {
@@ -740,11 +745,36 @@ const ClientHome = () => {
                   }, index * 500);
                 }}
               />
+
+              {/* High-Resolution Progressive Image - Only Show If Can View */}
+              {canView && (
+                <Image
+                  src={image.highRes}
+                  alt="High-resolution image"
+                  width={800}
+                  height={600}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    opacity: 0,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    transition: "opacity 1s ease-in-out",
+                  }}
+                  onLoad={(e) => {
+                    setTimeout(() => {
+                      e.target.style.opacity = 1;
+                    }, index * 500);
+                  }}
+                />
+              )}
             </div>
 
             <div
-              className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                }`}
+              className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${
+                isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`}
               onTouchStart={(e) => {
                 e.stopPropagation();
                 if (!isMobile) return; // Ensure behavior only for mobile
@@ -757,10 +787,11 @@ const ClientHome = () => {
               }}
             >
               <button
-                className={`p-2 ${favorites.find((fav) => fav.id === image.id)
-                  ? "text-red-600"
-                  : "text-white"
-                  } hover:text-red-600`}
+                className={`p-2 ${
+                  favorites.find((fav) => fav.id === image.id)
+                    ? "text-red-600"
+                    : "text-white"
+                } hover:text-red-600`}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleFavorite(image);
@@ -768,17 +799,18 @@ const ClientHome = () => {
               >
                 <FaHeart className="w-5 h-5" />
               </button>
-
-              <button
-                className="text-white p-2 hover:text-gray-600"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenDownloadModal(image);
-                }}
-              >
-                <GoDownload className="w-5 h-5" />
-              </button>
-
+              {/* ================= Download icon on image  */}
+              {canDownload && (
+                <button
+                  className="text-white p-2 hover:text-gray-600"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenDownloadModal(image);
+                  }}
+                >
+                  <GoDownload className="w-5 h-5" />
+                </button>
+              )}
               <button
                 className="text-white p-2 hover:text-gray-600"
                 onClick={(e) => {
@@ -786,10 +818,9 @@ const ClientHome = () => {
                   handleShare(image.shareableLink); // Pass the shareable link directly to handleShare
                 }}
               >
+                
                 <FaShare className="w-5 h-5" />
               </button>
-
-
             </div>
           </li>
         ))}
@@ -823,10 +854,11 @@ const ClientHome = () => {
                 {["High Resolution", "Web Size"].map((size) => (
                   <div
                     key={size}
-                    className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
-                      ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
-                      : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                      }`}
+                    className={`p-4 border rounded-lg cursor-pointer transition ${
+                      selectedSize === size
+                        ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
+                        : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
+                    }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}

@@ -48,14 +48,10 @@
 // };
 
 // export default RightNav;
-
-
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { FaHeart, FaPlay, FaCartArrowDown } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
 import Link from "next/link";
-import axiosInstance from "@/utils/axiosConfig";
 
 const RightNav = ({
   toggleFavoritesModal,
@@ -63,28 +59,9 @@ const RightNav = ({
   handleSlideshow,
   favorites,
   cartItems,
+  canDownload,
+  canView,
 }) => {
-  const [canDownload, setCanDownload] = useState(false);
-  const [canView, setCanView] = useState(false);
-
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const response = await axiosInstance.get("/cards");
-        const data = response.data;
-        
-        if (data.length > 0) {
-          setCanDownload(data.some((card) => card.canDownload));
-          setCanView(data.some((card) => card.canView));
-        }
-      } catch (error) {
-        console.error("Error fetching cards:", error);
-      }
-    };
-
-    fetchCards();
-  }, []);
-
   return (
     <div className="flex justify-center gap-6 text-sm font-semibold text-gray-700">
       <div
@@ -127,3 +104,7 @@ const RightNav = ({
 };
 
 export default RightNav;
+
+
+
+

@@ -9,6 +9,7 @@ const CategoryNav = ({
   dropdownVisible,
   setDropdownVisible,
 }) => {
+
   return (
     <div className="mb-6">
       <ul className="flex flex-wrap gap-4 justify-center">
@@ -26,6 +27,7 @@ const CategoryNav = ({
           </li>
         ))}
 
+
         {categories.length > 4 && (
           <li className="relative">
             <div
@@ -34,6 +36,7 @@ const CategoryNav = ({
             >
               More
             </div>
+
             {dropdownVisible && (
               <ul className="absolute mt-2 bg-white shadow-lg rounded-lg overflow-hidden z-50">
                 {categories.slice(4).map((category, index) => (
@@ -47,7 +50,7 @@ const CategoryNav = ({
                       setDropdownVisible(false);
                     }}
                   >
-                    {category.name}
+                    {category.name || "-"}
                   </li>
                 ))}
               </ul>

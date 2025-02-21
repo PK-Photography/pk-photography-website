@@ -36,6 +36,9 @@ const ClientHome = () => {
   const [clicked, setClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
+  const [canView, setCanView] = useState(true);        // State for canView
+  const [canDownload, setCanDownload] = useState(true); // State for canDownload
+
   const isMobile =
     typeof window !== "undefined" &&
     /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -99,6 +102,37 @@ const ClientHome = () => {
     [] // No dependencies for `extractFolderId` as it is inside the callback
   );
 
+
+
+  // useEffect(() => {
+  //   const url = window.location.pathname;
+  //   const parts = url.split("/");
+  //   const lastId = parts[parts.length - 1];
+
+  //   const fetchSelectedCard = async () => {
+  //     try {
+  //       const response = await axiosInstance.get(
+  //         `/client/cards`
+  //       );
+  //       console.log(response)
+  //       const selectedCard = response.data.find((card) => card._id === lastId);
+  //       setSelectedCard(selectedCard);
+  //       setCategories(selectedCard.category || []);
+
+  //       // Set the first category as the default active category
+  //       if (selectedCard.category && selectedCard.category.length > 0) {
+  //         const firstCategory = selectedCard.category[0];
+  //         setActiveCategory(firstCategory.name); // Set the first category as active
+  //         fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching selected card:", error);
+  //     }
+  //   };
+
+  //   fetchSelectedCard();
+  // }, [fetchImagesFromDrive]); // Now `fetchImagesFromDrive` is initialized before this effect is used
+
   useEffect(() => {
     const url = window.location.pathname;
     const parts = url.split("/");
@@ -106,12 +140,15 @@ const ClientHome = () => {
 
     const fetchSelectedCard = async () => {
       try {
-        const response = await axiosInstance.get(
-          `/client/cards`
-        );
+        const response = await axiosInstance.get(`/client/cards`);
+        console.log(response);
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
         setCategories(selectedCard.category || []);
+
+        // Set permissions for viewing and downloading
+        setCanView(selectedCard.canView || false);
+        setCanDownload(selectedCard.canDownload || false);
 
         // Set the first category as the default active category
         if (selectedCard.category && selectedCard.category.length > 0) {
@@ -125,7 +162,8 @@ const ClientHome = () => {
     };
 
     fetchSelectedCard();
-  }, [fetchImagesFromDrive]); // Now `fetchImagesFromDrive` is initialized before this effect is used
+  }, [fetchImagesFromDrive]);
+
 
   useEffect(() => {
     const updateColumns = () => {
@@ -666,6 +704,9 @@ const ClientHome = () => {
             handleSlideshow={handleSlideshow}
             favorites={favorites}
             cartItems={cartItems}
+            canDownload={canDownload}
+            canView={canView}
+
           />
         </div>
       </nav>
@@ -709,37 +750,34 @@ const ClientHome = () => {
                 style={{
                   display: "block",
                   width: "100%",
-                  filter: "blur(10px)",
+                  filter: canView ? "none" : "blur(10px)", // Blur if can't view
                   transition: "filter 1s ease-in-out",
                 }}
-                onLoad={(e) => {
-                  // Transition to clear once loaded
-                  setTimeout(() => {
-                    e.target.style.filter = "none"; // Remove blur
-                  }, 1000);
-                }}
               />
+
               {/* High-Resolution Progressive Image */}
-              <Image
-                src={image.highRes}
-                alt="High-resolution image"
-                width={800}
-                height={600}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  opacity: 0,
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  transition: "opacity 1s ease-in-out",
-                }}
-                onLoad={(e) => {
-                  setTimeout(() => {
-                    e.target.style.opacity = 1;
-                  }, index * 500);
-                }}
-              />
+              {canView && (
+                <Image
+                  src={image.highRes}
+                  alt="High-resolution image"
+                  width={800}
+                  height={600}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    opacity: 0,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    transition: "opacity 1s ease-in-out",
+                  }}
+                  onLoad={(e) => {
+                    setTimeout(() => {
+                      e.target.style.opacity = 1;
+                    }, index * 500);
+                  }}
+                />
+              )}
             </div>
 
             <div
@@ -769,15 +807,18 @@ const ClientHome = () => {
                 <FaHeart className="w-5 h-5" />
               </button>
 
-              <button
-                className="text-white p-2 hover:text-gray-600"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenDownloadModal(image);
-                }}
-              >
-                <GoDownload className="w-5 h-5" />
-              </button>
+              {/* Conditional Rendering for Download Button */}
+              {canDownload && (
+                <button
+                  className="text-white p-2 hover:text-gray-600"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenDownloadModal(image);
+                  }}
+                >
+                  <GoDownload className="w-5 h-5" />
+                </button>
+              )}
 
               <button
                 className="text-white p-2 hover:text-gray-600"
@@ -788,89 +829,95 @@ const ClientHome = () => {
               >
                 <FaShare className="w-5 h-5" />
               </button>
-
-
             </div>
           </li>
         ))}
-      </ul>
+
+
+      </ul >
 
       {/* We we click on download Icon, this page opens...Download Modal */}
-      {downloadModalVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div
-            className="bg-[#FDF5E6] rounded-2xl p-8 w-full max-w-lg shadow-xl transform transition-all duration-300 scale-95"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
-          >
-            {/* Close Button */}
-            <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
-              onClick={handleCloseDownloadModal}
+      {
+        downloadModalVisible && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+            <div
+              className="bg-[#FDF5E6] rounded-2xl p-8 w-full max-w-lg shadow-xl transform transition-all duration-300 scale-95"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <FaTimes size={24} />
-            </button>
+              {/* Close Button */}
+              <button
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+                onClick={handleCloseDownloadModal}
+              >
+                <FaTimes size={24} />
+              </button>
 
-            <h2 className="text-3xl font-bold text-[#5A3E36] text-center mb-6">
-              Download Photo
-            </h2>
+              <h2 className="text-3xl font-bold text-[#5A3E36] text-center mb-6">
+                Download Photo
+              </h2>
 
-            {/* Size Selection */}
-            <div className="mb-6">
-              <p className="text-[#7A5C52] font-medium text-lg mb-3">
-                Select Photo Size
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {["High Resolution", "Web Size"].map((size) => (
-                  <div
-                    key={size}
-                    className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
-                      ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
-                      : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                      }`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </div>
-                ))}
+              {/* Size Selection */}
+              <div className="mb-6">
+                <p className="text-[#7A5C52] font-medium text-lg mb-3">
+                  Select Photo Size
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {["High Resolution", "Web Size"].map((size) => (
+                    <div
+                      key={size}
+                      className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
+                        ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
+                        : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
+                        }`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Download Button */}
-            <button
-              className="w-full py-3 bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white font-medium rounded-lg"
-              onClick={handleDownloadPhoto}
-            >
-              Download Photo
-            </button>
+              {/* Download Button */}
+              <button
+                className="w-full py-3 bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white font-medium rounded-lg"
+                onClick={handleDownloadPhoto}
+              >
+                Download Photo
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* When we click on any image this page opens and there are download, share and but photo options */}
-      {modalVisible && currentImage && (
-        <ImageModal
-          modalVisible={modalVisible}
-          currentImage={currentImage}
-          closeModal={closeModal}
-          handleOpenDownloadModal={handleOpenDownloadModal}
-          handleShare={handleShare}
-          handleBuyPhoto={handleBuyPhoto}
-          handlePreviousImage={handlePreviousImage}
-          handleNextImage={handleNextImage}
-          clicked={clicked}
-        />
-      )}
+      {
+        modalVisible && currentImage && (
+          <ImageModal
+            modalVisible={modalVisible}
+            currentImage={currentImage}
+            closeModal={closeModal}
+            handleOpenDownloadModal={handleOpenDownloadModal}
+            handleShare={handleShare}
+            handleBuyPhoto={handleBuyPhoto}
+            handlePreviousImage={handlePreviousImage}
+            handleNextImage={handleNextImage}
+            clicked={clicked}
+          />
+        )
+      }
 
       {/* Slideshow Modal */}
-      {slideshowVisible && (
-        <SlideshowModal
-          images={images}
-          currentImageIndex={currentImageIndex}
-          closeSlideshow={closeSlideshow}
-          handlePreviousImage={handlePreviousImage}
-          handleNextImage={handleNextImage}
-        />
-      )}
+      {
+        slideshowVisible && (
+          <SlideshowModal
+            images={images}
+            currentImageIndex={currentImageIndex}
+            closeSlideshow={closeSlideshow}
+            handlePreviousImage={handlePreviousImage}
+            handleNextImage={handleNextImage}
+          />
+        )
+      }
     </>
   );
 };

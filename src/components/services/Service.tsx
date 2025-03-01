@@ -1,7 +1,8 @@
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 import Btn from "../EncrptButton/Btn";
-import "@fontsource/montserrat/700.css"; // Import Montserrat with 700 weight
+// import "@fontsource/montserrat/700.css"; // Import Montserrat with 700 weight
+import "@fontsource/montserrat";
 
 import service1 from "@/assets/service1.webp";
 import service2 from "@/assets/service2.webp";

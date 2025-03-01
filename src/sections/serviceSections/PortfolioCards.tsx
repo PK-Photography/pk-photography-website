@@ -1,7 +1,13 @@
 import React from "react";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
-const cardData = [
+interface Card {
+  title: string;
+  description: string;
+  src: string;
+}
+
+const cardData: Card[] = [
   {
     title: "Aspiring Models",
     description:
@@ -28,17 +34,16 @@ const cardData = [
   },
 ];
 
-const PortfolioGrid = () => {
+const PortfolioGrid: React.FC = () => {
   return (
     <div className="bg-[#f5f5f5] min-h-screen flex items-center justify-center px-10 py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-16 max-w-4xl">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="bg-white shadow-md overflow-hidden transition-transform hover:scale-105  p-4"
+            className="bg-white shadow-md overflow-hidden transition-transform hover:scale-105 p-4"
           >
-            {" "}
-            <h3 className=" text-base font-semibold text-gray-800 p-">
+            <h3 className="text-base font-semibold text-gray-800">
               {card.title}
             </h3>
             <div className="overflow-hidden mt-2">
@@ -49,10 +54,7 @@ const PortfolioGrid = () => {
               />
             </div>
             <div className="p-4">
-              <p
-                className="text-[#A3A3A3] text-xs font-semibold
- mt-2"
-              >
+              <p className="text-[#A3A3A3] text-xs font-semibold mt-2">
                 {card.description}
               </p>
             </div>

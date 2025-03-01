@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import axiosInstance from "@/utils/axiosConfig";
+import Image from "next/image";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -41,7 +42,7 @@ export default function Dashboard() {
   return (
     <div>
       <h1>Welcome, {user.fullName}</h1>
-      <img src={user.profileImage} alt="Profile" />
+      <Image src={user.profileImage} alt="Profile" />
       <p>Email: {user.email}</p>
     </div>
   );

@@ -306,7 +306,7 @@ function GalleryContent() {
                 key={item._id}
                 className="relative group overflow-hidden rounded-lg shadow-lg"
               >
-                <img
+                <Image
                   src={item.imageUrl}
                   alt={item.imageName}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition duration-300"

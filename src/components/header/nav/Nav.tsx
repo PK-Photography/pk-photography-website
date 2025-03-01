@@ -1,5 +1,3 @@
-
-
 // "use client";
 // import React, { useState } from "react";
 // import styles from "./style.module.scss";
@@ -35,7 +33,7 @@
 //     title: "Sign-Up",
 //     href: "/signup",
 //   },
-  
+
 // ];
 
 // export default function Nav() {
@@ -80,8 +78,6 @@
 //   );
 // }
 
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
@@ -106,6 +102,10 @@ const navItems = [
   {
     title: "Client",
     href: "/client",
+  },
+  {
+    title: "Service",
+    href: "/services",
   },
   {
     title: "Gallery",
@@ -182,14 +182,20 @@ export default function Nav() {
           })}
           {user ? (
             <div className={styles.profileSection}>
-              <p className={styles.username}>Welcome Back {user.fullName || "User"}!</p>
+              <p className={styles.username}>
+                Welcome Back {user.fullName || "User"}!
+              </p>
               <button onClick={handleLogout} className={styles.logoutButton}>
                 Logout
               </button>
             </div>
           ) : (
             <Link1
-              data={{ title: "Sign-Up", href: "/signup", index: navItems.length }}
+              data={{
+                title: "Sign-Up",
+                href: "/signup",
+                index: navItems.length,
+              }}
               isActive={selectedIndicator === "/signup"}
               setSelectedIndicator={setSelectedIndicator}
             />

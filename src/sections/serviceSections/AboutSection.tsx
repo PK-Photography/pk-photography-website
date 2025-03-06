@@ -69,12 +69,18 @@ const AboutSection: React.FC = () => {
         {/* Image Section */}
         <div className="w-full flex justify-center">
           <Image
-            src="/pricing/cover.jpg"
+            src="/pricing/PKP_2826.jpg"
             alt="Model"
-            width={320} // Adjusted to match the w-80 class (80 * 4 = 320px)
-            height={400} // Estimated height for aspect ratio
+            width={300}
+            height={500} 
             className="rounded-lg shadow-lg object-cover"
           />
+          {/* <Image
+            src="/pricing/PKP_2826.jpg"
+            alt="Model"
+            fill
+            className="object-cover w-full h-full"
+          /> */}
         </div>
 
         {/* Text Section */}
@@ -84,10 +90,10 @@ const AboutSection: React.FC = () => {
           </h2>
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl font-semibold text-[#2A2A2A]">
                 Experienced Team:
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mt-5">
                 Our team comprises highly skilled photographers and creative
                 directors with years of experience in the industry. We
                 understand what it takes to create a portfolio that gets you
@@ -95,20 +101,20 @@ const AboutSection: React.FC = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl font-semibold text-[#2A2A2A]">
                 Customized Styling:
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mt-5 ">
                 A well-styled portfolio can make all the difference. We&apos;ll
                 help you create a look that is both professional and memorable,
                 giving you a competitive edge in the industry.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl font-semibold text-[#2A2A2A]">
                 Professional Editing:
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mt-5">
                 High-quality editing is essential for a polished and
                 professional portfolio. We&apos;ll ensure your images are
                 flawless and ready to impress potential clients.

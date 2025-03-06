@@ -52,3 +52,24 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+/*=================|| scroller style for service page overvew section  */
+
+/* Custom Scrollbar for Specific Section */
+#scrollable-content::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+#scrollable-content::-webkit-scrollbar-track {
+  background: #8BB5FFB2; /* Light blue-gray background */
+}
+
+#scrollable-content::-webkit-scrollbar-thumb {
+  background: rgba(230, 230, 230, 0.9); /* Dark white (light gray) */
+  border-radius: 10px; /* Rounded corners */
+}
+
+#scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 1); /* Pure white on hover */
+}

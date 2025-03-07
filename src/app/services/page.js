@@ -11,6 +11,12 @@ import Carousel from './../../sections/serviceSections/Carousel';
 import PortfolioGrid from '@/sections/serviceSections/PortfolioCards';
 import AboutSection from '@/sections/serviceSections/AboutSection';
 import Image from 'next/image';
+import ProcessOverview from '@/sections/serviceSections/ProcessOverview';
+import MoodBoardSection from '@/sections/serviceSections/MoodBoardSection';
+import LocationStylingTipsSec from '@/sections/serviceSections/LocationStylingTipsSec';
+import ExpertPhotography from '@/sections/serviceSections/ExpertPhotography';
+import PricingSection from '@/sections/serviceSections/PricingSection';
+import FAQSection from '@/sections/serviceSections/FAQSection';
 
 
 export default function page() {
@@ -27,7 +33,8 @@ export default function page() {
             <Carousel />
             <PortfolioGrid />
             <AboutSection />
-            <div className="flex justify-center items-center">
+            <ProcessOverview />
+            <div className="flex justify-center items-center mt-20 mb-20">
                 <Image
                     src="/serviceGrid.png"
                     width={924}
@@ -36,8 +43,12 @@ export default function page() {
                     className="w-[924.03px] h-[581.78px] object-cover"
                 />
             </div>
-            
-            
+            <MoodBoardSection />
+            <LocationStylingTipsSec />
+            <ExpertPhotography />
+            <PricingSection />
+            <FAQSection />
+
         </div>
 
     )

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
@@ -47,7 +48,7 @@ const PortfolioGrid: React.FC = () => {
               {card.title}
             </h3>
             <div className="overflow-hidden mt-2">
-              <img
+              <Image
                 src={card.src}
                 alt={card.title}
                 className="w-full h-60 object-cover"

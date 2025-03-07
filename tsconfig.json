@@ -28,7 +28,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/WeAlsoDo",
-    "src/sections/Reviews.js"
-, "src/components/pricingCard/PricingCards.js", "src/app/api/auth/[...nextauth]/route.ts"  ],
+    "src/sections/Reviews.js",
+    "src/components/pricingCard/PricingCards.js",
+    "src/app/api/auth/[...nextauth]/route.ts",
+    "src/sections/serviceSections/ProcessOverview/.js"
+  ],
   "exclude": ["node_modules"]
 }

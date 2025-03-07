@@ -16,6 +16,7 @@ import MoodBoardSection from '@/sections/serviceSections/MoodBoardSection';
 import LocationStylingTipsSec from '@/sections/serviceSections/LocationStylingTipsSec';
 import ExpertPhotography from '@/sections/serviceSections/ExpertPhotography';
 import PricingSection from '@/sections/serviceSections/PricingSection';
+import FAQSection from '@/sections/serviceSections/FAQSection';
 
 
 export default function page() {
@@ -46,6 +47,7 @@ export default function page() {
             <LocationStylingTipsSec />
             <ExpertPhotography />
             <PricingSection />
+            <FAQSection />
 
         </div>
 

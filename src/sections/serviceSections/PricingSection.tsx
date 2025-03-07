@@ -43,10 +43,10 @@ const PricingSection: React.FC = () => {
                 {pricingPlans.map((plan, index) => (
                     <div
                         key={index}
-                        className="bg-green-800 text-white p-8 rounded-lg shadow-lg relative h-[450px] flex flex-col items-center justify-between"
+                        className="bg-[#0E7257] text-white p-8  shadow-lg relative h-[450px] flex flex-col items-center justify-between"
                     >
                         {/* Duration Badge */}
-                        <span className="absolute top-4 right-4 bg-black text-white text-xs px-3 py-1 rounded-full">
+                        <span className="absolute top-4 right-4 bg-[#054630] text-white text-xs px-3 py-1 rounded-full">
                             {plan.duration}
                         </span>
 
@@ -54,10 +54,10 @@ const PricingSection: React.FC = () => {
                         <h2 className="text-lg font-semibold">{plan.title}</h2>
 
                         {/* Price */}
-                        <p className="text-4xl font-bold mt-2">{plan.price}</p>
+                        <p className="text-5xl font-bold mt-2">{plan.price}</p>
 
                         {/* Features */}
-                        <ul className="mt-4 text-sm text-center space-y-2">
+                        <ul className="mt-4 text-sm text-center space-y-2 font-semibold">
                             <li>• Looks/Changes: {plan.looks}</li>
                             <li>• Edited Images: {plan.editedImages}</li>
                             <li>• {plan.retouching}</li>

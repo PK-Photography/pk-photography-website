@@ -34,15 +34,16 @@ export default function page() {
             <PortfolioGrid />
             <AboutSection />
             <ProcessOverview />
-            <div className="flex justify-center items-center mt-20 mb-20">
+            <div className="flex justify-center items-center mt-20 mb-20 px-4">
                 <Image
                     src="/serviceGrid.png"
                     width={924}
                     height={582}
                     alt="Service Grid"
-                    className="w-[924.03px] h-[581.78px] object-cover"
+                    className="w-full max-w-[924px] h-auto object-cover"
                 />
             </div>
+
             <MoodBoardSection />
             <LocationStylingTipsSec />
             <ExpertPhotography />

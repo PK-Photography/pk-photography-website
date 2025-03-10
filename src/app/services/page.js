@@ -18,6 +18,8 @@ import ExpertPhotography from '@/sections/serviceSections/ExpertPhotography';
 import PricingSection from '@/sections/serviceSections/PricingSection';
 import FAQSection from '@/sections/serviceSections/FAQSection';
 import WardrobePropSuggestionsSec from '@/sections/serviceSections/WardrobePropSuggestionsSec';
+import BeforeAfterSlider from '@/sections/serviceSections/BeforeAfterSlider';
+import FinalDeliverySec from '@/sections/serviceSections/FinalDeliverySec';
 
 
 export default function page() {
@@ -49,6 +51,8 @@ export default function page() {
             <LocationStylingTipsSec />
             <ExpertPhotography />
             <PricingSection />
+            <BeforeAfterSlider />
+            <FinalDeliverySec />
             <FAQSection />
       
 

@@ -249,7 +249,7 @@ export const Footer = () => {
               text="Careers"
               href="https://pkphotography.in/career/"
               className="text-black"
-            />
+            />  
 
             <FooterLink text="Pricing" href="#" className="text-black" />
             <FooterLink
@@ -293,8 +293,9 @@ export const Footer = () => {
 
 // export const Footer = () => {
 //   return (
-//     <footer className="bg-[#F6F4F2] text-black py-12 px-6">
-//       <div className="max-w-7xl mx-auto grid md:grid-cols-3 grid-cols-1 gap-10">
+//     <footer className="bg-[#F6F4F2] text-black">
+//       <div className=" py-12 px-6 container mx-auto w-full  ">
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 ">
 //         {/* Left Section */}
 //         <div className="flex flex-col gap-4">
 //           <Image src={PKLogo} alt="PK Photography Logo" height={50} width={180} />
@@ -303,93 +304,68 @@ export const Footer = () => {
 //             BOOK NOW
 //           </button>
 //           <div className="flex gap-4 mt-4">
-//             <a href="#" className="text-black text-2xl hover:text-gray-600">
-//               <FaInstagram />
-//             </a>
-//             <a href="#" className="text-black text-2xl hover:text-gray-600">
-//               <FaYoutube />
-//             </a>
-//             <a href="#" className="text-black text-2xl hover:text-gray-600">
-//               <FaFacebook />
-//             </a>
-//             <a href="#" className="text-black text-2xl hover:text-gray-600">
-//               <FaLinkedinIn />
-//             </a>
-//             <a href="#" className="text-black text-2xl hover:text-gray-600">
-//               <FaEnvelope />
-//             </a>
+//             <FaInstagram className="text-2xl hover:text-gray-600" />
+//             <FaYoutube className="text-2xl hover:text-gray-600" />
+//             <FaFacebook className="text-2xl hover:text-gray-600" />
+//             <FaLinkedinIn className="text-2xl hover:text-gray-600" />
+//             <FaEnvelope className="text-2xl hover:text-gray-600" />
 //           </div>
 //         </div>
 
-//         {/* Middle Section */}
-//         <div className="grid grid-cols-2 gap-8">
-//           <div className="flex flex-col gap-2">
-//             <h4 className="text-lg font-semibold">Services</h4>
-//             {[
-//               "Portfolio",
-//               "Portrait",
-//               "Headshot",
-//               "Celebrity",
-//               "Interior",
-//             ].map((item) => (
-//               <a key={item} href="#" className="text-gray-700 hover:underline">
-//                 {item}
-//               </a>
+// <div >
+//         {/* Services & Videography Section */}
+//         <div className="flex w-full justify-between gap-20">
+//           <div>
+//             <h4 className="font-semibold mb-2">Services</h4>
+//             {['Portfolio', 'Portrait', 'Headshot', 'Celebrity', 'Interior'].map(item => (
+//               <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
 //             ))}
 //           </div>
-//           <div className="flex flex-col gap-2">
-//             <h4 className="text-lg font-semibold">Videography</h4>
-//             {[
-//               "Wedding & Events",
-//               "Live Streaming",
-//               "Corporate Ads",
-//               "Product Ads",
-//               "Influencer Videos",
-//             ].map((item) => (
-//               <a key={item} href="#" className="text-gray-700 hover:underline">
-//                 {item}
-//               </a>
+//           <div>
+//             <h4 className="font-semibold mb-2">Videography</h4>
+//             {['Wedding & Events', 'Live Streaming', 'Corporate Ads', 'Product Ads', 'Influencer Videos'].map(item => (
+//               <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
 //             ))}
 //           </div>
+//           <div>
+//           <h4 className="font-semibold mb-2">Navigate</h4>
+//           {['Clients', 'Bookings', 'Gallery', 'Blogs', 'Careers', 'Talent'].map(item => (
+//             <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
+//           ))}
+//         </div>
 //         </div>
 
-//         {/* Right Section */}
-//         <div className="grid grid-cols-2 gap-8">
-//           <div className="flex flex-col gap-2">
-//             <h4 className="text-lg font-semibold">Navigate</h4>
-//             {[
-//               "Clients",
-//               "Bookings",
-//               "Gallery",
-//               "Blogs",
-//               "Careers",
-//               "Talent",
-//             ].map((item) => (
-//               <a key={item} href="#" className="text-gray-700 hover:underline">
-//                 {item}
-//               </a>
-//             ))}
+   
+
+//         {/* Studio Information Section */}
+//         <div className="space-y-4">
+//           <div>
+//             <p className="font-semibold">General inquiries</p>
+//             <p>prabhakar@pkphotography.in</p>
 //           </div>
-//           <div className="flex flex-col gap-2">
-//             <p className="text-gray-800">Want to book with us?</p>
-//             <p className="text-black font-semibold">prabhakar@pkphotography.in</p>
-//             <h4 className="text-lg font-semibold mt-4">Our Studio</h4>
-//             <p className="text-gray-700">C 1302 EVERSHINE COSMIC</p>
-//             <p className="text-gray-700">Opp. Infiniti Mall, Veera Desai Industrial Estate</p>
-//             <p className="text-gray-700">Andheri West, Mumbai, Maharashtra 400053</p>
-//             <p className="text-black font-semibold">Tel: +91 8888766739</p>
+
+//           <div>
+//             <p className="font-semibold">Our Studio</p>
+//             <p>C 1302 EVERSHINE COSMIC, Opp. Infiniti Mall</p>
+//             <p>Veera Desai Industrial Estate, Andheri West, Mumbai</p>
+//             <p>Maharashtra 400053</p>
+//             <p>Tel: +91 8888766739</p>
 //           </div>
+
+//           <div>
+//             <p className="font-semibold">We are active in</p>
+//             <p>Mumbai, Dubai, Delhi</p>
+//           </div>
+//         </div>
 //         </div>
 //       </div>
 
-//       <div className="max-w-7xl mx-auto px-6 mt-10 flex justify-between text-gray-700 text-sm">
+//       <div className="max-w-7xl mx-auto mt-10 flex justify-between items-center text-gray-700 text-sm">
 //         <p>© 2025 PK Photography. All rights reserved.</p>
-//         <div className="flex gap-4">
-//           <p>Mumbai</p>
-//           <p>Dubai</p>
-//           <p>Delhi</p>
-//         </div>
+//       </div>
 //       </div>
 //     </footer>
 //   );
 // };
+
+

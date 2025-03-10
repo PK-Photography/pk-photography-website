@@ -1,5 +1,3 @@
-
-
 import Image from "next/image";
 import React from "react";
 
@@ -11,7 +9,7 @@ const WardrobePropSuggestionsSec: React.FC = () => {
                 <div className="w-full md:w-[40%] text-start">
                     <h2 className="text-sm mb-3">Wardrobe &amp; Prop Suggestions</h2>
                     <p className="text-gray-700 text-base md:text-lg leading-6 mt-6 md:mt-10">
-                    Choosing the right wardrobe and props can elevate a good photo to a truly stunning one.  Think about the overall mood and message you want to convey.  For wardrobe, consider pieces that flatter your body type and reflect your personal style.  Don't be afraid to experiment with different textures, colors, and patterns.  Props should complement the subject and add visual interest without being distracting.
+                    Choosing the right wardrobe and props can elevate a good photo to a truly stunning one. Think about the overall mood and message you want to convey. For wardrobe, consider pieces that flatter your body type and reflect your personal style. Don&apos;t be afraid to experiment with different textures, colors, and patterns. Props should complement the subject and add visual interest without being distracting.
                     </p>
                 </div>
 

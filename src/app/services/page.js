@@ -17,6 +17,7 @@ import LocationStylingTipsSec from '@/sections/serviceSections/LocationStylingTi
 import ExpertPhotography from '@/sections/serviceSections/ExpertPhotography';
 import PricingSection from '@/sections/serviceSections/PricingSection';
 import FAQSection from '@/sections/serviceSections/FAQSection';
+import WardrobePropSuggestionsSec from '@/sections/serviceSections/WardrobePropSuggestionsSec';
 
 
 export default function page() {
@@ -34,6 +35,7 @@ export default function page() {
             <PortfolioGrid />
             <AboutSection />
             <ProcessOverview />
+                <WardrobePropSuggestionsSec/>
             <div className="flex justify-center items-center mt-20 mb-20 px-4">
                 <Image
                     src="/serviceGrid.png"
@@ -43,12 +45,12 @@ export default function page() {
                     className="w-full max-w-[924px] h-auto object-cover"
                 />
             </div>
-
             <MoodBoardSection />
             <LocationStylingTipsSec />
             <ExpertPhotography />
             <PricingSection />
             <FAQSection />
+      
 
         </div>
 

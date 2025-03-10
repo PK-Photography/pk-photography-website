@@ -140,7 +140,7 @@ const ProcessOverview = () => {
           className="relative w-full lg:w-3/5 max-h-60 overflow-y-auto pr-6 pl-0 mx-2 sm:mx-10 mt-10 scrollbar-thin scrollbar-track-blue-300 scrollbar-thumb-blue-500 z-10"
           style={{ direction: "rtl" }} // Scrollbar on left
         >
-          <div style={{ direction: "ltr" }} className="ml-2 sm:ml-10">
+          <div style={{ direction: "ltr" }} className="ml-2 sm:ml-10 lg:mb-20 mb-10">
             <h2 className="text-xs sm:text-sm uppercase mb-2">Process Overview</h2>
             <h3 className="text-base sm:text-lg font-bold mb-2">CONSULTATION & MOOD BOARD</h3>
             <p className="text-xs sm:text-sm mb-4 transition-opacity duration-300">

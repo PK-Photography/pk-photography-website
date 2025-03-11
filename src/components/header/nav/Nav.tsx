@@ -158,7 +158,7 @@ export default function Nav() {
       exit="exit"
       className={styles.menu}
     >
-      <div className={styles.body}>
+      <div className={`${styles.body}  overflow-scroll`} >
         <div
           onMouseLeave={() => {
             setSelectedIndicator(pathname);

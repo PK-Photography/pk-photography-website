@@ -66,8 +66,8 @@ const FooterLink = ({
         href={href}
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}
-        style={{ textDecoration: "none", fontSize: "1.2rem" }} // Applying link styles
-        // className={className}
+        style={{  }} // Applying link styles
+        className="lg:text-xl text-base "
       >
         {linkText}
       </a>
@@ -92,7 +92,7 @@ export const Footer = () => {
   return (
     <footer className="relative bg-[#eae8e4]">
       <div className=" w-full overflow-hidden  container mx-auto px-4 py-8">
-        <div className="flex  justify-between  w-full gap-20">
+        <div className="flex  justify-between lg:flex-nowrap flex-wrap w-full gap-10 lg:gap-10">
           
             <div className="flex flex-col gap-5">
               <Image
@@ -157,9 +157,9 @@ export const Footer = () => {
          
             <div className="w-full space-y-5">
       {/* First Row */}
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full gap-10">
         <div>
-          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Services</li>
+          <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">Services</li>
           <FooterLink text="Headshots" href="https://pkphotography.in/corporate-headshots/" />
           <FooterLink text="Portrait" href="https://pkphotography.in/portrait-gallery/" />
           <FooterLink text="Wedding & Events" href="https://pkphotography.in/gallery/" />
@@ -168,7 +168,7 @@ export const Footer = () => {
         </div>
 
         <div>
-          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Videography</li>
+          <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">Videography</li>
           <FooterLink text="Wedding & Events" href="https://pkphotography.in/wedding/" />
           <FooterLink text="Live Streaming" href="#" />
           <FooterLink text="Corporate Ads" href="#" />
@@ -177,7 +177,7 @@ export const Footer = () => {
         </div>
 
         <div>
-          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Navigate</li>
+          <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">Navigate</li>
           <FooterLink text="Client" href="https://pkphotography.io/client" />
           <FooterLink text="Studio" href="#" />
           <FooterLink text="Latest Work" href="#" />
@@ -190,7 +190,7 @@ export const Footer = () => {
       <hr className="border-t border-gray-300 my-5" />
 
       {/* Second Row */}
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full lg:flex-nowrap flex-wrap">
         <div>
           <span className="text-sx list-none  text-[#666666] py-2 ">Want to book with us?</span>
          <h3 className="text-sx text-[#2C2D2E] mt-5">General inquiries</h3>
@@ -208,7 +208,7 @@ export const Footer = () => {
        <hr className="border-t border-gray-300 my-5" />
 
        {/*=================== third row  */}
-       <div className="flex justify-between w-full">
+       <div className="flex justify-between w-full lg:flex-nowrap flex-wrap">
         <div>
           <span className="text-sx list-none  text-[#666666] py-2 ">View on maps</span>
          <h2 className="text-xl mt-5">Our Studio</h2>

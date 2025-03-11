@@ -16,11 +16,11 @@ import { FaYoutube } from "react-icons/fa";
 const FooterLink = ({
   text,
   href,
-  className,
-}: {
+}: // className,
+{
   text: string;
   href: string;
-  className: string;
+  // className: string;
 }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [linkText, setLinkText] = useState(text);
@@ -61,13 +61,13 @@ const FooterLink = ({
   };
 
   return (
-    <li className="my-4 list-none hover:text-pink-500 transform hover:scale-105 transition-all duration-150 ease-in-out text-center cursor-pointer">
+    <li className="text-[#666666] text-sm my-4 list-none transform hover:scale-105 transition-all duration-150 ease-in-out cursor-pointer">
       <a
         href={href}
         onMouseEnter={scramble}
         onMouseLeave={stopScramble}
         style={{ textDecoration: "none", fontSize: "1.2rem" }} // Applying link styles
-        className={className}
+        // className={className}
       >
         {linkText}
       </a>
@@ -90,190 +90,148 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative">
-      <div className="absolute top-0 left-0 w-[100%] overflow-hidden bg-[#eae8e4]">
-        <div className="grid lg:grid-cols-4 gap-20 sm:grid-cols-1 p-20 bg-[#eae8e4] text-black ">
-          <div className="flex flex-col gap-6">
-            {/* Logo Section */}
-            <div className="flex items-center gap-4">
+    <footer className="relative bg-[#eae8e4]">
+      <div className=" w-full overflow-hidden  container mx-auto px-4 py-8">
+        <div className="flex  justify-between  w-full gap-20">
+          
+            <div className="flex flex-col gap-5">
               <Image
                 src={PKLogo}
                 alt="PK Photography Logo"
-                height={180}
+                height={100}
                 width={180}
               />
-            </div>
-
-            {/* Contact Information Section */}
-            <div className="text-left">
-              <p className="text-xl font-semibold">
+              <p className="text-lg text-gray-800">
                 Capturing Life’s Moments with Passion and Precision
               </p>
-
-              {/* Email with Icon */}
-              <div className="flex items-center gap-2 mt-4">
-                <FaEnvelope className="text-xl" />
+             <a href="/booking">
+              <button className="border border-black px-6 py-2 rounded-3xl text-lg w-44 hover:bg-black hover:text-white transition">
+                BOOK NOW
+              </button>
+              </a>
+              <div className="flex gap-4 mt-4">
                 <a
-                  href="mailto:prabhakar@pkphotography.in"
-                  className="text-2xl hover:underline"
+                  href="https://www.instagram.com/itspkphotography.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black p-2 rounded-full"
                 >
-                  prabhakar@pkphotography.in
+                  <FaInstagram className="text-2xl text-white hover:text-gray-600" />
                 </a>
-              </div>
 
-              {/* Phone with Icon */}
-              <div className="flex items-center gap-2 mt-4">
-                <FaPhoneAlt className="text-xl" />
                 <a
-                  href="tel:+918888766739"
-                  className="text-2xl hover:underline"
+                  href="https://www.youtube.com/@itspkphotography"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black p-2 rounded-full"
                 >
-                  +91 8888766739
+                  <FaYoutube className="text-2xl text-white hover:text-gray-600" />
                 </a>
+
+                <a
+                  href="https://www.facebook.com/pkfashionphotography"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black p-2 rounded-full"
+                >
+                  <FaFacebook className="text-2xl text-white hover:text-gray-600" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/company/pkphotography/?originalSubdomain=in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black p-2 rounded-full"
+                >
+                  <FaLinkedinIn className="text-2xl text-white hover:text-gray-600" />
+                </a>
+
+                {/* <a
+                href="mailto:prabhakar@pkphotography.in"
+                className="bg-black p-2 rounded-full"
+              >
+                <FaEnvelope className="text-2xl text-white hover:text-gray-600" />
+              </a> */}
               </div>
             </div>
-
-            {/* Social Icons Section */}
-            <div className="flex gap-6 mt-3">
-              <a
-                href="https://www.facebook.com/pkfashionphotography"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-blue-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
-                style={iconStyle}
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://www.youtube.com/@itspkphotography"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-red-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
-                style={iconStyle}
-              >
-                <FaYoutube />
-              </a>
-              <a
-                href="https://www.instagram.com/itspkphotography.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-pink-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
-                style={iconStyle}
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://x.com/pkphotographym"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-pink-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
-                style={iconStyle}
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/pkphotography/?originalSubdomain=in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-pink-500 transform hover:scale-150 transition-all duration-150 ease-in-out"
-                style={iconStyle}
-              >
-                <FaLinkedinIn />
-              </a>
-            </div>
-          </div>
-
-          <div className="ml-10">
-            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
-              Services
-            </li>
-            <FooterLink
-              text="Headshots"
-              href="https://pkphotography.in/corporate-headshots/"
-              className="text-black"
-            />
-            <FooterLink
-              text="Portrait"
-              href="https://pkphotography.in/portrait-gallery/"
-              className="text-black"
-            />
-            <FooterLink
-              text="Wedding & Events"
-              href="https://pkphotography.in/gallery/"
-              className="text-black"
-            />
-            <FooterLink
-              text="Portfolio"
-              href="https://pkphotography.in/portfolio-gallery/"
-              className="text-black"
-            />
-            <FooterLink
-              text="Interior"
-              href="https://pkphotography.in/interior-design/"
-              className="text-black"
-            />
-          </div>
-
-          <div>
-            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
-              Videography
-            </li>
-            <FooterLink
-              text="Wedding & Events"
-              href="https://pkphotography.in/wedding/"
-              className="text-black"
-            />
-            <FooterLink text="Live Streaming" href="#" className="text-black" />
-            <FooterLink text="Corporate Ads" href="#" className="text-black" />
-            <FooterLink text="Product Ads" href="#" className="text-black" />
-            <FooterLink
-              text="Influencer Videos"
-              href="#"
-              className="text-black"
-            />
-          </div>
-
-          <div>
-            <li className="text-2xl list-none font-semibold text-black py-2 uppercase text-center">
-              Navigate
-            </li>
-            {/* <FooterLink text="Sign-Up" href="/sign-up" className="text-black" /> */}
-            <FooterLink
-              text="Client"
-              href="https://pkphotography.io/client"
-              className="text-black"
-            />
-            <FooterLink text="Studio" href="#" className="text-black" />
-            <FooterLink text="Latest Work" href="#" className="text-black" />
-            <FooterLink
-              text="Careers"
-              href="https://pkphotography.in/career/"
-              className="text-black"
-            />  
-
-            <FooterLink text="Pricing" href="#" className="text-black" />
-            <FooterLink
-              text="Booking"
-              href="https://pkphotography.io/booking"
-              className="text-black"
-            />
-            {/* <FooterLink
-              text="Privacy Policy"
-              href="https://pkphotography.in/privacy-policy/"
-              className="text-black"
-            /> */}
-          </div>
+         
+            <div className="w-full space-y-5">
+      {/* First Row */}
+      <div className="flex justify-between w-full">
+        <div>
+          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Services</li>
+          <FooterLink text="Headshots" href="https://pkphotography.in/corporate-headshots/" />
+          <FooterLink text="Portrait" href="https://pkphotography.in/portrait-gallery/" />
+          <FooterLink text="Wedding & Events" href="https://pkphotography.in/gallery/" />
+          <FooterLink text="Portfolio" href="https://pkphotography.in/portfolio-gallery/" />
+          <FooterLink text="Interior" href="https://pkphotography.in/interior-design/" />
         </div>
 
-        <h6 className="text-center text-black text-lg">
-          Copyright &copy; {Year} PKPhotography. All rights reserved. <br />
-          <a
-            href="https://pkphotography.in/privacy-policy/"
-            className="text-black"
-            target="_blank"
-          >
-            Privacy Policy
-          </a>
+        <div>
+          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Videography</li>
+          <FooterLink text="Wedding & Events" href="https://pkphotography.in/wedding/" />
+          <FooterLink text="Live Streaming" href="#" />
+          <FooterLink text="Corporate Ads" href="#" />
+          <FooterLink text="Product Ads" href="#" />
+          <FooterLink text="Influencer Videos" href="#" />
+        </div>
+
+        <div>
+          <li className="text-lg list-none font-semibold text-[#2C2D2E] py-2 uppercase">Navigate</li>
+          <FooterLink text="Client" href="https://pkphotography.io/client" />
+          <FooterLink text="Studio" href="#" />
+          <FooterLink text="Latest Work" href="#" />
+          <FooterLink text="Careers" href="https://pkphotography.in/career/" />
+          <FooterLink text="Pricing" href="#" />
+          <FooterLink text="Booking" href="https://pkphotography.io/booking" />
+        </div>
+      </div>
+
+      <hr className="border-t border-gray-300 my-5" />
+
+      {/* Second Row */}
+      <div className="flex justify-between w-full">
+        <div>
+          <span className="text-sx list-none  text-[#666666] py-2 ">Want to book with us?</span>
+         <h3 className="text-sx text-[#2C2D2E] mt-5">General inquiries</h3>
+         <h2 className="text-xl mt-1">prabhakar@pkphotography.in</h2>
+        </div>
+
+        <div>
+        <div>
+          <span className="text-sx list-none  text-[#666666] py-2 ">Want to be a member of our talent team?</span>
+         <h3 className="text-sx text-[#2C2D2E] mt-5">Become a Model</h3>
+         <h2 className="text-xl mt-1">Join here</h2>
+        </div>
+        </div>
+      </div>
+       <hr className="border-t border-gray-300 my-5" />
+
+       {/*=================== third row  */}
+       <div className="flex justify-between w-full">
+        <div>
+          <span className="text-sx list-none  text-[#666666] py-2 ">View on maps</span>
+         <h2 className="text-xl mt-5">Our Studio</h2>
+         <h3 className="text-sx text-[#666666] mt-1">C 1302 EVERSHINE COSMIC <br />
+Opp. Infiniti Mall, Veera Desai Industrial Estate <br />
+Andheri West, Mumbai, Maharashtra 400053 <br />
+Tel: +91 8888766739</h3>
+        </div>
+        <div>
+          <span className="text-sx list-none  text-[#666666] py-2 ">-</span>
+         <h2 className="text-xl mt-5">We are active in</h2>
+         <h3 className="text-sx text-[#666666] mt-1">Mumbai <br />
+Dubai <br />
+Delhi</h3>
+        </div>
+
+       
+      </div>
+    </div>
+        </div>
+
+        <h6 className="text-start text-[#666666] mt-10 text-base">
+          Copyright &copy; {Year} PKPhotography. All rights reserved. 
         </h6>
       </div>
     </footer>
@@ -335,8 +293,6 @@ export const Footer = () => {
 //         </div>
 //         </div>
 
-   
-
 //         {/* Studio Information Section */}
 //         <div className="space-y-4">
 //           <div>
@@ -367,5 +323,3 @@ export const Footer = () => {
 //     </footer>
 //   );
 // };
-
-

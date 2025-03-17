@@ -102,6 +102,31 @@ const ClientHome = () => {
     [] // No dependencies for `extractFolderId` as it is inside the callback
   );
 
+  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName) => {
+    if (!nasFolderUrl) return;
+
+    try {
+        const response = await axiosInstance.get(`/nas-images`, {
+            params: { nasUrl: nasFolderUrl }
+        });
+
+        const baseURL = "http://localhost:8081/api/v1";
+
+        const images = response.data.images.map((img, index) => ({
+            id: `${categoryName}-${index}`,
+            lowRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
+            mediumRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
+            highRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
+            shareableLink: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
+            path: img.path
+        }));
+
+        setImages(images);
+        setActiveCategory(categoryName);
+    } catch (error) {
+        console.error("Error fetching images from NAS:", error);
+    }
+  }, []);
 
 
   // useEffect(() => {
@@ -137,7 +162,7 @@ const ClientHome = () => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
-
+  
     const fetchSelectedCard = async () => {
       try {
         const response = await axiosInstance.get(`/client/cards`);
@@ -145,24 +170,28 @@ const ClientHome = () => {
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
         setCategories(selectedCard.category || []);
-
-        // Set permissions for viewing and downloading
+  
         setCanView(selectedCard.canView || false);
         setCanDownload(selectedCard.canDownload || false);
-
-        // Set the first category as the default active category
+  
         if (selectedCard.category && selectedCard.category.length > 0) {
           const firstCategory = selectedCard.category[0];
-          setActiveCategory(firstCategory.name); // Set the first category as active
-          fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
+          setActiveCategory(firstCategory.name);
+
+          // ✅ Check if the image source is from Google Drive
+          if (firstCategory.images.includes("drive.google.com")) {
+            fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch from Google Drive
+          } else {
+            fetchImagesFromNAS(firstCategory.images, firstCategory.name); // Fetch from NAS
+          }
         }
       } catch (error) {
         console.error("Error fetching selected card:", error);
       }
     };
-
+  
     fetchSelectedCard();
-  }, [fetchImagesFromDrive]);
+  }, [fetchImagesFromDrive, fetchImagesFromNAS]);
 
 
   useEffect(() => {
@@ -313,149 +342,122 @@ const ClientHome = () => {
   };
 
   const handleCloseDownloadModal = () => {
-    setClicked(true);
-    setDownloadModalVisible(false);
-    // setCurrentImage(null);
-    setSelectedSize("High Resolution");
+      setClicked(true);
+      setDownloadModalVisible(false);
+      setSelectedSize("High Resolution");
   };
 
   const handleDownloadPhoto = async () => {
-    try {
-      // Use the correct download URL based on the selected size
-      const downloadUrl =
-        selectedSize === "High Resolution"
-          ? currentImage.highRes // This should already point to the original size file on Google Drive
-          : currentImage.webSize;
+      try {
+          let downloadUrl;
 
-      // Create a link element and trigger the download
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      // link.target = "_blank";
-      link.download = `image_${Date.now()}.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+          if (currentImage.highRes.includes("drive.google.com")) {
+              // ✅ Google Drive Handling
+              downloadUrl = selectedSize === "High Resolution"
+                  ? currentImage.highRes
+                  : currentImage.lowRes;
+          } else {
+              // ✅ NAS Handling (Pass single image path)
+              const encodedPath = encodeURIComponent(currentImage.path);
+              downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
+          }
 
-      handleCloseDownloadModal();
-    } catch (error) {
-      console.error("Error downloading the image:", error);
-    }
+          // ✅ Trigger the Download
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.download = `image_${Date.now()}.jpg`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          handleCloseDownloadModal();
+      } catch (error) {
+          console.error("Error downloading the image:", error);
+      }
   };
 
   const handleDownloadAll = async () => {
     if (!images || images.length === 0) {
-      alert("No images available to download.");
-      return;
+        alert("No images available to download.");
+        return;
     }
 
-    const zip = new JSZip();
-    const failedImages = [];
+    let downloadUrl;
 
-    // Process all images in the selected category
-    // const fetchPromises = images.map(async (image, index) => {
-    //   const fileId = extractFileIdFromUrl(image.highRes);
-    //   if (!fileId) {
-    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-    //     failedImages.push(image.highRes);
-    //     return;
-    //   }
+    if (images[0].highRes.includes("drive.google.com")) {
+        // ✅ Google Drive Handling (Process each file separately)
+        const zip = new JSZip();
+        const failedImages = [];
 
-    //   const proxyUrl = `https://pk-backend-jzxv.onrender.co/api/download/${fileId}`;
-    //   // console.log("Fetching from proxy URL:", proxyUrl);
+        const fetchPromises = images.map(async (image, index) => {
+            const fileId = extractFileIdFromUrl(image.highRes);
+            if (!fileId) {
+                console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+                failedImages.push(image.highRes);
+                return;
+            }
 
-    //   try {
-    //     const response = await fetch(proxyUrl);
-    //     if (!response.ok) {
-    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-    //       failedImages.push(image.highRes);
-    //       return;
-    //     }
+            // Use baseURL from axiosInstance to construct the proxy URL
+            const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
 
-    //     const blob = await response.blob();
-    //     const arrayBuffer = await blob.arrayBuffer();
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+                    failedImages.push(image.highRes);
+                    return;
+                }
 
-    //     // Determine a valid file extension
-    //     const defaultExtension = "jpg";
-    //     const fileExtension = image.highRes
-    //       .split(".")
-    //       .pop()
-    //       .match(/^(jpg|jpeg|png|gif)$/i)
-    //       ? image.highRes.split(".").pop()
-    //       : defaultExtension;
+                const blob = await response.blob();
+                const arrayBuffer = await blob.arrayBuffer();
 
-    //     const fileName = `${activeCategory || "category"}_${
-    //       index + 1
-    //     }.${fileExtension}`;
-    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
-    //   } catch (error) {
-    //     console.error(`Error downloading file: ${image.highRes}`, error);
-    //     failedImages.push(image.highRes);
-    //   }
-    // });
+                // Determine a valid file extension
+                const defaultExtension = "jpg";
+                const fileExtension = image.highRes
+                    .split(".")
+                    .pop()
+                    .match(/^(jpg|jpeg|png|gif)$/i)
+                    ? image.highRes.split(".").pop()
+                    : defaultExtension;
 
+                const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
+                zip.file(fileName, arrayBuffer); // Add file directly to the zip
+            } catch (error) {
+                console.error(`Error downloading file: ${image.highRes}`, error);
+                failedImages.push(image.highRes);
+            }
+        });
 
-    const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.highRes);
-      if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-        failedImages.push(image.highRes);
-        return;
-      }
+        // Wait for all fetches to complete
+        await Promise.all(fetchPromises);
 
-      // Use baseURL from axiosInstance to construct the proxy URL
-      const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
-
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.highRes);
-          return;
+        // Check if any files were successfully added
+        if (Object.keys(zip.files).length === 0) {
+            alert("No images were successfully added to the ZIP file.");
+            return;
         }
 
-        const blob = await response.blob();
-        const arrayBuffer = await blob.arrayBuffer();
+        // Generate and download the ZIP file
+        const content = await zip.generateAsync({ type: "blob" });
+        saveAs(content, `${activeCategory || "all-images"}.zip`);
 
-        // Determine a valid file extension
-        const defaultExtension = "jpg";
-        const fileExtension = image.highRes
-          .split(".")
-          .pop()
-          .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split(".").pop()
-          : defaultExtension;
+        // Log and alert about failed downloads, if any
+        if (failedImages.length > 0) {
+            console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
+            alert("Some images could not be downloaded. Check the console for details.");
+        }
+    } else {
+        // ✅ NAS Handling (Download directly via API)
+        const encodedPath = encodeURIComponent(images[0].path.split('/').slice(0, -1).join('/')); // Extract parent folder path
+        downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${encodedPath}`;
 
-        const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
-        zip.file(fileName, arrayBuffer); // Add file directly to the zip
-      } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
-        failedImages.push(image.highRes);
-      }
-    });
-
-
-    // Wait for all fetches to complete
-    await Promise.all(fetchPromises);
-
-    // Check if any files were successfully added
-    if (Object.keys(zip.files).length === 0) {
-      alert("No images were successfully added to the ZIP file.");
-      return;
-    }
-
-    // Generate and download the ZIP file
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, `${activeCategory || "all-images"}.zip`);
-
-    // Log and alert about failed downloads, if any
-    if (failedImages.length > 0) {
-      console.warn(
-        `Failed to download ${failedImages.length} images.`,
-        failedImages
-      );
-      alert(
-        "Some images could not be downloaded. Check the console for details."
-      );
+        // ✅ Trigger the ZIP download from NAS API
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `${activeCategory || "all-images"}.zip`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
   };
 
@@ -681,17 +683,14 @@ const ClientHome = () => {
         </div>
       </section>
 
-
-
-
-
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
           <CategoryNav
             categories={categories}
             activeCategory={activeCategory}
-            fetchImagesFromDrive={fetchImagesFromDrive}
+            fetchImagesFromDrive={fetchImagesFromDrive} // ✅ Added Drive Fetch
+            fetchImagesFromNAS={fetchImagesFromNAS} // ✅ Explicitly passing NAS Fetch
             toggleDropdown={toggleDropdown}
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
@@ -706,7 +705,6 @@ const ClientHome = () => {
             cartItems={cartItems}
             canDownload={canDownload}
             canView={canView}
-
           />
         </div>
       </nav>

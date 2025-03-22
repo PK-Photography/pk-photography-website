@@ -695,8 +695,6 @@ const ClientHome = () => {
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
           />
-
-          {/* Right-Side Actions */}
           <RightNav
             toggleFavoritesModal={toggleFavoritesModal}
             handleDownloadAll={handleDownloadAll}
@@ -705,6 +703,7 @@ const ClientHome = () => {
             cartItems={cartItems}
             canDownload={canDownload}
             canView={canView}
+            totalImages={images.length} // ✅ Pass image count
           />
         </div>
       </nav>

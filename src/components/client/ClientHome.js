@@ -38,6 +38,7 @@ const ClientHome = () => {
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
   const [canView, setCanView] = useState(true);        // State for canView
   const [canDownload, setCanDownload] = useState(true); // State for canDownload
+  const [loadingImages, setLoadingImages] = useState({});
 
   const isMobile =
     typeof window !== "undefined" &&
@@ -180,9 +181,9 @@ const ClientHome = () => {
 
           // ✅ Check if the image source is from Google Drive
           if (firstCategory.images.includes("drive.google.com")) {
-            fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch from Google Drive
+            fetchImagesFromDrive(firstCategory.images, firstCategory.name);
           } else {
-            fetchImagesFromNAS(firstCategory.images, firstCategory.name); // Fetch from NAS
+            fetchImagesFromNAS(firstCategory.images, firstCategory.name);
           }
         }
       } catch (error) {
@@ -508,46 +509,6 @@ const ClientHome = () => {
     const zip = new JSZip();
     const failedImages = [];
 
-    // Use fetchPromises to download all files
-    // const fetchPromises = favorites.map(async (image, index) => {
-    //   const fileId = extractFileIdFromUrl(image.highRes);
-    //   if (!fileId) {
-    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-    //     failedImages.push(image.highRes);
-    //     return;
-    //   }
-
-    //   const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
-    //   // console.log("Fetching from proxy URL:", proxyUrl);
-
-    //   try {
-    //     const response = await fetch(proxyUrl);
-    //     if (!response.ok) {
-    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-    //       failedImages.push(image.highRes);
-    //       return;
-    //     }
-
-    //     const blob = await response.blob();
-    //     const arrayBuffer = await blob.arrayBuffer();
-
-    //     // Ensure a valid file extension
-    //     const defaultExtension = "jpg";
-    //     const fileExtension = image.highRes
-    //       .split(".")
-    //       .pop()
-    //       .match(/^(jpg|jpeg|png|gif)$/i)
-    //       ? image.highRes.split(".").pop()
-    //       : defaultExtension;
-
-    //     const fileName = `favorite_${index + 1}.${fileExtension}`;
-    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
-    //   } catch (error) {
-    //     console.error(`Error downloading file: ${image.highRes}`, error);
-    //     failedImages.push(image.highRes);
-    //   }
-    // });
-
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
@@ -738,6 +699,12 @@ const ClientHome = () => {
             }}
           >
             <div className="relative">
+              {/* Spinner while loading */}
+              {!loadingImages[image.id] && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                  <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-6 h-6 animate-spin"></div>
+                </div>
+              )}
               {/* Low-Resolution Blurry Image */}
               <Image
                 src={image.lowRes}
@@ -747,9 +714,12 @@ const ClientHome = () => {
                 style={{
                   display: "block",
                   width: "100%",
-                  filter: canView ? "none" : "blur(10px)", // Blur if can't view
+                  filter: canView ? "none" : "blur(10px)",
                   transition: "filter 1s ease-in-out",
                 }}
+                onLoad={() =>
+                  setLoadingImages((prev) => ({ ...prev, [image.id]: true }))
+                }
               />
 
               {/* High-Resolution Progressive Image */}
@@ -759,6 +729,7 @@ const ClientHome = () => {
                   alt="High-resolution image"
                   width={800}
                   height={600}
+                  loading="lazy"
                   style={{
                     display: "block",
                     width: "100%",

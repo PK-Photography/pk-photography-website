@@ -30,10 +30,11 @@ const SlideshowModal = ({
     <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50">
       {/* Close Button */}
       <button
-        className="absolute top-4 right-4 text-white"
+        className="absolute top-4 left-4 p-2 rounded-full bg-black bg-opacity-60 hover:bg-opacity-80 text-white z-50"
         onClick={closeSlideshow}
+        title="Close"
       >
-        <FaTimes size={30} />
+        <FaTimes size={22} />
       </button>
 
       {/* Previous Image Button */}

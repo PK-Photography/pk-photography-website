@@ -284,7 +284,7 @@ const ClientHome = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000);
+    }, 5000);
     setAutoPlayInterval(interval);
   };
 
@@ -912,6 +912,7 @@ const ClientHome = () => {
             closeSlideshow={closeSlideshow}
             handlePreviousImage={handlePreviousImage}
             handleNextImage={handleNextImage}
+            setCurrentImageIndex={setCurrentImageIndex}
           />
         )
       }

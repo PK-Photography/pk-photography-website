@@ -132,8 +132,8 @@ export default function Home() {
 
       <Hero />
       <ImageBreak />
-      <BubbleText text="Featured Projects" id="Featured-Projects" />
-      <FeaturedGallery />
+      {/* <BubbleText text="Featured Projects" id="Featured-Projects" /> */}
+      {/* <FeaturedGallery /> */}
       {/* <LogoTicker/> */}
       <BubbleText text="Our Services" id="Our-Services" />
       <Service />

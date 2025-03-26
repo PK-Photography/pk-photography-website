@@ -81,7 +81,7 @@
 // }
 "use client";
 import { useEffect } from "react";
-import { Header1 } from "@/sections/Header1";
+
 import { Hero } from "@/sections/Hero";
 import { LogoTicker } from "@/sections/LogoTicker";
 // import { ProductShowcase } from "@/sections/ProductShowcase";

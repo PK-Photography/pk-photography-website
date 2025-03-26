@@ -120,7 +120,7 @@ export default function Home() {
     <div className="bg-[#eae8e4]">
       {/* <Header1/> */}
       <Header />
-      <div className="top-0 left-10 md:top-0 md:left-8">
+      {/* <div className="top-0 left-10 md:top-0 md:left-8">
         <Image
           src={Logo}
           alt="Saas Logo"
@@ -128,7 +128,7 @@ export default function Home() {
           height={120} // Set height to control aspect ratio
           className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] object-contain  z-50"
         />
-      </div>
+      </div> */}
 
       <Hero />
       <ImageBreak />

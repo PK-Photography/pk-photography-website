@@ -148,15 +148,16 @@ interface User {
 
 const navItems = [
   { title: "Home", href: "/" },
+  { title: "Clients", href: "/client" },
+
   { title: "Gallery", href: "/galleries" },
   { title: "Services", href: "/services" },
   { title: "Bookings", href: "/booking" },
 ];
 
 const extraLinks = [
-  { title: "Clients", href: "/clients" },
   { title: "Talents", href: "/talents" },
-  { title: "Blogs", href: "https://pkblogs-dev.onrender.com/" },
+  { title: "Blogs", href: "https://pkblogs-dev.onrender.com" },
   { title: "Careers", href: "/careers" },
   { title: "Signup", href: "/signup" },
 ];

@@ -114,12 +114,13 @@ const ClientHome = () => {
         const baseURL = "http://localhost:8081/api/v1";
 
         const images = response.data.images.map((img, index) => ({
-            id: `${categoryName}-${index}`,
-            lowRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
-            mediumRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
-            highRes: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
-            shareableLink: `${baseURL}/nas-image-proxy?path=${encodeURIComponent(img.path)}`,
-            path: img.path
+          id: `${categoryName}-${index}`,
+          name: img.name, // ✅ Include the name
+          mediumRes: `${baseURL}${img.mediumRes}`,
+          highRes: `${baseURL}${img.highRes}`,
+          lowRes: `${baseURL}${img.lowRes}`,
+          shareableLink: `${baseURL}${img.lowRes}`,
+          path: img.path
         }));
 
         setImages(images);
@@ -700,7 +701,7 @@ const ClientHome = () => {
           >
             <div className="relative">
               {/* Spinner while loading */}
-              {!loadingImages[image.id] && (
+              {!(loadingImages[image.id]?.low || loadingImages[image.id]?.high) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                   <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-6 h-6 animate-spin"></div>
                 </div>
@@ -725,7 +726,7 @@ const ClientHome = () => {
               {/* High-Resolution Progressive Image */}
               {canView && (
                 <Image
-                  src={image.highRes}
+                  src={image.lowRes}
                   alt="High-resolution image"
                   width={800}
                   height={600}
@@ -747,6 +748,10 @@ const ClientHome = () => {
                 />
               )}
             </div>
+
+            <p className="text-sm text-gray-600 text-center mt-1 truncate">
+              {image.name}
+            </p>
 
             <div
               className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"

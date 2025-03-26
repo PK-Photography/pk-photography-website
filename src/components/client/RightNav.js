@@ -1,7 +1,6 @@
 import React from "react";
 import { FaHeart, FaPlay, FaCartArrowDown, FaImages } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
-import Link from "next/link";
 
 const RightNav = ({
   toggleFavoritesModal,
@@ -11,46 +10,48 @@ const RightNav = ({
   cartItems,
   canDownload,
   canView,
-  totalImages, // ✅ Added prop
+  totalImages,
 }) => {
+  const navItems = [
+    {
+      icon: <FaImages className="text-lg" />,
+      label: `Total Images (${totalImages || 0})`,
+      show: true,
+    },
+    {
+      icon: <FaHeart className="text-lg" />,
+      label: `Favourite (${favorites.length})`,
+      onClick: toggleFavoritesModal,
+      show: true,
+    },
+    {
+      icon: <GoDownload className="text-lg" />,
+      label: "Download All",
+      onClick: handleDownloadAll,
+      show: canDownload,
+    },
+    {
+      icon: <FaPlay className="text-lg" />,
+      label: "Slideshow",
+      onClick: handleSlideshow,
+      show: canView,
+    },
+  ];
+
   return (
-    <div className="flex justify-center gap-6 text-sm font-semibold text-gray-700">
-      {/* Total Images */}
-      <div className="flex items-center space-x-2 text-gray-600">
-        <FaImages className="text-lg" />
-        <span className="hidden sm:inline">Total Images ({totalImages || 0})</span>
-      </div>
-
-      {/* Favourites */}
-      <div
-        className="flex items-center space-x-2 cursor-pointer hover:text-black"
-        onClick={toggleFavoritesModal}
-      >
-        <FaHeart className="text-lg" />
-        <span className="hidden sm:inline">Favourite ({favorites.length})</span>
-      </div>
-
-      {/* Download All */}
-      {canDownload && (
-        <div
-          className="flex items-center space-x-2 cursor-pointer hover:text-black"
-          onClick={handleDownloadAll}
-        >
-          <GoDownload className="text-lg" />
-          <span className="hidden sm:inline">Download All</span>
-        </div>
-      )}
-
-      {/* Slideshow */}
-      {canView && (
-        <div
-          className="flex items-center space-x-2 cursor-pointer hover:text-black"
-          onClick={handleSlideshow}
-        >
-          <FaPlay className="text-lg" />
-          <span className="hidden sm:inline">Slideshow</span>
-        </div>
-      )}
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm font-medium text-gray-700">
+      {navItems
+        .filter((item) => item.show)
+        .map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center cursor-pointer hover:text-black sm:flex-row sm:space-x-2"
+            onClick={item.onClick}
+          >
+            {item.icon}
+            <span className="text-xs sm:text-sm sm:inline hidden">{item.label}</span>
+          </div>
+        ))}
     </div>
   );
 };

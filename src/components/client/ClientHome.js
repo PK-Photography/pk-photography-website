@@ -38,6 +38,7 @@ const ClientHome = () => {
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
   const [canView, setCanView] = useState(true);        // State for canView
   const [canDownload, setCanDownload] = useState(true); // State for canDownload
+  const [loadingImages, setLoadingImages] = useState({});
 
   const isMobile =
     typeof window !== "undefined" &&
@@ -102,6 +103,32 @@ const ClientHome = () => {
     [] // No dependencies for `extractFolderId` as it is inside the callback
   );
 
+  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName) => {
+    if (!nasFolderUrl) return;
+
+    try {
+        const response = await axiosInstance.get(`/nas-images`, {
+            params: { nasUrl: nasFolderUrl }
+        });
+
+        const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
+
+        const images = response.data.images.map((img, index) => ({
+          id: `${categoryName}-${index}`,
+          name: img.name,
+          mediumRes: `${baseURL}${img.mediumRes}`,
+          highRes: `${baseURL}${img.highRes}`,
+          lowRes: `${baseURL}${img.lowRes}`,
+          shareableLink: `${baseURL}${img.lowRes}`,
+          path: img.path
+        }));
+
+        setImages(images);
+        setActiveCategory(categoryName);
+    } catch (error) {
+        console.error("Error fetching images from NAS:", error);
+    }
+  }, []);
 
 
   // useEffect(() => {
@@ -137,7 +164,7 @@ const ClientHome = () => {
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
-
+  
     const fetchSelectedCard = async () => {
       try {
         const response = await axiosInstance.get(`/client/cards`);
@@ -145,24 +172,27 @@ const ClientHome = () => {
         const selectedCard = response.data.find((card) => card._id === lastId);
         setSelectedCard(selectedCard);
         setCategories(selectedCard.category || []);
-
-        // Set permissions for viewing and downloading
+  
         setCanView(selectedCard.canView || false);
         setCanDownload(selectedCard.canDownload || false);
-
-        // Set the first category as the default active category
+  
         if (selectedCard.category && selectedCard.category.length > 0) {
           const firstCategory = selectedCard.category[0];
-          setActiveCategory(firstCategory.name); // Set the first category as active
-          fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
+          setActiveCategory(firstCategory.name);
+
+          if (firstCategory.images.includes("drive.google.com")) {
+            fetchImagesFromDrive(firstCategory.images, firstCategory.name);
+          } else {
+            fetchImagesFromNAS(firstCategory.images, firstCategory.name);
+          }
         }
       } catch (error) {
         console.error("Error fetching selected card:", error);
       }
     };
-
+  
     fetchSelectedCard();
-  }, [fetchImagesFromDrive]);
+  }, [fetchImagesFromDrive, fetchImagesFromNAS]);
 
 
   useEffect(() => {
@@ -255,7 +285,7 @@ const ClientHome = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000);
+    }, 5000);
     setAutoPlayInterval(interval);
   };
 
@@ -313,149 +343,116 @@ const ClientHome = () => {
   };
 
   const handleCloseDownloadModal = () => {
-    setClicked(true);
-    setDownloadModalVisible(false);
-    // setCurrentImage(null);
-    setSelectedSize("High Resolution");
+      setClicked(true);
+      setDownloadModalVisible(false);
+      setSelectedSize("High Resolution");
   };
 
   const handleDownloadPhoto = async () => {
-    try {
-      // Use the correct download URL based on the selected size
-      const downloadUrl =
-        selectedSize === "High Resolution"
-          ? currentImage.highRes // This should already point to the original size file on Google Drive
-          : currentImage.webSize;
+      try {
+          let downloadUrl;
 
-      // Create a link element and trigger the download
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      // link.target = "_blank";
-      link.download = `image_${Date.now()}.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+          if (currentImage.highRes.includes("drive.google.com")) {
+              downloadUrl = selectedSize === "High Resolution"
+                  ? currentImage.highRes
+                  : currentImage.lowRes;
+          } else {
+              const encodedPath = encodeURIComponent(currentImage.path);
+              downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
+          }
 
-      handleCloseDownloadModal();
-    } catch (error) {
-      console.error("Error downloading the image:", error);
-    }
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.download = `image_${Date.now()}.jpg`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          handleCloseDownloadModal();
+      } catch (error) {
+          console.error("Error downloading the image:", error);
+      }
   };
 
   const handleDownloadAll = async () => {
     if (!images || images.length === 0) {
-      alert("No images available to download.");
-      return;
+        alert("No images available to download.");
+        return;
     }
 
-    const zip = new JSZip();
-    const failedImages = [];
+    let downloadUrl;
 
-    // Process all images in the selected category
-    // const fetchPromises = images.map(async (image, index) => {
-    //   const fileId = extractFileIdFromUrl(image.highRes);
-    //   if (!fileId) {
-    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-    //     failedImages.push(image.highRes);
-    //     return;
-    //   }
+    if (images[0].highRes.includes("drive.google.com")) {
+        const zip = new JSZip();
+        const failedImages = [];
 
-    //   const proxyUrl = `https://pk-backend-jzxv.onrender.co/api/download/${fileId}`;
-    //   // console.log("Fetching from proxy URL:", proxyUrl);
+        const fetchPromises = images.map(async (image, index) => {
+            const fileId = extractFileIdFromUrl(image.highRes);
+            if (!fileId) {
+                console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+                failedImages.push(image.highRes);
+                return;
+            }
 
-    //   try {
-    //     const response = await fetch(proxyUrl);
-    //     if (!response.ok) {
-    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-    //       failedImages.push(image.highRes);
-    //       return;
-    //     }
+            // Use baseURL from axiosInstance to construct the proxy URL
+            const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
 
-    //     const blob = await response.blob();
-    //     const arrayBuffer = await blob.arrayBuffer();
+            try {
+                const response = await fetch(proxyUrl);
+                if (!response.ok) {
+                    console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+                    failedImages.push(image.highRes);
+                    return;
+                }
 
-    //     // Determine a valid file extension
-    //     const defaultExtension = "jpg";
-    //     const fileExtension = image.highRes
-    //       .split(".")
-    //       .pop()
-    //       .match(/^(jpg|jpeg|png|gif)$/i)
-    //       ? image.highRes.split(".").pop()
-    //       : defaultExtension;
+                const blob = await response.blob();
+                const arrayBuffer = await blob.arrayBuffer();
 
-    //     const fileName = `${activeCategory || "category"}_${
-    //       index + 1
-    //     }.${fileExtension}`;
-    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
-    //   } catch (error) {
-    //     console.error(`Error downloading file: ${image.highRes}`, error);
-    //     failedImages.push(image.highRes);
-    //   }
-    // });
+                // Determine a valid file extension
+                const defaultExtension = "jpg";
+                const fileExtension = image.highRes
+                    .split(".")
+                    .pop()
+                    .match(/^(jpg|jpeg|png|gif)$/i)
+                    ? image.highRes.split(".").pop()
+                    : defaultExtension;
 
+                const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
+                zip.file(fileName, arrayBuffer); // Add file directly to the zip
+            } catch (error) {
+                console.error(`Error downloading file: ${image.highRes}`, error);
+                failedImages.push(image.highRes);
+            }
+        });
 
-    const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.highRes);
-      if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-        failedImages.push(image.highRes);
-        return;
-      }
+        // Wait for all fetches to complete
+        await Promise.all(fetchPromises);
 
-      // Use baseURL from axiosInstance to construct the proxy URL
-      const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
-
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.highRes);
-          return;
+        // Check if any files were successfully added
+        if (Object.keys(zip.files).length === 0) {
+            alert("No images were successfully added to the ZIP file.");
+            return;
         }
 
-        const blob = await response.blob();
-        const arrayBuffer = await blob.arrayBuffer();
+        // Generate and download the ZIP file
+        const content = await zip.generateAsync({ type: "blob" });
+        saveAs(content, `${activeCategory || "all-images"}.zip`);
 
-        // Determine a valid file extension
-        const defaultExtension = "jpg";
-        const fileExtension = image.highRes
-          .split(".")
-          .pop()
-          .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split(".").pop()
-          : defaultExtension;
+        // Log and alert about failed downloads, if any
+        if (failedImages.length > 0) {
+            console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
+            alert("Some images could not be downloaded. Check the console for details.");
+        }
+    } else {
+        const encodedPath = encodeURIComponent(images[0].path.split('/').slice(0, -1).join('/')); // Extract parent folder path
+        downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${encodedPath}`;
 
-        const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
-        zip.file(fileName, arrayBuffer); // Add file directly to the zip
-      } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
-        failedImages.push(image.highRes);
-      }
-    });
-
-
-    // Wait for all fetches to complete
-    await Promise.all(fetchPromises);
-
-    // Check if any files were successfully added
-    if (Object.keys(zip.files).length === 0) {
-      alert("No images were successfully added to the ZIP file.");
-      return;
-    }
-
-    // Generate and download the ZIP file
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, `${activeCategory || "all-images"}.zip`);
-
-    // Log and alert about failed downloads, if any
-    if (failedImages.length > 0) {
-      console.warn(
-        `Failed to download ${failedImages.length} images.`,
-        failedImages
-      );
-      alert(
-        "Some images could not be downloaded. Check the console for details."
-      );
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `${activeCategory || "all-images"}.zip`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
   };
 
@@ -505,46 +502,6 @@ const ClientHome = () => {
 
     const zip = new JSZip();
     const failedImages = [];
-
-    // Use fetchPromises to download all files
-    // const fetchPromises = favorites.map(async (image, index) => {
-    //   const fileId = extractFileIdFromUrl(image.highRes);
-    //   if (!fileId) {
-    //     console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-    //     failedImages.push(image.highRes);
-    //     return;
-    //   }
-
-    //   const proxyUrl = `https://pk-backend-jzxv.onrender.com/api/download/${fileId}`;
-    //   // console.log("Fetching from proxy URL:", proxyUrl);
-
-    //   try {
-    //     const response = await fetch(proxyUrl);
-    //     if (!response.ok) {
-    //       console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-    //       failedImages.push(image.highRes);
-    //       return;
-    //     }
-
-    //     const blob = await response.blob();
-    //     const arrayBuffer = await blob.arrayBuffer();
-
-    //     // Ensure a valid file extension
-    //     const defaultExtension = "jpg";
-    //     const fileExtension = image.highRes
-    //       .split(".")
-    //       .pop()
-    //       .match(/^(jpg|jpeg|png|gif)$/i)
-    //       ? image.highRes.split(".").pop()
-    //       : defaultExtension;
-
-    //     const fileName = `favorite_${index + 1}.${fileExtension}`;
-    //     zip.file(fileName, arrayBuffer); // Add file directly to the zip
-    //   } catch (error) {
-    //     console.error(`Error downloading file: ${image.highRes}`, error);
-    //     failedImages.push(image.highRes);
-    //   }
-    // });
 
     const fetchPromises = images.map(async (image, index) => {
       const fileId = extractFileIdFromUrl(image.highRes);
@@ -681,10 +638,6 @@ const ClientHome = () => {
         </div>
       </section>
 
-
-
-
-
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
@@ -692,12 +645,11 @@ const ClientHome = () => {
             categories={categories}
             activeCategory={activeCategory}
             fetchImagesFromDrive={fetchImagesFromDrive}
+            fetchImagesFromNAS={fetchImagesFromNAS}
             toggleDropdown={toggleDropdown}
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
           />
-
-          {/* Right-Side Actions */}
           <RightNav
             toggleFavoritesModal={toggleFavoritesModal}
             handleDownloadAll={handleDownloadAll}
@@ -706,7 +658,7 @@ const ClientHome = () => {
             cartItems={cartItems}
             canDownload={canDownload}
             canView={canView}
-
+            totalImages={images.length}
           />
         </div>
       </nav>
@@ -741,6 +693,12 @@ const ClientHome = () => {
             }}
           >
             <div className="relative">
+              {/* Spinner while loading */}
+              {!(loadingImages[image.id]?.low || loadingImages[image.id]?.high) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                  <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-6 h-6 animate-spin"></div>
+                </div>
+              )}
               {/* Low-Resolution Blurry Image */}
               <Image
                 src={image.lowRes}
@@ -750,18 +708,22 @@ const ClientHome = () => {
                 style={{
                   display: "block",
                   width: "100%",
-                  filter: canView ? "none" : "blur(10px)", // Blur if can't view
+                  filter: canView ? "none" : "blur(10px)",
                   transition: "filter 1s ease-in-out",
                 }}
+                onLoad={() =>
+                  setLoadingImages((prev) => ({ ...prev, [image.id]: true }))
+                }
               />
 
               {/* High-Resolution Progressive Image */}
               {canView && (
                 <Image
-                  src={image.highRes}
+                  src={image.lowRes}
                   alt="High-resolution image"
                   width={800}
                   height={600}
+                  loading="lazy"
                   style={{
                     display: "block",
                     width: "100%",
@@ -779,6 +741,10 @@ const ClientHome = () => {
                 />
               )}
             </div>
+
+            <p className="text-sm text-gray-600 text-center mt-1 truncate">
+              {image.name}
+            </p>
 
             <div
               className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
@@ -915,6 +881,7 @@ const ClientHome = () => {
             closeSlideshow={closeSlideshow}
             handlePreviousImage={handlePreviousImage}
             handleNextImage={handleNextImage}
+            setCurrentImageIndex={setCurrentImageIndex}
           />
         )
       }

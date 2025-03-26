@@ -111,7 +111,7 @@ const ClientHome = () => {
             params: { nasUrl: nasFolderUrl }
         });
 
-        const baseURL = "http://localhost:8081/api/v1";
+        const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
 
         const images = response.data.images.map((img, index) => ({
           id: `${categoryName}-${index}`,

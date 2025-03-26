@@ -36,6 +36,6 @@ const handler = NextAuth({
   },
 });
 
-// ✅ Correctly exporting GET & POST as functions
+// Correctly exporting GET & POST as functions
 export const GET = handler;
 export const POST = handler;

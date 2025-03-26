@@ -115,7 +115,7 @@ const ClientHome = () => {
 
         const images = response.data.images.map((img, index) => ({
           id: `${categoryName}-${index}`,
-          name: img.name, // ✅ Include the name
+          name: img.name,
           mediumRes: `${baseURL}${img.mediumRes}`,
           highRes: `${baseURL}${img.highRes}`,
           lowRes: `${baseURL}${img.lowRes}`,
@@ -180,7 +180,6 @@ const ClientHome = () => {
           const firstCategory = selectedCard.category[0];
           setActiveCategory(firstCategory.name);
 
-          // ✅ Check if the image source is from Google Drive
           if (firstCategory.images.includes("drive.google.com")) {
             fetchImagesFromDrive(firstCategory.images, firstCategory.name);
           } else {
@@ -354,17 +353,14 @@ const ClientHome = () => {
           let downloadUrl;
 
           if (currentImage.highRes.includes("drive.google.com")) {
-              // ✅ Google Drive Handling
               downloadUrl = selectedSize === "High Resolution"
                   ? currentImage.highRes
                   : currentImage.lowRes;
           } else {
-              // ✅ NAS Handling (Pass single image path)
               const encodedPath = encodeURIComponent(currentImage.path);
               downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
           }
 
-          // ✅ Trigger the Download
           const link = document.createElement("a");
           link.href = downloadUrl;
           link.download = `image_${Date.now()}.jpg`;
@@ -387,7 +383,6 @@ const ClientHome = () => {
     let downloadUrl;
 
     if (images[0].highRes.includes("drive.google.com")) {
-        // ✅ Google Drive Handling (Process each file separately)
         const zip = new JSZip();
         const failedImages = [];
 
@@ -449,11 +444,9 @@ const ClientHome = () => {
             alert("Some images could not be downloaded. Check the console for details.");
         }
     } else {
-        // ✅ NAS Handling (Download directly via API)
         const encodedPath = encodeURIComponent(images[0].path.split('/').slice(0, -1).join('/')); // Extract parent folder path
         downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${encodedPath}`;
 
-        // ✅ Trigger the ZIP download from NAS API
         const link = document.createElement("a");
         link.href = downloadUrl;
         link.download = `${activeCategory || "all-images"}.zip`;
@@ -651,8 +644,8 @@ const ClientHome = () => {
           <CategoryNav
             categories={categories}
             activeCategory={activeCategory}
-            fetchImagesFromDrive={fetchImagesFromDrive} // ✅ Added Drive Fetch
-            fetchImagesFromNAS={fetchImagesFromNAS} // ✅ Explicitly passing NAS Fetch
+            fetchImagesFromDrive={fetchImagesFromDrive}
+            fetchImagesFromNAS={fetchImagesFromNAS}
             toggleDropdown={toggleDropdown}
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
@@ -665,7 +658,7 @@ const ClientHome = () => {
             cartItems={cartItems}
             canDownload={canDownload}
             canView={canView}
-            totalImages={images.length} // ✅ Pass image count
+            totalImages={images.length}
           />
         </div>
       </nav>

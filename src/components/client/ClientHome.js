@@ -112,6 +112,7 @@ const ClientHome = () => {
         });
 
         const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
+        // const baseURL = "http://localhost:8081/api/v1";
 
         const images = response.data.images.map((img, index) => ({
           id: `${categoryName}-${index}`,
@@ -613,6 +614,7 @@ const ClientHome = () => {
       <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2  " />
 
       <Header />
+
       {/* Title Section */}
       {/* <section className="text-center py-12 bg-pink-500">
         <h1 className="text-4xl font-serif font-light">{selectedCard.name}</h1>
@@ -620,10 +622,11 @@ const ClientHome = () => {
           {new Date(selectedCard.date).toLocaleDateString()}
         </p>
       </section> */}
+
       <section
         className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-[#eae8e4]"
         style={{
-          backgroundImage: "url('/pk-cover.png')",
+          backgroundImage: `url(${selectedCard?.imageUrl || "/pk-cover.png"})`, // fallback to default
         }}
       >
         {/* Gray Overlay */}

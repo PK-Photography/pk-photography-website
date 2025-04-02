@@ -39,6 +39,12 @@ const ClientHome = () => {
   const [canView, setCanView] = useState(true);        // State for canView
   const [canDownload, setCanDownload] = useState(true); // State for canDownload
   const [loadingImages, setLoadingImages] = useState({});
+  const [nasAllImages, setNasAllImages] = useState([]); // All images from NAS
+  const [nasPage, setNasPage] = useState(1);
+  const [nasPageSize] = useState(20);
+  const [nasLoading, setNasLoading] = useState(false);
+  const [hasMoreNasImages, setHasMoreNasImages] = useState(true);
+  const [nasTotalCount, setNasTotalCount] = useState(0);
 
   const isMobile =
     typeof window !== "undefined" &&
@@ -100,24 +106,23 @@ const ClientHome = () => {
     []
   );
 
-  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName, cardId) => {
+  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName, cardId, page = 1) => {
     const cacheKey = `nas-${cardId}-${categoryName}`;
-    const cached = sessionStorage.getItem(cacheKey);
-    if (cached) {
-      setImages(JSON.parse(cached));
-      setActiveCategory(categoryName);
-      return;
-    }
+    setNasLoading(true);
   
     try {
       const response = await axiosInstance.get(`/nas-images`, {
-        params: { nasUrl: nasFolderUrl },
+        params: {
+          nasUrl: nasFolderUrl,
+          offset: (page - 1) * nasPageSize,
+          limit: nasPageSize,
+        },
       });
   
       const baseURL = "http://localhost:8081/api/v1";
   
-      const images = response.data.images.map((img, index) => ({
-        id: `${categoryName}-${index}`,
+      const newImages = response.data.images.map((img, index) => ({
+        id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
         name: img.name,
         mediumRes: `${baseURL}${img.mediumRes}`,
         highRes: `${baseURL}${img.highRes}`,
@@ -126,13 +131,66 @@ const ClientHome = () => {
         path: img.path,
       }));
   
-      sessionStorage.setItem(cacheKey, JSON.stringify(images));
-      setImages(images);
+      if (page === 1) {
+        setNasAllImages(newImages);
+      } else {
+        setNasAllImages(prev => [...prev, ...newImages]);
+      }
+  
       setActiveCategory(categoryName);
+      setImages(prev => (page === 1 ? newImages : [...prev, ...newImages]));
+  
+      if (newImages.length < nasPageSize) {
+        setHasMoreNasImages(false);
+      } else {
+        setHasMoreNasImages(true);
+      }
+      setNasTotalCount(response.data.total || 0);
     } catch (error) {
       console.error("NAS fetch error:", error);
+      setHasMoreNasImages(false);
+    } finally {
+      setNasLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+  
+      if (
+        nearBottom &&
+        !nasLoading &&
+        hasMoreNasImages &&
+        selectedCard &&
+        activeCategory &&
+        categories.find((c) => c.name === activeCategory)?.images.includes("quickconnect.to")
+      ) {
+        console.log("⬇️ Scrolled to bottom: fetching next NAS page");
+        setNasPage((prev) => {
+          console.log("📦 Updating nasPage:", prev + 1);
+          return prev + 1;
+        });
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    setTimeout(() => handleScroll(), 500);
+  
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [nasLoading, hasMoreNasImages, selectedCard, activeCategory, categories]);
+
+  useEffect(() => {
+    if (!selectedCard || categories.length === 0) return;
+  
+    const activeCat = categories.find((c) => c.name === activeCategory);
+    if (!activeCat || !activeCat.images.includes("quickconnect.to")) return;
+  
+    setNasPage(1);
+    setHasMoreNasImages(true); // reset "load more" flag
+    window.scrollTo(0, 0);
+  }, [activeCategory, selectedCard, categories]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -671,7 +729,7 @@ const ClientHome = () => {
             cartItems={cartItems}
             canDownload={canDownload}
             canView={canView}
-            totalImages={images.length}
+            totalImages={nasTotalCount || images.length}
           />
         </div>
       </nav>
@@ -878,6 +936,40 @@ const ClientHome = () => {
           </div>
         )
       }
+
+      {hasMoreNasImages && !nasLoading && (
+        <div className="text-center my-6 pb-10">
+          <button
+            onClick={() => {
+              const nextPage = nasPage + 1;
+              setNasPage(nextPage);
+
+              console.log(nextPage);
+            
+              const activeCat = categories.find((c) => c.name === activeCategory);
+              console.log(activeCat);
+              if (
+                activeCat &&
+                activeCat.images.includes("/photo/") &&
+                selectedCard &&
+                activeCategory
+              ) {
+                console.log("📦 Load More clicked → calling fetchImagesFromNAS");
+                fetchImagesFromNAS(activeCat.images, activeCategory, selectedCard._id, nextPage);
+              }
+            }}
+            className="px-6 py-3 bg-[#8B5E3C] text-white font-semibold rounded-lg hover:bg-[#A87447] transition duration-300"
+          >
+            Load More
+          </button>
+        </div>
+      )}
+
+      {nasLoading && (
+        <div className="flex justify-center items-center my-6 pb-10">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#8B5E3C]"></div>
+        </div>
+      )}
 
       {/* When we click on any image this page opens and there are download, share and but photo options */}
       {

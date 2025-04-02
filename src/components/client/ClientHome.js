@@ -88,7 +88,7 @@ const ClientHome = () => {
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
             mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+            highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
   
@@ -125,7 +125,7 @@ const ClientHome = () => {
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
         name: img.name,
         mediumRes: `${baseURL}${img.mediumRes}`,
-        highRes: `${baseURL}${img.highRes}`,
+        highRes: `${baseURL}${img.mediumRes}`,
         lowRes: `${baseURL}${img.lowRes}`,
         shareableLink: `${baseURL}${img.lowRes}`,
         path: img.path,
@@ -298,7 +298,7 @@ const ClientHome = () => {
     const loadImages = () => {
       document.querySelectorAll(".progressive-image").forEach((img) => {
         const mediumRes = img.dataset.medium;
-        const highRes = img.dataset.high;
+        const highRes = img.dataset.medium;
 
         const finalSrc =
           connection && connection.effectiveType.includes("4g")
@@ -421,9 +421,9 @@ const ClientHome = () => {
       try {
           let downloadUrl;
 
-          if (currentImage.highRes.includes("drive.google.com")) {
+          if (currentImage.mediumRes.includes("drive.google.com")) {
               downloadUrl = selectedSize === "High Resolution"
-                  ? currentImage.highRes
+                  ? currentImage.mediumRes
                   : currentImage.lowRes;
           } else {
               const encodedPath = encodeURIComponent(currentImage.path);
@@ -451,15 +451,15 @@ const ClientHome = () => {
 
     let downloadUrl;
 
-    if (images[0].highRes.includes("drive.google.com")) {
+    if (images[0].mediumRes.includes("drive.google.com")) {
         const zip = new JSZip();
         const failedImages = [];
 
         const fetchPromises = images.map(async (image, index) => {
-            const fileId = extractFileIdFromUrl(image.highRes);
+            const fileId = extractFileIdFromUrl(image.mediumRes);
             if (!fileId) {
-                console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-                failedImages.push(image.highRes);
+                console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
+                failedImages.push(image.mediumRes);
                 return;
             }
 
@@ -470,7 +470,7 @@ const ClientHome = () => {
                 const response = await fetch(proxyUrl);
                 if (!response.ok) {
                     console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-                    failedImages.push(image.highRes);
+                    failedImages.push(image.mediumRes);
                     return;
                 }
 
@@ -479,18 +479,18 @@ const ClientHome = () => {
 
                 // Determine a valid file extension
                 const defaultExtension = "jpg";
-                const fileExtension = image.highRes
+                const fileExtension = image.mediumRes
                     .split(".")
                     .pop()
                     .match(/^(jpg|jpeg|png|gif)$/i)
-                    ? image.highRes.split(".").pop()
+                    ? image.mediumRes.split(".").pop()
                     : defaultExtension;
 
                 const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
                 zip.file(fileName, arrayBuffer); // Add file directly to the zip
             } catch (error) {
-                console.error(`Error downloading file: ${image.highRes}`, error);
-                failedImages.push(image.highRes);
+                console.error(`Error downloading file: ${image.mediumRes}`, error);
+                failedImages.push(image.mediumRes);
             }
         });
 
@@ -573,10 +573,10 @@ const ClientHome = () => {
     const failedImages = [];
 
     const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.highRes);
+      const fileId = extractFileIdFromUrl(image.mediumRes);
       if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-        failedImages.push(image.highRes);
+        console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
+        failedImages.push(image.mediumRes);
         return;
       }
 
@@ -586,7 +586,7 @@ const ClientHome = () => {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
           console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.highRes);
+          failedImages.push(image.mediumRes);
           return;
         }
 
@@ -595,19 +595,19 @@ const ClientHome = () => {
 
         // Determine a valid file extension
         const defaultExtension = "jpg";
-        const fileExtension = image.highRes
+        const fileExtension = image.mediumRes
           .split(".")
           .pop()
           .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split(".").pop()
+          ? image.mediumRes.split(".").pop()
           : defaultExtension;
 
         const fileName = `${activeCategory || "category"}_${index + 1
           }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
-        failedImages.push(image.highRes);
+        console.error(`Error downloading file: ${image.mediumRes}`, error);
+        failedImages.push(image.mediumRes);
       }
     });
 
@@ -667,29 +667,9 @@ const ClientHome = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      {/* Header */}
-      {/* <header className="flex justify-between items-center p-4 bg-gray-50 shadow-sm">
-        <div className="flex items-center">
-          <Image
-            src="/logo.webp"
-            alt="Logo"
-            width={180}
-            height={180}
-            className="h-10"
-          />
-        </div>
-      </header> */}
       <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2  " />
 
       <Header />
-
-      {/* Title Section */}
-      {/* <section className="text-center py-12 bg-pink-500">
-        <h1 className="text-4xl font-serif font-light">{selectedCard.name}</h1>
-        <p className="text-gray-500 text-sm mt-2">
-          {new Date(selectedCard.date).toLocaleDateString()}
-        </p>
-      </section> */}
 
       <section
         className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-[#eae8e4]"

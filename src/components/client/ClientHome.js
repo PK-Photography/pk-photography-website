@@ -698,7 +698,17 @@ const ClientHome = () => {
         {images.map((image, index) => (
           <li
             key={index}
-            onClick={() => openModal(image)}
+            onClick={() => {
+              const idx = images.findIndex((img) => img.id === image.id);
+              if (idx !== -1) {
+                const preload = new window.Image();
+                preload.src = images[idx].mediumRes;
+          
+                setCurrentImageIndex(idx);
+                setSlideshowVisible(true);
+                startAutoPlay();
+              }
+            }}
             className="relative overflow-hidden group"
             style={{
               marginBottom: "6px",

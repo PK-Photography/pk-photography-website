@@ -47,26 +47,22 @@ const ClientHome = () => {
   const imageContainerRef = useRef(null);
 
   const fetchImagesFromDrive = useCallback(
-    async (driveLink, categoryName) => {
-      const extractFolderId = (driveLink) => {
-        const match = driveLink.match(/[-\w]{25,}/);
-        return match ? match[0] : null;
-      };
-
-      if (!driveLink) {
-        console.error("No drive link provided.");
+    async (driveLink, categoryName, cardId) => {
+      const cacheKey = `drive-${cardId}-${categoryName}`;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setImages(JSON.parse(cached));
+        setActiveCategory(categoryName);
         return;
       }
-
+  
+      const extractFolderId = (link) => link.match(/[-\w]{25,}/)?.[0] || null;
       const folderId = extractFolderId(driveLink);
-      if (!folderId) {
-        console.error("Invalid drive link:", driveLink);
-        return;
-      }
-
+      if (!folderId) return;
+  
       let allImages = [];
       let pageToken = null;
-
+  
       try {
         do {
           const response = await axios.get(
@@ -76,115 +72,129 @@ const ClientHome = () => {
                 q: `'${folderId}' in parents`,
                 fields: "nextPageToken, files(id, name)",
                 key: "AIzaSyCZv3XS3cicdPsznsJG7QxF1O_nQWSGoSM",
-                pageSize: 1000, // Fetch up to 1000 items per request
-                pageToken: pageToken, // Use token to get the next batch
+                pageSize: 1000,
+                pageToken,
               },
             }
           );
-
+  
           const files = response.data.files.map((file, index) => ({
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
             mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-            highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
+            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
-
+  
           allImages = [...allImages, ...files];
-          pageToken = response.data.nextPageToken; // Get the next page token
+          pageToken = response.data.nextPageToken;
         } while (pageToken);
-
+  
+        sessionStorage.setItem(cacheKey, JSON.stringify(allImages));
         setImages(allImages);
         setActiveCategory(categoryName);
       } catch (error) {
-        console.error("Error fetching images from Google Drive:", error);
+        console.error("Drive fetch error:", error);
       }
     },
-    [] // No dependencies for `extractFolderId` as it is inside the callback
+    []
   );
 
-  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName) => {
-    if (!nasFolderUrl) return;
-
+  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName, cardId) => {
+    const cacheKey = `nas-${cardId}-${categoryName}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      setImages(JSON.parse(cached));
+      setActiveCategory(categoryName);
+      return;
+    }
+  
     try {
-        const response = await axiosInstance.get(`/nas-images`, {
-            params: { nasUrl: nasFolderUrl }
-        });
-
-        const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
-        // const baseURL = "http://localhost:8081/api/v1";
-
-        const images = response.data.images.map((img, index) => ({
-          id: `${categoryName}-${index}`,
-          name: img.name,
-          mediumRes: `${baseURL}${img.mediumRes}`,
-          highRes: `${baseURL}${img.mediumRes}`,
-          lowRes: `${baseURL}${img.lowRes}`,
-          shareableLink: `${baseURL}${img.lowRes}`,
-          path: img.path
-        }));
-
-        setImages(images);
-        setActiveCategory(categoryName);
+      const response = await axiosInstance.get(`/nas-images`, {
+        params: { nasUrl: nasFolderUrl },
+      });
+  
+      const baseURL = "http://localhost:8081/api/v1";
+  
+      const images = response.data.images.map((img, index) => ({
+        id: `${categoryName}-${index}`,
+        name: img.name,
+        mediumRes: `${baseURL}${img.mediumRes}`,
+        highRes: `${baseURL}${img.highRes}`,
+        lowRes: `${baseURL}${img.lowRes}`,
+        shareableLink: `${baseURL}${img.lowRes}`,
+        path: img.path,
+      }));
+  
+      sessionStorage.setItem(cacheKey, JSON.stringify(images));
+      setImages(images);
+      setActiveCategory(categoryName);
     } catch (error) {
-        console.error("Error fetching images from NAS:", error);
+      console.error("NAS fetch error:", error);
     }
   }, []);
 
-
-  // useEffect(() => {
-  //   const url = window.location.pathname;
-  //   const parts = url.split("/");
-  //   const lastId = parts[parts.length - 1];
-
-  //   const fetchSelectedCard = async () => {
-  //     try {
-  //       const response = await axiosInstance.get(
-  //         `/client/cards`
-  //       );
-  //       console.log(response)
-  //       const selectedCard = response.data.find((card) => card._id === lastId);
-  //       setSelectedCard(selectedCard);
-  //       setCategories(selectedCard.category || []);
-
-  //       // Set the first category as the default active category
-  //       if (selectedCard.category && selectedCard.category.length > 0) {
-  //         const firstCategory = selectedCard.category[0];
-  //         setActiveCategory(firstCategory.name); // Set the first category as active
-  //         fetchImagesFromDrive(firstCategory.images, firstCategory.name); // Fetch images for the first category
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching selected card:", error);
-  //     }
-  //   };
-
-  //   fetchSelectedCard();
-  // }, [fetchImagesFromDrive]); // Now `fetchImagesFromDrive` is initialized before this effect is used
-
   useEffect(() => {
+    if (typeof window === "undefined") return;
+  
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
+    const cacheKey = `card-${lastId}`;
+    const cachedCard = sessionStorage.getItem(cacheKey);
+  
+    console.log("📦 Extracted card ID from URL:", lastId);
+    console.log("🗝 cacheKey:", cacheKey);
+    console.log("sessionStorage.getItem(cacheKey):", cachedCard);
+  
+    if (cachedCard) {
+      const foundCard = JSON.parse(cachedCard);
+      setSelectedCard(foundCard);
+      setCategories(foundCard.category || []);
+      setCanView(foundCard.canView || false);
+      setCanDownload(foundCard.canDownload || false);
+  
+      if (foundCard.category && foundCard.category.length > 0) {
+        const firstCategory = foundCard.category[0];
+        setActiveCategory(firstCategory.name);
+  
+        if (firstCategory.images.includes("drive.google.com")) {
+          fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
+        } else {
+          fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+        }
+      }
+  
+      return; // ✅ skip API
+    }
+  
+    // ✅ guard even before calling async
+    if (!lastId || lastId === "" || lastId === "undefined") {
+      console.warn("Invalid ID – skipping API call");
+      return;
+    }
   
     const fetchSelectedCard = async () => {
+      console.log("🚨 NO CACHE FOUND — Fetching from API!");
       try {
         const response = await axiosInstance.get(`/client/cards`);
-        console.log(response);
-        const selectedCard = response.data.find((card) => card._id === lastId);
-        setSelectedCard(selectedCard);
-        setCategories(selectedCard.category || []);
+        const foundCard = response.data.find((card) => card._id === lastId);
+        if (!foundCard) return;
   
-        setCanView(selectedCard.canView || false);
-        setCanDownload(selectedCard.canDownload || false);
+        sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
+        setSelectedCard(foundCard);
+        setCategories(foundCard.category || []);
+        setCanView(foundCard.canView || false);
+        setCanDownload(foundCard.canDownload || false);
   
-        if (selectedCard.category && selectedCard.category.length > 0) {
-          const firstCategory = selectedCard.category[0];
+        if (foundCard.category && foundCard.category.length > 0) {
+          const firstCategory = foundCard.category[0];
           setActiveCategory(firstCategory.name);
-
+  
           if (firstCategory.images.includes("drive.google.com")) {
-            fetchImagesFromDrive(firstCategory.images, firstCategory.name);
+            fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
           } else {
-            fetchImagesFromNAS(firstCategory.images, firstCategory.name);
+            fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
           }
         }
       } catch (error) {
@@ -193,7 +203,7 @@ const ClientHome = () => {
     };
   
     fetchSelectedCard();
-  }, [fetchImagesFromDrive, fetchImagesFromNAS]);
+  }, []);
 
 
   useEffect(() => {
@@ -234,7 +244,7 @@ const ClientHome = () => {
 
         const finalSrc =
           connection && connection.effectiveType.includes("4g")
-            ? mediumRes
+            ? highRes
             : mediumRes;
 
         const preloader = new window.Image(); // Use native browser Image
@@ -355,7 +365,7 @@ const ClientHome = () => {
 
           if (currentImage.highRes.includes("drive.google.com")) {
               downloadUrl = selectedSize === "High Resolution"
-                  ? currentImage.mediumRes
+                  ? currentImage.highRes
                   : currentImage.lowRes;
           } else {
               const encodedPath = encodeURIComponent(currentImage.path);
@@ -388,10 +398,10 @@ const ClientHome = () => {
         const failedImages = [];
 
         const fetchPromises = images.map(async (image, index) => {
-            const fileId = extractFileIdFromUrl(image.mediumRes);
+            const fileId = extractFileIdFromUrl(image.highRes);
             if (!fileId) {
-                console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
-                failedImages.push(image.mediumRes);
+                console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+                failedImages.push(image.highRes);
                 return;
             }
 
@@ -402,7 +412,7 @@ const ClientHome = () => {
                 const response = await fetch(proxyUrl);
                 if (!response.ok) {
                     console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-                    failedImages.push(image.mediumRes);
+                    failedImages.push(image.highRes);
                     return;
                 }
 
@@ -411,18 +421,18 @@ const ClientHome = () => {
 
                 // Determine a valid file extension
                 const defaultExtension = "jpg";
-                const fileExtension = image.mediumRes
+                const fileExtension = image.highRes
                     .split(".")
                     .pop()
                     .match(/^(jpg|jpeg|png|gif)$/i)
-                    ? image.mediumRes.split(".").pop()
+                    ? image.highRes.split(".").pop()
                     : defaultExtension;
 
                 const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
                 zip.file(fileName, arrayBuffer); // Add file directly to the zip
             } catch (error) {
-                console.error(`Error downloading file: ${image.mediumRes}`, error);
-                failedImages.push(image.mediumRes);
+                console.error(`Error downloading file: ${image.highRes}`, error);
+                failedImages.push(image.highRes);
             }
         });
 
@@ -505,10 +515,10 @@ const ClientHome = () => {
     const failedImages = [];
 
     const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.mediumRes);
+      const fileId = extractFileIdFromUrl(image.highRes);
       if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
-        failedImages.push(image.mediumRes);
+        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
+        failedImages.push(image.highRes);
         return;
       }
 
@@ -518,7 +528,7 @@ const ClientHome = () => {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
           console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.mediumRes);
+          failedImages.push(image.highRes);
           return;
         }
 
@@ -527,19 +537,19 @@ const ClientHome = () => {
 
         // Determine a valid file extension
         const defaultExtension = "jpg";
-        const fileExtension = image.mediumRes
+        const fileExtension = image.highRes
           .split(".")
           .pop()
           .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.mediumRes.split(".").pop()
+          ? image.highRes.split(".").pop()
           : defaultExtension;
 
         const fileName = `${activeCategory || "category"}_${index + 1
           }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        console.error(`Error downloading file: ${image.mediumRes}`, error);
-        failedImages.push(image.mediumRes);
+        console.error(`Error downloading file: ${image.highRes}`, error);
+        failedImages.push(image.highRes);
       }
     });
 
@@ -688,14 +698,7 @@ const ClientHome = () => {
         {images.map((image, index) => (
           <li
             key={index}
-            onClick={() => {
-              const index = images.findIndex((img) => img.id === image.id);
-              if (index !== -1) {
-                setCurrentImageIndex(index);
-                setSlideshowVisible(true);
-                startAutoPlay();
-              }
-            }}
+            onClick={() => openModal(image)}
             className="relative overflow-hidden group"
             style={{
               marginBottom: "6px",
@@ -721,6 +724,7 @@ const ClientHome = () => {
                   filter: canView ? "none" : "blur(10px)",
                   transition: "filter 1s ease-in-out",
                 }}
+                loading="eager"
                 onLoad={() =>
                   setLoadingImages((prev) => ({ ...prev, [image.id]: true }))
                 }
@@ -733,7 +737,7 @@ const ClientHome = () => {
                   alt="High-resolution image"
                   width={800}
                   height={600}
-                  loading="lazy"
+                  loading="eager"
                   style={{
                     display: "block",
                     width: "100%",

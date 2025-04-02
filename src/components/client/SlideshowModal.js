@@ -92,6 +92,7 @@ const SlideshowModal = ({
                 width={80}
                 height={60}
                 className="object-cover"
+                loading="eager"
               />
             </div>
           );

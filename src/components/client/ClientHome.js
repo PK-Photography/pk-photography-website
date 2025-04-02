@@ -86,7 +86,7 @@ const ClientHome = () => {
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
             mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
-            highRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
+            highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
 
@@ -118,7 +118,7 @@ const ClientHome = () => {
           id: `${categoryName}-${index}`,
           name: img.name,
           mediumRes: `${baseURL}${img.mediumRes}`,
-          highRes: `${baseURL}${img.highRes}`,
+          highRes: `${baseURL}${img.mediumRes}`,
           lowRes: `${baseURL}${img.lowRes}`,
           shareableLink: `${baseURL}${img.lowRes}`,
           path: img.path
@@ -234,7 +234,7 @@ const ClientHome = () => {
 
         const finalSrc =
           connection && connection.effectiveType.includes("4g")
-            ? highRes
+            ? mediumRes
             : mediumRes;
 
         const preloader = new window.Image(); // Use native browser Image
@@ -355,7 +355,7 @@ const ClientHome = () => {
 
           if (currentImage.highRes.includes("drive.google.com")) {
               downloadUrl = selectedSize === "High Resolution"
-                  ? currentImage.highRes
+                  ? currentImage.mediumRes
                   : currentImage.lowRes;
           } else {
               const encodedPath = encodeURIComponent(currentImage.path);
@@ -388,10 +388,10 @@ const ClientHome = () => {
         const failedImages = [];
 
         const fetchPromises = images.map(async (image, index) => {
-            const fileId = extractFileIdFromUrl(image.highRes);
+            const fileId = extractFileIdFromUrl(image.mediumRes);
             if (!fileId) {
-                console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-                failedImages.push(image.highRes);
+                console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
+                failedImages.push(image.mediumRes);
                 return;
             }
 
@@ -402,7 +402,7 @@ const ClientHome = () => {
                 const response = await fetch(proxyUrl);
                 if (!response.ok) {
                     console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-                    failedImages.push(image.highRes);
+                    failedImages.push(image.mediumRes);
                     return;
                 }
 
@@ -411,18 +411,18 @@ const ClientHome = () => {
 
                 // Determine a valid file extension
                 const defaultExtension = "jpg";
-                const fileExtension = image.highRes
+                const fileExtension = image.mediumRes
                     .split(".")
                     .pop()
                     .match(/^(jpg|jpeg|png|gif)$/i)
-                    ? image.highRes.split(".").pop()
+                    ? image.mediumRes.split(".").pop()
                     : defaultExtension;
 
                 const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
                 zip.file(fileName, arrayBuffer); // Add file directly to the zip
             } catch (error) {
-                console.error(`Error downloading file: ${image.highRes}`, error);
-                failedImages.push(image.highRes);
+                console.error(`Error downloading file: ${image.mediumRes}`, error);
+                failedImages.push(image.mediumRes);
             }
         });
 
@@ -505,10 +505,10 @@ const ClientHome = () => {
     const failedImages = [];
 
     const fetchPromises = images.map(async (image, index) => {
-      const fileId = extractFileIdFromUrl(image.highRes);
+      const fileId = extractFileIdFromUrl(image.mediumRes);
       if (!fileId) {
-        console.warn(`Failed to extract fileId from URL: ${image.highRes}`);
-        failedImages.push(image.highRes);
+        console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
+        failedImages.push(image.mediumRes);
         return;
       }
 
@@ -518,7 +518,7 @@ const ClientHome = () => {
         const response = await fetch(proxyUrl);
         if (!response.ok) {
           console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-          failedImages.push(image.highRes);
+          failedImages.push(image.mediumRes);
           return;
         }
 
@@ -527,19 +527,19 @@ const ClientHome = () => {
 
         // Determine a valid file extension
         const defaultExtension = "jpg";
-        const fileExtension = image.highRes
+        const fileExtension = image.mediumRes
           .split(".")
           .pop()
           .match(/^(jpg|jpeg|png|gif)$/i)
-          ? image.highRes.split(".").pop()
+          ? image.mediumRes.split(".").pop()
           : defaultExtension;
 
         const fileName = `${activeCategory || "category"}_${index + 1
           }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
-        console.error(`Error downloading file: ${image.highRes}`, error);
-        failedImages.push(image.highRes);
+        console.error(`Error downloading file: ${image.mediumRes}`, error);
+        failedImages.push(image.mediumRes);
       }
     });
 
@@ -688,7 +688,14 @@ const ClientHome = () => {
         {images.map((image, index) => (
           <li
             key={index}
-            onClick={() => openModal(image)}
+            onClick={() => {
+              const index = images.findIndex((img) => img.id === image.id);
+              if (index !== -1) {
+                setCurrentImageIndex(index);
+                setSlideshowVisible(true);
+                startAutoPlay();
+              }
+            }}
             className="relative overflow-hidden group"
             style={{
               marginBottom: "6px",

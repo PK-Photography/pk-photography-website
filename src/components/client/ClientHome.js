@@ -119,16 +119,15 @@ const ClientHome = () => {
         },
       });
   
-      const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
-      // const baseURL = "http://localhost:8081/api/v1";
-  
+      // const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
+      const baseURL = "http://localhost:8081/api/v1";
+
       const newImages = response.data.images.map((img, index) => ({
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
         name: img.name,
         mediumRes: `${baseURL}${img.mediumRes}`,
-        highRes: `${baseURL}${img.mediumRes}`,
         lowRes: `${baseURL}${img.lowRes}`,
-        shareableLink: `${baseURL}${img.lowRes}`,
+        shareableLink: `${baseURL}${img.mediumRes}`,
         path: img.path,
       }));
   
@@ -782,7 +781,7 @@ const ClientHome = () => {
               {/* High-Resolution Progressive Image */}
               {canView && (
                 <Image
-                  src={image.lowRes}
+                  src={image.mediumRes}
                   alt="High-resolution image"
                   width={800}
                   height={600}
@@ -812,15 +811,16 @@ const ClientHome = () => {
             <div
               className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 }`}
-              onTouchStart={(e) => {
-                e.stopPropagation();
-                if (!isMobile) return; // Ensure behavior only for mobile
-
-                // Simulate hover behavior
-                e.currentTarget.classList.add("opacity-100");
-                setTimeout(() => {
-                  e.currentTarget.classList.remove("opacity-100");
-                }, 3000); // Hide again after 3 seconds
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  if (!isMobile) return;
+                
+                  const target = e.currentTarget; // ✅ clone the reference
+                  target.classList.add("opacity-100");
+                
+                  setTimeout(() => {
+                    target.classList.remove("opacity-100"); // ✅ safe to use
+                  }, 3000);
               }}
             >
               <button

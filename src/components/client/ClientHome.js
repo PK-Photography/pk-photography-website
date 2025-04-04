@@ -16,6 +16,8 @@ import axiosInstance from "../../utils/axiosConfig.jsx";
 import Header from "@/components/header/Header";
 import PKLogo from "@/assets/logo.webp";
 import bgImg from "@/assets/5.webp"
+import ImageGalleryList from "../client/ImageGalleryList";
+import BannerSection from "../client/BannerSection";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -121,14 +123,13 @@ const ClientHome = () => {
   
       const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
       // const baseURL = "http://localhost:8081/api/v1";
-  
+
       const newImages = response.data.images.map((img, index) => ({
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
         name: img.name,
         mediumRes: `${baseURL}${img.mediumRes}`,
-        highRes: `${baseURL}${img.mediumRes}`,
         lowRes: `${baseURL}${img.lowRes}`,
-        shareableLink: `${baseURL}${img.lowRes}`,
+        shareableLink: `${baseURL}${img.mediumRes}`,
         path: img.path,
       }));
   
@@ -202,10 +203,6 @@ const ClientHome = () => {
     const cacheKey = `card-${lastId}`;
     const cachedCard = sessionStorage.getItem(cacheKey);
   
-    console.log("📦 Extracted card ID from URL:", lastId);
-    console.log("🗝 cacheKey:", cacheKey);
-    console.log("sessionStorage.getItem(cacheKey):", cachedCard);
-  
     if (cachedCard) {
       const foundCard = JSON.parse(cachedCard);
       setSelectedCard(foundCard);
@@ -213,57 +210,54 @@ const ClientHome = () => {
       setCanView(foundCard.canView || false);
       setCanDownload(foundCard.canDownload || false);
   
-      if (foundCard.category && foundCard.category.length > 0) {
-        const firstCategory = foundCard.category[0];
+      const firstCategory = foundCard.category?.[0];
+      if (firstCategory) {
         setActiveCategory(firstCategory.name);
   
-        if (firstCategory.images.includes("drive.google.com")) {
-          fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
+        const isDrive = firstCategory.images.includes("drive.google.com");
+        const imageCacheKey = isDrive
+          ? `drive-${foundCard._id}-${firstCategory.name}`
+          : `nas-${foundCard._id}-${firstCategory.name}`;
+  
+        const cachedImages = sessionStorage.getItem(imageCacheKey);
+  
+        if (cachedImages) {
+          setImages(JSON.parse(cachedImages));
         } else {
-          fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+          isDrive
+            ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
+            : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
         }
       }
+    } else {
+      const fetchSelectedCard = async () => {
+        try {
+          const response = await axiosInstance.get(`/client/cards`);
+          const foundCard = response.data.find((card) => card._id === lastId);
+          if (!foundCard) return;
   
-      return; // ✅ skip API
-    }
+          sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
+          setSelectedCard(foundCard);
+          setCategories(foundCard.category || []);
+          setCanView(foundCard.canView || false);
+          setCanDownload(foundCard.canDownload || false);
   
-    // ✅ guard even before calling async
-    if (!lastId || lastId === "" || lastId === "undefined") {
-      console.warn("Invalid ID – skipping API call");
-      return;
-    }
+          const firstCategory = foundCard.category?.[0];
+          if (firstCategory) {
+            setActiveCategory(firstCategory.name);
   
-    const fetchSelectedCard = async () => {
-      console.log("🚨 NO CACHE FOUND — Fetching from API!");
-      try {
-        const response = await axiosInstance.get(`/client/cards`);
-        const foundCard = response.data.find((card) => card._id === lastId);
-        if (!foundCard) return;
-  
-        sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
-        setSelectedCard(foundCard);
-        setCategories(foundCard.category || []);
-        setCanView(foundCard.canView || false);
-        setCanDownload(foundCard.canDownload || false);
-  
-        if (foundCard.category && foundCard.category.length > 0) {
-          const firstCategory = foundCard.category[0];
-          setActiveCategory(firstCategory.name);
-  
-          if (firstCategory.images.includes("drive.google.com")) {
-            fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
-          } else {
-            fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+            firstCategory.images.includes("drive.google.com")
+              ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
+              : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
           }
+        } catch (error) {
+          console.error("Error fetching selected card:", error);
         }
-      } catch (error) {
-        console.error("Error fetching selected card:", error);
-      }
-    };
+      };
   
-    fetchSelectedCard();
+      fetchSelectedCard();
+    }
   }, []);
-
 
   useEffect(() => {
     const updateColumns = () => {
@@ -672,23 +666,7 @@ const ClientHome = () => {
 
       <Header />
 
-      <section
-        className="text-center py-12 relative bg-cover bg-center bg-no-repeat bg-[#eae8e4]"
-        style={{
-          backgroundImage: `url(${selectedCard?.imageUrl || "/pk-cover.png"})`, // fallback to default
-        }}
-      >
-        {/* Gray Overlay */}
-        <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
-
-        {/* Content */}
-        <div className="relative z-10">
-          <h1 className="text-4xl font-serif font-light text-white">{selectedCard.name}</h1>
-          <p className="text-gray-200 text-lg mt-2">
-            {selectedCard.date ? new Date(selectedCard.date).toLocaleDateString() : "Loading..."}
-          </p>
-        </div>
-      </section>
+      <BannerSection selectedCard={selectedCard} />
 
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
@@ -724,146 +702,22 @@ const ClientHome = () => {
       />
 
       {/* here we are fetching the drive images and Display Images */}
-      <ul
-        className="gamma-gallery masonry"
-        style={{
-          columnCount: columns,
-          columnGap: "6px",
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-        }}
-      >
-        {images.map((image, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              const idx = images.findIndex((img) => img.id === image.id);
-              if (idx !== -1) {
-                const preload = new window.Image();
-                preload.src = images[idx].mediumRes;
-          
-                setCurrentImageIndex(idx);
-                setSlideshowVisible(true);
-                startAutoPlay();
-              }
-            }}
-            className="relative overflow-hidden group"
-            style={{
-              marginBottom: "6px",
-              breakInside: "avoid",
-            }}
-          >
-            <div className="relative">
-              {/* Spinner while loading */}
-              {!(loadingImages[image.id]?.low || loadingImages[image.id]?.high) && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                  <div className="loader border-t-4 border-blue-500 border-solid rounded-full w-6 h-6 animate-spin"></div>
-                </div>
-              )}
-              {/* Low-Resolution Blurry Image */}
-              <Image
-                src={image.lowRes}
-                alt="Blurry placeholder"
-                width={200}
-                height={200}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  filter: canView ? "none" : "blur(10px)",
-                  transition: "filter 1s ease-in-out",
-                }}
-                loading="eager"
-                onLoad={() =>
-                  setLoadingImages((prev) => ({ ...prev, [image.id]: true }))
-                }
-              />
-
-              {/* High-Resolution Progressive Image */}
-              {canView && (
-                <Image
-                  src={image.lowRes}
-                  alt="High-resolution image"
-                  width={800}
-                  height={600}
-                  loading="eager"
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    opacity: 0,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    transition: "opacity 1s ease-in-out",
-                  }}
-                  onLoad={(e) => {
-                    setTimeout(() => {
-                      e.target.style.opacity = 1;
-                    }, index * 500);
-                  }}
-                />
-              )}
-            </div>
-
-            <p className="text-sm text-gray-600 text-center mt-1 truncate">
-              {image.name}
-            </p>
-
-            <div
-              className={`shadow-lg absolute inset-0 flex justify-end items-end gap-2 p-2 transition duration-300 ease-in-out ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                }`}
-              onTouchStart={(e) => {
-                e.stopPropagation();
-                if (!isMobile) return; // Ensure behavior only for mobile
-
-                // Simulate hover behavior
-                e.currentTarget.classList.add("opacity-100");
-                setTimeout(() => {
-                  e.currentTarget.classList.remove("opacity-100");
-                }, 3000); // Hide again after 3 seconds
-              }}
-            >
-              <button
-                className={`p-2 ${favorites.find((fav) => fav.id === image.id)
-                  ? "text-red-600"
-                  : "text-white"
-                  } hover:text-red-600`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleFavorite(image);
-                }}
-              >
-                <FaHeart className="w-5 h-5" />
-              </button>
-
-              {/* Conditional Rendering for Download Button */}
-              {canDownload && (
-                <button
-                  className="text-white p-2 hover:text-gray-600"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleOpenDownloadModal(image);
-                  }}
-                >
-                  <GoDownload className="w-5 h-5" />
-                </button>
-              )}
-
-              <button
-                className="text-white p-2 hover:text-gray-600"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleShare(image.shareableLink); // Pass the shareable link directly to handleShare
-                }}
-              >
-                <FaShare className="w-5 h-5" />
-              </button>
-            </div>
-          </li>
-        ))}
-
-
-      </ul >
+      <ImageGalleryList
+        images={images}
+        columns={columns}
+        canView={canView}
+        canDownload={canDownload}
+        isMobile={isMobile}
+        favorites={favorites}
+        loadingImages={loadingImages}
+        toggleFavorite={toggleFavorite}
+        handleOpenDownloadModal={handleOpenDownloadModal}
+        handleShare={handleShare}
+        setCurrentImageIndex={setCurrentImageIndex}
+        setSlideshowVisible={setSlideshowVisible}
+        startAutoPlay={startAutoPlay}
+        imageContainerRef={imageContainerRef}
+      />
 
       {/* We we click on download Icon, this page opens...Download Modal */}
       {

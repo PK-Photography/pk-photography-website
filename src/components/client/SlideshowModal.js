@@ -115,7 +115,7 @@ const SlideshowModal = ({
         className="flex items-center justify-center max-h-[80vh] mb-6"
       >
         <Image
-          src={currentImage?.highRes || ''}
+          src={currentImage?.mediumRes || ''}
           alt="Slideshow Image"
           className="object-contain max-h-full max-w-full"
           width={800}

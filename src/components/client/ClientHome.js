@@ -203,10 +203,6 @@ const ClientHome = () => {
     const cacheKey = `card-${lastId}`;
     const cachedCard = sessionStorage.getItem(cacheKey);
   
-    console.log("📦 Extracted card ID from URL:", lastId);
-    console.log("🗝 cacheKey:", cacheKey);
-    console.log("sessionStorage.getItem(cacheKey):", cachedCard);
-  
     if (cachedCard) {
       const foundCard = JSON.parse(cachedCard);
       setSelectedCard(foundCard);
@@ -214,57 +210,54 @@ const ClientHome = () => {
       setCanView(foundCard.canView || false);
       setCanDownload(foundCard.canDownload || false);
   
-      if (foundCard.category && foundCard.category.length > 0) {
-        const firstCategory = foundCard.category[0];
+      const firstCategory = foundCard.category?.[0];
+      if (firstCategory) {
         setActiveCategory(firstCategory.name);
   
-        if (firstCategory.images.includes("drive.google.com")) {
-          fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
+        const isDrive = firstCategory.images.includes("drive.google.com");
+        const imageCacheKey = isDrive
+          ? `drive-${foundCard._id}-${firstCategory.name}`
+          : `nas-${foundCard._id}-${firstCategory.name}`;
+  
+        const cachedImages = sessionStorage.getItem(imageCacheKey);
+  
+        if (cachedImages) {
+          setImages(JSON.parse(cachedImages));
         } else {
-          fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+          isDrive
+            ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
+            : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
         }
       }
+    } else {
+      const fetchSelectedCard = async () => {
+        try {
+          const response = await axiosInstance.get(`/client/cards`);
+          const foundCard = response.data.find((card) => card._id === lastId);
+          if (!foundCard) return;
   
-      return; // ✅ skip API
-    }
+          sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
+          setSelectedCard(foundCard);
+          setCategories(foundCard.category || []);
+          setCanView(foundCard.canView || false);
+          setCanDownload(foundCard.canDownload || false);
   
-    // ✅ guard even before calling async
-    if (!lastId || lastId === "" || lastId === "undefined") {
-      console.warn("Invalid ID – skipping API call");
-      return;
-    }
+          const firstCategory = foundCard.category?.[0];
+          if (firstCategory) {
+            setActiveCategory(firstCategory.name);
   
-    const fetchSelectedCard = async () => {
-      console.log("🚨 NO CACHE FOUND — Fetching from API!");
-      try {
-        const response = await axiosInstance.get(`/client/cards`);
-        const foundCard = response.data.find((card) => card._id === lastId);
-        if (!foundCard) return;
-  
-        sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
-        setSelectedCard(foundCard);
-        setCategories(foundCard.category || []);
-        setCanView(foundCard.canView || false);
-        setCanDownload(foundCard.canDownload || false);
-  
-        if (foundCard.category && foundCard.category.length > 0) {
-          const firstCategory = foundCard.category[0];
-          setActiveCategory(firstCategory.name);
-  
-          if (firstCategory.images.includes("drive.google.com")) {
-            fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id);
-          } else {
-            fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+            firstCategory.images.includes("drive.google.com")
+              ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
+              : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
           }
+        } catch (error) {
+          console.error("Error fetching selected card:", error);
         }
-      } catch (error) {
-        console.error("Error fetching selected card:", error);
-      }
-    };
+      };
   
-    fetchSelectedCard();
+      fetchSelectedCard();
+    }
   }, []);
-
 
   useEffect(() => {
     const updateColumns = () => {

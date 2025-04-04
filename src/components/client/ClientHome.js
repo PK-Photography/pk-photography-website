@@ -316,7 +316,7 @@ const ClientHome = () => {
     if (images.length > 0) {
       setSlideshowVisible(true);
       setCurrentImageIndex(0); // Start from the first image
-      startAutoPlay(); // Start automatic slideshow
+      // startAutoPlay(); // Start automatic slideshow
     } else {
       alert("No images available for the slideshow.");
     }

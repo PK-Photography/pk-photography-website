@@ -114,13 +114,10 @@ const SlideshowModal = ({
         transition={{ duration: 0.5 }}
         className="flex items-center justify-center max-h-[80vh] mb-6"
       >
-        <Image
+        <img
           src={currentImage?.mediumRes || ''}
           alt="Slideshow Image"
-          className="object-contain max-h-full max-w-full"
-          width={800}
-          height={600}
-          priority
+          className="object-contain w-[800px] h-[600px]"
         />
       </motion.div>
 

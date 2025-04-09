@@ -121,8 +121,8 @@ const ClientHome = () => {
         },
       });
   
-      const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
-      // const baseURL = "http://localhost:8081/api/v1";
+      // const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
+      const baseURL = "http://localhost:8081/api/v1";
 
       const newImages = response.data.images.map((img, index) => ({
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,

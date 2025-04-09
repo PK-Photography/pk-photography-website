@@ -37,7 +37,7 @@ export default function Landing() {
 
       {/* Description */}
       <p className="max-w-xl mx-auto text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
-        Welcome to the client portal. Here is where you can view, download, and share your photos. OH! you can also order prints if you'd like :). Please contact me for your password or any other assistance needed!
+        {`Welcome to the client portal. Here is where you can view, download, and share your photos. OH! you can also order prints if you'd like :). Please contact me for your password or any other assistance needed!`}
       </p>
 
       {/* Contact Info */}

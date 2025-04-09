@@ -419,7 +419,7 @@ const ClientHome = () => {
           if (currentImage.mediumRes.includes("drive.google.com")) {
               downloadUrl = selectedSize === "High Resolution"
                   ? currentImage.mediumRes
-                  : currentImage.lowRes;
+                  : currentImage.mediumRes;
           } else {
               const encodedPath = encodeURIComponent(currentImage.path);
               downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
@@ -715,7 +715,7 @@ const ClientHome = () => {
         handleShare={handleShare}
         setCurrentImageIndex={setCurrentImageIndex}
         setSlideshowVisible={setSlideshowVisible}
-        startAutoPlay={startAutoPlay}
+        // startAutoPlay={startAutoPlay}
         imageContainerRef={imageContainerRef}
       />
 

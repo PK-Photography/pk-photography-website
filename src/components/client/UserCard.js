@@ -61,7 +61,7 @@ const UserCards = () => {
         <meta name="description" content="Browse through a collection of client albums with beautiful thumbnails." />
       </Head>
 
-      <div className="bg-[#FFFCEF] px-3 pt-6 pb-16 max-w-[90%] mx-auto">
+      <div className="bg-[white] px-3 pt-6 pb-16 max-w-[90%] mx-auto">
         {isLoading ? (
           <div className="flex justify-center items-center h-64">
             <div className="w-10 h-10 border-4 border-[#5C899D] border-t-transparent rounded-full animate-spin"></div>
@@ -76,7 +76,7 @@ const UserCards = () => {
                   onClick={() => handleClick(card._id)}
                   className="block"
                 >
-                  <div className="relative h-64 w-full overflow-hidden bg-[#FFFCEF] group">
+                  <div className="relative h-64 w-full overflow-hidden bg-[white] group">
                     <Image
                       src={card.imageUrl}
                       alt={card.name}

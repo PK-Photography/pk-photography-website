@@ -8,7 +8,7 @@ import PKLogo from "@/assets/logo.webp";
 
 export default function Landing() {
   return (
-    <section className="bg-[#FFFCEF] text-center px-4 pt-10 pb-14">
+    <section className="bg-[white] text-center px-4 pt-10 pb-14">
       <Head>
         <title>PK Photography | Client Portal</title>
         <meta name="description" content="Client portal for viewing, downloading, and sharing PK Photography albums." />

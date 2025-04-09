@@ -8,11 +8,11 @@ import "../globals.css";
 
 const Home = () => {
   return (
-    <>
+    <div className="bg-[white]">
     <Header/>
       <Landing />
       <UserCard />
-    </>
+    </div>
   );
 };
 

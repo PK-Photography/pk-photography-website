@@ -121,7 +121,7 @@ const ClientHome = () => {
         },
       });
   
-      const baseURL = "https://pk-backend-jzxv.onrender.com/api/v1";
+      const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
       // const baseURL = "http://localhost:8081/api/v1";
 
       const newImages = response.data.images.map((img, index) => ({
@@ -419,7 +419,7 @@ const ClientHome = () => {
           if (currentImage.mediumRes.includes("drive.google.com")) {
               downloadUrl = selectedSize === "High Resolution"
                   ? currentImage.mediumRes
-                  : currentImage.lowRes;
+                  : currentImage.mediumRes;
           } else {
               const encodedPath = encodeURIComponent(currentImage.path);
               downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
@@ -715,7 +715,7 @@ const ClientHome = () => {
         handleShare={handleShare}
         setCurrentImageIndex={setCurrentImageIndex}
         setSlideshowVisible={setSlideshowVisible}
-        startAutoPlay={startAutoPlay}
+        // startAutoPlay={startAutoPlay}
         imageContainerRef={imageContainerRef}
       />
 

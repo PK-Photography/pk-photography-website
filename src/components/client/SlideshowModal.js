@@ -39,7 +39,7 @@ const SlideshowModal = ({
       width="24"
       height="24"
       fill="none"
-      stroke="currentColor"
+      stroke="#5C899D"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -52,23 +52,31 @@ const SlideshowModal = ({
   );
 
   const handleShare = async () => {
-    const shareLink = currentImage?.shareableLink || currentImage?.highRes;
-
-    if (!shareLink) return alert("No link available to share.");
-
+    const originalLink = currentImage?.shareableLink || currentImage?.highRes;
+  
+    if (!originalLink) return alert("No link available to share.");
+  
     try {
+      // 1. Get TinyURL shortened version
+      const response = await fetch(
+        `https://tinyurl.com/api-create.php?url=${encodeURIComponent(originalLink)}`
+      );
+      const shortUrl = await response.text();
+  
+      // 2. Use Web Share API if available
       if (navigator.share) {
         await navigator.share({
           title: 'Check out this image!',
-          url: shareLink,
+          url: shortUrl,
         });
       } else {
-        // fallback: copy to clipboard
-        await navigator.clipboard.writeText(shareLink);
-        alert("Link copied to clipboard!");
+        // 3. Fallback → copy to clipboard
+        await navigator.clipboard.writeText(shortUrl);
+        alert("Short link copied to clipboard!");
       }
     } catch (error) {
       console.error("Sharing failed", error);
+      // alert("Failed to shorten or share the link.");
     }
   };
 
@@ -76,7 +84,7 @@ const SlideshowModal = ({
     <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50">
       {/* Back Button */}
       <button
-        className="absolute top-4 left-4 w-10 h-10 flex items-center justify-center bg-black bg-opacity-60 hover:bg-opacity-80 rounded-full z-50"
+        className="absolute top-4 left-4 w-10 h-10 flex items-center justify-center bg-[#FFFCEF] bg-opacity-60 hover:bg-opacity-80 rounded-full z-50"
         onClick={closeSlideshow}
         title="Back"
       >
@@ -86,7 +94,7 @@ const SlideshowModal = ({
           height="22"
           viewBox="0 0 24 24"
           fill="none"
-          stroke={primaryColor}
+          stroke={'#5C899D'}
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -114,10 +122,14 @@ const SlideshowModal = ({
         transition={{ duration: 0.5 }}
         className="flex items-center justify-center max-h-[80vh] mb-6"
       >
-        <img
-          src={currentImage?.mediumRes || ''}
+        <Image
+          src={currentImage?.lowRes || currentImage?.mediumRes}
           alt="Slideshow Image"
-          className="object-contain w-[800px] h-[600px]"
+          width={800}
+          height={600}
+          unoptimized={true}
+          className="object-contain max-h-[60vh] w-auto"
+          loading="eager"
         />
       </motion.div>
 
@@ -160,20 +172,20 @@ const SlideshowModal = ({
 
       {/* iOS-style Controls */}
       <div className="absolute bottom-6 inset-x-0 flex justify-center z-50">
-        <div className="flex gap-6 bg-black bg-opacity-60 px-6 py-3 rounded-full backdrop-blur">
+        <div className="flex gap-6 bg-[#FFFCEF] bg-opacity-60 px-6 py-3 rounded-full backdrop-blur">
           <button
-            className="text-[#1b4b7a] hover:bg-white/10 p-2 rounded-full transition"
+            className="text-[#5C899D] hover:bg-white/10 p-2 rounded-full transition"
             onClick={handleShare}
           >
             <IOSShareIcon />
           </button>
-          <button className="text-[#1b4b7a] hover:bg-white/10 p-2 rounded-full transition">
+          <button className="text-[#5C899D] hover:bg-white/10 p-2 rounded-full transition">
             <FiHeart size={24} />
           </button>
-          <button className="text-[#1b4b7a] hover:bg-white/10 p-2 rounded-full transition">
+          <button className="text-[#5C899D] hover:bg-white/10 p-2 rounded-full transition">
             <FiInfo size={24} />
           </button>
-          <button className="text-[#1b4b7a] hover:bg-white/10 p-2 rounded-full transition">
+          <button className="text-[#5C899D] hover:bg-white/10 p-2 rounded-full transition">
             <FiDownload size={24} />
           </button>
         </div>

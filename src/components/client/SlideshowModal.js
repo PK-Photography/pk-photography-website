@@ -52,23 +52,31 @@ const SlideshowModal = ({
   );
 
   const handleShare = async () => {
-    const shareLink = currentImage?.shareableLink || currentImage?.highRes;
-
-    if (!shareLink) return alert("No link available to share.");
-
+    const originalLink = currentImage?.shareableLink || currentImage?.highRes;
+  
+    if (!originalLink) return alert("No link available to share.");
+  
     try {
+      // 1. Get TinyURL shortened version
+      const response = await fetch(
+        `https://tinyurl.com/api-create.php?url=${encodeURIComponent(originalLink)}`
+      );
+      const shortUrl = await response.text();
+  
+      // 2. Use Web Share API if available
       if (navigator.share) {
         await navigator.share({
           title: 'Check out this image!',
-          url: shareLink,
+          url: shortUrl,
         });
       } else {
-        // fallback: copy to clipboard
-        await navigator.clipboard.writeText(shareLink);
-        alert("Link copied to clipboard!");
+        // 3. Fallback → copy to clipboard
+        await navigator.clipboard.writeText(shortUrl);
+        alert("Short link copied to clipboard!");
       }
     } catch (error) {
       console.error("Sharing failed", error);
+      // alert("Failed to shorten or share the link.");
     }
   };
 
@@ -119,8 +127,8 @@ const SlideshowModal = ({
           alt="Slideshow Image"
           width={800}
           height={600}
-          unoptimized={true} // Important for Drive URLs
-          className="object-contain"
+          unoptimized={true}
+          className="object-contain max-h-[60vh] w-auto"
           loading="eager"
         />
       </motion.div>

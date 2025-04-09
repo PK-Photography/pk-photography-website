@@ -25,7 +25,7 @@ const nextConfig = {
   },
 
   images: {
-    domains: ['buffer.com', 'b3700355.smushcdn.com', 'drive.google.com', 'res.cloudinary.com', 'pk-backend-jzxv.onrender.com', 'localhost'],
+    domains: ['buffer.com', 'b3700355.smushcdn.com', 'drive.google.com', 'res.cloudinary.com', 'pk-photography-backend.onrender.com', 'localhost'],
   },
 };
 

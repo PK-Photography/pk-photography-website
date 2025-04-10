@@ -1,166 +1,155 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import styles from "./style.module.scss";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
-import { menuSlide, fadeInUp } from "../anim";
-import Link1 from "./Link/Link1";
-import Curve from "./Curve/Curve";
-import Footer from "./Footer/Footer";
-import axiosInstance from "@/utils/axiosConfig";
-import { toast } from "react-hot-toast";
-
-interface User {
-  fullName: string;
-}
 
 const navItems = [
-  { title: "Home", href: "/" },
-  { title: "Clients", href: "/client" },
-
-  { title: "Gallery", href: "/galleries" },
-  { title: "Services", href: "/services" },
-  { title: "Bookings", href: "/booking" },
+  { label: "Home", href: "/" },
+  { label: "Clients", href: "/client" },
+  { label: "Services", href: "/services" },
+  { label: "Bookings", href: "/booking" },
 ];
 
-const extraLinks = [
-  { title: "Talents", href: "/talents" },
-  { title: "Blogs", href: "https://pkblogs-dev.onrender.com" },
-  { title: "Careers", href: "/careers" },
-  { title: "Signup", href: "/signup" },
+const rightLinks = [
+  { label: "Talents", href: "/talents" },
+  { label: "Blogs", href: "https://pkblogs-dev.onrender.com/", external: true },
+  { label: "Careers", href: "/careers" },
+  { label: "Signup", href: "/signup" },
 ];
-interface NavProps {
-  onClose: () => void;
-}
 
-export default function Nav({ onClose }: NavProps) {
-  const pathname = usePathname();
+const socialLinks = [
+  { label: "Instagram", href: "https://www.instagram.com/itspkphotography.in/" },
+  { label: "Twitter", href: "https://x.com/pkphotographym" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/pkphotography/" },
+];
+
+const Nav = ({ onClose }: { onClose: () => void }) => {
   const router = useRouter();
-  const [selectedIndicator, setSelectedIndicator] = useState<string>(pathname);
-  const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      axiosInstance
-        .get<{ success: boolean; data: User }>("/user/profile")
-        .then((res) => {
-          if (res.data.success) {
-            setUser(res.data.data);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching profile:", error);
-        });
+  const handleNavClick = (href: string, external?: boolean) => {
+    if (external) {
+      window.open(href, "_blank");
+    } else {
+      router.push(href);
+      onClose();
     }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    router.push("/login");
-    toast.success("Logout Successful!");
   };
 
   return (
     <motion.div
-      variants={menuSlide}
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      className={styles.menu}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans]"
     >
-      <div className={styles.body}>
-        <div className={styles.navSection}>
-          <div className={styles.navLeft}>
-            <p className={styles.logo}>PK</p>
-            <div className={styles.navLinks}>
-              {navItems.map((data, index) => (
-                <motion.div key={index} variants={fadeInUp} initial="hidden" animate="visible">
-                  <Link1
-                    key={index}
-                    data={{ ...data, index }} // ✅ Fixed TypeScript error by passing index
-                    isActive={selectedIndicator === data.href}
-                    setSelectedIndicator={setSelectedIndicator}
-                  />
-                </motion.div>
-              ))}
-              {/* Close Icon */}
-              <button
-                onClick={onClose}
-                className="absolute top-6 right-6 z-[999] bg-white rounded-full p-2 shadow-md hover:shadow-lg transition"
-                aria-label="Close Navigation"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="#5C899D"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-            <div className={styles.speciality}>
-              <p className={styles.specialityTitle}>OUR SPECIALITY</p>
-              <p className={styles.specialityText}>
-                Fashion | Events | Corporates | Live Streaming | Talent Agency
-              </p>
-            </div>
-          </div>
-          <div className={styles.navRight}>
-            <p className={styles.workWithUs}>WORK WITH US</p>
-            <div className={styles.extraLinks}>
-              {extraLinks.map((link, index) => (
-                <motion.div key={index} variants={fadeInUp} initial="hidden" animate="visible">
-                  <Link1
-                    key={index}
-                    data={{ ...link, index }} // ✅ Fixed TypeScript error by passing index
-                    isActive={selectedIndicator === link.href}
-                    setSelectedIndicator={setSelectedIndicator}
-                  />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* ✅ Smooth Bottom-to-Up Animation */}
-            <motion.div
-              className={styles.contact}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <p className={styles.sayHello}>SAY HELLO</p>
-              <p className={styles.contactInfo}>+91 8889766739</p>
-              <p className={styles.contactInfo}>info@pkphotography.in</p>
-            </motion.div>
-
-            <motion.div
-              className={styles.stats}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            >
-              <p><strong>500+</strong> Happy Clients</p>
-              <p><strong>10+</strong> Years of Experience</p>
-              <p><strong>1M+</strong> Photos Captured</p>
-              <p><strong>100+</strong> Artists Onboard</p>
-            </motion.div>
-
-            <div className={styles.socialLinks}>
-              <p>Instagram &nbsp;&nbsp; Linkedin &nbsp;&nbsp; Facebook</p>
-            </div>
-          </div>
-        </div>
-        <Footer />
+      {/* Top Row */}
+      <div className="relative w-full px-6 pt-6 h-20">
+        <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-semibold">
+          PK
+        </p>
+        <button
+          onClick={onClose}
+          className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:opacity-70 z-50"
+          aria-label="Close"
+        >
+          <svg width="60" height="60" fill="none" stroke="white" strokeWidth="1" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
       </div>
-      <Curve />
+
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full h-[calc(100%-80px)] items-end">
+        {/* Left Nav */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+            },
+          }}
+          className="md:col-span-3 flex flex-col justify-end w-full pb-6 pt-8"
+        >
+          {navItems.map((item, idx) => (
+            <motion.div
+              key={idx}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+              className="group w-full cursor-pointer py-4"
+              onClick={() => handleNavClick(item.href)}
+            >
+              <p className="text-5xl md:text-9xl xl:text-9xl font-light tracking-tight group-hover:text-gray-400 transition-colors duration-300">
+                {item.label}
+              </p>
+              <div className="relative h-2 mt-2">
+                <div className="absolute bottom-0 left-0 h-[1px] w-full bg-[#2c2c2c]" />
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-gray-400 to-gray-700 group-hover:w-full transition-all duration-500 ease-in-out" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Right Info */}
+        <div className="md:col-span-1 pl-8 md:pl-16 h-full pb-6">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            variants={{
+              hidden: {},
+              show: {
+                transition: { staggerChildren: 0.1, delayChildren: 0.7 },
+              },
+            }}
+            className="flex flex-col justify-between h-full text-xl md:text-2xl"
+          >
+            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
+              <div className="space-y-2">
+                {rightLinks.map((link, i) => (
+                  <p
+                    key={i}
+                    className="hover:text-gray-400 cursor-pointer"
+                    onClick={() => handleNavClick(link.href, link.external)}
+                  >
+                    {link.label}
+                  </p>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
+              <p className="text-2xl font-semibold uppercase tracking-widest mb-2">SAY HELLO</p>
+              <p className="text-xl mb-1">+91 8889766739</p>
+              <p className="text-xl text-gray-300">info@pkphotography.in</p>
+            </motion.div>
+
+            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
+              <p className="text-xl text-gray-300 mb-1"><strong>500+</strong> Happy Clients</p>
+              <p className="text-xl text-gray-300 mb-1"><strong>10+</strong> Years of Experience</p>
+              <p className="text-xl text-gray-300 mb-1"><strong>1M+</strong> Photos Captured</p>
+              <p className="text-xl text-gray-300"><strong>100+</strong> Artists Onboard</p>
+            </motion.div>
+
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              className="text-lg text-gray-500 space-x-6"
+            >
+              {socialLinks.map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noreferrer" className="hover:text-white transition">
+                  {s.label}
+                </a>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
-}
+};
+
+export default Nav;

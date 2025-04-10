@@ -42,7 +42,7 @@ export default function Header() {
           {/* Burger Toggle */}
           <div
             onClick={() => setIsActive(!isActive)}
-            className={`ml-4 z-[100] relative bg-white p-2 rounded-full ${styles.button}`}
+            className={`ml-4 relative p-2 ${styles.button}`}
           >
             <div
               className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}

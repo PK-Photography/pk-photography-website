@@ -30,27 +30,10 @@ export default function Landing() {
         <Image src={PKLogo} alt="PK Photography Logo" width={160} height={120} />
       </div>
 
-      {/* Title */}
-      <h1 className="text-2xl md:text-3xl font-extrabold tracking-wide mb-4">
-        PK PHOTOGRAPHY
-      </h1>
-
       {/* Description */}
       <p className="max-w-xl mx-auto text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
         {`Welcome to the client portal. Here is where you can view, download, and share your photos. OH! you can also order prints if you'd like :). Please contact me for your password or any other assistance needed!`}
       </p>
-
-      {/* Contact Info */}
-      <div className="flex flex-col items-center space-y-2 text-gray-800 text-sm">
-        <div className="flex items-center gap-2">
-          <AiOutlineGlobal size={18} />
-          <span>pkphotography.com</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <CgMail size={18} />
-          <span>pkphotography@gmail.com</span>
-        </div>
-      </div>
     </section>
   );
 }

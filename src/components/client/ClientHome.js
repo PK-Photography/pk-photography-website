@@ -14,7 +14,6 @@ import { saveAs } from "file-saver";
 import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
 import Header from "@/components/header/Header";
-import PKLogo from "@/assets/logo.webp";
 import bgImg from "@/assets/5.webp"
 import ImageGalleryList from "../client/ImageGalleryList";
 import BannerSection from "../client/BannerSection";
@@ -661,8 +660,6 @@ const ClientHome = () => {
         <meta property="og:url" content={window.location.href} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
-      <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2  " />
 
       <Header />
 

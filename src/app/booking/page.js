@@ -8,7 +8,6 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
 import Image from "next/image";
 import Header from "@/components/header/Header";
-import PKLogo from "@/assets/logo.webp";
 import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosConfig";
 
@@ -72,7 +71,6 @@ const BookingForm = () => {
     if (isSubmitted) {
         return (
             <>
-                <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
 
                 <Header />
                 <div className="flex flex-col items-center justify-center p-10 min-h-[100vh]">
@@ -96,8 +94,6 @@ const BookingForm = () => {
     // Booking form UI
     return (
         <>
-            <Image src={PKLogo} alt="Saas Logo" height={120} width={160} className="p-2" />
-
             <Header />
 
             <div className="flex items-center justify-center min-h-screen bg-gray-100 p-10">

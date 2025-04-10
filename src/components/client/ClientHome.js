@@ -88,7 +88,7 @@ const ClientHome = () => {
           const files = response.data.files.map((file, index) => ({
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
-            mediumRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
+            mediumRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
             highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));

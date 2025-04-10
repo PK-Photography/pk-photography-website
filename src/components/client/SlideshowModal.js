@@ -120,15 +120,15 @@ const SlideshowModal = ({
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -100 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center max-h-[80vh] mb-6"
+        className="flex items-center justify-center max-h-[100vh] mb-6"
       >
         <Image
           src={currentImage?.lowRes || currentImage?.mediumRes}
           alt="Slideshow Image"
-          width={800}
-          height={600}
+          width={1100}
+          height={900}
           unoptimized={true}
-          className="object-contain max-h-[60vh] w-auto"
+          className="object-contain max-h-[70vh] w-auto"
           loading="eager"
         />
       </motion.div>
@@ -144,7 +144,7 @@ const SlideshowModal = ({
       </button>
 
       {/* Thumbnails */}
-      <div className="mt-6 mb-4 flex gap-2 overflow-x-auto px-4 py-2 bg-black bg-opacity-40 rounded max-w-full">
+      <div className="-mt-[4] mb-10 flex gap-2 overflow-x-auto px-4 py-2 bg-black bg-opacity-40 rounded max-w-full">
         {visibleThumbnails.map((img, index) => {
           const globalIndex = images.findIndex((i) => i.id === img.id);
           const isActive = globalIndex === currentImageIndex;
@@ -160,8 +160,8 @@ const SlideshowModal = ({
               <Image
                 src={img.lowRes}
                 alt={`Thumbnail ${globalIndex + 1}`}
-                width={80}
-                height={60}
+                width={50}
+                height={40}
                 className="object-cover"
                 loading="eager"
               />
@@ -171,7 +171,7 @@ const SlideshowModal = ({
       </div>
 
       {/* iOS-style Controls */}
-      <div className="absolute bottom-6 inset-x-0 flex justify-center z-50">
+      <div className="absolute bottom-4 inset-x-0 flex justify-center z-50">
         <div className="flex gap-6 bg-[#FFFCEF] bg-opacity-60 px-6 py-3 rounded-full backdrop-blur">
           <button
             className="text-[#5C899D] hover:bg-white/10 p-2 rounded-full transition"

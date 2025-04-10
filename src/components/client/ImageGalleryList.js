@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { GoDownload } from 'react-icons/go';
 import { FaHeart, FaShare } from 'react-icons/fa';
@@ -18,6 +18,11 @@ const ImageGalleryList = ({
   startAutoPlay = () => {},
 }) => {
   const primaryColor = '#1b4b7a';
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleLoad = (id, src) => {
+    setLoadedImages(prev => ({ ...prev, [id]: src }));
+  };
 
   return (
     <div className="px-2 pt-4 bg-[#eae8e4]">
@@ -43,7 +48,7 @@ const ImageGalleryList = ({
                 const idx = images.findIndex((img) => img.id === image.id);
                 if (idx !== -1) {
                   const preload = new window.Image();
-                  preload.src = images[idx].mediumRes;
+                  preload.src = images[idx].highRes;
                   setCurrentImageIndex(idx);
                   setSlideshowVisible(true);
                   startAutoPlay();
@@ -52,18 +57,17 @@ const ImageGalleryList = ({
             >
               <div className="relative w-full">
                 <img
-                  src={image.lowRes}
+                  src={loadedImages[image.id] || image.lowRes}
                   alt={image.name || 'photo'}
                   className={`w-full transition duration-500 ${canView ? '' : 'blur-md'}`}
+                  onLoad={() => {
+                    if (!loadedImages[image.id]) {
+                      const bgImg = new window.Image();
+                      bgImg.src = image.highRes;
+                      bgImg.onload = () => handleLoad(image.id, image.highRes);
+                    }
+                  }}
                 />
-
-                {canView && (
-                  <img
-                    src={image.mediumRes}
-                    alt="High-res"
-                    className="w-full absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  />
-                )}
 
                 {/* Floating Action Buttons */}
                 <div

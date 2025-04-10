@@ -29,8 +29,11 @@ const extraLinks = [
   { title: "Careers", href: "/careers" },
   { title: "Signup", href: "/signup" },
 ];
+interface NavProps {
+  onClose: () => void;
+}
 
-export default function Nav() {
+export default function Nav({ onClose }: NavProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [selectedIndicator, setSelectedIndicator] = useState<string>(pathname);
@@ -82,6 +85,27 @@ export default function Nav() {
                   />
                 </motion.div>
               ))}
+              {/* Close Icon */}
+              <button
+                onClick={onClose}
+                className="absolute top-6 right-6 z-[999] bg-white rounded-full p-2 shadow-md hover:shadow-lg transition"
+                aria-label="Close Navigation"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="#5C899D"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
             <div className={styles.speciality}>
               <p className={styles.specialityTitle}>OUR SPECIALITY</p>

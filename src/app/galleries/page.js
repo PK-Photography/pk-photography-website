@@ -3,7 +3,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import Header from "@/components/header/Header";
 import Image from "next/image";
-import PKLogo from "@/assets/logo.webp";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import { useSearchParams, useRouter } from "next/navigation";
 import axiosInstance from "@/utils/axiosConfig";
@@ -178,13 +177,6 @@ function GalleryContent() {
 function App() {
   return (
     <div className="px-4 py-4 sm:px-8 sm:py-6">
-      <Image
-        src={PKLogo}
-        alt="Saas Logo"
-        height={80}
-        width={120}
-        className="mx-auto mb-4 sm:mb-6"
-      />
       <Header />
       <BubbleText text="Gallery" />
       <Suspense fallback={<p>Loading...</p>}>

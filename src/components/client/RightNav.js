@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHeart, FaPlay, FaCartArrowDown, FaImages } from "react-icons/fa";
+import { FaHeart, FaImages } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
 
 const RightNav = ({
@@ -15,26 +15,24 @@ const RightNav = ({
   const navItems = [
     {
       icon: <FaImages className="text-lg" />,
-      label: `Total Images (${totalImages || 0})`,
+      label: "Total Images",
+      total: totalImages,
+      onClick: null,
       show: true,
     },
     {
       icon: <FaHeart className="text-lg" />,
-      label: `Favourite (${favorites.length})`,
+      label: "Favourite",
+      total: favorites.length,
       onClick: toggleFavoritesModal,
       show: true,
     },
     {
       icon: <GoDownload className="text-lg" />,
       label: "Download All",
+      total: null,
       onClick: handleDownloadAll,
       show: canDownload,
-    },
-    {
-      icon: <FaPlay className="text-lg" />,
-      label: "Slideshow",
-      onClick: handleSlideshow,
-      show: canView,
     },
   ];
 
@@ -45,11 +43,21 @@ const RightNav = ({
         .map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center cursor-pointer hover:text-black sm:flex-row sm:space-x-2"
             onClick={item.onClick}
+            className="flex items-center space-x-2 cursor-pointer hover:text-black"
           >
-            {item.icon}
-            <span className="text-xs sm:text-sm sm:inline hidden">{item.label}</span>
+            {/* Icon + (total) together */}
+            <div className="flex items-center space-x-1 whitespace-nowrap">
+              {item.icon}
+              {/* Desktop label */}
+              <span className="hidden sm:inline text-sm whitespace-nowrap">
+                {item.label}
+              </span>
+              {item.total > 0 && (
+                <span className="text-xs">({item.total})</span>
+              )}
+            </div>
+
           </div>
         ))}
     </div>

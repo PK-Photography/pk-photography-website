@@ -19,9 +19,9 @@ export default function Header() {
         {/* Navigation */}
         <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800">
           <Link href="/">home</Link>
-          <Link href="/booking">explore</Link>
-          <a href="https://pkblogs-dev.onrender.com/" target="_blank" rel="noopener noreferrer">blog</a>
-          <Link href="/galleries">gallery</Link>
+          <Link href="/client">client</Link>
+          <a href="/galleries" target="_blank" rel="noopener noreferrer">gallery</a>
+          <Link href="/booking">booking</Link>
         </div>
 
         {/* CTAs + Burger */}

@@ -76,7 +76,7 @@ const UserCards = () => {
                   onClick={() => handleClick(card._id)}
                   className="block"
                 >
-                  <div className="relative h-64 w-full overflow-hidden bg-[white] group">
+                  <div className="relative h-80 w-full overflow-hidden bg-[white] group">
                     <Image
                       src={card.imageUrl}
                       alt={card.name}

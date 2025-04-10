@@ -43,7 +43,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
     >
       {/* Top Row */}
       <div className="relative w-full px-6 pt-6 h-20">
-        <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-semibold">
+        <p className="text-white text-4xl font-semibold md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
           PK
         </p>
         <button
@@ -59,7 +59,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full h-[calc(100%-80px)] items-end">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full h-[calc(100%-80px)] items-end overflow-y-auto md:overflow-hidden">
         {/* Left Nav */}
         <motion.div
           initial="hidden"
@@ -95,7 +95,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
         </motion.div>
 
         {/* Right Info */}
-        <div className="md:col-span-1 pl-8 md:pl-16 h-full pb-6">
+        <div className="md:col-span-1 pl md:pl-16 h-full pb-6">
           <motion.div
             initial="hidden"
             animate="show"
@@ -106,14 +106,17 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
                 transition: { staggerChildren: 0.1, delayChildren: 0.7 },
               },
             }}
-            className="flex flex-col justify-between h-full text-xl md:text-2xl"
+            className="flex flex-col justify-between h-full text-2xl md:text-2xl items-start md:items-end"
           >
-            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
-              <div className="space-y-2">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              className="mb-10 w-full"
+            >
+              <div className="space-y-2 w-full">
                 {rightLinks.map((link, i) => (
                   <p
                     key={i}
-                    className="hover:text-gray-400 cursor-pointer"
+                    className="hover:text-gray-400 cursor-pointer text-left"
                     onClick={() => handleNavClick(link.href, link.external)}
                   >
                     {link.label}
@@ -122,22 +125,28 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
               </div>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
-              <p className="text-2xl font-semibold uppercase tracking-widest mb-2">SAY HELLO</p>
-              <p className="text-xl mb-1">+91 8889766739</p>
-              <p className="text-xl text-gray-300">info@pkphotography.in</p>
-            </motion.div>
-
-            <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
-              <p className="text-xl text-gray-300 mb-1"><strong>500+</strong> Happy Clients</p>
-              <p className="text-xl text-gray-300 mb-1"><strong>10+</strong> Years of Experience</p>
-              <p className="text-xl text-gray-300 mb-1"><strong>1M+</strong> Photos Captured</p>
-              <p className="text-xl text-gray-300"><strong>100+</strong> Artists Onboard</p>
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              className="mb-10 w-full"
+            >
+              <p className="text-2xl font-semibold uppercase tracking-widest mb-2 text-left">SAY HELLO</p>
+              <p className="text-xl mb-1 text-left">+91 8889766739</p>
+              <p className="text-xl text-gray-300 text-left">info@pkphotography.in</p>
             </motion.div>
 
             <motion.div
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-              className="text-lg text-gray-500 space-x-6"
+              className="mb-10 w-full"
+            >
+              <p className="text-xl text-gray-300 mb-1 text-left"><strong>500+</strong> Happy Clients</p>
+              <p className="text-xl text-gray-300 mb-1 text-left"><strong>10+</strong> Years of Experience</p>
+              <p className="text-xl text-gray-300 mb-1 text-left"><strong>1M+</strong> Photos Captured</p>
+              <p className="text-xl text-gray-300 text-left"><strong>100+</strong> Artists Onboard</p>
+            </motion.div>
+
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              className="text-lg text-gray-500 space-x-6 text-left w-full"
             >
               {socialLinks.map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noreferrer" className="hover:text-white transition">

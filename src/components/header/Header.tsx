@@ -18,10 +18,10 @@ export default function Header() {
 
         {/* Navigation */}
         <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800">
-          <Link href="/">home</Link>
-          <Link href="/client">client</Link>
-          <a href="/galleries" target="_blank" rel="noopener noreferrer">gallery</a>
-          <Link href="/booking">booking</Link>
+          <Link href="/">Home</Link>
+          <Link href="/client">Client</Link>
+          <a href="/galleries" target="_blank" rel="noopener noreferrer">Gallery</a>
+          <Link href="/booking">Booking</Link>
         </div>
 
         {/* CTAs + Burger */}
@@ -30,13 +30,13 @@ export default function Header() {
             href="/login"
             className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
           >
-            log in
+            Log in
           </Link>
           <Link
             href="/signup"
             className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
           >
-            sign up
+            Sign up
           </Link>
 
           {/* Burger Toggle */}

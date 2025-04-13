@@ -12,6 +12,7 @@ import AboutStudio from "@/components/Home/AboutStudio";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import OurClients from "@/sections/OurClients";
 import PricingCardIndex from "@/sections/PricingCardIndex";
+import CardStack from "@/components/StackingCards/CardStack";
 
 export default function Home() {
   useEffect(() => {
@@ -32,12 +33,13 @@ export default function Home() {
       <ImageBreak />
       <BubbleText text="Our Services" id="Our-Services" />
       <Service />
+      <CardStack />
       <Do />
       <BubbleText text="Our Clients" id="Our-Clients" />
       <OurClients />
       <BubbleText text="Testimonial" id="Testimonial" />
       <Reviews />
-      <AboutStudio/>
+      <AboutStudio />
       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
       <PricingCardIndex />
     </div>

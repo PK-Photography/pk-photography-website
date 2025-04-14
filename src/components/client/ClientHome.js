@@ -116,8 +116,8 @@ const ClientHome = () => {
         },
       });
   
-      const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
-      // const baseURL = "http://localhost:8081/api/v1";
+      // const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
+      const baseURL = "http://localhost:8081/api/v1";
 
       const newImages = response.data.images.map((img, index) => ({
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
@@ -708,7 +708,6 @@ const ClientHome = () => {
         handleShare={handleShare}
         setCurrentImageIndex={setCurrentImageIndex}
         setSlideshowVisible={setSlideshowVisible}
-        // startAutoPlay={startAutoPlay}
         imageContainerRef={imageContainerRef}
       />
 

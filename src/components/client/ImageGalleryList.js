@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { GoDownload } from 'react-icons/go';
 import { FaHeart, FaShare } from 'react-icons/fa';
 

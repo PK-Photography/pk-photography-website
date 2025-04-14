@@ -21,6 +21,28 @@ const SlideshowModal = ({
   const currentImage = images[currentImageIndex];
   const isFavorited = favorites.find((fav) => fav.id === currentImage?.id);
 
+  const handleDirectBrowserDownload = async () => {
+    const url = currentImage?.highRes || currentImage?.mediumRes;
+    if (!url) return alert("No download URL found.");
+  
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+  
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `${currentImage?.name || "image"}_${Date.now()}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download image.");
+    }
+  };
+
   const handleShare = async () => {
     const link = currentImage?.shareableLink || currentImage?.highRes;
     if (!link) return alert("No link available.");
@@ -71,12 +93,9 @@ const SlideshowModal = ({
                 color={isFavorited ? "#DC2626" : "#5C899D"}
               />
             </button>
-            {/* <button
-              onClick={() => handleOpenDownloadModal(currentImage)}
-              aria-label="Download"
-            >
+            <button onClick={handleDirectBrowserDownload} aria-label="Download">
               <LiaDownloadSolid size={24} color="#5C899D" />
-            </button> */}
+            </button>
           </div>
         </div>
 

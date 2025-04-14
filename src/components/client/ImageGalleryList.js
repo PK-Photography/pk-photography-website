@@ -68,47 +68,46 @@ const ImageGalleryList = ({
                   }}
                 />
 
-                {/* Floating Action Buttons */}
-                <div
-                  className={`absolute inset-0 flex items-end justify-end gap-1 p-1 transition ${
-                    isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                  }`}
-                >
-                  <button
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-red-600"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleFavorite(image);
-                    }}
+                {!isMobile && (
+                  <div
+                    className={`absolute inset-0 flex items-end justify-end gap-1 p-1 opacity-0 group-hover:opacity-100 transition`}
                   >
-                    <FaHeart
-                      size={16}
-                      className={isFavorited ? 'text-red-600' : `text-[${primaryColor}]`}
-                    />
-                  </button>
+                    <button
+                      className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-red-600"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(image);
+                      }}
+                    >
+                      <FaHeart
+                        size={16}
+                        className={isFavorited ? 'text-red-600' : `text-[${primaryColor}]`}
+                      />
+                    </button>
 
-                  {canDownload && (
+                    {canDownload && (
+                      <button
+                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-black"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenDownloadModal(image);
+                        }}
+                      >
+                        <GoDownload size={16} />
+                      </button>
+                    )}
+
                     <button
                       className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-black"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleOpenDownloadModal(image);
+                        handleShare(image.shareableLink);
                       }}
                     >
-                      <GoDownload size={16} />
+                      <FaShare size={14} />
                     </button>
-                  )}
-
-                  <button
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-black"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleShare(image.shareableLink);
-                    }}
-                  >
-                    <FaShare size={14} />
-                  </button>
-                </div>
+                  </div>
+                )}
               </div>
             </li>
           );

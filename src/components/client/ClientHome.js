@@ -1,6 +1,4 @@
-import Link from "next/link";
 import Head from "next/head";
-import Image from "next/image";
 import FavouriteModal from "../client/FavouriteModal.js";
 import SlideshowModal from "../client/SlideshowModal.js";
 import CategoryNav from "../client/CategoryNav.js";
@@ -8,13 +6,11 @@ import RightNav from "../client/RightNav.js";
 import ImageModal from "../client/ImageModal.js";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
-import { GoDownload } from "react-icons/go";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { FaHeart, FaShare, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
 import Header from "@/components/header/Header";
-import bgImg from "@/assets/5.webp"
 import ImageGalleryList from "../client/ImageGalleryList";
 import BannerSection from "../client/BannerSection";
 
@@ -719,7 +715,7 @@ const ClientHome = () => {
       {/* We we click on download Icon, this page opens...Download Modal */}
       {
         downloadModalVisible && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-1000">
             <div
               className="bg-[#FDF5E6] rounded-2xl p-8 w-full max-w-lg shadow-xl transform transition-all duration-300 scale-95"
               style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -830,6 +826,10 @@ const ClientHome = () => {
             handlePreviousImage={handlePreviousImage}
             handleNextImage={handleNextImage}
             setCurrentImageIndex={setCurrentImageIndex}
+            selectedCard={selectedCard}
+            toggleFavorite={toggleFavorite}
+            favorites={favorites}
+            handleOpenDownloadModal={handleOpenDownloadModal}
           />
         )
       }

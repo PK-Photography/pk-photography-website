@@ -664,7 +664,7 @@ const ClientHome = () => {
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
-          <CategoryNav
+        <CategoryNav
             categories={categories}
             activeCategory={activeCategory}
             fetchImagesFromDrive={fetchImagesFromDrive}
@@ -672,6 +672,7 @@ const ClientHome = () => {
             toggleDropdown={toggleDropdown}
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
+            selectedCard={selectedCard}
           />
           <RightNav
             toggleFavoritesModal={toggleFavoritesModal}

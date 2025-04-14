@@ -5,10 +5,21 @@ const CategoryNav = ({
   categories,
   activeCategory,
   fetchImagesFromDrive,
+  fetchImagesFromNAS,
   toggleDropdown,
   dropdownVisible,
   setDropdownVisible,
+  selectedCard,
 }) => {
+  const handleCategoryClick = (category) => {
+    const isDrive = category.images.includes("drive.google.com");
+
+    if (isDrive) {
+      fetchImagesFromDrive(category.images, category.name, selectedCard._id);
+    } else {
+      fetchImagesFromNAS(category.images, category.name, selectedCard._id);
+    }
+  };
 
   return (
     <div className="mb-6">
@@ -21,12 +32,11 @@ const CategoryNav = ({
                 ? "bg-yellow-400 text-black"
                 : "bg-gray-200 hover:bg-gray-300"
             }`}
-            onClick={() => fetchImagesFromDrive(category.images, category.name)}
+            onClick={() => handleCategoryClick(category)}
           >
             {category.name}
           </li>
         ))}
-
 
         {categories.length > 4 && (
           <li className="relative">
@@ -46,7 +56,7 @@ const CategoryNav = ({
                       activeCategory === category.name ? "font-bold" : ""
                     }`}
                     onClick={() => {
-                      fetchImagesFromDrive(category.images, category.name);
+                      handleCategoryClick(category);
                       setDropdownVisible(false);
                     }}
                   >

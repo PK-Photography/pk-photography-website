@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import ClientHome from '../../components/ClientHome';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axiosConfig';
 

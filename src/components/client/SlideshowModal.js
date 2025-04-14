@@ -2,30 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiHeart, FiInfo, FiDownload } from "react-icons/fi";
+import { FiInfo } from "react-icons/fi";
 import { LiaDownloadSolid } from "react-icons/lia";
 import { PiHeart } from "react-icons/pi";
 import { PiShareFatLight } from "react-icons/pi";
 import { MdKeyboardBackspace } from "react-icons/md";
-
-
-const IOSShareIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    fill="none"
-    stroke="#5C899D"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <path d="M12 16V4" />
-    <path d="M8 8l4-4 4 4" />
-    <rect x="4" y="16" width="16" height="4" rx="2" />
-  </svg>
-);
 
 const SlideshowModal = ({
   images,

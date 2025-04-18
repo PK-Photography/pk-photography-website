@@ -1,13 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { AiOutlineGlobal } from "react-icons/ai";
-import { CgMail } from "react-icons/cg";
-import { FaInstagram, FaFacebook } from "react-icons/fa6";
-import Image from "next/image";
 
 export default function Landing() {
   return (
-    <section className="bg-[white] text-center px-4 pt-10 pb-14">
+    <section className="bg-[white] text-center px-4 pt-10 pb-4">
       <Head>
         <title>PK Photography | Client Portal</title>
         <meta name="description" content="Client portal for viewing, downloading, and sharing PK Photography albums." />

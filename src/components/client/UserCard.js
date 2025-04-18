@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import axiosInstance from "../../utils/axiosConfig";
@@ -25,6 +24,7 @@ const UserCards = () => {
   const [enteredPin, setEnteredPin] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [pinError, setPinError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -65,8 +65,13 @@ const UserCards = () => {
     }
   };
 
-  const totalPages = Math.ceil(cards.length / ITEMS_PER_PAGE);
-  const paginatedCards = cards.slice(
+  const filteredCards = cards.filter(card =>
+    card.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  
+  const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
+  
+  const paginatedCards = filteredCards.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -80,6 +85,32 @@ const UserCards = () => {
 
   return (
     <>
+      <div className="mb-6 w-full flex justify-center">
+        <div className="relative w-[70%]">
+          <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103 10.5a7.5 7.5 0 0013.15 6.15z"
+              />
+            </svg>
+          </span>
+          <input
+            type="text"
+            placeholder="Search by name..."
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5C899D] focus:border-transparent"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
       <Head>
         <title>PK Photography</title>
         <meta name="description" content="Browse through a collection of client albums with beautiful thumbnails." />

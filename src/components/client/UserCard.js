@@ -76,6 +76,10 @@ const UserCards = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -102,10 +106,33 @@ const UserCards = () => {
               />
             </svg>
           </span>
+
+          {searchQuery && (
+            <button
+              className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
+              onClick={() => setSearchQuery("")}
+              aria-label="Clear"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          )}
+
           <input
             type="text"
             placeholder="Search by name..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5C899D] focus:border-transparent"
+            className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5C899D] focus:border-transparent"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

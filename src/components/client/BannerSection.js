@@ -15,7 +15,7 @@ const BannerSection = ({ selectedCard }) => {
       <section
         className="relative w-full min-h-[calc(75vh-40px)] bg-center bg-cover"
         style={{
-          backgroundImage: `url(${selectedCard?.imageUrl || "/pk-cover.png"})`,
+          backgroundImage: `url(${selectedCard?.imageUrl})`,
         }}
       ></section>
 

@@ -5,7 +5,7 @@ import { FC } from 'react';
 
 const FAQSection: FC = () => {
   return (
-    <div className="container mx-auto px-6 py-12">
+    <div className="container mx-auto px-6">
       <div className="flex flex-col md:flex-row items-center gap-8 p-8 min-h-screen overflow-hidden">
         {/* Illustration */}
         <div className="w-full flex justify-center">

@@ -25,7 +25,7 @@ export default function Login() {
     try {
       const res = await axiosInstance.post("/user/login", formData);
 
-      console.log("Response Data:", res.data);
+ 
 
       if (res.data.success) {
         toast.success("Login successful!");

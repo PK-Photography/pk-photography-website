@@ -168,9 +168,9 @@ const ClientHome = () => {
         activeCategory &&
         categories.find((c) => c.name === activeCategory)?.images.includes("quickconnect.to")
       ) {
-        console.log("⬇️ Scrolled to bottom: fetching next NAS page");
+       
         setNasPage((prev) => {
-          console.log("📦 Updating nasPage:", prev + 1);
+     
           return prev + 1;
         });
       }
@@ -776,17 +776,17 @@ const ClientHome = () => {
               const nextPage = nasPage + 1;
               setNasPage(nextPage);
 
-              console.log(nextPage);
+     
             
               const activeCat = categories.find((c) => c.name === activeCategory);
-              console.log(activeCat);
+   
               if (
                 activeCat &&
                 activeCat.images.includes("/photo/") &&
                 selectedCard &&
                 activeCategory
               ) {
-                console.log("📦 Load More clicked → calling fetchImagesFromNAS");
+
                 fetchImagesFromNAS(activeCat.images, activeCategory, selectedCard._id, nextPage);
               }
             }}

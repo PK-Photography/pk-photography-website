@@ -5,7 +5,7 @@ import StackingCards from "./components/StackingCards";
 
 export default function CardStack() {
   return (
-    <div className="relative  ">
+    <div className="relative mb-[300px] ">
       <section className="sticky top-0  h-screen">
         <ScrollTriggeredAnimation />
       </section>

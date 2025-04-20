@@ -28,7 +28,7 @@ export default function Signup() {
     try {
       const res = await axiosInstance.post("/user/signup", formData);
 
-      console.log("Response Data:", res.data);
+   
 
       if (res.data.success) {
         toast.success("Signup successful! Please check your email for OTP.");

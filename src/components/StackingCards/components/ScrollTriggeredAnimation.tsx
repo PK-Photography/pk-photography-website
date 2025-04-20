@@ -14,7 +14,7 @@ const ScrollTriggeredAnimation = () => {
     <div
       id="container"
       ref={containerRef}
-      className="relative bg-black  text-white min-h-screen  overflow-hidden flex  justify-center "
+      className="relative bg-black  text-white min-h-[150vh] lg:min-h-screen  overflow-hidden flex  justify-center "
     >
       {/* First Text Block - "Cherish Your Moments..." */}
       <motion.div

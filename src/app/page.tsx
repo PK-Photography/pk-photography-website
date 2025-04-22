@@ -30,15 +30,14 @@ export default function Home() {
     <div className="bg-[white]">
       <Header />
       <Hero />
-      {/* <ImageBreak /> */}
       <CardStack />
+      <AboutStudio />
       <BubbleText text="Our Services" id="Our-Services" />
       <Service />
       <FAQSection />
       <OurClients />
       <BubbleText text="Testimonial" id="Testimonial" />
       <Reviews />
-      <AboutStudio />
       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
       <PricingCardIndex />
     </div>

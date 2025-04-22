@@ -17,7 +17,7 @@ export default function ForgotPassword() {
     try {
       const res = await axiosInstance.post("/user/forgot-password", { email });
       
-      console.log("Response Data:", res.data);
+  
       
       if (res.data.success) {
         toast.success("OTP sent to your email. Please verify.");

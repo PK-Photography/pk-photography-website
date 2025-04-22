@@ -8,7 +8,7 @@ const ScrollTriggeredAnimation = () => {
 
   // Trigger animation when the container's top aligns with the viewport top.
   // The margin option can be tweaked if needed.
-  const inView = useInView(containerRef, { margin: "0px 0px -40% 0px" });
+  const inView = useInView(containerRef, { margin: "0px 0px -100% 0px" });
 
   return (
     <div

@@ -8,7 +8,7 @@ const ScrollTriggeredAnimation = () => {
 
   // Trigger animation when the container's top aligns with the viewport top.
   // The margin option can be tweaked if needed.
-  const inView = useInView(containerRef, { margin: "0px 0px -100% 0px" });
+  const inView = useInView(containerRef, { margin: "0px 0px -40% 0px" });
 
   return (
     <div
@@ -20,7 +20,7 @@ const ScrollTriggeredAnimation = () => {
       <motion.div
         initial={{ y: "-150%" }} // completely offscreen above
         animate={{ y: inView ? 16 : "-150%" }} // animates to 16px from top when in view
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.5 }}
         className="absolute text-center transform  -translate-x-1/2 top-2 w-full text-sm lg:text-base uppercase font-bold text-[#ABABAB]  "
       >
         Cherish Your Moments in Stunning Detail. Beautiful Portrait Photography

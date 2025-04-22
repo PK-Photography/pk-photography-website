@@ -36,11 +36,11 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans]"
-    >
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto"
+      >
       {/* Top Row */}
       <div className="relative w-full px-6 pt-6 h-20">
         <p className="text-white text-4xl font-semibold md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
@@ -59,7 +59,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full h-[calc(100%-80px)] items-end overflow-y-auto md:overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full flex-1">
         {/* Left Nav */}
         <motion.div
           initial="hidden"
@@ -106,7 +106,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
                 transition: { staggerChildren: 0.1, delayChildren: 0.7 },
               },
             }}
-            className="flex flex-col justify-between h-full text-2xl md:text-2xl items-start md:items-end"
+            className="flex flex-col justify-between h-full text-base sm:text-lg md:text-xl items-start md:items-end"
           >
             <motion.div
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
@@ -129,7 +129,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
               className="mb-10 w-full"
             >
-              <p className="text-2xl font-semibold uppercase tracking-widest mb-2 text-left">SAY HELLO</p>
+              <p className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-widest mb-2 text-left">SAY HELLO</p>
               <p className="text-xl mb-1 text-left">+91 8889766739</p>
               <p className="text-xl text-gray-300 text-left">info@pkphotography.in</p>
             </motion.div>

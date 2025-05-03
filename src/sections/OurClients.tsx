@@ -10,7 +10,6 @@ const OurClients: React.FC = () => {
     "/clients/c6.webp",
     "/clients/c8.webp",
     "/clients/c9.webp",
-    "/clients/c10.webp",
   ];
 
   return (

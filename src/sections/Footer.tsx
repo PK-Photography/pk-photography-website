@@ -151,27 +151,27 @@ export const Footer = () => {
                 </li>
                 <FooterLink
                   text="Portfolio"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink
                   text="Portrait"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink
                   text="Headshot"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink
                   text="Celebrity"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink
                   text="Interior"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink
                   text="E-Commerce"
-                  href="/gallery"
+                  href="/galleries"
                 />
               </div>
 
@@ -181,13 +181,13 @@ export const Footer = () => {
                 </li>
                 <FooterLink
                   text="Wedding & Events"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink text="Live Streaming" href="/live-streaming" />
-                <FooterLink text="Corporate Ads" href="/gallery" />
-                <FooterLink text="Product Ads" href="/gallery" />
-                <FooterLink text="Influencer Videos" href="/gallery" />
-                <FooterLink text="Design" href="/gallery" />
+                <FooterLink text="Corporate Ads" href="/galleries" />
+                <FooterLink text="Product Ads" href="/galleries" />
+                <FooterLink text="Influencer Videos" href="/galleries" />
+                <FooterLink text="Design" href="/galleries" />
               </div>
 
               <div>
@@ -204,7 +204,7 @@ export const Footer = () => {
                 />
                  <FooterLink
                   text="Gallery"
-                  href="/gallery"
+                  href="/galleries"
                 />
                 <FooterLink text="Blogs" href="/blogs" />
                 <FooterLink

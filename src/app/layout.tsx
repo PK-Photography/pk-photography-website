@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
 };
+import StyledComponentsRegistry from "@/lib/registry";
 
 export default function RootLayout({
   children,
@@ -31,7 +32,10 @@ export default function RootLayout({
     <html lang="en" className="relative">
       <head>
         {/* Google Analytics script */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEHXD05NMZ"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-LEHXD05NMZ"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -44,7 +48,10 @@ export default function RootLayout({
             `,
           }}
         />
-        <meta name="google-site-verification" content="xkkbCA30-55oudh-aQAwydfWkzUga0omPDIZ6lN9RB4" />
+        <meta
+          name="google-site-verification"
+          content="xkkbCA30-55oudh-aQAwydfWkzUga0omPDIZ6lN9RB4"
+        />
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         <AuthProvider>
@@ -62,7 +69,8 @@ export default function RootLayout({
             pauseOnHover
           />
 
-          {children}
+          {/* {children} */}
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
 
           {/* Footer component */}
           <Footer />

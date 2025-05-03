@@ -7,6 +7,7 @@ const navItems = [
   { label: "Clients", href: "/client" },
   { label: "Services", href: "/services" },
   { label: "Bookings", href: "/booking" },
+  { label: "Live Streaming", href: "/live-streaming" },
 ];
 
 const rightLinks = [
@@ -17,9 +18,15 @@ const rightLinks = [
 ];
 
 const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/itspkphotography.in/" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/itspkphotography.in/",
+  },
   { label: "Twitter", href: "https://x.com/pkphotographym" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/pkphotography/" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/pkphotography/",
+  },
 ];
 
 const Nav = ({ onClose }: { onClose: () => void }) => {
@@ -36,11 +43,11 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto"
-      >
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto"
+    >
       {/* Top Row */}
       <div className="relative w-full px-6 pt-6 h-20">
         <p className="text-white text-4xl font-semibold md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
@@ -51,7 +58,14 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
           className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:opacity-70 z-50"
           aria-label="Close"
         >
-          <svg width="60" height="60" fill="none" stroke="white" strokeWidth="1" viewBox="0 0 24 24">
+          <svg
+            width="60"
+            height="60"
+            fill="none"
+            stroke="white"
+            strokeWidth="1"
+            viewBox="0 0 24 24"
+          >
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
@@ -78,7 +92,11 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
               key={idx}
               variants={{
                 hidden: { opacity: 0, y: 50 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
               }}
               className="group w-full cursor-pointer py-4"
               onClick={() => handleNavClick(item.href)}
@@ -109,7 +127,10 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             className="flex flex-col justify-between h-full text-base sm:text-lg md:text-xl items-start md:items-end"
           >
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0 },
+              }}
               className="mb-10 w-full"
             >
               <div className="space-y-2 w-full">
@@ -126,30 +147,57 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             </motion.div>
 
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0 },
+              }}
               className="mb-10 w-full"
             >
-              <p className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-widest mb-2 text-left">SAY HELLO</p>
+              <p className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-widest mb-2 text-left">
+                SAY HELLO
+              </p>
               <p className="text-xl mb-1 text-left">+91 8889766739</p>
-              <p className="text-xl text-gray-300 text-left">info@pkphotography.in</p>
+              <p className="text-xl text-gray-300 text-left">
+                info@pkphotography.in
+              </p>
             </motion.div>
 
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0 },
+              }}
               className="mb-10 w-full"
             >
-              <p className="text-xl text-gray-300 mb-1 text-left"><strong>500+</strong> Happy Clients</p>
-              <p className="text-xl text-gray-300 mb-1 text-left"><strong>10+</strong> Years of Experience</p>
-              <p className="text-xl text-gray-300 mb-1 text-left"><strong>1M+</strong> Photos Captured</p>
-              <p className="text-xl text-gray-300 text-left"><strong>100+</strong> Artists Onboard</p>
+              <p className="text-xl text-gray-300 mb-1 text-left">
+                <strong>500+</strong> Happy Clients
+              </p>
+              <p className="text-xl text-gray-300 mb-1 text-left">
+                <strong>10+</strong> Years of Experience
+              </p>
+              <p className="text-xl text-gray-300 mb-1 text-left">
+                <strong>1M+</strong> Photos Captured
+              </p>
+              <p className="text-xl text-gray-300 text-left">
+                <strong>100+</strong> Artists Onboard
+              </p>
             </motion.div>
 
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0 },
+              }}
               className="text-lg text-gray-500 space-x-6 text-left w-full"
             >
               {socialLinks.map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noreferrer" className="hover:text-white transition">
+                <a
+                  key={i}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white transition"
+                >
                   {s.label}
                 </a>
               ))}

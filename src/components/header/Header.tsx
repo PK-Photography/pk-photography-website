@@ -10,9 +10,14 @@ export default function Header() {
 
   return (
     <>
-      <div className={`bg-white px-8 py-5 flex items-center justify-between w-full`}>
+      <div
+        className={`bg-white px-8 py-5 flex items-center justify-between w-full`}
+      >
         {/* Logo */}
-        <Link href="/" className="text-xl font-extrabold tracking-wide text-black">
+        <Link
+          href="/"
+          className="text-xl font-extrabold tracking-wide text-black"
+        >
           PK
         </Link>
 
@@ -20,8 +25,11 @@ export default function Header() {
         <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800">
           <Link href="/">Home</Link>
           <Link href="/client">Client</Link>
-          <a href="/galleries" target="_blank" rel="noopener noreferrer">Gallery</a>
+          <a href="/galleries" target="_blank" rel="noopener noreferrer">
+            Gallery
+          </a>
           <Link href="/booking">Booking</Link>
+          <Link href="/live-streaming">Live Streaming</Link>
         </div>
 
         {/* CTAs + Burger */}
@@ -45,7 +53,9 @@ export default function Header() {
             className={`ml-4 relative p-2 ${styles.button}`}
           >
             <div
-              className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}
+              className={`${styles.burger} ${
+                isActive ? styles.burgerActive : ""
+              }`}
             >
               <div className={`${styles.dash} ${styles.top}`}></div>
               <div className={`${styles.dash} ${styles.middle}`}></div>

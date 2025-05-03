@@ -1,6 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FiInfo } from "react-icons/fi";
 import { LiaDownloadSolid } from "react-icons/lia";
 import { PiHeart } from "react-icons/pi";
@@ -15,20 +16,18 @@ const SlideshowModal = ({
   selectedCard,
   toggleFavorite,
   favorites,
-  handleOpenDownloadModal,
 }) => {
-  const [showInfo, setShowInfo] = useState(false);
   const currentImage = images[currentImageIndex];
   const isFavorited = favorites.find((fav) => fav.id === currentImage?.id);
 
   const handleDirectBrowserDownload = async () => {
     const url = currentImage?.highRes || currentImage?.mediumRes;
     if (!url) return alert("No download URL found.");
-  
+
     try {
       const response = await fetch(url);
       const blob = await response.blob();
-  
+
       const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
@@ -78,9 +77,6 @@ const SlideshowModal = ({
             <MdKeyboardBackspace size={28} color="#5C899D" />
           </button>
           <div className="flex gap-4 items-center">
-            <button onClick={() => setShowInfo((prev) => !prev)}>
-              <FiInfo size={24} color="#5C899D" />
-            </button>
             <button onClick={handleShare} aria-label="Share">
               <PiShareFatLight size={24} color="#5C899D" />
             </button>
@@ -98,40 +94,14 @@ const SlideshowModal = ({
             </button>
           </div>
         </div>
-
-        {/* Info Section */}
-        {showInfo && (
-          <div className="text-[#5C899D] text-sm mt-2 w-full text-center absolute top-20">
-            {currentImage?.name && (
-              <p className="mb-1">
-                <strong>Name:</strong> {currentImage.name}
-              </p>
-            )}
-            {selectedCard?.name && (
-              <p className="mb-1">
-                <strong>Client:</strong> {selectedCard.name}
-              </p>
-            )}
-            {selectedCard?.date && (
-              <p>
-                <strong>Date:</strong>{" "}
-                {new Date(selectedCard.date).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
-            )}
-          </div>
-        )}
       </div>
 
-      {/* Image with swipe */}
+      {/* Main Image with Swipe */}
       <motion.div
         key={currentImageIndex}
         drag="x"
         onDragEnd={handleDragEnd}
-        className="w-full flex justify-center items-center h-[85vh] px-4"
+        className="w-full flex flex-col justify-center items-center h-[85vh] px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -142,33 +112,12 @@ const SlideshowModal = ({
           className="max-h-[80vh] w-auto object-contain"
           style={{ touchAction: "manipulation" }}
         />
+        {currentImage?.name && (
+          <p className="mt-4 text-sm text-[#0f1110] font-medium text-center">
+            {currentImage.name}
+          </p>
+        )}
       </motion.div>
-
-      {/* Thumbnails */}
-      <div className="w-full overflow-x-auto mt-6">
-        <div className="flex gap-3 justify-center px-2">
-          {images.map((img, idx) => (
-            <div
-              key={img.id}
-              className={`cursor-pointer border-2 rounded-md flex-shrink-0 ${
-                idx === currentImageIndex
-                  ? "border-[#5C899D]"
-                  : "border-transparent"
-              }`}
-              onClick={() => setCurrentImageIndex(idx)}
-              style={{ width: 100, height: 75 }}
-            >
-              <Image
-                src={img.lowRes}
-                alt={`Thumbnail ${idx + 1}`}
-                width={100}
-                height={75}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

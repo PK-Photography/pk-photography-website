@@ -2,14 +2,13 @@
 import { useEffect } from "react";
 
 import { Hero } from "@/sections/Hero";
-import Header from "@/components/header/Header";
 import Service from "@/components/services/Service";
 import Reviews from "@/sections/Reviews";
 import AboutStudio from "@/components/Home/AboutStudio";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import OurClients from "@/sections/OurClients";
 import PricingCardIndex from "@/sections/PricingCardIndex";
-import FAQSection from "@/sections/serviceSections/FAQSection";
+import FAQSection from "@/components/live-streaming/FAQ";
 import CardStack from "@/components/StackingCards/CardStack";
 
 export default function Home() {

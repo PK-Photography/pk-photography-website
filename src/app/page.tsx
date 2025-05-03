@@ -36,7 +36,6 @@ export default function Home() {
       <Service />
       <FAQSection />
       <OurClients />
-      <BubbleText text="Testimonial" id="Testimonial" />
       <Reviews />
       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
       <PricingCardIndex />

@@ -167,42 +167,6 @@ export const Testimonials = () => {
               </div>
             ))}
           </div>
-
-          {/* <div className="flex flex-col gap-5 mt-10 w-full max-h-[400px] overflow-y-auto">
-            {secondColumn.map(({ text, imageSrc, name, username }, index) => (
-              <div className="card p-4 border rounded-md w-[250px]" key={`secondColumn-${index}`}>
-                <div className="flex items-center">
-                  <div className="flex flex-col">
-                    <div className="font-medium tracking-tight leading-5 text-sm sm:text-base">
-                      {name}
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-600">
-                      {username}
-                    </div>
-                    <p className="text-xs sm:text-sm mt-2">{text}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
-
-          {/* <div className="flex flex-col gap-5 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] w-full max-h-[400px] overflow-y-auto">
-            {thirdColumn.map(({ text, imageSrc, name, username }, index) => (
-              <div className="card p-4 border rounded-md w-[250px]" key={`thirdColumn-${index}`}>
-                <div className="flex items-center">
-                  <div className="flex flex-col">
-                    <div className="font-medium tracking-tight leading-5 text-sm sm:text-base">
-                      {name}
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-600">
-                      {username}
-                    </div>
-                    <p className="text-xs sm:text-sm mt-2">{text}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
         </div>
       </div>
     </section>

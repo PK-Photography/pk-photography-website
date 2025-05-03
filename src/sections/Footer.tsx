@@ -1,26 +1,21 @@
 "use client";
 import {
-  FaEnvelope,
   FaFacebook,
-  FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  FaPhoneAlt,
-  FaTwitter,
 } from "react-icons/fa";
 import { useState, useRef } from "react";
 import PKLogo from "@/assets/logo.webp";
 import Image from "next/image";
 import { FaYoutube } from "react-icons/fa";
-// Scrambling effect component for the links
+
 const FooterLink = ({
   text,
   href,
-}: // className,
+}:
 {
   text: string;
   href: string;
-  // className: string;
 }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [linkText, setLinkText] = useState(text);
@@ -144,13 +139,6 @@ export const Footer = () => {
               >
                 <FaLinkedinIn className="text-2xl text-white hover:text-gray-600" />
               </a>
-
-              {/* <a
-                href="mailto:prabhakar@pkphotography.in"
-                className="bg-black p-2 rounded-full"
-              >
-                <FaEnvelope className="text-2xl text-white hover:text-gray-600" />
-              </a> */}
             </div>
           </div>
 
@@ -163,27 +151,27 @@ export const Footer = () => {
                 </li>
                 <FooterLink
                   text="Portfolio"
-                  href="https://pkphotography.in/corporate-headshots/"
+                  href="/gallery"
                 />
                 <FooterLink
                   text="Portrait"
-                  href="https://pkphotography.in/portrait-gallery/"
+                  href="/gallery"
                 />
                 <FooterLink
                   text="Headshot"
-                  href="https://pkphotography.in/gallery/"
+                  href="/gallery"
                 />
                 <FooterLink
                   text="Celebrity"
-                  href="https://pkphotography.in/portfolio-gallery/"
+                  href="/gallery"
                 />
                 <FooterLink
                   text="Interior"
-                  href="https://pkphotography.in/interior-design/"
+                  href="/gallery"
                 />
                 <FooterLink
                   text="E-Commerce"
-                  href="https://pkphotography.in/interior-design/"
+                  href="/gallery"
                 />
               </div>
 
@@ -193,13 +181,13 @@ export const Footer = () => {
                 </li>
                 <FooterLink
                   text="Wedding & Events"
-                  href="https://pkphotography.in/wedding/"
+                  href="/gallery"
                 />
-                <FooterLink text="Live Streaming" href="#" />
-                <FooterLink text="Corporate Ads" href="#" />
-                <FooterLink text="Product Ads" href="#" />
-                <FooterLink text="Influencer Videos" href="#" />
-                <FooterLink text="Design" href="#" />
+                <FooterLink text="Live Streaming" href="/live-streaming" />
+                <FooterLink text="Corporate Ads" href="/gallery" />
+                <FooterLink text="Product Ads" href="/gallery" />
+                <FooterLink text="Influencer Videos" href="/gallery" />
+                <FooterLink text="Design" href="/gallery" />
               </div>
 
               <div>
@@ -208,22 +196,22 @@ export const Footer = () => {
                 </li>
                 <FooterLink
                   text="Clients"
-                  href="https://pkphotography.io/client"
+                  href="/client"
                 />
                  <FooterLink
                   text="Booking"
-                  href="https://pkphotography.io/booking"
+                  href="/booking"
                 />
                  <FooterLink
                   text="Gallery"
-                  href="#"
+                  href="/gallery"
                 />
                 <FooterLink text="Blogs" href="#" />
                 <FooterLink
                   text="Careers"
-                  href="https://pkphotography.in/career/"
+                  href=""
                 />
-                <FooterLink text="Talent" href="#" />
+                <FooterLink text="Talent" href="" />
                
               </div>
             </div>
@@ -256,7 +244,6 @@ export const Footer = () => {
             </div>
             <hr className="border-t border-gray-300 my-5" />
 
-            {/*=================== third row  */}
             <div className="flex justify-between w-full lg:flex-nowrap flex-wrap">
               <div>
                 <span className="text-sx list-none  text-[#666666] py-2 ">
@@ -292,89 +279,3 @@ export const Footer = () => {
     </footer>
   );
 };
-
-// "use client";
-// import {
-//   FaEnvelope,
-//   FaFacebook,
-//   FaInstagram,
-//   FaLinkedinIn,
-//   FaYoutube,
-// } from "react-icons/fa";
-// import Image from "next/image";
-// import PKLogo from "@/assets/logo.webp";
-
-// export const Footer = () => {
-//   return (
-//     <footer className="bg-[#F6F4F2] text-black">
-//       <div className=" py-12 px-6 container mx-auto w-full  ">
-//       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 ">
-//         {/* Left Section */}
-//         <div className="flex flex-col gap-4">
-//           <Image src={PKLogo} alt="PK Photography Logo" height={50} width={180} />
-//           <p className="text-lg text-gray-800">Capturing Life’s Moments with Passion and Precision</p>
-//           <button className="border border-black px-6 py-2 rounded-md text-lg w-44 hover:bg-black hover:text-white transition">
-//             BOOK NOW
-//           </button>
-//           <div className="flex gap-4 mt-4">
-//             <FaInstagram className="text-2xl hover:text-gray-600" />
-//             <FaYoutube className="text-2xl hover:text-gray-600" />
-//             <FaFacebook className="text-2xl hover:text-gray-600" />
-//             <FaLinkedinIn className="text-2xl hover:text-gray-600" />
-//             <FaEnvelope className="text-2xl hover:text-gray-600" />
-//           </div>
-//         </div>
-
-// <div >
-//         {/* Services & Videography Section */}
-//         <div className="flex w-full justify-between gap-20">
-//           <div>
-//             <h4 className="font-semibold mb-2">Services</h4>
-//             {['Portfolio', 'Portrait', 'Headshot', 'Celebrity', 'Interior'].map(item => (
-//               <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
-//             ))}
-//           </div>
-//           <div>
-//             <h4 className="font-semibold mb-2">Videography</h4>
-//             {['Wedding & Events', 'Live Streaming', 'Corporate Ads', 'Product Ads', 'Influencer Videos'].map(item => (
-//               <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
-//             ))}
-//           </div>
-//           <div>
-//           <h4 className="font-semibold mb-2">Navigate</h4>
-//           {['Clients', 'Bookings', 'Gallery', 'Blogs', 'Careers', 'Talent'].map(item => (
-//             <p key={item} className="text-gray-700 hover:underline cursor-pointer">{item}</p>
-//           ))}
-//         </div>
-//         </div>
-
-//         {/* Studio Information Section */}
-//         <div className="space-y-4">
-//           <div>
-//             <p className="font-semibold">General inquiries</p>
-//             <p>prabhakar@pkphotography.in</p>
-//           </div>
-
-//           <div>
-//             <p className="font-semibold">Our Studio</p>
-//             <p>C 1302 EVERSHINE COSMIC, Opp. Infiniti Mall</p>
-//             <p>Veera Desai Industrial Estate, Andheri West, Mumbai</p>
-//             <p>Maharashtra 400053</p>
-//             <p>Tel: +91 8888766739</p>
-//           </div>
-
-//           <div>
-//             <p className="font-semibold">We are active in</p>
-//             <p>Mumbai, Dubai, Delhi</p>
-//           </div>
-//         </div>
-//         </div>
-//       </div>
-
-//       <div className="max-w-7xl mx-auto mt-10 flex justify-between items-center text-gray-700 text-sm">
-//         <p>© 2025 PK Photography. All rights reserved.</p>
-//       </div>
-//       </div>
-//     </footer>
-//   );
-// };

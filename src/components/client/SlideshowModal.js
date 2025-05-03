@@ -136,13 +136,11 @@ const SlideshowModal = ({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Image
+        <img
           src={currentImage?.lowRes || currentImage?.mediumRes}
           alt="Main"
-          width={1000}
-          height={800}
-          unoptimized
-          className="object-contain max-h-[70vh] w-auto"
+          className="max-h-[80vh] w-auto object-contain"
+          style={{ touchAction: "manipulation" }}
         />
       </motion.div>
 

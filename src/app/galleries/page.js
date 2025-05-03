@@ -177,7 +177,6 @@ function GalleryContent() {
 function App() {
   return (
     <div className="px-4 py-4 sm:px-8 sm:py-6">
-      <Header />
       <BubbleText text="Gallery" />
       <Suspense fallback={<p>Loading...</p>}>
         <GalleryContent />

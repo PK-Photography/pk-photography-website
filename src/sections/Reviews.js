@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Arrow Styles
+// Arrow styles
 const arrowBase = "text-2xl transition duration-200 ease-in-out";
 const activeArrow = "text-[#0f1110] hover:text-[#1a1a1a]";
 const disabledArrow = "text-gray-300 cursor-not-allowed";
@@ -74,6 +74,14 @@ const reviews = [
 ];
 
 const Reviews = () => {
+  const [expandedStates, setExpandedStates] = useState(Array(reviews.length).fill(false));
+
+  const toggleExpand = (index) => {
+    const updatedStates = [...expandedStates];
+    updatedStates[index] = !updatedStates[index];
+    setExpandedStates(updatedStates);
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -100,7 +108,7 @@ const Reviews = () => {
 
         <Slider {...settings}>
           {reviews.map((review, index) => {
-            const [expanded, setExpanded] = useState(false);
+            const expanded = expandedStates[index];
             const showToggle = review.text.length > 200;
             const previewText = review.text.slice(0, 200);
 
@@ -113,7 +121,7 @@ const Reviews = () => {
                     </p>
                     {showToggle && (
                       <button
-                        onClick={() => setExpanded(!expanded)}
+                        onClick={() => toggleExpand(index)}
                         className="text-sm mt-2 text-[#0f1110] font-medium underline hover:opacity-80 transition"
                       >
                         {expanded ? "See Less" : "See More"}

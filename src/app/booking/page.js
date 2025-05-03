@@ -71,8 +71,6 @@ const BookingForm = () => {
     if (isSubmitted) {
         return (
             <>
-
-                <Header />
                 <div className="flex flex-col items-center justify-center p-10 min-h-[100vh]">
                     <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md text-center">
                         <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -94,8 +92,6 @@ const BookingForm = () => {
     // Booking form UI
     return (
         <>
-            <Header />
-
             <div className="flex items-center justify-center min-h-screen bg-gray-100 p-10">
                 <div className="bg-white shadow-md rounded-md p-8 w-full max-w-2xl">
                     <h2 className="text-2xl font-bold mb-6 text-center">Your Information</h2>

@@ -40,7 +40,6 @@ export default function UserProfile() {
 
   return (
     <>
-      <Header />
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg relative flex items-center space-x-6">
           <div className={`w-24 h-24 flex items-center justify-center rounded-full text-white text-3xl font-bold ${getRandomColor()}`}>

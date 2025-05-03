@@ -206,7 +206,7 @@ export const Footer = () => {
                   text="Gallery"
                   href="/gallery"
                 />
-                <FooterLink text="Blogs" href="#" />
+                <FooterLink text="Blogs" href="/blogs" />
                 <FooterLink
                   text="Careers"
                   href=""

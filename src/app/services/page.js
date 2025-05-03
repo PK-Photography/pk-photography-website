@@ -27,9 +27,7 @@ export default function page() {
 
 
         <div>
-            <Header />
             <HeroSection />
-
             <GetStartedSection />
             <Gallery />
             {/* <ImageBreak /> */}

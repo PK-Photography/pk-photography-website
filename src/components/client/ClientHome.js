@@ -657,8 +657,6 @@ const ClientHome = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Header />
-
       <BannerSection selectedCard={selectedCard} />
 
       {/* Categories Navbar */}

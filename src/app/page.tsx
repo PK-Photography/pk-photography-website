@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { Hero } from "@/sections/Hero";
 import Header from "@/components/header/Header";
 import Service from "@/components/services/Service";
-import { ImageBreak } from "@/components/imagebreak1/ImageBreak";
-import { Do } from "@/components/WhatWeDo/Do";
 import Reviews from "@/sections/Reviews";
 import AboutStudio from "@/components/Home/AboutStudio";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
@@ -28,7 +26,6 @@ export default function Home() {
 
   return (
     <div className="bg-[white]">
-      <Header />
       <Hero />
       <CardStack />
       <AboutStudio />

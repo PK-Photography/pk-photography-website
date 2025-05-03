@@ -47,7 +47,6 @@ export default function Signup() {
 
   return (
     <>
-      <Header />
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">Sign Up</h2>

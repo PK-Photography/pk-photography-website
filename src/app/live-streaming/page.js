@@ -53,7 +53,6 @@ const CallToAction = dynamic(
 export default function LiveStreamingPage() {
   return (
     <main>
-      <Header />
       <Banner />
       <About />
       <Services />

@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Header from "@/components/header/Header";
 import { Footer } from "@/sections/Footer";
 import WhatsAppIcon from "@/components/globalIcons/WhatAppIcon";
 import { Toaster } from "react-hot-toast";
@@ -55,6 +56,7 @@ export default function RootLayout({
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         <AuthProvider>
+          <Header />
           {/* ToastContainer for global toast notifications */}
           <Toaster />
           <ToastContainer

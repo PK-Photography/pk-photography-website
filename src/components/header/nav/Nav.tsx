@@ -12,7 +12,7 @@ const navItems = [
 
 const rightLinks = [
   { label: "Talents", href: "/talents" },
-  { label: "Blogs", href: "https://pkblogs-dev.onrender.com/", external: true },
+  { label: "Blogs", href: "/blogs", external: true },
   { label: "Careers", href: "/careers" },
   { label: "Signup", href: "/signup" },
 ];

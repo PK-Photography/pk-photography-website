@@ -53,6 +53,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="xkkbCA30-55oudh-aQAwydfWkzUga0omPDIZ6lN9RB4"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         <AuthProvider>

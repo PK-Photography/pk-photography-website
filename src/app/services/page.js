@@ -5,8 +5,6 @@
 import Gallery from '@/sections/serviceSections/GallarySection'
 import GetStartedSection from '@/sections/serviceSections/GetStartedSection'
 import HeroSection from '@/sections/serviceSections/HeroSection'
-// import { ImageBreak } from "@/components/imagebreak1/ImageBreak";
-import Header from "@/components/header/Header";
 import Carousel from './../../sections/serviceSections/Carousel';
 import PortfolioGrid from '@/sections/serviceSections/PortfolioCards';
 import AboutSection from '@/sections/serviceSections/AboutSection';
@@ -16,11 +14,10 @@ import MoodBoardSection from '@/sections/serviceSections/MoodBoardSection';
 import LocationStylingTipsSec from '@/sections/serviceSections/LocationStylingTipsSec';
 import ExpertPhotography from '@/sections/serviceSections/ExpertPhotography';
 import PricingSection from '@/sections/serviceSections/PricingSection';
-import FAQSection from '@/sections/serviceSections/FAQSection';
 import WardrobePropSuggestionsSec from '@/sections/serviceSections/WardrobePropSuggestionsSec';
 import BeforeAfterSlider from '@/sections/serviceSections/BeforeAfterSlider';
 import FinalDeliverySec from '@/sections/serviceSections/FinalDeliverySec';
-
+import FAQSection from "@/components/live-streaming/FAQ";
 
 export default function page() {
     return (

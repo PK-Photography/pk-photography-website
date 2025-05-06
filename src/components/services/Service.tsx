@@ -16,7 +16,7 @@ import service9 from "@/assets/service9.webp";
 import service10 from "@/assets/service10.webp";
 import service11 from "@/assets/service11.webp";
 import service12 from "@/assets/service12.webp";
-import { BubbleText } from "../BubbleText/BubbolTextProps";
+import service13 from "@/assets/service13.png";
 
 interface CardProps {
   id: number;
@@ -114,6 +114,13 @@ const cards: CardProps[] = [
     subtitle: "Your vision, our expertise in design",
     id: 12,
     link: "/galleries?category=Design",
+  },
+  {
+    url: service13.src,
+    title: "Live Streaming",
+    subtitle: "Experience Live Streaming Like Never Before",
+    id: 13,
+    link: "/live-streaming",
   },
 ];
 

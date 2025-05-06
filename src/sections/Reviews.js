@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
@@ -41,45 +42,24 @@ const PrevArrow = ({ onClick, currentSlide }) => {
   );
 };
 
-const reviews = [
-  {
-    text: "Great photography and editing service.Mr Prabhakar was very Cooperative and obliging. The photographer (Aman T.) was very complaisant and patient. We are really happy with their services",
-    name: "Akshata",
-    username: "@jamietechguru00",
-  },
-  {
-    text: "We had an amazing experience shooting with them. Prabhakar was very cooperative and made us feel comfortable throughout the shoot. Overall, I would definitely recommend PK photography!",
-    
-    name: "Vaidehi Sonavane",
-    username: "@jamietechguru00",
-  },
-  {
-    text: "Had an amazing shoot and absolutely love my photos! He made me feel super comfortable and even though it was our first time shooting together he knew exactly how to shoot me and which angles would work for me. I would highly recommend booking your next portfolio shoot with him. The photos are very well shot and I can’t wait to see the final edits.",
-    
-    name: "Ashish Gandecha",
-    username: "@jjsmith",
-  },
-  {
-    text: "Photos turned out really nice (corporate shots), make-up artist provided was great, a lot of flexibility. Studio is a makeshift one in an apartment But it works for the purpose. don’t expect a posh commercial studio though.",
-    
-    name: "Madhu Karnani",
-    username: "@morganleewhiz",
-  },
-  {
-    text: "I had a great experience with Prabhakar at PK Photography. I had professional headshots taken and I am not usually very comfortable in front of the camera. Prabhakar took time to make sure that I was comfortable and let me see the photos in real time on an iPad. He guided me to help make sure that the poses captured the photos I was looking for. It was a good experience and I am very pleased with the photos.",
-    
-    name: "April Yetsko",
-    username: "@caseyj",
-  }
-];
-
 const Reviews = () => {
-  const [expandedStates, setExpandedStates] = useState(Array(reviews.length).fill(false));
+  const [reviews, setReviews] = useState([]);
+  const [expandedStates, setExpandedStates] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/google-reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data || []);
+        setExpandedStates(Array(data.length || 0).fill(false));
+      })
+      .catch((err) => console.error("Failed to fetch reviews", err));
+  }, []);
 
   const toggleExpand = (index) => {
-    const updatedStates = [...expandedStates];
-    updatedStates[index] = !updatedStates[index];
-    setExpandedStates(updatedStates);
+    const updated = [...expandedStates];
+    updated[index] = !updated[index];
+    setExpandedStates(updated);
   };
 
   const settings = {
@@ -103,45 +83,68 @@ const Reviews = () => {
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#0f1110] mb-4">What Our Clients Say</h2>
         <p className="text-lg text-gray-600 mb-10">
-          Trusted by professionals, creatives, and businesses alike.
+          Based on real reviews from our Google profile
         </p>
 
-        <Slider {...settings}>
-          {reviews.map((review, index) => {
-            const expanded = expandedStates[index];
-            const showToggle = review.text.length > 200;
-            const previewText = review.text.slice(0, 200);
+        {reviews.length > 0 ? (
+          <Slider {...settings}>
+            {reviews.map((review, index) => {
+              const expanded = expandedStates[index];
+              const showToggle = review.text.length > 200;
+              const previewText = review.text.slice(0, 200);
 
-            return (
-              <div key={index} className="px-4 mb-6">
-                <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px] flex flex-col justify-between text-left">
-                  <div className="mb-4">
-                    <p className="text-gray-800 text-base leading-relaxed">
-                      {expanded || !showToggle ? review.text : `${previewText}...`}
-                    </p>
-                    {showToggle && (
-                      <button
-                        onClick={() => toggleExpand(index)}
-                        className="text-sm mt-2 text-[#0f1110] font-medium underline hover:opacity-80 transition"
-                      >
-                        {expanded ? "See Less" : "See More"}
-                      </button>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#0f1110]">{review.name}</p>
-                    <p className="text-xs text-gray-500 mb-1">{review.username}</p>
-                    <div className="flex space-x-1 text-yellow-500">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} size={14} />
-                      ))}
+              return (
+                <div key={index} className="px-4 mb-6">
+                  <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px] flex flex-col justify-between text-left">
+                    <div className="mb-4">
+                      <p className="text-gray-800 text-base leading-relaxed">
+                        {expanded || !showToggle ? review.text : `${previewText}...`}
+                      </p>
+                      {showToggle && (
+                        <button
+                          onClick={() => toggleExpand(index)}
+                          className="text-sm mt-2 text-[#0f1110] font-medium underline hover:opacity-80 transition"
+                        >
+                          {expanded ? "See Less" : "See More"}
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={review.profile_photo_url}
+                        alt={review.author_name}
+                        className="w-10 h-10 rounded-full"
+                      />
+                      <div>
+                        <p className="text-sm font-semibold text-[#0f1110]">{review.author_name}</p>
+                        <p className="text-xs text-gray-500">{review.relative_time_description}</p>
+                        <div className="flex space-x-1 text-yellow-500 mt-1">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <FaStar key={i} size={14} />
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </Slider>
+              );
+            })}
+          </Slider>
+        ) : (
+          <p className="text-gray-400">Loading reviews...</p>
+        )}
+
+        {/* CTA Button */}
+        <div className="mt-10">
+          <a
+            href="https://maps.app.goo.gl/gmZF9e4HW1TGTcbn7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#0f1110] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1a1a1a] transition"
+          >
+            Leave us a review on Google
+          </a>
+        </div>
       </div>
     </section>
   );

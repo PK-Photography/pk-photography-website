@@ -10,9 +10,7 @@ export default function Header() {
 
   return (
     <>
-      <div
-        className={`bg-white px-8 py-5 flex items-center justify-between w-full`}
-      >
+      <div className="bg-white px-8 py-5 flex items-center justify-between w-full">
         {/* Logo */}
         <Link
           href="/"
@@ -31,20 +29,22 @@ export default function Header() {
           <Link href="/booking">Booking</Link>
         </div>
 
-        {/* CTAs + Burger */}
+        {/* CTAs (hidden on mobile) + Burger */}
         <div className="flex items-center gap-4">
-          <Link
-            href="/login"
-            className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
-          >
-            Log in
-          </Link>
-          <Link
-            href="/signup"
-            className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
-          >
-            Sign up
-          </Link>
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/login"
+              className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/signup"
+              className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
+            >
+              Sign up
+            </Link>
+          </div>
 
           {/* Burger Toggle */}
           <div

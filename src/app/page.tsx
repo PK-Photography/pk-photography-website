@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <div className="bg-[white]">
       <Hero />
-      <CardStack />
+      <div className="hidden md:block">
+        <CardStack />
+      </div>
       <AboutStudio />
       <BubbleText text="Our Services" id="Our-Services" />
       <Service />

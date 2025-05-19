@@ -1,5 +1,5 @@
 import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Btn from "../EncrptButton/Btn";
 // import "@fontsource/montserrat/700.css"; // Import Montserrat with 700 weight
 import "@fontsource/montserrat";
@@ -170,11 +170,23 @@ const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({
   cards,
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  const { scrollYProgress } = useScroll({ target: targetRef });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-95%"]);
+  const [endX, setEndX] = useState("-80%");
+
+  // Update based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      setEndX(window.innerWidth < 768 ? "-95%" : "-80%");
+    };
+
+    handleResize(); // initial run
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", endX]);
 
   return (
     <section ref={targetRef} className="relative h-[500vh] lg:ml-3 md:ml-3">
@@ -193,7 +205,6 @@ const Service: React.FC = () => {
   return (
     <div className="">
       <div className="flex h-30 mt-5 items-center justify-center mb-10">
-        {/* <h2 className="section-title">Our Services</h2> */}
       </div>
       <HorizontalScrollCarousel cards={cards} />
     </div>

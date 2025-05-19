@@ -48,7 +48,7 @@ const CareersPage = () => {
           </p>
         </div>
         <Link href="/">
-          <ButtonWrapper>Go Home</ButtonWrapper>
+            <ButtonWrapper>Explore More</ButtonWrapper>
         </Link>
       </div>
     );

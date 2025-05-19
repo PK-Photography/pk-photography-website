@@ -212,7 +212,6 @@ export const Footer = () => {
                   href=""
                 />
                 <FooterLink text="Talent" href="" />
-               
               </div>
             </div>
 
@@ -268,6 +267,21 @@ export const Footer = () => {
                   Delhi
                 </h3>
               </div>
+            </div>
+
+            <hr className="border-t border-gray-300 my-5" />
+            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mt-6">
+              <a href="/privacy-policy" className="hover:underline">
+                Privacy Policy
+              </a>
+              <span className="text-gray-400">|</span>
+              <a href="/terms-and-conditions" className="hover:underline">
+                Terms & Conditions
+              </a>
+              <span className="text-gray-400">|</span>
+              <a href="/refund-policy" className="hover:underline">
+                Refund Policy
+              </a>
             </div>
           </div>
         </div>

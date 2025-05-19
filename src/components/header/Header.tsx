@@ -38,12 +38,12 @@ export default function Header() {
             >
               Log in
             </Link>
-            <Link
+            {/* <Link
               href="/signup"
               className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
             >
               Sign up
-            </Link>
+            </Link> */}
           </div>
 
           {/* Burger Toggle */}

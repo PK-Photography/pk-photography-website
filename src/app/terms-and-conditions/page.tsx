@@ -47,12 +47,17 @@ const TermsAndConditions = () => {
           While we strive for perfection, PK Photography is not liable for any indirect, incidental, or consequential damages arising from the use of our services or website.
         </p>
 
-        <h2 className="text-xl font-semibold">7. Changes to Terms</h2>
+        <h2 className="text-xl font-semibold">7. Shipping Timeline</h2>
+        <p>
+        Shipping and delivery will be done in 10-15 working days
+        </p>
+
+        <h2 className="text-xl font-semibold">8. Changes to Terms</h2>
         <p>
           We reserve the right to update or modify these Terms at any time. Continued use of the website implies your acceptance of any changes.
         </p>
 
-        <h2 className="text-xl font-semibold">8. Contact</h2>
+        <h2 className="text-xl font-semibold">9. Contact</h2>
         <p>
           If you have questions about these Terms, please contact us at{" "}
           <a href="mailto:info@pkphotography.in" className="text-blue-600 underline">

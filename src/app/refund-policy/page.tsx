@@ -48,7 +48,7 @@ const RefundPolicy = () => {
 
         <h2 className="text-xl font-semibold">5. Refund Timeline</h2>
         <p>
-          Approved refunds will be processed within 7–10 business days to the original mode of payment.
+          Approved refunds will be processed within 7–10 business days to the original mode of payment. Refund amount will be credited back in source account in 2-3 days after initiation of the refund
         </p>
 
         <h2 className="text-xl font-semibold">6. Contact for Refunds</h2>

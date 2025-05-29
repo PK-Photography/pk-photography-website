@@ -24,7 +24,7 @@ interface CardProps {
   link: string;
   title: string;
   subtitle: string;
-  isLightBackground?: boolean; // New prop to identify light backgrounds
+  isLightBackground?: boolean;
 }
 
 const cards: CardProps[] = [
@@ -124,7 +124,12 @@ const cards: CardProps[] = [
   },
 ];
 
-const Card: React.FC<{ card: CardProps }> = ({ card }) => {
+const Card: React.FC<{ card: CardProps; index: number }> = ({
+  card,
+  index,
+}) => {
+  const isLastThree = index >= cards.length - 3;
+
   return (
     <div
       key={card.id}
@@ -141,13 +146,13 @@ const Card: React.FC<{ card: CardProps }> = ({ card }) => {
         className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 rounded-lg"
       ></div>
 
-      {/* Vertical Line */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-8 w-1 bg-[#2874a6]"></div>
 
       <div className="absolute top-0 z-10 w-full text-center pt-8">
-        {/* Title without glassy effect */}
         <p
-          className="px-6 py-2 text-4xl font-extrabold uppercase text-[#2874a6] rounded-t-lg"
+          className={`px-6 py-2 text-4xl font-extrabold uppercase rounded-t-lg ${
+            isLastThree ? "text-white" : "text-[#2874a6]"
+          }`}
           style={{ fontFamily: "Montserrat", fontWeight: 700 }}
         >
           {card.title}
@@ -159,7 +164,6 @@ const Card: React.FC<{ card: CardProps }> = ({ card }) => {
               className={card.isLightBackground ? "text-black" : "text-white"}
             />
           </a>
-          {/* Pass className */}
         </div>
       </div>
     </div>
@@ -172,28 +176,36 @@ const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
 
-  const [endX, setEndX] = useState("-80%");
+  const [scrollWidth, setScrollWidth] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Update based on screen width
   useEffect(() => {
-    const handleResize = () => {
-      setEndX(window.innerWidth < 768 ? "-95%" : "-80%");
+    const updateWidth = () => {
+      if (scrollContainerRef.current) {
+        const totalScrollWidth = scrollContainerRef.current.scrollWidth;
+        const visibleWidth = window.innerWidth;
+        const diff = totalScrollWidth - visibleWidth + 30;
+        setScrollWidth(-diff);
+      }
     };
 
-    handleResize(); // initial run
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", endX]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0px", `${scrollWidth}px`]);
 
   return (
-    <section ref={targetRef} className="relative h-[500vh] lg:ml-3 md:ml-3">
+    <section ref={targetRef} className="relative h-[500vh] lg:ml-3 ml-3">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-4">
-          {cards.map((card) => (
-            <Card card={card} key={card.id} />
+        <motion.div
+          ref={scrollContainerRef}
+          style={{ x }}
+          className="flex gap-4"
+        >
+          {cards.map((card, index) => (
+            <Card card={card} index={index} key={card.id} />
           ))}
         </motion.div>
       </div>
@@ -203,9 +215,7 @@ const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({
 
 const Service: React.FC = () => {
   return (
-    <div className="">
-      <div className="flex h-30 mt-5 items-center justify-center mb-10">
-      </div>
+    <div className="mt-[60px]">
       <HorizontalScrollCarousel cards={cards} />
     </div>
   );

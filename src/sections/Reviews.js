@@ -19,7 +19,12 @@ const NextArrow = ({ onClick, currentSlide, slideCount }) => {
       onClick={onClick}
       className={`${arrowBase} ${isDisabled ? disabledArrow : activeArrow}`}
       disabled={isDisabled}
-      style={{ right: "-40px", position: "absolute", top: "50%", transform: "translateY(-50%)" }}
+      style={{
+        right: "-40px",
+        position: "absolute",
+        top: "50%",
+        transform: "translateY(-50%)",
+      }}
       aria-label="Next"
     >
       <FaChevronRight />
@@ -34,7 +39,12 @@ const PrevArrow = ({ onClick, currentSlide }) => {
       onClick={onClick}
       className={`${arrowBase} ${isDisabled ? disabledArrow : activeArrow}`}
       disabled={isDisabled}
-      style={{ left: "-40px", position: "absolute", top: "50%", transform: "translateY(-50%)" }}
+      style={{
+        left: "-40px",
+        position: "absolute",
+        top: "50%",
+        transform: "translateY(-50%)",
+      }}
       aria-label="Previous"
     >
       <FaChevronLeft />
@@ -81,7 +91,9 @@ const Reviews = () => {
   return (
     <section className="bg-white py-20 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-[#0f1110] mb-4">What Our Clients Say</h2>
+        <h2 className="text-4xl font-bold text-[#0f1110] mb-4">
+          What Our Clients Say
+        </h2>
         <p className="text-lg text-gray-600 mb-10">
           Based on real reviews from our Google profile
         </p>
@@ -98,7 +110,9 @@ const Reviews = () => {
                   <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px] flex flex-col justify-between text-left">
                     <div className="mb-4">
                       <p className="text-gray-800 text-base leading-relaxed">
-                        {expanded || !showToggle ? review.text : `${previewText}...`}
+                        {expanded || !showToggle
+                          ? review.text
+                          : `${previewText}...`}
                       </p>
                       {showToggle && (
                         <button
@@ -116,8 +130,12 @@ const Reviews = () => {
                         className="w-10 h-10 rounded-full"
                       />
                       <div>
-                        <p className="text-sm font-semibold text-[#0f1110]">{review.author_name}</p>
-                        <p className="text-xs text-gray-500">{review.relative_time_description}</p>
+                        <p className="text-sm font-semibold text-[#0f1110]">
+                          {review.author_name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {review.relative_time_description}
+                        </p>
                         <div className="flex space-x-1 text-yellow-500 mt-1">
                           {[...Array(review.rating)].map((_, i) => (
                             <FaStar key={i} size={14} />
@@ -137,7 +155,7 @@ const Reviews = () => {
         {/* CTA Button */}
         <div className="mt-10">
           <a
-            href="https://maps.app.goo.gl/gmZF9e4HW1TGTcbn7"
+            href="https://g.page/r/CVhvUcwRhP2GEAE/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-[#0f1110] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1a1a1a] transition"

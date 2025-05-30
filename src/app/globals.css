@@ -53,7 +53,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 /*=================|| scroller style for service page overvew section  */
 
 /* Custom Scrollbar for Specific Section */
@@ -62,7 +61,7 @@ html {
 }
 
 #scrollable-content::-webkit-scrollbar-track {
-  background: #8BB5FFB2; /* Light blue-gray background */
+  background: #8bb5ffb2; /* Light blue-gray background */
 }
 
 #scrollable-content::-webkit-scrollbar-thumb {
@@ -84,8 +83,12 @@ html {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fade-in-up {
@@ -101,4 +104,28 @@ html {
 
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out both;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
 }

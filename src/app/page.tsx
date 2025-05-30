@@ -8,8 +8,9 @@ import AboutStudio from "@/components/Home/AboutStudio";
 import { BubbleText } from "@/components/BubbleText/BubbolTextProps";
 import OurClients from "@/sections/OurClients";
 import PricingCardIndex from "@/sections/PricingCardIndex";
-import FAQSection from "@/components/live-streaming/FAQ";
+
 import CardStack from "@/components/StackingCards/CardStack";
+import FAQ from "@/components/live-streaming/FAQ";
 
 export default function Home() {
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Home() {
       <AboutStudio />
       <BubbleText text="Our Services" id="Our-Services" />
       <Service />
-      <FAQSection />
+      <FAQ />
       <OurClients />
       <Reviews />
       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />

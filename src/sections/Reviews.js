@@ -17,10 +17,11 @@ const NextArrow = ({ onClick, currentSlide, slideCount }) => {
   return (
     <button
       onClick={onClick}
-      className={`${arrowBase} ${isDisabled ? disabledArrow : activeArrow}`}
+      className={`${arrowBase} ${
+        isDisabled ? disabledArrow : activeArrow
+      } z-10 sm:!right-[-25px] lg:!right-[-40px] !right-[-12px] `}
       disabled={isDisabled}
       style={{
-        right: "-40px",
         position: "absolute",
         top: "50%",
         transform: "translateY(-50%)",
@@ -37,10 +38,11 @@ const PrevArrow = ({ onClick, currentSlide }) => {
   return (
     <button
       onClick={onClick}
-      className={`${arrowBase} ${isDisabled ? disabledArrow : activeArrow}`}
+      className={`${arrowBase} ${
+        isDisabled ? disabledArrow : activeArrow
+      } !z-10 sm:!left-[-25px] lg:!left-[-40px] !left-[-12px]`}
       disabled={isDisabled}
       style={{
-        left: "-40px",
         position: "absolute",
         top: "50%",
         transform: "translateY(-50%)",
@@ -89,8 +91,8 @@ const Reviews = () => {
   };
 
   return (
-    <section className="bg-white py-20 px-4 relative">
-      <div className="max-w-7xl mx-auto text-center">
+    <section className="bg-white py-20 px-4  sm:mx-4 lg:px-9 relative">
+      <div className="max-w-7xl  mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#0f1110] mb-4">
           What Our Clients Say
         </h2>
@@ -106,8 +108,8 @@ const Reviews = () => {
               const previewText = review.text.slice(0, 200);
 
               return (
-                <div key={index} className="px-4 mb-6">
-                  <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px] flex flex-col justify-between text-left">
+                <div key={index} className="px-4 mb-6 ">
+                  <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px]   flex flex-col justify-between text-left">
                     <div className="mb-4">
                       <p className="text-gray-800 text-base leading-relaxed">
                         {expanded || !showToggle

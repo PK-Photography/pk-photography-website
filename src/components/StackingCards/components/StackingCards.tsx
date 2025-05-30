@@ -35,7 +35,7 @@ const StackingCards = () => {
         }vh`,
       }}
     >
-      <div className="sticky -top-[26px] lg:top-[20px] h-screen mb-20 flex items-center justify-center">
+      <div className="sticky top-[46px] lg:top-[60px] h-screen mb-20 flex items-center justify-center">
         <div className="relative w-[70%] max-w-[85%] h-[700px] lg:h-[620px]">
           {/* Desktop Images */}
           <div className="hidden lg:block">

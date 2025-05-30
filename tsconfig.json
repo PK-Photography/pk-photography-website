@@ -32,6 +32,6 @@
     "src/components/pricingCard/PricingCards.js",
     "src/app/api/auth/[...nextauth]/route.ts",
     "src/sections/serviceSections/ProcessOverview/.js"
-  ],
+, "src/components/live-streaming/FAQ.tsx"  ],
   "exclude": ["node_modules"]
 }

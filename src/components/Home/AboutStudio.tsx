@@ -46,9 +46,9 @@ const AboutStudio = () => {
             </div>
           </div>
 
-          <button className="bg-black text-white px-6 py-3 rounded-full text-base hover:bg-gray-800 transition">
+          {/* <button className="bg-black text-white px-6 py-3 rounded-full text-base hover:bg-gray-800 transition">
             Meet Our Team
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

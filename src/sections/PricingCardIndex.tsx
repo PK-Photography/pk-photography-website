@@ -5,6 +5,7 @@ import PricingCards from "@/components/pricingCard/PricingCards";
 
 const packages = [
   {
+    slug: "premium-package",
     title: "PREMIUM PACKAGE",
     price: "PRICE: 20,000 INR",
     images: [
@@ -22,6 +23,7 @@ const packages = [
     note: "(Note: Dresses Not Included)",
   },
   {
+    slug: "standard-package",
     title: "STANDARD PACKAGE",
     price: "PRICE: 15,000 INR",
     images: [
@@ -39,6 +41,7 @@ const packages = [
     note: "(Note: Dresses Not Included)",
   },
   {
+    slug: "starter-package",
     title: "STARTER PACKAGE",
     price: "PRICE: 5,000 INR",
     images: [

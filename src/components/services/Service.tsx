@@ -159,11 +159,11 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
         </p>
         <p className="px-4 py-1 mt-2 text-lg font-medium">{card.subtitle}</p>
         <div className="mt-1 flex justify-center">
-          <a href={card.link}>
+          {/* <a href={card.link}>
             <Btn
               className={card.isLightBackground ? "text-black" : "text-white"}
             />
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

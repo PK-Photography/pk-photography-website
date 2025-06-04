@@ -15,13 +15,13 @@ const categories = [
   "Headshots",
   "Editorial",
   "Celebrity",
-  "Ads",
+  // "Ads",
   "Wedding",
-  "Boudoir",
-  "E-Commerce",
+  // "Boudoir",
+  // "E-Commerce",
   "Food",
-  "Real Estate",
-  "Design",
+  // "Real Estate",
+  // "Design",
 ];
 
 function GalleryContent() {

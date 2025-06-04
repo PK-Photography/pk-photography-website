@@ -147,36 +147,6 @@ export const Footer = () => {
             <div className="flex justify-between w-full gap-10">
               <div>
                 <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">
-                  Services
-                </li>
-                <FooterLink
-                  text="Portfolio"
-                  href="/galleries"
-                />
-                <FooterLink
-                  text="Portrait"
-                  href="/galleries"
-                />
-                <FooterLink
-                  text="Headshot"
-                  href="/galleries"
-                />
-                <FooterLink
-                  text="Celebrity"
-                  href="/galleries"
-                />
-                <FooterLink
-                  text="Interior"
-                  href="/galleries"
-                />
-                <FooterLink
-                  text="E-Commerce"
-                  href="/galleries"
-                />
-              </div>
-
-              <div>
-                <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">
                   Videography
                 </li>
                 <FooterLink
@@ -184,10 +154,10 @@ export const Footer = () => {
                   href="/galleries"
                 />
                 <FooterLink text="Live Streaming" href="/live-streaming" />
-                <FooterLink text="Corporate Ads" href="/galleries" />
+                {/* <FooterLink text="Corporate Ads" href="/galleries" />
                 <FooterLink text="Product Ads" href="/galleries" />
                 <FooterLink text="Influencer Videos" href="/galleries" />
-                <FooterLink text="Design" href="/galleries" />
+                <FooterLink text="Design" href="/galleries" /> */}
               </div>
 
               <div>
@@ -206,13 +176,9 @@ export const Footer = () => {
                   text="Gallery"
                   href="/galleries"
                 />
-                <FooterLink text="Blogs" href="/blogs" />
-                <FooterLink
-                  text="Careers"
-                  href=""
-                />
-                <FooterLink text="Talent" href="" />
               </div>
+              <div></div>
+              <div></div>
             </div>
 
             <hr className="border-t border-gray-300 my-5" />

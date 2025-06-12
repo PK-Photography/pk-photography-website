@@ -1,35 +1,41 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-// const logoImage = "/live-streaming/logo.webp";
+import Image from "next/image";
 const backgroundVideo = "/live-streaming/coverpage.mp4";
+const fallbackImage = "/live-streaming/audio_equipment.jpg";
 
 const Banner = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
     <HeroSection>
       <VideoBackground>
-        <video autoPlay muted loop playsInline>
+        {!videoLoaded && (
+          <Image
+            src={fallbackImage}
+            alt="Loading Preview"
+            fill
+            className="object-cover z-0"
+            priority
+          />
+        )}
+
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          onCanPlay={() => setVideoLoaded(true)}
+          style={{ display: videoLoaded ? "block" : "none" }}
+        >
           <source src={backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </VideoBackground>
 
-      <Header>
-        {/* Logo component commented out
-        <Logo>
-          <LogoImg src={logoImage} alt="PK Photography Logo" />
-        </Logo>
-        */}
-        {/* Hamburger menu button commented out
-        <MenuButton>
-          <span></span>
-          <span></span>
-          <span></span>
-        </MenuButton>
-        */}
-      </Header>
-
+      <Header />
       <Content>
         <Title>Experience Live Streaming Like Never Before</Title>
         <Description>

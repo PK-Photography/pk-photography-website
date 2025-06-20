@@ -15,7 +15,7 @@ const FAQ: React.FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
 
   useEffect(() => {
-    setActiveQuestion(1);
+    setActiveQuestion(null);
   }, []);
 
   const faqData: FAQItem[] = [
@@ -99,43 +99,6 @@ const FAQ: React.FC = () => {
             alt="FAQ Illustration"
             className="max-w-full h-auto"
           />
-          {/* Dots */}
-          {/* <span
-            className="absolute rounded-full bg-[#f3e5ab]"
-            style={{
-              top: "190px",
-              left: "280px",
-              width: "20px",
-              height: "20px",
-            }}
-          />
-          <span
-            className="absolute rounded-full bg-[#e5bab3]"
-            style={{
-              top: "200px",
-              left: "230px",
-              width: "12px",
-              height: "12px",
-            }}
-          />
-          <span
-            className="absolute rounded-full bg-[#bae5c5]"
-            style={{
-              top: "400px",
-              left: "330px",
-              width: "15px",
-              height: "15px",
-            }}
-          />
-          <span
-            className="absolute rounded-full bg-[#c5bae5]"
-            style={{
-              top: "130px",
-              left: "200px",
-              width: "14px",
-              height: "14px",
-            }}
-          /> */}
         </div>
 
         {/* Right Questions */}

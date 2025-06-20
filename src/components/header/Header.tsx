@@ -23,7 +23,7 @@ export default function Header() {
         <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800">
           <Link href="/">Home</Link>
           <Link href="/client">Client</Link>
-          <a href="/galleries" target="_blank" rel="noopener noreferrer">
+          <a href="/galleries" rel="noopener noreferrer">
             Gallery
           </a>
           <Link href="/booking">Booking</Link>

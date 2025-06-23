@@ -3,6 +3,7 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
+  FaTwitter,
 } from "react-icons/fa";
 import { useState, useRef } from "react";
 import PKLogo from "@/assets/logo.webp";
@@ -138,6 +139,15 @@ export const Footer = () => {
                 className="bg-black p-2 rounded-full"
               >
                 <FaLinkedinIn className="text-2xl text-white hover:text-gray-600" />
+              </a>
+
+              <a
+                href="https://x.com/pkphotographym?lang=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black p-2 rounded-full"
+              >
+                <FaTwitter className="text-2xl text-white hover:text-gray-600" />
               </a>
             </div>
           </div>

@@ -195,6 +195,7 @@ const BookingForm = () => {
                                 value={formData.date}
                                 onChange={handleChange}
                                 className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                min={new Date().toISOString().split("T")[0]} // 👈 This sets today as the minimum date
                             />
                         </div>
 

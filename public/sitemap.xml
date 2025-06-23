@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://pkphotography.in/</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/client</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/galleries</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/booking</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/login</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/checkout/premium-package</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/checkout/standard-package</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/checkout/starter-package</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/live-streaming</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/privacy-policy</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/terms-and-conditions</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/refund-policy</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/forgot-password</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pkphotography.in/signup</loc>
+  <lastmod>2025-06-23T11:07:15+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

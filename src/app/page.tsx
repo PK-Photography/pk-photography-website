@@ -35,7 +35,7 @@ export default function Home() {
       <Service />
       <FAQ />
       <OurClients />
-      <Reviews />
+      {/* <Reviews /> */}
       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
       <PricingCardIndex />
     </div>

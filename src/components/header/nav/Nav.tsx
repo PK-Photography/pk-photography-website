@@ -12,7 +12,7 @@ const navItems = [
 
 const rightLinks = [
   { label: "Talents", href: "/talents" },
-  { label: "Blogs", href: "/blogs", external: true },
+  { label: "Blogs", href: "/blogs" },
   { label: "Careers", href: "/careers" },
   { label: "Signup", href: "/signup" },
 ];
@@ -138,7 +138,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
                   <p
                     key={i}
                     className="hover:text-gray-400 cursor-pointer text-left"
-                    onClick={() => handleNavClick(link.href, link.external)}
+                    onClick={() => handleNavClick(link.href)}
                   >
                     {link.label}
                   </p>

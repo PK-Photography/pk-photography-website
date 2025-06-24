@@ -77,17 +77,31 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+  
+    if (!selectedPackage) {
+      toast.error("No package selected.");
+      setIsLoading(false);
+      return;
+    }
+  
     try {
-      const res = await axiosInstance.post("/booking/request", formData, {
-        headers: { "Content-Type": "application/json" },
+      await axiosInstance.post("/booking/request", formData);
+  
+      const amount = selectedPackage.price.match(/\d+/g)?.join(""); // "20000"
+      const paymentRes = await axiosInstance.post("/phonepe/initiate", {
+        amount: Number(amount) * 100, // in paise
+        name: formData.name,
+        phone: formData.phone,
       });
-      if (res.status === 201) {
-        setIsSubmitted(true);
-        toast.success("Booked Successfully!");
+  
+      if (paymentRes.data.redirectUrl) {
+        window.location.href = paymentRes.data.redirectUrl;
+      } else {
+        throw new Error("No redirect URL from PhonePe");
       }
     } catch (err) {
       console.error(err);
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong during booking or payment.");
     } finally {
       setIsLoading(false);
     }

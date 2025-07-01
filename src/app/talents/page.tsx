@@ -39,6 +39,15 @@ const TalentsPage = () => {
   };
 
   return (
+    <>
+    {/* Banner Section - Full Width */}
+    <div className="w-full">
+      <img
+        src="/live-streaming/executive_portraits.jpg"
+        alt="Talents Banner"
+        className="w-full h-[560px] object-cover"
+      />
+    </div>
     <div className="min-h-screen bg-[#f5f5f5] py-16 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
@@ -172,7 +181,8 @@ const TalentsPage = () => {
             </div>
             </Dialog>
       </div>
-    </div>
+    </div>    
+    </>
   );
 };
 

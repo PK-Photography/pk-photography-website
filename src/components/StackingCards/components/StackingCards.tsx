@@ -15,14 +15,14 @@ const StackingCards = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   useEffect(() => {
     const fetchImages = async () => {
-      const res = await fetch("https://pk-photography-backend.onrender.com/api/v1/visual_stories");
+      const res = await fetch("https://pk-photography-backend.onrender.com/api/visual_stories");
       const data = await res.json();
       setImages(data.data);
     };
     fetchImages();
   }, []);
 
-  
+
   const mobileImages = images.filter((img) => img.imageType === "mobile");
   const desktopImages = images.filter((img) => img.imageType === "Desktop");
 

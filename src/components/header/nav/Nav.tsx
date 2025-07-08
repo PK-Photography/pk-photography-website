@@ -3,21 +3,12 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
 
-const { data: session } = useSession();
-
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Clients", href: "/client" },
   { label: "Services", href: "/services" },
   { label: "Bookings", href: "/booking" },
   { label: "Live Streaming", href: "/live-streaming" },
-];
-
-const rightLinks = [
-  { label: "Talents", href: "/talents" },
-  { label: "Blogs", href: "/blogs" },
-  { label: "Careers", href: "/careers" },
-  ...(!session?.user ? [{ label: "Signup", href: "/signup" }] : []),
 ];
 
 const socialLinks = [
@@ -33,7 +24,15 @@ const socialLinks = [
 ];
 
 const Nav = ({ onClose }: { onClose: () => void }) => {
+  const { data: session } = useSession();
   const router = useRouter();
+
+  const rightLinks = [
+    { label: "Talents", href: "/talents" },
+    { label: "Blogs", href: "/blogs" },
+    { label: "Careers", href: "/careers" },
+    ...(!session?.user ? [{ label: "Signup", href: "/signup" }] : []),
+  ];
 
   const handleNavClick = (href: string, external?: boolean) => {
     if (external) {

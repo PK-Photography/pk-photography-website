@@ -15,7 +15,7 @@ const StackingCards = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   useEffect(() => {
     const fetchImages = async () => {
-      const res = await fetch("https://pk-photography-backend.onrender.com/api/visual_stories");
+      const res = await fetch("/api/visual_stories");
       const data = await res.json();
       setImages(data.data);
     };

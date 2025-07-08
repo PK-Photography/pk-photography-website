@@ -2,7 +2,6 @@
 import React from "react";
 import Landing from "../../components/client/Landing";
 import UserCard from "../../components/client/UserCard";
-import Header from "@/components/header/Header";
 import "../globals.css"; 
 
 const Home = () => {

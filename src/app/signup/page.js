@@ -4,7 +4,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axiosInstance from "@/utils/axiosConfig";
-import Header from "@/components/header/Header";
 import GoogleLoginButton from "../../components/GoogleLoginButton";
 
 export default function Signup() {
@@ -27,9 +26,6 @@ export default function Signup() {
 
     try {
       const res = await axiosInstance.post("/user/signup", formData);
-
-   
-
       if (res.data.success) {
         toast.success("Signup successful! Please check your email for OTP.");
         localStorage.setItem("userEmail", formData.email); // Store email for OTP verification

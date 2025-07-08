@@ -1,12 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Nav from "./nav/Nav";
 import styles from "./style.module.scss";
+import { FaUserCircle } from "react-icons/fa";
+
+type User = {
+  fullName: string;
+  email: string;
+  // Add more fields if needed, like image, id, etc.
+};
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   return (
     <>
@@ -29,21 +44,22 @@ export default function Header() {
           <Link href="/booking">Booking</Link>
         </div>
 
-        {/* CTAs (hidden on mobile) + Burger */}
+        {/* CTAs + Burger */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/login"
-              className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
-            >
-              Log in
-            </Link>
-            {/* <Link
-              href="/signup"
-              className="bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
-            >
-              Sign up
-            </Link> */}
+            {!user ? (
+              <Link
+                href="/login"
+                className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
+              >
+                Log in
+              </Link>
+            ) : (
+              <div className="flex items-center gap-2 text-gray-700">
+                <FaUserCircle className="text-2xl" />
+                <span className="text-sm">Welcome, {user.fullName?.split(" ")[0]}</span>
+              </div>
+            )}
           </div>
 
           {/* Burger Toggle */}

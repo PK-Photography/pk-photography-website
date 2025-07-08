@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axiosInstance from "@/utils/axiosConfig";
-import Header from "@/components/header/Header";
 import GoogleLoginButton from "../../components/GoogleLoginButton";
 
 export default function Login() {
@@ -24,9 +23,6 @@ export default function Login() {
 
     try {
       const res = await axiosInstance.post("/user/login", formData);
-
- 
-
       if (res.data.success) {
         toast.success("Login successful!");
         localStorage.setItem("accessToken", res.data.data.accessToken);

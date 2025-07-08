@@ -10,7 +10,6 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
-import Header from "@/components/header/Header";
 import ImageGalleryList from "../client/ImageGalleryList";
 import BannerSection from "../client/BannerSection";
 

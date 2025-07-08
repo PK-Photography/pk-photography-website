@@ -1,27 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Nav from "./nav/Nav";
 import styles from "./style.module.scss";
 import { FaUserCircle } from "react-icons/fa";
-
-type User = {
-  fullName: string;
-  email: string;
-  // Add more fields if needed, like image, id, etc.
-};
+import { useSession } from "next-auth/react";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+  const { data: session } = useSession();
 
   return (
     <>
@@ -47,7 +35,7 @@ export default function Header() {
         {/* CTAs + Burger */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
-            {!user ? (
+            {!session?.user ? (
               <Link
                 href="/login"
                 className="bg-gray-500 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-600 transition"
@@ -57,13 +45,14 @@ export default function Header() {
             ) : (
               <div className="flex items-center gap-2 text-gray-700">
                 <FaUserCircle className="text-2xl" />
-                <span className="text-sm">Welcome, {user.fullName?.split(" ")[0]}</span>
+                <span className="text-sm">
+                  Welcome, {session.user.name?.split(" ")[0] || "User"}
+                </span>
               </div>
             )}
           </div>
 
           {/* Burger Toggle */}
-
           <div
             onClick={() => setIsActive(!isActive)}
             className={`ml-4 relative p-2 ${styles.button}`}

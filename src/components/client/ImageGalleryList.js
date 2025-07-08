@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { GoDownload } from 'react-icons/go';
 import { FaHeart, FaShare } from 'react-icons/fa';
 

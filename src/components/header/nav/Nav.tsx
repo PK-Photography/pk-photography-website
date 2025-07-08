@@ -1,6 +1,9 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { useSession, signOut } from "next-auth/react";
+
+const { data: session } = useSession();
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -14,7 +17,7 @@ const rightLinks = [
   { label: "Talents", href: "/talents" },
   { label: "Blogs", href: "/blogs" },
   { label: "Careers", href: "/careers" },
-  { label: "Signup", href: "/signup" },
+  ...(!session?.user ? [{ label: "Signup", href: "/signup" }] : []),
 ];
 
 const socialLinks = [
@@ -143,6 +146,18 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
                     {link.label}
                   </p>
                 ))}
+
+                {session?.user && (
+                  <p
+                    className="hover:text-red-400 cursor-pointer text-left mt-4"
+                    onClick={() => {
+                      signOut({ callbackUrl: "/" });
+                      onClose(); // Close menu after logout
+                    }}
+                  >
+                    Logout
+                  </p>
+                )}
               </div>
             </motion.div>
 

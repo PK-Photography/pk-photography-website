@@ -16,6 +16,7 @@ const SlideshowModal = ({
   selectedCard,
   toggleFavorite,
   favorites,
+  canDownload, // <-- Add this line
 }) => {
   const currentImage = images[currentImageIndex];
   const isFavorited = favorites.find((fav) => fav.id === currentImage?.id);
@@ -89,9 +90,12 @@ const SlideshowModal = ({
                 color={isFavorited ? "#DC2626" : "#5C899D"}
               />
             </button>
-            <button onClick={handleDirectBrowserDownload} aria-label="Download">
-              <LiaDownloadSolid size={24} color="#5C899D" />
-            </button>
+            
+            {canDownload && (
+              <button onClick={handleDirectBrowserDownload} aria-label="Download">
+                <LiaDownloadSolid size={24} color="#5C899D" />
+              </button>
+            )}
           </div>
         </div>
       </div>

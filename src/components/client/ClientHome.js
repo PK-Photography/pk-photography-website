@@ -814,22 +814,21 @@ const ClientHome = () => {
       }
 
       {/* Slideshow Modal */}
-      {
-        slideshowVisible && (
-          <SlideshowModal
-            images={images}
-            currentImageIndex={currentImageIndex}
-            closeSlideshow={closeSlideshow}
-            handlePreviousImage={handlePreviousImage}
-            handleNextImage={handleNextImage}
-            setCurrentImageIndex={setCurrentImageIndex}
-            selectedCard={selectedCard}
-            toggleFavorite={toggleFavorite}
-            favorites={favorites}
-            handleOpenDownloadModal={handleOpenDownloadModal}
-          />
-        )
-      }
+      {slideshowVisible && (
+        <SlideshowModal
+          images={images}
+          currentImageIndex={currentImageIndex}
+          closeSlideshow={closeSlideshow}
+          handlePreviousImage={handlePreviousImage}
+          handleNextImage={handleNextImage}
+          setCurrentImageIndex={setCurrentImageIndex}
+          selectedCard={selectedCard}
+          toggleFavorite={toggleFavorite}
+          favorites={favorites}
+          canDownload={canDownload} // <-- Pass here
+          handleOpenDownloadModal={handleOpenDownloadModal}
+        />
+      )}
     </>
   );
 };

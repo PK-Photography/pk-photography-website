@@ -38,12 +38,12 @@ export default function GoogleLoginButton() {
         </div>
       ) : (
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signIn("google", { callbackUrl: "/" })}
           className="flex items-center bg-white border border-gray-300 shadow-md py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300"
         >
           <FcGoogle className="text-2xl mr-2" />
           <span className="text-gray-700 font-medium">Sign-in with Google</span>
-        </button>
+        </button> 
       )}
     </div>
   );

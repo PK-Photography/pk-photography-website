@@ -22,7 +22,6 @@ const StackingCards = () => {
     fetchImages();
   }, []);
 
-
   const mobileImages = images.filter((img) => img.imageType === "mobile");
   const desktopImages = images.filter((img) => img.imageType === "Desktop");
 

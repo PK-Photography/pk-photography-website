@@ -115,7 +115,7 @@ const FAQ: React.FC = () => {
         {/* Right Questions */}
         <div className="max-w-xl sm:mx-auto w-full">
           <h2 className="text-4xl font-light text-gray-800 mb-8 tracking-wide">
-            FAQ&apos;s
+            FAQs
           </h2>
 
           <div className="flex flex-col gap-4 max-h-[500px]  overflow-y-auto pr-4 sm:pr-0 lg:pr-1 custom-scrollbar">

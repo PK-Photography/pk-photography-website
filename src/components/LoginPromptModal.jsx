@@ -110,22 +110,39 @@ export default function LoginPromptModal({ isOpen, onClose }) {
             <div>
               <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
               <PhoneInput
-                country={"in"}
-                value={formData.mobile}
-                onChange={(phone) => setFormData({ ...formData, mobile: phone })}
-                inputStyle={{
-                  width: "100%",
-                  padding: "10px",
-                  borderRadius: "0.375rem",
-                  border: "1px solid #d1d5db",
-                  fontSize: "14px",
-                  fontFamily: "inherit",
-                }}
-                inputProps={{
-                  name: "mobile",
-                  required: true,
-                }}
-              />
+                  country={"in"}
+                  value={formData.mobile}
+                  onChange={(phone) => setFormData({ ...formData, mobile: phone })}
+                  inputStyle={{
+                    width: "100%",
+                    padding: "10px 10px 10px 50px", // space for flag
+                    borderRadius: "0.375rem",
+                    border: "1px solid #d1d5db",
+                    fontSize: "14px",
+                    fontFamily: "inherit",
+                    boxSizing: "border-box",
+                    appearance: "textfield",
+                    caretColor: "#000", // ensure blinking cursor
+                  }}
+                  buttonStyle={{
+                    border: "none",
+                    background: "none",
+                    position: "absolute",
+                    left: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    zIndex: 10,
+                  }}
+                  containerStyle={{
+                    position: "relative",
+                    width: "100%",
+                    fontFamily: "inherit",
+                  }}
+                  inputProps={{
+                    name: "mobile",
+                    required: true,
+                  }}
+                />
               {mobileError && (
                 <p className="text-sm text-red-600 mt-1">{mobileError}</p>
               )}

@@ -791,8 +791,8 @@ const ClientHome = () => {
       )}
 
       {nasLoading && (
-        <div className="flex justify-center items-center my-6 pb-10">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#8B5E3C]"></div>
+        <div className="flex justify-center items-center min-h-[300px]">
+          <img src="/loading-rubik.gif" alt="Loading..." className="w-24 h-24" />
         </div>
       )}
 

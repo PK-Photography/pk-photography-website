@@ -5,20 +5,34 @@ import { useEffect, useState } from "react";
 type CarouselImage = {
   _id: string;
   imageUrl: string;
-  imageType: "mobile" | "Desktop" | "homepage";
+  imageType: "mobile" | "Desktop" | "homepage_web" | "homepage_mobile";
 };
 
 export const Hero = () => {
   const [homepageImage, setHomepageImage] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkDevice(); // run on load
+    window.addEventListener("resize", checkDevice); // re-check on resize
+
+    return () => {
+      window.removeEventListener("resize", checkDevice);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchHomepageImage = async () => {
       try {
         const res = await fetch("/api/visual_stories");
         const data = await res.json();
-        const homepage = data.data.find(
-          (img: CarouselImage) => img.imageType === "homepage"
+        const homepage = data.data.find((img: CarouselImage) =>
+          isMobile ? img.imageType === "homepage_mobile" : img.imageType === "homepage_web"
         );
         if (homepage?.imageUrl) {
           setHomepageImage(homepage.imageUrl);
@@ -29,11 +43,11 @@ export const Hero = () => {
     };
 
     fetchHomepageImage();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Fallback: local image visible until dynamic one loads */}
+      {/* Fallback */}
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="/hero-img.jpg"
@@ -45,8 +59,8 @@ export const Hero = () => {
         />
       </div>
 
-      {/* Loaded Image from API */}
-      {/* {homepageImage && (
+      {/* Loaded API Image */}
+      {homepageImage && (
         <div className="absolute inset-0 w-full h-full">
           <Image
             src={homepageImage}
@@ -58,7 +72,7 @@ export const Hero = () => {
             className={`transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
           />
         </div>
-      )} */}
+      )}
     </section>
   );
 };

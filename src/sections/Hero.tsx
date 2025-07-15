@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 type CarouselImage = {
   _id: string;
   imageUrl: string;
-  imageType: "mobile" | "Desktop" | "Homepage";
+  imageType: "mobile" | "Desktop" | "homepage";
 };
 
 export const Hero = () => {
@@ -18,7 +18,7 @@ export const Hero = () => {
         const res = await fetch("/api/visual_stories");
         const data = await res.json();
         const homepage = data.data.find(
-          (img: CarouselImage) => img.imageType === "Homepage"
+          (img: CarouselImage) => img.imageType === "homepage"
         );
         if (homepage?.imageUrl) {
           setHomepageImage(homepage.imageUrl);

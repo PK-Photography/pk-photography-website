@@ -11,7 +11,7 @@ import "react-phone-input-2/lib/style.css";
 
 export default function LoginPromptModal({ isOpen, onClose }) {
   const router = useRouter();
-  const [formData, setFormData] = useState({ name: "", mobile: "" });
+  const [formData, setFormData] = useState({ name: "", mobileNo: "" });
   const [loading, setLoading] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [mobileError, setMobileError] = useState("");
@@ -37,8 +37,8 @@ export default function LoginPromptModal({ isOpen, onClose }) {
     e.preventDefault();
     setMobileError("");
 
-    if (!validateMobile(formData.mobile)) {
-      setMobileError("Please enter a valid 10-digit mobile number.");
+    if (!validateMobile(formData.mobileNo)) {
+      setMobileError("Please enter a valid 10-digit mobileNo number.");
       return;
     }
 
@@ -111,8 +111,8 @@ export default function LoginPromptModal({ isOpen, onClose }) {
               <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
               <PhoneInput
                   country={"in"}
-                  value={formData.mobile}
-                  onChange={(phone) => setFormData({ ...formData, mobile: phone })}
+                  value={formData.mobileNo}
+                  onChange={(phone) => setFormData({ ...formData, mobileNo: phone })}
                   inputStyle={{
                     width: "100%",
                     padding: "10px 10px 10px 50px", // space for flag
@@ -139,7 +139,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
                     fontFamily: "inherit",
                   }}
                   inputProps={{
-                    name: "mobile",
+                    name: "mobileNo",
                     required: true,
                   }}
                 />

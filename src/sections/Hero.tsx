@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type CarouselImage = {
   _id: string;
@@ -17,13 +18,9 @@ export const Hero = () => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
-    checkDevice(); // run on load
-    window.addEventListener("resize", checkDevice); // re-check on resize
-
-    return () => {
-      window.removeEventListener("resize", checkDevice);
-    };
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   useEffect(() => {
@@ -46,8 +43,8 @@ export const Hero = () => {
   }, [isMobile]);
 
   return (
-    <section className="relative h-screen overflow-hidden">
-      {/* Fallback */}
+    <section className="relative h-screen overflow-hidden font-sans">
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="/hero-img.jpg"
@@ -59,7 +56,6 @@ export const Hero = () => {
         />
       </div>
 
-      {/* Loaded API Image */}
       {homepageImage && (
         <div className="absolute inset-0 w-full h-full">
           <Image
@@ -73,6 +69,36 @@ export const Hero = () => {
           />
         </div>
       )}
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
+
+      {/* Text Content */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+        <div className="w-full max-w-5xl mx-auto space-y-6">
+          {/* Headline */}
+          <h1
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold leading-snug text-center"
+            style={{ fontFamily: `'Playfair Display', serif` }}
+          >
+            Portfolio Shoots that Speak for You
+          </h1>
+          
+          {/* Tagline Top Left (on large screens) */}
+          <p className="text-white text-lg md:text-xl font-light text-center lg:text-center">
+            
+            Fashion-forward. Fiercely lit. Designed to impress.
+          </p>
+
+          <div className="mt-4">
+            <Link href="/booking">
+              <button className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium text-sm md:text-base">
+                Enquire Now
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

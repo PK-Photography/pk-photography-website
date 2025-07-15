@@ -46,7 +46,7 @@ export const Hero = () => {
       </div>
 
       {/* Loaded Image from API */}
-      {homepageImage && (
+      {/* {homepageImage && (
         <div className="absolute inset-0 w-full h-full">
           <Image
             src={homepageImage}
@@ -58,7 +58,7 @@ export const Hero = () => {
             className={`transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
           />
         </div>
-      )}
+      )} */}
     </section>
   );
 };

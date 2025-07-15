@@ -35,7 +35,7 @@ const RecentWorks = () => {
     },
     {
       id: 3,
-      title: "Anoop Lalota Live",
+      title: "Anoop Jalota Live",
       category: "Performance",
       date: "April 15, 2024",
       isVideo: true,

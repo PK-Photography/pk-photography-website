@@ -11,7 +11,7 @@ import "react-phone-input-2/lib/style.css";
 
 export default function LoginPromptModal({ isOpen, onClose }) {
   const router = useRouter();
-  const [formData, setFormData] = useState({ name: "", mobileNo: "" });
+  const [formData, setFormData] = useState({ fullName: "", mobileNo: "" });
   const [loading, setLoading] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [mobileError, setMobileError] = useState("");
@@ -22,7 +22,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.fullName]: e.target.value });
   };
 
   const validateMobile = (number) => {
@@ -98,8 +98,8 @@ export default function LoginPromptModal({ isOpen, onClose }) {
               <label className="block text-sm font-medium text-gray-700">Name</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                fullName="fullName"
+                value={formData.fullName}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
                 required

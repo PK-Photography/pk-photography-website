@@ -145,8 +145,8 @@ const UserCards = () => {
 
       <div className="bg-[white] px-3 pt-6 pb-16 max-w-[90%] mx-auto">
         {isLoading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="w-10 h-10 border-4 border-[#5C899D] border-t-transparent rounded-full animate-spin"></div>
+          <div className="flex justify-center items-center min-h-[300px]">
+            <img src="/loading-rubik.gif" alt="Loading..." className="w-24 h-24" />
           </div>
         ) : (
           <>

@@ -44,7 +44,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
 
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/user/login", formData);
+      const res = await axiosInstance.post("/user/signup", formData);
       if (res.data.success) {
         toast.success("Welcome!");
         localStorage.setItem("accessToken", res.data.data.accessToken);

@@ -22,7 +22,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.fullName]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const validateMobile = (number) => {
@@ -98,7 +98,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
               <label className="block text-sm font-medium text-gray-700">Name</label>
               <input
                 type="text"
-                fullName="fullName"
+                name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"

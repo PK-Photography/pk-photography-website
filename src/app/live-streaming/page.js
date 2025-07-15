@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Header from "@/components/header/Header";
 
 // Dynamic imports with SSR enabled
 const Banner = dynamic(() => import("@/components/live-streaming/Banner"), {
@@ -40,7 +39,7 @@ const Testimonials = dynamic(
     ssr: true,
   }
 );
-const FAQ = dynamic(() => import("@/components/live-streaming/FAQ"), {
+const FAQ2 = dynamic(() => import("@/components/live-streaming/FAQ2"), {
   ssr: true,
 });
 const CallToAction = dynamic(
@@ -61,7 +60,7 @@ export default function LiveStreamingPage() {
       <LiveStreamDemo />
       <RecentWorks />
       <Testimonials />
-      <FAQ />
+      <FAQ2 />
       <CallToAction />
     </main>
   );

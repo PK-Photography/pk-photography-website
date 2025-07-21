@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const faqManImg = "/live-streaming/faq_man.webp";
 
@@ -13,6 +13,7 @@ interface FAQItem {
 
 const FAQ: React.FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+  const refs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     setActiveQuestion(null);
@@ -86,7 +87,17 @@ const FAQ: React.FC = () => {
   ];
 
   const handleQuestionClick = (id: number) => {
-    setActiveQuestion(id === activeQuestion ? null : id);
+    const newActive = id === activeQuestion ? null : id;
+    setActiveQuestion(newActive);
+
+    setTimeout(() => {
+      if (newActive !== null && refs.current[newActive]) {
+        refs.current[newActive]?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -112,6 +123,9 @@ const FAQ: React.FC = () => {
               <div
                 key={item.id}
                 onClick={() => handleQuestionClick(item.id)}
+                ref={(el) => {
+                  refs.current[item.id] = el;
+                }}
                 className="rounded-lg p-5 cursor-pointer transition-all"
                 style={{
                   backgroundColor:

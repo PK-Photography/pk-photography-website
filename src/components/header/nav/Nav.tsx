@@ -170,10 +170,18 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
               <p className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-widest mb-2 text-left">
                 SAY HELLO
               </p>
-              <p className="text-xl mb-1 text-left">+91 8889766739</p>
-              <p className="text-xl text-gray-300 text-left">
+              <a
+                href="tel:+918889766739"
+                className="text-xl mb-1 text-left hover:text-gray-400 block"
+              >
+                +91 8889766739
+              </a>
+              <a
+                href="mailto:info@pkphotography.in"
+                className="text-xl text-gray-300 text-left hover:text-gray-400 block"
+              >
                 info@pkphotography.in
-              </p>
+              </a>
             </motion.div>
 
             <motion.div

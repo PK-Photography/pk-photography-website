@@ -21,8 +21,6 @@ import FAQSection from "@/components/live-streaming/FAQ";
 
 export default function page() {
     return (
-
-
         <div>
             <HeroSection />
             <GetStartedSection />

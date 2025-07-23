@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import axiosInstance from "@/utils/axiosConfig";
 import GoogleLoginButton from "@/components/GoogleLoginButton";
@@ -10,27 +11,29 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 export default function LoginPromptModal({ isOpen, onClose }) {
+  const { data: session } = useSession();
   const router = useRouter();
+
   const [formData, setFormData] = useState({ fullName: "", mobileNo: "" });
+  const [mobileError, setMobileError] = useState("");
   const [loading, setLoading] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
-  const [mobileError, setMobileError] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) setShouldRender(true);
-  }, []);
+    const lastDismissed = parseInt(localStorage.getItem("loginPromptDismissedAt") || "0", 10);
+    const threeHoursAgo = Date.now() - 3 * 60 * 60 * 1000;
+    const shouldShow = !session?.user && (!lastDismissed || lastDismissed < threeHoursAgo);
+
+    setShouldRender(shouldShow);
+  }, [session]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const validateMobile = (number) => {
-    const plain = number.replace(/\D/g, ""); // Remove non-digit characters
-    if (plain.startsWith("91")) {
-      return plain.length === 12; // +91XXXXXXXXXX
-    }
-    return plain.length === 10; // fallback
+    const digits = number.replace(/\D/g, "");
+    return digits.startsWith("91") ? digits.length === 12 : digits.length === 10;
   };
 
   const handleContinue = async (e) => {
@@ -38,7 +41,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
     setMobileError("");
 
     if (!validateMobile(formData.mobileNo)) {
-      setMobileError("Please enter a valid 10-digit mobileNo number.");
+      setMobileError("Please enter a valid 10-digit mobile number.");
       return;
     }
 
@@ -47,17 +50,15 @@ export default function LoginPromptModal({ isOpen, onClose }) {
       const res = await axiosInstance.post("/user/signup", formData);
       if (res.data.success) {
         toast.success("Welcome!");
-        localStorage.setItem("accessToken", res.data.data.accessToken);
-        localStorage.setItem("refreshToken", res.data.data.refreshToken);
-        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+        localStorage.setItem("loginPromptDismissedAt", Date.now().toString());
         onClose();
-        router.push("/profile");
+        router.push("/");
       } else {
-        toast.error(res.data.message || "Failed to continue.");
+        toast.error(res.data.message || "Signup failed.");
       }
-    } catch (error) {
-      console.error("Login Error:", error.response?.data || error.message);
-      toast.error(error.response?.data?.message || "Something went wrong!");
+    } catch (err) {
+      console.error("Signup Error:", err);
+      toast.error(err?.response?.data?.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -72,7 +73,10 @@ export default function LoginPromptModal({ isOpen, onClose }) {
         <Dialog.Panel className="relative bg-white rounded-lg shadow-xl p-6 max-w-md w-full z-10">
           {/* Close Button */}
           <button
-            onClick={onClose}
+            onClick={() => {
+              localStorage.setItem("loginPromptDismissedAt", Date.now().toString());
+              onClose();
+            }}
             className="absolute top-3 right-3 text-gray-400 hover:text-black transition"
             aria-label="Close"
           >
@@ -93,7 +97,6 @@ export default function LoginPromptModal({ isOpen, onClose }) {
           </p>
 
           <form onSubmit={handleContinue} className="space-y-4">
-            {/* Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Name</label>
               <input
@@ -106,43 +109,28 @@ export default function LoginPromptModal({ isOpen, onClose }) {
               />
             </div>
 
-            {/* Mobile with validation and font fix */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
               <PhoneInput
-                  country={"in"}
-                  value={formData.mobileNo}
-                  onChange={(phone) => setFormData({ ...formData, mobileNo: phone })}
-                  inputStyle={{
-                    width: "100%",
-                    padding: "10px 10px 10px 50px", // space for flag
-                    borderRadius: "0.375rem",
-                    border: "1px solid #d1d5db",
-                    fontSize: "14px",
-                    fontFamily: "inherit",
-                    boxSizing: "border-box",
-                    appearance: "textfield",
-                    caretColor: "#000", // ensure blinking cursor
-                  }}
-                  buttonStyle={{
-                    border: "none",
-                    background: "none",
-                    position: "absolute",
-                    left: "10px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    zIndex: 10,
-                  }}
-                  containerStyle={{
-                    position: "relative",
-                    width: "100%",
-                    fontFamily: "inherit",
-                  }}
-                  inputProps={{
-                    name: "mobileNo",
-                    required: true,
-                  }}
-                />
+                country={"in"}
+                value={formData.mobileNo}
+                onChange={(phone) => setFormData({ ...formData, mobileNo: phone })}
+                inputStyle={{
+                  width: "100%",
+                  padding: "10px 10px 10px 50px",
+                  borderRadius: "0.375rem",
+                  border: "1px solid #d1d5db",
+                  fontSize: "14px",
+                  fontFamily: "inherit",
+                  boxSizing: "border-box",
+                }}
+                containerStyle={{
+                  position: "relative",
+                  width: "100%",
+                  fontFamily: "inherit",
+                }}
+                inputProps={{ name: "mobileNo", required: true }}
+              />
               {mobileError && (
                 <p className="text-sm text-red-600 mt-1">{mobileError}</p>
               )}

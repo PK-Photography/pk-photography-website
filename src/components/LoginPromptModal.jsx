@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import axiosInstance from "@/utils/axiosConfig";
 import GoogleLoginButton from "@/components/GoogleLoginButton";
@@ -23,7 +23,6 @@ export default function LoginPromptModal({ isOpen, onClose }) {
     const lastDismissed = parseInt(localStorage.getItem("loginPromptDismissedAt") || "0", 10);
     const threeHoursAgo = Date.now() - 3 * 60 * 60 * 1000;
     const shouldShow = !session?.user && (!lastDismissed || lastDismissed < threeHoursAgo);
-
     setShouldRender(shouldShow);
   }, [session]);
 
@@ -47,18 +46,23 @@ export default function LoginPromptModal({ isOpen, onClose }) {
 
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/user/signup", formData);
-      if (res.data.success) {
+      const res = await signIn("credentials", {
+        fullName: formData.fullName,
+        mobileNo: formData.mobileNo,
+        redirect: false,
+      });
+
+      if (res?.ok) {
         toast.success("Welcome!");
         localStorage.setItem("loginPromptDismissedAt", Date.now().toString());
         onClose();
         router.push("/");
       } else {
-        toast.error(res.data.message || "Signup failed.");
+        toast.error("Login failed.");
       }
     } catch (err) {
       console.error("Signup Error:", err);
-      toast.error(err?.response?.data?.message || "Something went wrong.");
+      toast.error("Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -131,9 +135,7 @@ export default function LoginPromptModal({ isOpen, onClose }) {
                 }}
                 inputProps={{ name: "mobileNo", required: true }}
               />
-              {mobileError && (
-                <p className="text-sm text-red-600 mt-1">{mobileError}</p>
-              )}
+              {mobileError && <p className="text-sm text-red-600 mt-1">{mobileError}</p>}
             </div>
 
             <button

@@ -48,13 +48,11 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto md:overflow-hidden"
     >
-      {/* Top Row */}
-      <div className="relative w-full px-6 pt-6 h-20">
-        <p className="text-white text-4xl font-semibold md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
-          PK
-        </p>
+      {/* Top Bar */}
+      <div className="relative w-full px-6 pt-6 h-20 flex items-center justify-between">
+        <p className="text-white text-4xl font-semibold mx-auto">PK</p>
         <button
           onClick={onClose}
           className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:opacity-70 z-50"
@@ -74,48 +72,10 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
         </button>
       </div>
 
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 px-4 md:px-10 w-full flex-1">
-        {/* Left Nav */}
-        <motion.div
-          initial="hidden"
-          animate="show"
-          exit="exit"
-          variants={{
-            hidden: {},
-            show: {
-              transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-            },
-          }}
-          className="md:col-span-3 flex flex-col justify-end w-full pb-6 pt-8"
-        >
-          {navItems.map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.6, ease: "easeOut" },
-                },
-              }}
-              className="group w-full cursor-pointer py-4"
-              onClick={() => handleNavClick(item.href)}
-            >
-              <p className="text-5xl md:text-9xl xl:text-9xl font-light tracking-tight group-hover:text-gray-400 transition-colors duration-300">
-                {item.label}
-              </p>
-              <div className="relative h-2 mt-2">
-                <div className="absolute bottom-0 left-0 h-[1px] w-full bg-[#2c2c2c]" />
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-gray-400 to-gray-700 group-hover:w-full transition-all duration-500 ease-in-out" />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Right Info */}
-        <div className="md:col-span-1 pl md:pl-16 h-full pb-6">
+      {/* Main Layout Container */}
+      <div className="flex flex-col h-[calc(100vh-5rem)] md:h-[calc(100vh-5rem)]">
+        <div className="grid grid-cols-1 md:grid-cols-4 flex-1 gap-8 px-4 md:px-10 w-full">
+          {/* Left Section - Vertically Centered Nav */}
           <motion.div
             initial="hidden"
             animate="show"
@@ -123,19 +83,58 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             variants={{
               hidden: {},
               show: {
-                transition: { staggerChildren: 0.1, delayChildren: 0.7 },
+                transition: { staggerChildren: 0.1, delayChildren: 0.1 },
               },
             }}
-            className="flex flex-col justify-between h-full text-base sm:text-lg md:text-xl items-start md:items-end"
+            className="md:col-span-3 flex flex-col justify-center w-full overflow-hidden"
           >
+            {navItems.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 50 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, ease: "easeOut" },
+                  },
+                }}
+                className="group w-full cursor-pointer py-2"
+                onClick={() => handleNavClick(item.href)}
+              >
+                <p className="text-5xl md:text-7xl xl:text-8xl font-light tracking-tight group-hover:text-gray-400 transition-colors duration-300">
+                  {item.label}
+                </p>
+                <div className="relative h-2 mt-1">
+                  <div className="absolute bottom-0 left-0 h-[1px] w-full bg-[#2c2c2c]" />
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-gray-400 to-gray-700 group-hover:w-full transition-all duration-500 ease-in-out" />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Right Section - Clean Vertical Stack */}
+          <div className="md:col-span-1 md:pl-10 flex h-full">
             <motion.div
+              initial="hidden"
+              animate="show"
+              exit="exit"
               variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 },
+                hidden: {},
+                show: {
+                  transition: { staggerChildren: 0.1, delayChildren: 0.7 },
+                },
               }}
-              className="mb-10 w-full"
+              className="flex flex-col items-start justify-start md:justify-between h-full w-full text-left md:text-right"
             >
-              <div className="space-y-2 w-full">
+              {/* Top Links */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                className="space-y-2"
+              >
                 {rightLinks.map((link, i) => (
                   <p
                     key={i}
@@ -145,86 +144,89 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
                     {link.label}
                   </p>
                 ))}
-
                 {session?.user && (
                   <p
-                    className="hover:text-red-400 cursor-pointer text-left mt-4"
+                    className="hover:text-red-400 cursor-pointer mt-4"
                     onClick={() => {
                       signOut({ callbackUrl: "/" });
-                      onClose(); // Close menu after logout
+                      onClose();
                     }}
                   >
                     Logout
                   </p>
                 )}
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 },
-              }}
-              className="mb-10 w-full"
-            >
-              <p className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-widest mb-2 text-left">
-                SAY HELLO
-              </p>
-              <a
-                href="tel:+918889766739"
-                className="text-xl mb-1 text-left hover:text-gray-400 block"
+              {/* Contact */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                className="mt-8 text-left"
               >
-                +91 8889766739
-              </a>
-              <a
-                href="mailto:info@pkphotography.in"
-                className="text-xl text-gray-300 text-left hover:text-gray-400 block"
-              >
-                info@pkphotography.in
-              </a>
-            </motion.div>
-
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 },
-              }}
-              className="mb-10 w-full"
-            >
-              <p className="text-xl text-gray-300 mb-1 text-left">
-                <strong>500+</strong> Happy Clients
-              </p>
-              <p className="text-xl text-gray-300 mb-1 text-left">
-                <strong>10+</strong> Years of Experience
-              </p>
-              <p className="text-xl text-gray-300 mb-1 text-left">
-                <strong>1M+</strong> Photos Captured
-              </p>
-              <p className="text-xl text-gray-300 text-left">
-                <strong>100+</strong> Artists Onboard
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 },
-              }}
-              className="text-lg text-gray-500 space-x-6 text-left w-full"
-            >
-              {socialLinks.map((s, i) => (
+                <p className="text-base font-semibold uppercase tracking-widest mb-1">
+                  SAY HELLO
+                </p>
                 <a
-                  key={i}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-white transition"
+                  href="tel:+918889766739"
+                  className="text-lg hover:text-gray-400 block"
                 >
-                  {s.label}
+                  +91 8889766739
                 </a>
-              ))}
+                <a
+                  href="mailto:info@pkphotography.in"
+                  className="text-lg text-gray-300 hover:text-gray-400 block break-all"
+                  style={{ wordBreak: "break-all" }}
+                >
+                  info@pkphotography.in
+                </a>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                className="mt-8 text-left"
+              >
+                <p className="text-lg text-gray-300 mb-1">
+                  <strong>500+</strong> Happy Clients
+                </p>
+                <p className="text-lg text-gray-300 mb-1">
+                  <strong>10+</strong> Years of Experience
+                </p>
+                <p className="text-lg text-gray-300 mb-1">
+                  <strong>1M+</strong> Photos Captured
+                </p>
+                <p className="text-lg text-gray-300">
+                  <strong>100+</strong> Artists Onboard
+                </p>
+              </motion.div>
+
+              {/* Socials */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                className="pb-12 mt-8 text-lg text-gray-500 flex flex-wrap gap-4 md:justify-start text-left"
+              >
+                {socialLinks.map((s, i) => (
+                  <a
+                    key={i}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-white transition"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>

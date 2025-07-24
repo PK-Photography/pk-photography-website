@@ -156,8 +156,8 @@ function GalleryContent() {
                 <Image
                   src={item.imageUrl}
                   alt={item.imageName}
-                  width={90}
-                  height={90}
+                  width={1000}
+                  height={1000}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition duration-300"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300">

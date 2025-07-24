@@ -116,7 +116,7 @@ const ClientHome = () => {
       });
   
       const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
-      // const baseURL = "http://localhost:8081/api/v1";/
+      // const baseURL = "http://localhost:8081/api/v1";
 
       const newImages = response.data.images.map((img, index) => ({
         id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
@@ -768,9 +768,6 @@ const ClientHome = () => {
             onClick={() => {
               const nextPage = nasPage + 1;
               setNasPage(nextPage);
-
-     
-            
               const activeCat = categories.find((c) => c.name === activeCategory);
    
               if (
@@ -783,7 +780,7 @@ const ClientHome = () => {
                 fetchImagesFromNAS(activeCat.images, activeCategory, selectedCard._id, nextPage);
               }
             }}
-            className="px-6 py-3 bg-[#8B5E3C] text-white font-semibold rounded-lg hover:bg-[#A87447] transition duration-300"
+            className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-black transition duration-300"
           >
             Load More
           </button>
@@ -791,8 +788,8 @@ const ClientHome = () => {
       )}
 
       {nasLoading && (
-        <div className="flex justify-center items-center my-6 pb-10">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#8B5E3C]"></div>
+        <div className="flex justify-center items-center min-h-[300px]">
+          <img src="/loading-rubik.gif" alt="Loading..." className="w-24 h-24" />
         </div>
       )}
 

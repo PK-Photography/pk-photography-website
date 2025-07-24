@@ -52,7 +52,18 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
     >
       {/* Top Bar */}
       <div className="relative w-full px-6 pt-6 h-20 flex items-center justify-between">
-        <p className="text-white text-4xl font-semibold mx-auto">PK</p>
+        <div className="flex-1 flex justify-center items-center">
+          <button
+            onClick={() => {
+              router.push("/");
+              onClose();
+            }}
+            className="focus:outline-none"
+            aria-label="Go to Home"
+          >
+            <p className="text-white text-4xl font-semibold mx-auto">PK</p>
+          </button>
+        </div>
         <button
           onClick={onClose}
           className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:opacity-70 z-50"

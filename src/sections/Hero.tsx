@@ -29,7 +29,9 @@ export const Hero = () => {
         const res = await fetch("/api/visual_stories");
         const data = await res.json();
         const homepage = data.data.find((img: CarouselImage) =>
-          isMobile ? img.imageType === "homepage_mobile" : img.imageType === "homepage_web"
+          isMobile
+            ? img.imageType === "homepage_mobile"
+            : img.imageType === "homepage_web"
         );
         if (homepage?.imageUrl) {
           setHomepageImage(homepage.imageUrl);
@@ -45,6 +47,7 @@ export const Hero = () => {
   return (
     <section className="relative h-screen overflow-hidden font-sans">
       {/* Background Image */}
+      {/* Fallback Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="/hero-img.jpg"
@@ -52,21 +55,40 @@ export const Hero = () => {
           layout="fill"
           objectFit="cover"
           quality={80}
-          className={`${loaded ? "opacity-0" : "opacity-100"} transition-opacity duration-700`}
+          className={`${
+            loaded ? "opacity-0" : "opacity-100"
+          } transition-opacity duration-700`}
         />
       </div>
 
+      {/* Homepage Media */}
       {homepageImage && (
         <div className="absolute inset-0 w-full h-full">
-          <Image
-            src={homepageImage}
-            alt="Hero"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            onLoad={() => setLoaded(true)}
-            className={`transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
-          />
+          {/\.(mp4|webm|ogg)$/i.test(homepageImage) ? (
+            <video
+              src={homepageImage}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className={`transition-opacity duration-700 object-cover w-full h-full absolute inset-0 ${
+                loaded ? "opacity-100" : "opacity-0"
+              }`}
+              onLoadedData={() => setLoaded(true)}
+            />
+          ) : (
+            <Image
+              src={homepageImage}
+              alt="Hero"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              onLoad={() => setLoaded(true)}
+              className={`transition-opacity duration-700 ${
+                loaded ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
         </div>
       )}
 
@@ -83,10 +105,9 @@ export const Hero = () => {
           >
             Portfolio Shoots that Speak for You
           </h1>
-          
+
           {/* Tagline Top Left (on large screens) */}
           <p className="text-white text-lg md:text-xl font-light text-center lg:text-center">
-            
             Fashion-forward. Fiercely lit. Designed to impress.
           </p>
 

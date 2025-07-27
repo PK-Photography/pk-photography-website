@@ -38,7 +38,7 @@ const ClientHome = () => {
   const [nasAllImages, setNasAllImages] = useState([]); // All images from NAS
   const [nasPage, setNasPage] = useState(1);
   const [nasPageSize] = useState(20);
-  const [nasLoading, setNasLoading] = useState(false);
+  const [nasLoading, setNasLoading] = useState(true);
   const [hasMoreNasImages, setHasMoreNasImages] = useState(true);
   const [nasTotalCount, setNasTotalCount] = useState(0);
 
@@ -707,6 +707,7 @@ const ClientHome = () => {
         setCurrentImageIndex={setCurrentImageIndex}
         setSlideshowVisible={setSlideshowVisible}
         imageContainerRef={imageContainerRef}
+        nasLoading={nasLoading}
       />
 
       {/* We we click on download Icon, this page opens...Download Modal */}
@@ -778,6 +779,7 @@ const ClientHome = () => {
               ) {
 
                 fetchImagesFromNAS(activeCat.images, activeCategory, selectedCard._id, nextPage);
+                
               }
             }}
             className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-black transition duration-300"

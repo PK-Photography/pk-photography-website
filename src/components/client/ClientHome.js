@@ -12,6 +12,8 @@ import { FaTimes } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosConfig.jsx";
 import ImageGalleryList from "../client/ImageGalleryList";
 import BannerSection from "../client/BannerSection";
+import Lottie from "lottie-react";
+import animationData from "@/assets/Picture.json";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -32,7 +34,7 @@ const ClientHome = () => {
   const [clicked, setClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
-  const [canView, setCanView] = useState(true);        // State for canView
+  const [canView, setCanView] = useState(true); // State for canView
   const [canDownload, setCanDownload] = useState(true); // State for canDownload
   const [loadingImages, setLoadingImages] = useState({});
   const [nasAllImages, setNasAllImages] = useState([]); // All images from NAS
@@ -57,14 +59,14 @@ const ClientHome = () => {
         setActiveCategory(categoryName);
         return;
       }
-  
+
       const extractFolderId = (link) => link.match(/[-\w]{25,}/)?.[0] || null;
       const folderId = extractFolderId(driveLink);
       if (!folderId) return;
-  
+
       let allImages = [];
       let pageToken = null;
-  
+
       try {
         do {
           const response = await axios.get(
@@ -79,7 +81,7 @@ const ClientHome = () => {
               },
             }
           );
-  
+
           const files = response.data.files.map((file, index) => ({
             id: `${categoryName}-${allImages.length + index}`,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
@@ -87,11 +89,11 @@ const ClientHome = () => {
             highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
             shareableLink: `https://drive.google.com/file/d/${file.id}/view?usp=sharing`,
           }));
-  
+
           allImages = [...allImages, ...files];
           pageToken = response.data.nextPageToken;
         } while (pageToken);
-  
+
         sessionStorage.setItem(cacheKey, JSON.stringify(allImages));
         setImages(allImages);
         setActiveCategory(categoryName);
@@ -102,87 +104,90 @@ const ClientHome = () => {
     []
   );
 
-  const fetchImagesFromNAS = useCallback(async (nasFolderUrl, categoryName, cardId, page = 1) => {
-    const cacheKey = `nas-${cardId}-${categoryName}`;
-    setNasLoading(true);
-  
-    try {
-      const response = await axiosInstance.get(`/nas-images`, {
-        params: {
-          nasUrl: nasFolderUrl,
-          offset: (page - 1) * nasPageSize,
-          limit: nasPageSize,
-        },
-      });
-  
-      const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
-      // const baseURL = "http://localhost:8081/api/v1";
+  const fetchImagesFromNAS = useCallback(
+    async (nasFolderUrl, categoryName, cardId, page = 1) => {
+      const cacheKey = `nas-${cardId}-${categoryName}`;
+      setNasLoading(true);
 
-      const newImages = response.data.images.map((img, index) => ({
-        id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
-        name: img.name,
-        mediumRes: `${baseURL}${img.mediumRes}`,
-        lowRes: `${baseURL}${img.lowRes}`,
-        shareableLink: `${baseURL}${img.mediumRes}`,
-        path: img.path,
-      }));
-  
-      if (page === 1) {
-        setNasAllImages(newImages);
-      } else {
-        setNasAllImages(prev => [...prev, ...newImages]);
-      }
-  
-      setActiveCategory(categoryName);
-      setImages(prev => (page === 1 ? newImages : [...prev, ...newImages]));
-  
-      if (newImages.length < nasPageSize) {
+      try {
+        const response = await axiosInstance.get(`/nas-images`, {
+          params: {
+            nasUrl: nasFolderUrl,
+            offset: (page - 1) * nasPageSize,
+            limit: nasPageSize,
+          },
+        });
+
+        const baseURL = "https://pk-photography-backend.onrender.com/api/v1";
+        // const baseURL = "http://localhost:8081/api/v1";
+
+        const newImages = response.data.images.map((img, index) => ({
+          id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
+          name: img.name,
+          mediumRes: `${baseURL}${img.mediumRes}`,
+          lowRes: `${baseURL}${img.lowRes}`,
+          shareableLink: `${baseURL}${img.mediumRes}`,
+          path: img.path,
+        }));
+
+        if (page === 1) {
+          setNasAllImages(newImages);
+        } else {
+          setNasAllImages((prev) => [...prev, ...newImages]);
+        }
+
+        setActiveCategory(categoryName);
+        setImages((prev) => (page === 1 ? newImages : [...prev, ...newImages]));
+
+        if (newImages.length < nasPageSize) {
+          setHasMoreNasImages(false);
+        } else {
+          setHasMoreNasImages(true);
+        }
+        setNasTotalCount(response.data.total || 0);
+      } catch (error) {
+        console.error("NAS fetch error:", error);
         setHasMoreNasImages(false);
-      } else {
-        setHasMoreNasImages(true);
+      } finally {
+        setNasLoading(false);
       }
-      setNasTotalCount(response.data.total || 0);
-    } catch (error) {
-      console.error("NAS fetch error:", error);
-      setHasMoreNasImages(false);
-    } finally {
-      setNasLoading(false);
-    }
-  }, []);
+    },
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
-  
+
       if (
         nearBottom &&
         !nasLoading &&
         hasMoreNasImages &&
         selectedCard &&
         activeCategory &&
-        categories.find((c) => c.name === activeCategory)?.images.includes("quickconnect.to")
+        categories
+          .find((c) => c.name === activeCategory)
+          ?.images.includes("quickconnect.to")
       ) {
-       
         setNasPage((prev) => {
-     
           return prev + 1;
         });
       }
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     setTimeout(() => handleScroll(), 500);
-  
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [nasLoading, hasMoreNasImages, selectedCard, activeCategory, categories]);
 
   useEffect(() => {
     if (!selectedCard || categories.length === 0) return;
-  
+
     const activeCat = categories.find((c) => c.name === activeCategory);
     if (!activeCat || !activeCat.images.includes("quickconnect.to")) return;
-  
+
     setNasPage(1);
     setHasMoreNasImages(true); // reset "load more" flag
     window.scrollTo(0, 0);
@@ -190,37 +195,45 @@ const ClientHome = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-  
+
     const url = window.location.pathname;
     const parts = url.split("/");
     const lastId = parts[parts.length - 1];
     const cacheKey = `card-${lastId}`;
     const cachedCard = sessionStorage.getItem(cacheKey);
-  
+
     if (cachedCard) {
       const foundCard = JSON.parse(cachedCard);
       setSelectedCard(foundCard);
       setCategories(foundCard.category || []);
       setCanView(foundCard.canView || false);
       setCanDownload(foundCard.canDownload || false);
-  
+
       const firstCategory = foundCard.category?.[0];
       if (firstCategory) {
         setActiveCategory(firstCategory.name);
-  
+
         const isDrive = firstCategory.images.includes("drive.google.com");
         const imageCacheKey = isDrive
           ? `drive-${foundCard._id}-${firstCategory.name}`
           : `nas-${foundCard._id}-${firstCategory.name}`;
-  
+
         const cachedImages = sessionStorage.getItem(imageCacheKey);
-  
+
         if (cachedImages) {
           setImages(JSON.parse(cachedImages));
         } else {
           isDrive
-            ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
-            : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+            ? fetchImagesFromDrive(
+                firstCategory.images,
+                firstCategory.name,
+                foundCard._id
+              )
+            : fetchImagesFromNAS(
+                firstCategory.images,
+                firstCategory.name,
+                foundCard._id
+              );
         }
       }
     } else {
@@ -229,26 +242,34 @@ const ClientHome = () => {
           const response = await axiosInstance.get(`/client/cards`);
           const foundCard = response.data.find((card) => card._id === lastId);
           if (!foundCard) return;
-  
+
           sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
           setSelectedCard(foundCard);
           setCategories(foundCard.category || []);
           setCanView(foundCard.canView || false);
           setCanDownload(foundCard.canDownload || false);
-  
+
           const firstCategory = foundCard.category?.[0];
           if (firstCategory) {
             setActiveCategory(firstCategory.name);
-  
+
             firstCategory.images.includes("drive.google.com")
-              ? fetchImagesFromDrive(firstCategory.images, firstCategory.name, foundCard._id)
-              : fetchImagesFromNAS(firstCategory.images, firstCategory.name, foundCard._id);
+              ? fetchImagesFromDrive(
+                  firstCategory.images,
+                  firstCategory.name,
+                  foundCard._id
+                )
+              : fetchImagesFromNAS(
+                  firstCategory.images,
+                  firstCategory.name,
+                  foundCard._id
+                );
           }
         } catch (error) {
           console.error("Error fetching selected card:", error);
         }
       };
-  
+
       fetchSelectedCard();
     }
   }, []);
@@ -401,116 +422,126 @@ const ClientHome = () => {
   };
 
   const handleCloseDownloadModal = () => {
-      setClicked(true);
-      setDownloadModalVisible(false);
-      setSelectedSize("High Resolution");
+    setClicked(true);
+    setDownloadModalVisible(false);
+    setSelectedSize("High Resolution");
   };
 
   const handleDownloadPhoto = async () => {
-      try {
-          let downloadUrl;
+    try {
+      let downloadUrl;
 
-          if (currentImage.mediumRes.includes("drive.google.com")) {
-              downloadUrl = selectedSize === "High Resolution"
-                  ? currentImage.mediumRes
-                  : currentImage.mediumRes;
-          } else {
-              const encodedPath = encodeURIComponent(currentImage.path);
-              downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
-          }
-
-          const link = document.createElement("a");
-          link.href = downloadUrl;
-          link.download = `image_${Date.now()}.jpg`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-
-          handleCloseDownloadModal();
-      } catch (error) {
-          console.error("Error downloading the image:", error);
+      if (currentImage.mediumRes.includes("drive.google.com")) {
+        downloadUrl =
+          selectedSize === "High Resolution"
+            ? currentImage.mediumRes
+            : currentImage.mediumRes;
+      } else {
+        const encodedPath = encodeURIComponent(currentImage.path);
+        downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${currentImage.path}`;
       }
+
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = `image_${Date.now()}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      handleCloseDownloadModal();
+    } catch (error) {
+      console.error("Error downloading the image:", error);
+    }
   };
 
   const handleDownloadAll = async () => {
     if (!images || images.length === 0) {
-        alert("No images available to download.");
-        return;
+      alert("No images available to download.");
+      return;
     }
 
     let downloadUrl;
 
     if (images[0].mediumRes.includes("drive.google.com")) {
-        const zip = new JSZip();
-        const failedImages = [];
+      const zip = new JSZip();
+      const failedImages = [];
 
-        const fetchPromises = images.map(async (image, index) => {
-            const fileId = extractFileIdFromUrl(image.mediumRes);
-            if (!fileId) {
-                console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
-                failedImages.push(image.mediumRes);
-                return;
-            }
+      const fetchPromises = images.map(async (image, index) => {
+        const fileId = extractFileIdFromUrl(image.mediumRes);
+        if (!fileId) {
+          console.warn(`Failed to extract fileId from URL: ${image.mediumRes}`);
+          failedImages.push(image.mediumRes);
+          return;
+        }
 
-            // Use baseURL from axiosInstance to construct the proxy URL
-            const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
+        // Use baseURL from axiosInstance to construct the proxy URL
+        const proxyUrl = `${axiosInstance.defaults.baseURL}/download/${fileId}`;
 
-            try {
-                const response = await fetch(proxyUrl);
-                if (!response.ok) {
-                    console.error(`Failed to fetch ${proxyUrl}:`, response.status);
-                    failedImages.push(image.mediumRes);
-                    return;
-                }
-
-                const blob = await response.blob();
-                const arrayBuffer = await blob.arrayBuffer();
-
-                // Determine a valid file extension
-                const defaultExtension = "jpg";
-                const fileExtension = image.mediumRes
-                    .split(".")
-                    .pop()
-                    .match(/^(jpg|jpeg|png|gif)$/i)
-                    ? image.mediumRes.split(".").pop()
-                    : defaultExtension;
-
-                const fileName = `${activeCategory || "category"}_${index + 1}.${fileExtension}`;
-                zip.file(fileName, arrayBuffer); // Add file directly to the zip
-            } catch (error) {
-                console.error(`Error downloading file: ${image.mediumRes}`, error);
-                failedImages.push(image.mediumRes);
-            }
-        });
-
-        // Wait for all fetches to complete
-        await Promise.all(fetchPromises);
-
-        // Check if any files were successfully added
-        if (Object.keys(zip.files).length === 0) {
-            alert("No images were successfully added to the ZIP file.");
+        try {
+          const response = await fetch(proxyUrl);
+          if (!response.ok) {
+            console.error(`Failed to fetch ${proxyUrl}:`, response.status);
+            failedImages.push(image.mediumRes);
             return;
-        }
+          }
 
-        // Generate and download the ZIP file
-        const content = await zip.generateAsync({ type: "blob" });
-        saveAs(content, `${activeCategory || "all-images"}.zip`);
+          const blob = await response.blob();
+          const arrayBuffer = await blob.arrayBuffer();
 
-        // Log and alert about failed downloads, if any
-        if (failedImages.length > 0) {
-            console.warn(`Failed to download ${failedImages.length} images.`, failedImages);
-            alert("Some images could not be downloaded. Check the console for details.");
+          // Determine a valid file extension
+          const defaultExtension = "jpg";
+          const fileExtension = image.mediumRes
+            .split(".")
+            .pop()
+            .match(/^(jpg|jpeg|png|gif)$/i)
+            ? image.mediumRes.split(".").pop()
+            : defaultExtension;
+
+          const fileName = `${activeCategory || "category"}_${
+            index + 1
+          }.${fileExtension}`;
+          zip.file(fileName, arrayBuffer); // Add file directly to the zip
+        } catch (error) {
+          console.error(`Error downloading file: ${image.mediumRes}`, error);
+          failedImages.push(image.mediumRes);
         }
+      });
+
+      // Wait for all fetches to complete
+      await Promise.all(fetchPromises);
+
+      // Check if any files were successfully added
+      if (Object.keys(zip.files).length === 0) {
+        alert("No images were successfully added to the ZIP file.");
+        return;
+      }
+
+      // Generate and download the ZIP file
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, `${activeCategory || "all-images"}.zip`);
+
+      // Log and alert about failed downloads, if any
+      if (failedImages.length > 0) {
+        console.warn(
+          `Failed to download ${failedImages.length} images.`,
+          failedImages
+        );
+        alert(
+          "Some images could not be downloaded. Check the console for details."
+        );
+      }
     } else {
-        const encodedPath = encodeURIComponent(images[0].path.split('/').slice(0, -1).join('/')); // Extract parent folder path
-        downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${encodedPath}`;
+      const encodedPath = encodeURIComponent(
+        images[0].path.split("/").slice(0, -1).join("/")
+      ); // Extract parent folder path
+      downloadUrl = `${axiosInstance.defaults.baseURL}/nas-download?path=${encodedPath}`;
 
-        const link = document.createElement("a");
-        link.href = downloadUrl;
-        link.download = `${activeCategory || "all-images"}.zip`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = `${activeCategory || "all-images"}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   };
 
@@ -591,15 +622,15 @@ const ClientHome = () => {
           ? image.mediumRes.split(".").pop()
           : defaultExtension;
 
-        const fileName = `${activeCategory || "category"}_${index + 1
-          }.${fileExtension}`;
+        const fileName = `${activeCategory || "category"}_${
+          index + 1
+        }.${fileExtension}`;
         zip.file(fileName, arrayBuffer); // Add file directly to the zip
       } catch (error) {
         console.error(`Error downloading file: ${image.mediumRes}`, error);
         failedImages.push(image.mediumRes);
       }
     });
-
 
     await Promise.all(fetchPromises);
 
@@ -631,10 +662,11 @@ const ClientHome = () => {
         <title>{selectedCard.name || "PK Photography"}</title>
         <meta
           name="description"
-          content={`Explore stunning images and categories from ${selectedCard.name || "PK Photography"
-            }. Find high-quality pictures organized by categories like ${categories
-              .map((category) => category.name)
-              .join(", ")}.`}
+          content={`Explore stunning images and categories from ${
+            selectedCard.name || "PK Photography"
+          }. Find high-quality pictures organized by categories like ${categories
+            .map((category) => category.name)
+            .join(", ")}.`}
         />
         <meta
           name="keywords"
@@ -648,8 +680,9 @@ const ClientHome = () => {
         />
         <meta
           property="og:description"
-          content={`View the best moments captured by ${selectedCard.name || "PK Photography"
-            }.`}
+          content={`View the best moments captured by ${
+            selectedCard.name || "PK Photography"
+          }.`}
         />
         <meta property="og:image" content="/path-to-default-image.jpg" />
         <meta property="og:url" content={window.location.href} />
@@ -661,7 +694,7 @@ const ClientHome = () => {
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
-        <CategoryNav
+          <CategoryNav
             categories={categories}
             activeCategory={activeCategory}
             fetchImagesFromDrive={fetchImagesFromDrive}
@@ -711,57 +744,56 @@ const ClientHome = () => {
       />
 
       {/* We we click on download Icon, this page opens...Download Modal */}
-      {
-        downloadModalVisible && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-1000">
-            <div
-              className="bg-[#FDF5E6] rounded-2xl p-8 w-full max-w-lg shadow-xl transform transition-all duration-300 scale-95"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
+      {downloadModalVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-1000">
+          <div
+            className="bg-[#FDF5E6] rounded-2xl p-8 w-full max-w-lg shadow-xl transform transition-all duration-300 scale-95"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+              onClick={handleCloseDownloadModal}
             >
-              {/* Close Button */}
-              <button
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
-                onClick={handleCloseDownloadModal}
-              >
-                <FaTimes size={24} />
-              </button>
+              <FaTimes size={24} />
+            </button>
 
-              <h2 className="text-3xl font-bold text-[#5A3E36] text-center mb-6">
-                Download Photo
-              </h2>
+            <h2 className="text-3xl font-bold text-[#5A3E36] text-center mb-6">
+              Download Photo
+            </h2>
 
-              {/* Size Selection */}
-              <div className="mb-6">
-                <p className="text-[#7A5C52] font-medium text-lg mb-3">
-                  Select Photo Size
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  {["High Resolution", "Web Size"].map((size) => (
-                    <div
-                      key={size}
-                      className={`p-4 border rounded-lg cursor-pointer transition ${selectedSize === size
+            {/* Size Selection */}
+            <div className="mb-6">
+              <p className="text-[#7A5C52] font-medium text-lg mb-3">
+                Select Photo Size
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {["High Resolution", "Web Size"].map((size) => (
+                  <div
+                    key={size}
+                    className={`p-4 border rounded-lg cursor-pointer transition ${
+                      selectedSize === size
                         ? "bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white border-[#8B5E3C]"
                         : "bg-[#FAE6D3] text-[#7A5C52] border-[#D7BCA6]"
-                        }`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </div>
-                  ))}
-                </div>
+                    }`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </div>
+                ))}
               </div>
-
-              {/* Download Button */}
-              <button
-                className="w-full py-3 bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white font-medium rounded-lg"
-                onClick={handleDownloadPhoto}
-              >
-                Download Photo
-              </button>
             </div>
+
+            {/* Download Button */}
+            <button
+              className="w-full py-3 bg-gradient-to-r from-[#8B5E3C] to-[#D2A679] text-white font-medium rounded-lg"
+              onClick={handleDownloadPhoto}
+            >
+              Download Photo
+            </button>
           </div>
-        )
-      }
+        </div>
+      )}
 
       {hasMoreNasImages && !nasLoading && (
         <div className="text-center my-6 pb-10">
@@ -769,17 +801,22 @@ const ClientHome = () => {
             onClick={() => {
               const nextPage = nasPage + 1;
               setNasPage(nextPage);
-              const activeCat = categories.find((c) => c.name === activeCategory);
-   
+              const activeCat = categories.find(
+                (c) => c.name === activeCategory
+              );
+
               if (
                 activeCat &&
                 activeCat.images.includes("/photo/") &&
                 selectedCard &&
                 activeCategory
               ) {
-
-                fetchImagesFromNAS(activeCat.images, activeCategory, selectedCard._id, nextPage);
-                
+                fetchImagesFromNAS(
+                  activeCat.images,
+                  activeCategory,
+                  selectedCard._id,
+                  nextPage
+                );
               }
             }}
             className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-black transition duration-300"
@@ -791,26 +828,28 @@ const ClientHome = () => {
 
       {nasLoading && (
         <div className="flex justify-center items-center min-h-[300px]">
-          <img src="/loading-rubik.gif" alt="Loading..." className="w-24 h-24" />
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            className="w-24 h-24 "
+          />
         </div>
       )}
 
       {/* When we click on any image this page opens and there are download, share and but photo options */}
-      {
-        modalVisible && currentImage && (
-          <ImageModal
-            modalVisible={modalVisible}
-            currentImage={currentImage}
-            closeModal={closeModal}
-            handleOpenDownloadModal={handleOpenDownloadModal}
-            handleShare={handleShare}
-            handleBuyPhoto={handleBuyPhoto}
-            handlePreviousImage={handlePreviousImage}
-            handleNextImage={handleNextImage}
-            clicked={clicked}
-          />
-        )
-      }
+      {modalVisible && currentImage && (
+        <ImageModal
+          modalVisible={modalVisible}
+          currentImage={currentImage}
+          closeModal={closeModal}
+          handleOpenDownloadModal={handleOpenDownloadModal}
+          handleShare={handleShare}
+          handleBuyPhoto={handleBuyPhoto}
+          handlePreviousImage={handlePreviousImage}
+          handleNextImage={handleNextImage}
+          clicked={clicked}
+        />
+      )}
 
       {/* Slideshow Modal */}
       {slideshowVisible && (

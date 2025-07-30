@@ -95,6 +95,10 @@ export default function Service() {
         ))}
       </div>
 
+      <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
+        Capturing Life&apos;s Moments with Passion and Precision
+      </h2>
+
       <Marquee speed={50} gradient={false} className="py-4">
         {marqueeData.map((image, idx) => (
           <div

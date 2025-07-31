@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
-import img1 from "@/assets/portfolio/img1.png";
-import img2 from "@/assets/portfolio/img2.png";
-import img3 from "@/assets/portfolio/img3.png";
-import img4 from "@/assets/portfolio/img4.png";
-import img5 from "@/assets/portfolio/img5.png";
-import img6 from "@/assets/portfolio/img6.png";
-import img7 from "@/assets/portfolio/img7.png";
+import dynamic from "next/dynamic";
+import img1 from "@/assets/headshot/img1.png";
+import img2 from "@/assets/headshot/img2.png";
+import img3 from "@/assets/headshot/img3.png";
+import img4 from "@/assets/headshot/img4.png";
+import img5 from "@/assets/headshot/img5.png";
+import img6 from "@/assets/headshot/img6.png";
+import img7 from "@/assets/headshot/img7.png";
 
 import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
 import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
@@ -15,28 +16,44 @@ import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
 import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
 import AboutSection from "@/sections/serviceSections/AboutSection";
 import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
+import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
+import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
+import FAQ2 from "@/components/live-streaming/FAQ2";
+import CallToAction from "@/components/live-streaming/CallToAction";
+
+const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
+  ssr: true,
+});
 
 export default function Headshots() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex flex-row justify-between pb-9 border-b-2 border-[#747478] ">
+      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
         <div className="text-6xl font-semibold">
           <p className="pb-2.5 pt-3">Headshot</p>
           <p>Photography</p>
         </div>
-        <div className="flex flex-col text-right gap-4">
-          <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
-            <span className="pr-4">GALLERY</span>
-            <span className="ml-20">&gt;</span>
-          </div>
-          <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
-            <span>PORTFOLIO</span>
-            <span className="ml-2">&gt;</span>
-          </div>
-          <div className="flex justify-between items-center text-[#747478] font-bold  pb-4">
-            <span>PROFILE</span>
-            <span className="ml-2">&gt;</span>
-          </div>
+        <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
+          <a href="/galleries">
+            <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
+              <span className="pr-4">GALLERY</span>
+              <span className="ml-20">&gt;</span>
+            </div>
+          </a>
+
+          <a href="/portfolio">
+            <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
+              <span>PORTFOLIO</span>
+              <span className="ml-2">&gt;</span>
+            </div>
+          </a>
+
+          <a href="/profile">
+            <div className="flex justify-between items-center text-[#747478] font-bold  pb-4">
+              <span>PROFILE</span>
+              <span className="ml-2">&gt;</span>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -52,19 +69,21 @@ export default function Headshots() {
             personality. Your journey to a confident headshot starts here.
           </p>
 
-          <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
-            BOOK NOW
-          </button>
+          <a href="/booking">
+            <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
+              BOOK NOW
+            </button>
+          </a>
         </div>
         <Image
           src={img1}
           alt="Headshot 1"
-          className="w-[40%] h-[40%] rounded-lg pl-5 mt-4"
+          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
           src={img2}
           alt="Headshot 2"
-          className="w-[30%] h-[40%] rounded-lg  pl-5 mt-5"
+          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
       </div>
       <GetStartedSection
@@ -78,7 +97,7 @@ export default function Headshots() {
         <Image
           src={img4}
           alt="Headshot 4"
-          className="w-[65%] h-[50%] sl:w-[20%] sl:h-[20%] object-cover mt-10 pl-5 "
+          className="w-[65%] h-[50%] hidden md:block  object-cover mt-10 pl-5 "
         />
       </div>
       <MoodBoardSectionV2 imageUrl={img5} />
@@ -92,6 +111,16 @@ export default function Headshots() {
           efforts and your envisioned <br /> outcome brought to life. It&apos;s
           more than just a transaction.
         </p>
+      </div>
+      <MultiImageAnimation />
+      <div className="mx-[20%] my-[5%]">
+        <DeliveryOptions />
+      </div>
+
+      <Pricing />
+      <FAQ2 />
+      <div className="mb-[5%]">
+        <CallToAction />
       </div>
     </div>
   );

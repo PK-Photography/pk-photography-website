@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GoDownload } from 'react-icons/go';
 import { FaHeart, FaShare } from 'react-icons/fa';
+import ImageSkeleton from '../imageSkeleton/ImageSkeleton'; 
 
 const ImageGalleryList = ({
   images = [],
@@ -15,6 +16,7 @@ const ImageGalleryList = ({
   setCurrentImageIndex = () => {},
   setSlideshowVisible = () => {},
   startAutoPlay = () => {},
+  nasLoading,
 }) => {
   const primaryColor = '#1b4b7a';
   const [loadedImages, setLoadedImages] = useState({});
@@ -35,7 +37,14 @@ const ImageGalleryList = ({
           margin: 0,
         }}
       >
-        {images.map((image, index) => {
+       {
+         nasLoading && images.length === 0 ?
+    Array.from({ length: 20 }).map((_, index) => (
+      <li key={`skeleton-${index}`} className="break-inside-avoid mb-[6px]">
+        <ImageSkeleton />
+      </li>
+    )):
+        images.map((image, index) => {
           const isFavorited = favorites.find((fav) => fav.id === image.id);
           const hasName = Boolean(image.name?.trim());
 
@@ -55,6 +64,7 @@ const ImageGalleryList = ({
               }}
             >
               <div className="relative w-full">
+                
                 <img
                   src={loadedImages[image.id] || image.lowRes}
                   alt={image.name || 'photo'}
@@ -67,6 +77,13 @@ const ImageGalleryList = ({
                     }
                   }}
                 />
+
+                 {nasLoading &&
+    Array.from({ length: 20 }).map((_, index) => (
+      <li key={`skeleton-${index}`} className="break-inside-avoid mb-[6px]">
+        <ImageSkeleton />
+      </li>
+    ))}
 
                 {!isMobile && (
                   <div
@@ -110,6 +127,7 @@ const ImageGalleryList = ({
                 )}
               </div>
             </li>
+            
           );
         })}
       </ul>

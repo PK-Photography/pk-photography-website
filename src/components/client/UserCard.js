@@ -6,6 +6,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { FaLock } from "react-icons/fa";
 import Modal from "@/components/ui/Modal";
+import Lottie from "lottie-react";
+import animationData from "@/assets/Picture.json";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -65,12 +67,12 @@ const UserCards = () => {
     }
   };
 
-  const filteredCards = cards.filter(card =>
+  const filteredCards = cards.filter((card) =>
     card.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
+
   const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
-  
+
   const paginatedCards = filteredCards.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -140,13 +142,20 @@ const UserCards = () => {
       </div>
       <Head>
         <title>PK Photography</title>
-        <meta name="description" content="Browse through a collection of client albums with beautiful thumbnails." />
+        <meta
+          name="description"
+          content="Browse through a collection of client albums with beautiful thumbnails."
+        />
       </Head>
 
       <div className="bg-[white] px-3 pt-6 pb-16 max-w-[90%] mx-auto">
         {isLoading ? (
           <div className="flex justify-center items-center min-h-[300px]">
-            <img src="/loading-rubik.gif" alt="Loading..." className="w-24 h-24" />
+            <Lottie
+              animationData={animationData}
+              loop={true}
+              className="w-24 h-24 "
+            />
           </div>
         ) : (
           <>
@@ -168,7 +177,8 @@ const UserCards = () => {
                   </div>
                   <div className="flex flex-col items-center mt-3">
                     <p className="text-md font-semibold text-gray-900 flex items-center gap-2">
-                      {card.pin && <FaLock className="text-sm" />} {card.name.toUpperCase()}
+                      {card.pin && <FaLock className="text-sm" />}{" "}
+                      {card.name.toUpperCase()}
                     </p>
                     <p className="text-sm text-gray-600 mt-1">
                       {new Date(card.date).toLocaleDateString(undefined, {

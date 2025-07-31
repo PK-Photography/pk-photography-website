@@ -20,6 +20,7 @@ import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation"
 import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
 import FAQ2 from "@/components/live-streaming/FAQ2";
 import CallToAction from "@/components/live-streaming/CallToAction";
+import MultiCard from "@/sections/MutiCard";
 
 const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
   ssr: true,
@@ -118,6 +119,7 @@ export default function Headshots() {
       </div>
 
       <Pricing />
+      <MultiCard />
       <FAQ2 />
       <div className="mb-[5%]">
         <CallToAction />

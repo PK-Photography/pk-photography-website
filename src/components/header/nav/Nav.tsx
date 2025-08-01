@@ -8,7 +8,8 @@ const navItems = [
   { label: "Clients", href: "/client" },
   { label: "Services", href: "/services" },
   { label: "Bookings", href: "/booking" },
-  { label: "Live Streaming", href: "/live-streaming" },
+  { label: "Live Streaming", href: "/live-streaming" }
+  { label: "Gallery", href: "/galleries" },
 ];
 
 const socialLinks = [

@@ -5,12 +5,12 @@ import { useSession, signOut } from "next-auth/react";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Gallery", href: "/galleries" },
   { label: "Clients", href: "/client" },
   { label: "Services", href: "/services" },
   { label: "Bookings", href: "/booking" },
+  { label: "Gallery", href: "/galleries" },
   { label: "Live Streaming", href: "/live-streaming" },
-];
+   ];
 
 const socialLinks = [
   {

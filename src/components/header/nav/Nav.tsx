@@ -10,7 +10,7 @@ const navItems = [
   { label: "Bookings", href: "/booking" },
   { label: "Gallery", href: "/galleries" },
   { label: "Live Streaming", href: "/live-streaming" },
-   ];
+];
 
 const socialLinks = [
   {

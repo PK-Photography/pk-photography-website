@@ -26,7 +26,7 @@ const FavouriteModal = ({
               {favorites.map((image) => (
                 <li key={image.id} className="relative group">
                   <Image
-                    src={image.highRes}
+                    src={image.lowRes}
                     alt="Favorite"
                     width={150}
                     height={100}

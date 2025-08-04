@@ -48,7 +48,7 @@ const cards: CardProps[] = [
     title: "Headshots",
     subtitle: "Professional headshots that speak success",
     id: 3,
-    link: "/galleries?category=Headshots",
+    link: "/headshots",
   },
   {
     url: service4.src,

@@ -21,8 +21,8 @@ export default function LoginPromptModal({ isOpen, onClose }) {
 
   useEffect(() => {
     const lastDismissed = parseInt(localStorage.getItem("loginPromptDismissedAt") || "0", 10);
-    const threeHoursAgo = Date.now() - 3 * 60 * 60 * 1000;
-    const shouldShow = !session?.user && (!lastDismissed || lastDismissed < threeHoursAgo);
+    const fifteenMinutesAgo = Date.now() - 15 * 60 * 1000;
+    const shouldShow = !session?.user && (!lastDismissed || lastDismissed < fifteenMinutesAgo);
     setShouldRender(shouldShow);
   }, [session]);
 

@@ -6,6 +6,8 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import Banner from "@/components/live-streaming/Banner";
+const backgroundVideo = "/servicesPage/serviceVideo.mp4";
+const fallbackImage = "/servicesPage/event.jpg";
 
 const services = [
   {
@@ -85,9 +87,17 @@ const marqueeData = [
 ];
 
 export default function Service() {
+  const title = "Creative Visual Solutions Seamlessly Delivered";
+  const description =
+    "Bring your vision to life with PK Photography—offering professional photography, videography, live streaming, and more, all crafted to capture and share your story with impact.";
   return (
     <>
-      <Banner />
+      <Banner
+        fallbackImage={fallbackImage}
+        backgroundVideo={backgroundVideo}
+        title={title}
+        description={description}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4">
         {services.map((card, idx) => (

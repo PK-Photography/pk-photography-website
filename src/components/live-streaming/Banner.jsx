@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-const backgroundVideo = "/live-streaming/coverpage.mp4";
-const fallbackImage = "/live-streaming/audio_equipment.jpg";
+// const backgroundVideo = "/live-streaming/coverpage.mp4";
+// const fallbackImage = "/live-streaming/audio_equipment.jpg";
 
-const Banner = () => {
+const Banner = ({fallbackImage,backgroundVideo, title,description}) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
@@ -37,10 +37,9 @@ const Banner = () => {
 
       <Header />
       <Content>
-        <Title>Experience Live Streaming Like Never Before</Title>
+        <Title>{title}</Title>
         <Description>
-          Broadcast your events in high-definition to a global audience with PK
-          Photography—your trusted partner in seamless live streaming.
+          {description}
         </Description>
       </Content>
     </HeroSection>

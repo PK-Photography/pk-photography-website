@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+const backgroundVideo = "/live-streaming/coverpage.mp4";
+const fallbackImage = "/live-streaming/audio_equipment.jpg";
 
 // Dynamic imports with SSR enabled
 const Banner = dynamic(() => import("@/components/live-streaming/Banner"), {
@@ -50,9 +52,17 @@ const CallToAction = dynamic(
 );
 
 export default function LiveStreamingPage() {
+  const title = "Experience Live Streaming Like Never Before";
+  const description =
+    "Broadcast your events in high-definition to a global audience with PK Photography—your trusted partner in seamless live streaming.";
   return (
     <main>
-      <Banner />
+      <Banner
+        fallbackImage={fallbackImage}
+        backgroundVideo={backgroundVideo}
+        title={title}
+        description={description}
+      />
       <About />
       <Services />
       <Equipment />

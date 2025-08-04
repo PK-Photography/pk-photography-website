@@ -6,9 +6,32 @@ const FavouriteModal = ({
   favorites,
   toggleFavorite,
   toggleFavoritesModal,
-  handleDownloadFavorites,
 }) => {
   if (!showFavoritesModal) return null;
+
+  const handleDownloadFavorites = async () => {
+    for (const image of favorites) {
+      const imageUrl = image.highRes || image.lowRes;
+      const filename = image.filename || `favorite-${image.id}.jpg`;
+
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        window.URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error(`Failed to download ${filename}`, err);
+      }
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4">

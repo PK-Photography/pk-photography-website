@@ -1,110 +1,131 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import axiosInstance from "@/utils/axiosConfig";
-import GoogleLoginButton from "../../components/GoogleLoginButton";
+import { signIn } from "next-auth/react";
+import GoogleLoginButton from "@/components/GoogleLoginButton";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 export default function Login() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ fullName: "", mobileNo: "" });
+  const [mobileError, setMobileError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateMobile = (number) => {
+    const digits = number.replace(/\D/g, "");
+    return digits.startsWith("91") ? digits.length === 12 : digits.length === 10;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setMobileError("");
 
+    if (!validateMobile(formData.mobileNo)) {
+      setMobileError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const res = await axiosInstance.post("/user/login", formData);
-      if (res.data.success) {
-        toast.success("Login successful!");
-        localStorage.setItem("accessToken", res.data.data.accessToken);
-        localStorage.setItem("refreshToken", res.data.data.refreshToken);
-        localStorage.setItem("user", JSON.stringify(res.data.data.user));
-        router.push("/profile");
+      const res = await signIn("credentials", {
+        fullName: formData.fullName,
+        mobileNo: formData.mobileNo,
+        redirect: false,
+      });
+
+      if (res?.ok) {
+        toast.success("Welcome!");
+        localStorage.setItem("loginPromptDismissedAt", Date.now().toString());
+        router.push("/");
       } else {
-        toast.error(res.data.message || "Login failed.");
+        toast.error("Login failed.");
       }
     } catch (error) {
-      console.error("Login Error:", error.response?.data || error.message);
-      toast.error(error.response?.data?.message || "Something went wrong!");
+      console.error("Login Error:", error);
+      toast.error("Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-          <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">
-            Login
-          </h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h2 className="text-xl font-semibold text-center text-gray-900">
+          Welcome to PK Photography
+        </h2>
+        <p className="text-sm text-gray-600 text-center mb-4 mt-4">
+          Log in to access your personalized dashboard, downloads, and booking history.
+        </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-600">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-indigo-300"
-                required
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+              required
+            />
+          </div>
 
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-600">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-indigo-300"
-                required
-              />
-            </div>
+          {/* Mobile Number */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
+            <PhoneInput
+              country={"in"}
+              value={formData.mobileNo}
+              onChange={(phone) => setFormData({ ...formData, mobileNo: phone })}
+              inputStyle={{
+                width: "100%",
+                padding: "10px 10px 10px 50px",
+                borderRadius: "0.375rem",
+                border: "1px solid #d1d5db",
+                fontSize: "14px",
+                fontFamily: "inherit",
+                boxSizing: "border-box",
+              }}
+              containerStyle={{
+                position: "relative",
+                width: "100%",
+                fontFamily: "inherit",
+              }}
+              inputProps={{ name: "mobileNo", required: true }}
+            />
+            {mobileError && <p className="text-sm text-red-600 mt-1">{mobileError}</p>}
+          </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
-              disabled={loading}
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
+            disabled={loading}
+          >
+            {loading ? "Please wait..." : "Continue"}
+          </button>
+        </form>
 
-          <p className="text-center text-sm text-gray-500 mt-4">
-            <a href="/forgot-password" className="text-indigo-600 font-medium">
-              Forgot Password?
-            </a>
-          </p>
+        <div className="my-4 text-center text-sm text-gray-500">or continue with</div>
 
-          <p className="text-center text-sm text-gray-500 mt-2">
-            Don&apos;t have an account?{" "}
-            <a href="/signup" className="text-indigo-600 font-medium">
-              Sign Up
-            </a>
-          </p>
-          <GoogleLoginButton/>
-        </div>
-       
+        <GoogleLoginButton />
+
+        <p className="text-center text-sm text-gray-500 mt-4">
+          Don&apos;t have an account?{" "}
+          <a href="/signup" className="text-indigo-600 font-medium">
+            Sign Up
+          </a>
+        </p>
       </div>
-    </>
+    </div>
   );
 }

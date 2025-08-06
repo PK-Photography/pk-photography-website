@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ title, description, image, link }) => {
         alt={title}
         width={1000}
         height={600}
-        className="w-full  object-fill h-full"
+        className="w-full  object-cover h-full"
         priority
       />
       <div className="absolute inset-0 bg-black/10 flex flex-col items-center justify-top text-center pt-4  text-white">

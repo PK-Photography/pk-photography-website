@@ -26,7 +26,7 @@ const services = [
     title: "HEADSHOTS",
     description: "Prodessional headshots that speak success",
     image: "/servicesPage/headshots.jpg",
-    link: "/galleries?category=Headshots",
+    link: "/headshots",
   },
   {
     title: "EDITORIAL",

@@ -62,17 +62,21 @@
 import React from "react";
 import Image from "next/image";
 
-const AboutSection: React.FC = () => {
+type AboutSectionProps = {
+  imageUrl: string;
+};
+
+const AboutSection: React.FC<AboutSectionProps> = ({ imageUrl }) => {
   return (
     <div className="bg-white py-16 px-4">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
         {/* Image Section */}
         <div className="w-full flex justify-center">
           <Image
-            src="/pricing/PKP_2826.jpg"
+            src={imageUrl}
             alt="Model"
-            width={300}
-            height={500} 
+            width={250}
+            height={400}
             className="rounded-lg shadow-lg object-cover"
           />
           {/* <Image

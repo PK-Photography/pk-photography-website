@@ -30,7 +30,7 @@ const services = [
   },
   {
     title: "Real Estate",
-    description: "BHighlight every detail beautifully",
+    description: "Highlight every detail beautifully",
     image: "/servicesPage/realEstate.jpg",
   },
   {
@@ -49,9 +49,9 @@ const services = [
 
   {
     title: "Portfolio",
-    description: "Crafting your visual stories",
+    description: "Prodessional headshots that speak success",
     image: "/servicesPage/portfolio.jpg",
-    link: "/galleries?category=Portfolio",
+    link: "/portfolio",
   },
   {
     title: "E‑Commerce",

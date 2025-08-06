@@ -8,6 +8,7 @@ import img4 from "@/assets/headshot/img4.png";
 import img5 from "@/assets/headshot/img5.png";
 import img6 from "@/assets/headshot/img6.png";
 import img7 from "@/assets/headshot/img7.png";
+import heart from "@/assets/headshot/heart.png";
 
 import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
 import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
@@ -21,6 +22,7 @@ import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
 import FAQ2 from "@/components/live-streaming/FAQ2";
 import CallToAction from "@/components/live-streaming/CallToAction";
 import MultiCard from "@/sections/MutiCard";
+import { ChevronRight } from "lucide-react";
 
 const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
   ssr: true,
@@ -36,23 +38,38 @@ export default function Headshots() {
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
           <a href="/galleries">
-            <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
-              <span className="pr-4">GALLERY</span>
-              <span className="ml-20">&gt;</span>
+            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+                </div>
+                <span>GALLERY</span>
+              </div>
+              <ChevronRight className="ml-11 w-4 h-4" />
             </div>
           </a>
 
           <a href="/portfolio">
-            <div className="flex justify-between items-center text-[#747478] font-bold border-b-2 border-[#747478] pb-4">
-              <span>PORTFOLIO</span>
-              <span className="ml-2">&gt;</span>
+            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+                </div>
+                <span>PORTFOLIO</span>
+              </div>
+              <ChevronRight className="ml-11 w-4 h-4" />
             </div>
           </a>
 
           <a href="/profile">
-            <div className="flex justify-between items-center text-[#747478] font-bold  pb-4">
-              <span>PROFILE</span>
-              <span className="ml-2">&gt;</span>
+            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold pb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+                </div>
+                <span>PROFILE</span>
+              </div>
+              <ChevronRight className="ml-11 w-4 h-4" />
             </div>
           </a>
         </div>

@@ -30,9 +30,15 @@ const DeliveryOptions = () => {
         </div>
       </div>
 
-      <button className="bg-black text-white text-sm py-2 px-6 rounded-full transition-transform transform hover:scale-105">
-        DOWNLOAD YOUR PORTFOLIO PREP CHECKLIST
-      </button>
+      <a
+        href="/portfolioPrep.pdf"
+        download="portfolio.pdf"
+        style={{ textDecoration: "none" }}
+      >
+        <button className="bg-black text-white text-sm py-2 px-6 rounded-full transition-transform transform hover:scale-105">
+          DOWNLOAD YOUR PORTFOLIO PREP CHECKLIST
+        </button>
+      </a>
     </div>
   );
 };

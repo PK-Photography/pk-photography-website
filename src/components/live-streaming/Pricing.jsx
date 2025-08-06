@@ -2,8 +2,10 @@
 
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/navigation";
 
 const Pricing = () => {
+   const router = useRouter();
   return (
     <PricingSection>
       <SectionHeader>
@@ -215,7 +217,7 @@ const Pricing = () => {
         </DisclaimerText>
       </CustomPackageContainer>
 
-      <ContactButton>
+      <ContactButton  onClick={() => router.push("/booking")}>
         <ContactIcon>💡</ContactIcon> Get in touch for a custom quote!
       </ContactButton>
     </PricingSection>

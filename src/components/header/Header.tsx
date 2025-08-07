@@ -6,24 +6,28 @@ import Nav from "./nav/Nav";
 import styles from "./style.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import ControlledLottie from "../logo/ControlledLottie";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
   const { data: session } = useSession();
 
   return (
-    <>
-      <div className="bg-white px-8 py-5 flex items-center justify-between w-full">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-xl font-extrabold tracking-wide text-black"
-        >
-          PK
-        </Link>
+    <div className="relative w-full">
+      <div className=" px-8 py-5 flex items-center justify-between w-full">
+        <div className="flex ">
+          {/* Fixed wrapper */}
+          <div className="fixed top-0 left-0 z-50  px-8 py-7 flex items-center  ">
+            {/* Logo */}
+            <Link href="/">
+              <ControlledLottie />
+            </Link>
+          </div>
+        </div>
 
-        {/* Navigation */}
-        <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800">
+        {/* Navigation (not fixed) */}
+        <div className="hidden md:flex gap-8 text-[16px] font-medium text-gray-800 ml-[140px]">
+          {/* You might need to tweak ml-[140px] to offset the fixed logo */}
           <Link href="/">Home</Link>
           <Link href="/client">Client</Link>
           <a href="/galleries" rel="noopener noreferrer">
@@ -75,6 +79,6 @@ export default function Header() {
       <AnimatePresence mode="wait">
         {isActive && <Nav onClose={() => setIsActive(false)} />}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

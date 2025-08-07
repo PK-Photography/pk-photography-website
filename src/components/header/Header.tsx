@@ -6,7 +6,7 @@ import Nav from "./nav/Nav";
 import styles from "./style.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { useSession } from "next-auth/react";
-import Logo from "../logo/Logo";
+import ControlledLottie from "../logo/ControlledLottie";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -20,7 +20,7 @@ export default function Header() {
           <div className="fixed top-0 left-0 z-50  px-8 py-7 flex items-center  ">
             {/* Logo */}
             <Link href="/">
-              <Logo />
+              <ControlledLottie />
             </Link>
           </div>
         </div>

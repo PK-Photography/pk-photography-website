@@ -1,72 +1,95 @@
 "use client";
 
 import Card from "@/components/ServicesCard/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import Banner from "@/components/live-streaming/Banner";
+const backgroundVideo = "/servicesPage/serviceVideo.mp4";
+const fallbackImage = "/servicesPage/event.jpg";
 
 const services = [
   {
-    title: "PORTFOLIO",
-    description: "Crafting your visual stories",
-    image: "/servicesPage/portfolio.jpg",
-    link: "/portfolio",
+    title: "Brand Shoot",
+    description: "Elevate your brand with stunning visuals",
+    image: "/servicesPage/brandShoot.jpg",
   },
   {
-    title: "PORTRAIT",
-    description: "Timeless portraits that reflect you",
-    image: "/servicesPage/portrait.jpg",
-    link: "/galleries?category=Portrait",
+    title: "Headshots",
+    description: "Professional. Polished. You.",
+    image: "/servicesPage/corporate.jpg",
+    link: "/headshots",
   },
+
   {
-    title: "HEADSHOTS",
-    description: "Prodessional headshots that speak success",
-    image: "/servicesPage/headshots.jpg",
-    link: "/galleries?category=Headshots",
-  },
-  {
-    title: "EDITORIAL",
-    description: "Magazine-Worthy Shots for Every Story Headshots",
-    image: "/servicesPage/editorial.jpg",
-    link: "/galleries?category=Editorial",
-  },
-  {
-    title: "CELEBRITY",
-    description: "Reflect your stardom with every shot",
-    image: "/servicesPage/celebrity.jpg",
-    link: "/galleries?category=Celebrity",
-  },
-  {
-    title: "ADS",
-    description: "Highlights your products with flawless imagery",
-    image: "/servicesPage/ads.jpg",
-    link: "/galleries?category=Ads",
-  },
-  {
-    title: "WEDDING",
-    description: "Your Big Day, perfectly captured",
+    title: "Weddings",
+    description: "Real moments. Lasting memories",
     image: "/servicesPage/wedding.jpg",
     link: "/galleries?category=Wedding",
   },
   {
-    title: "BOUDOIR",
-    description: "Empower your cofidence",
-    image: "/servicesPage/boudoir.jpg",
-    link: "/galleries?category=Boudoir",
+    title: "Real Estate",
+    description: "Highlight every detail beautifully",
+    image: "/servicesPage/realEstate.jpg",
   },
   {
-    title: "ECOMMERCE",
-    description: "Boost your sales: crisp, e-commerce photos",
+    title: "Celebrity",
+    description: "Star quality. On demand",
+    image: "/servicesPage/celebrity.jpg",
+    link: "/galleries?category=Celebrity",
+  },
+
+  {
+    title: "Portrait",
+    description: "Timeless portraits that reflect you",
+    image: "/servicesPage/portrait.jpg",
+    link: "/galleries?category=Portrait",
+  },
+
+  {
+    title: "Portfolio",
+    description: "Prodessional headshots that speak success",
+    image: "/servicesPage/portfolio.jpg",
+    link: "/portfolio",
+  },
+  {
+    title: "E‑Commerce",
+    description: "Sell more with crisp visuals",
     image: "/servicesPage/ecommerce.jpg",
-    link: "/galleries?category=E-Commerce",
   },
   {
-    title: "LIVE STREAMING",
-    description: "Bringing your events to life",
-    image: "/live-streaming/sports_events.jpg",
-    link: "/live-streaming",
+    title: "Products",
+    description: "Make your product stand out",
+    image: "/servicesPage/product.jpg",
+  },
+
+  {
+    title: "Editorials",
+    description: "Magazine‑worthy visuals",
+    image: "/servicesPage/editorial.jpg",
+    link: "/galleries?category=Editorial",
+  },
+
+  {
+    title: "Boudoir",
+    description: "Elegant. Empowering. Intimate",
+    image: "/servicesPage/boudoir2.jpg",
+  },
+  {
+    title: "Baby",
+    description: "Capture the joy of your little one",
+    image: "/servicesPage/baby-photoshoot.jpg",
+  },
+  {
+    title: "Outdoor",
+    description: "Capture the beauty of nature",
+    image: "/servicesPage/outdoor.jpg",
+  },
+  {
+    title: "Festival",
+    description: "Celebrate with vibrant festival photography",
+    image: "/servicesPage/festival.jpg",
   },
 ];
 
@@ -85,9 +108,34 @@ const marqueeData = [
 ];
 
 export default function Service() {
+  const title = "Creative Visual Solutions Seamlessly Delivered";
+  const description =
+    "Bring your vision to life with PK Photography—offering professional photography, videography, live streaming, and more, all crafted to capture and share your story with impact.";
+
+  const [speed, setSpeed] = useState(50); // default speed
+
+  useEffect(() => {
+    const updateSpeed = () => {
+      if (window.innerWidth <= 768) {
+        setSpeed(80);
+      } else {
+        setSpeed(50);
+      }
+    };
+
+    updateSpeed();
+    window.addEventListener("resize", updateSpeed);
+
+    return () => window.removeEventListener("resize", updateSpeed);
+  }, []);
   return (
     <>
-      <Banner />
+      <Banner
+        fallbackImage={fallbackImage}
+        backgroundVideo={backgroundVideo}
+        title={title}
+        description={description}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4">
         {services.map((card, idx) => (
@@ -99,7 +147,7 @@ export default function Service() {
         Capturing Life&apos;s Moments with Passion and Precision
       </h2>
 
-      <Marquee speed={50} gradient={false} className="py-4">
+      <Marquee speed={speed} gradient={false} className="py-4">
         {marqueeData.map((image, idx) => (
           <div
             key={idx}
@@ -127,7 +175,7 @@ export default function Service() {
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Book Your Photo Session
         </h2>
-        <p className="text-lg md:text-xl mb-8">
+        <p className="text-lg mx-4 md:mx-0 md:text-xl mb-8 ">
           From portraits to product shots, we capture your vision with
           professional quality and care.
         </p>

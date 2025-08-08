@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-// const backgroundVideo = "/live-streaming/coverpage.mp4";
-// const fallbackImage = "/live-streaming/audio_equipment.jpg";
+
 
 const Banner = ({fallbackImage,backgroundVideo, title,description}) => {
   const [videoLoaded, setVideoLoaded] = useState(false);

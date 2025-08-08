@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
-import Banner from "@/components/live-streaming/Banner";
-const backgroundVideo = "/servicesPage/serviceVideo.mp4";
+import Banner from "@/components/servicesPage/Banner";
+const backgroundVideo1 = "/servicesPage/corporate.mp4";
+const backgroundVideo2 = "/servicesPage/danceVideo.mp4";
 const fallbackImage = "/servicesPage/event.jpg";
 
 const services = [
@@ -132,7 +133,8 @@ export default function Service() {
     <>
       <Banner
         fallbackImage={fallbackImage}
-        backgroundVideo={backgroundVideo}
+        backgroundVideo1={backgroundVideo1}
+        backgroundVideo2={backgroundVideo2}
         title={title}
         description={description}
       />

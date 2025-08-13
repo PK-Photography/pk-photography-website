@@ -76,7 +76,7 @@ const cards: CardProps[] = [
     title: "Wedding",
     subtitle: "Your Big Day, perfectly captured",
     id: 7,
-    link: "/galleries?category=Wedding",
+    link: "/wedding",
   },
   {
     url: service8.src,

@@ -27,7 +27,7 @@ const services = [
     title: "Weddings",
     description: "Real moments. Lasting memories",
     image: "/servicesPage/wedding.jpg",
-    link: "/galleries?category=Wedding",
+    link: "/wedding",
   },
   {
     title: "Real Estate",

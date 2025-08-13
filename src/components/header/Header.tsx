@@ -30,7 +30,7 @@ export default function Header() {
           {/* You might need to tweak ml-[140px] to offset the fixed logo */}
           <Link href="/">Home</Link>
           <Link href="/client">Client</Link>
-          <Link href="/service">Services</Link>
+          <Link href="/services">Services</Link>
           <a href="/galleries" rel="noopener noreferrer">
             Gallery
           </a>

@@ -5,6 +5,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
 import axiosInstance from "../../utils/axiosConfig";
+import toast from "react-hot-toast";
 
 const CareersPage = () => {
   const [formData, setFormData] = useState({

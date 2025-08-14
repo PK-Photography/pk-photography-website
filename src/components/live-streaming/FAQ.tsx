@@ -22,7 +22,7 @@ const FAQ: React.FC = () => {
   const faqData: FAQItem[] = [
     {
       id: 1,
-      question: "What types of photography services do you offer in Mumbai?",
+      question: "What makes PK Photography unique in Andheri, Mumbai?",
       answer: (
         <>
           At PK Photography, we provide corporate photography, professional

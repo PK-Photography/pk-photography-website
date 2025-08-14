@@ -47,9 +47,9 @@ export default function page() {
       <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
       <PricingSection />
       <BeforeAfterSlider
-        imageUrl1="/pricing/PKP_2826.jpg"
-        imageUrl2="/pricing/PKP_7172.jpg"
-      />
+        imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
+        imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
+       />
       <FinalDeliverySec />
       <FAQSection />
     </div>

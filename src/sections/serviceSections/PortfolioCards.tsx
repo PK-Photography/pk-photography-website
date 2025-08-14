@@ -94,28 +94,29 @@ const cardData: Card[] = [
   {
     title: "Aspiring Models",
     description:
-      "Build a professional modeling portfolio that gets you noticed. Whether you're starting out or updating your book, we create stunning images that showcase your versatility and confidence.",
-    src: "/pricing/PKP_7172.jpg",
+      "Step into the spotlight with confidence. We help you build a stunning modeling portfolio that reflects your style and versatility. Whether you're just starting out or refreshing your book, our shoots are designed to help you stand out to agencies and brands.",
+    src: "/portfolioImages/lastCardsSingleGirls/anushakaa.jpg",
   },
   {
     title: "Actors & Actresses",
     description:
-      "Your portfolio is your first impression in the industry. Get high-quality headshots and cinematic portraits that capture your range, expressions, and personality for casting directors.",
-    src: "/pricing/PKP_2826.jpg",
+      "Your portfolio is your first audition. Get cinematic headshots and expressive portraits that showcase your personality, emotional range, and presence—perfect for casting directors, production houses, or talent scouts.",
+    src: "/portfolioImages/lastCardsSingleGirls/Anushka2.jpg",
   },
   {
     title: "Creative Professionals",
     description:
-      "Zipline warehouses offer end-to-end fulfillment services for advanced storage and supply chain management.",
-    src: "/pricing/cover.jpg",
+      "Build a brand that speaks without words. Ideal for entrepreneurs, artists, designers, and freelancers—this session focuses on strong, clean visuals that help you tell your story, enhance your personal branding, and stand out on LinkedIn or your website.",
+    src: "/portfolioImages/lastCardsSingleGirls/Anushka4.jpg",
   },
   {
     title: "Personal Portfolio",
     description:
-      "Whether for social media, matrimonial purposes, maternity shoots, or personal branding, get professionally captured portraits that highlight your personality and story.",
-    src: "/pricing/PKP_7172.jpg",
+      "Portraits that reflect who you are. Whether it's for social media, matrimonial profiles, maternity memories, or personal branding, we create expressive and refined portraits that celebrate your individuality, milestones, and personal style.",
+    src: "/portfolioImages/lastCardsSingleGirls/Anushka6.jpg",
   },
 ];
+
 
 const PortfolioGrid: React.FC = () => {
   return (

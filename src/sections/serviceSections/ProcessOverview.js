@@ -118,7 +118,7 @@ const ProcessOverview = () => {
         className="w-full max-h-60 overflow-y-auto pr-4 pl-0 scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-500"
       >
         <div className="ml-2 sm:ml-6 mb-16">
-          <h2 className="text-xs sm:text-sm uppercase mb-4 font-semibold">
+          {/* <h2 className="text-xs sm:text-sm uppercase mb-4 font-semibold">
             Process Overview
           </h2>
 
@@ -179,7 +179,7 @@ const ProcessOverview = () => {
             applying advanced techniques such as skin smoothing, blemish
             removal, and color correction while preserving a natural yet
             polished look.
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
@@ -187,4 +187,3 @@ const ProcessOverview = () => {
 };
 
 export default ProcessOverview;
-

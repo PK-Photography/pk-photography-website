@@ -109,21 +109,10 @@ const FinalDeliverySec = () => {
               alt={`final delivery ${idx + 1}`}
               width={800}
               height={800}
-              className="rounded-lg h-60 w-32 md:w-40 object-cover shrink-0"
+              className="rounded-lg h-60 w-32 md:w-40 object-cover shrink-0 border-4 border-white shadow-lg"
             />
           </motion.div>
         ))}
-      </div>
-
-      {/* Final Delivery Text */}
-      <div className="max-w-3xl text-center">
-        <h2 className="text-3xl font-bold mb-4">Final Delivery</h2>
-        <p className="text-gray-700 text-lg leading-relaxed">
-          The refined, high-resolution images are delivered via your choice of
-          methods: a Google Drive link, an online gallery, a downloadable PDF, a
-          pendrive, or even as a high-quality printed Album — ensuring a delivery
-          process that is both convenient and personalized to your needs.
-        </p>
       </div>
 
       {/* Delivery Options Component */}
@@ -133,4 +122,6 @@ const FinalDeliverySec = () => {
 };
 
 export default FinalDeliverySec;
+
+
 

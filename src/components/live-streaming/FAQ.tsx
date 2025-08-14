@@ -23,28 +23,8 @@ const FAQ: React.FC = () => {
     {
       id: 1,
       question: "What makes PK Photography unique in Andheri, Mumbai?",
-      answer: (
-        <>
-          At PK Photography, we provide corporate photography, professional
-          headshots, and model/actor portfolio shoots. In addition, we also
-          offer:
-          <ul className="list-disc list-inside mt-2">
-            <li>
-              Event photography and videography (corporate, social, and
-              cultural)
-            </li>
-            <li>Wedding photography and cinematic videography</li>
-            <li>Interior and architecture shoots</li>
-            <li>
-              Live streaming for weddings, church services, corporate events,
-              and seminars
-            </li>
-            <li>
-              Product photography, reels, and social media content creation
-            </li>
-          </ul>
-        </>
-      ),
+      answer:
+        "At PK Photography, we combine technical expertise with a personalized touch to capture your true essence. Our Andheri studio offers a relaxed yet professional environment that reflects the vibrant energy of Mumbai.",
       bgColor: "#f8d7d7",
     },
     {

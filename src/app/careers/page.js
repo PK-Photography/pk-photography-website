@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
+import axiosInstance from "../../utils/axiosConfig";
+import toast from "react-hot-toast";
 
 const CareersPage = () => {
   const [formData, setFormData] = useState({
@@ -25,14 +27,33 @@ const CareersPage = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate form submission logic
-    setTimeout(() => {
-      setIsSubmitted(true);
+    try {
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone);
+      data.append("resume", formData.resume);
+      // Send POST request to the API
+      const response = await axiosInstance.post("/careers/submit", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status === 201) {
+        setIsSubmitted(true);
+      }
+      toast.success("Booked Successfully!");
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+      toast.error("Failed to submit the booking form. Please try again later!");
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   if (isSubmitted) {
@@ -48,7 +69,7 @@ const CareersPage = () => {
           </p>
         </div>
         <Link href="/">
-            <ButtonWrapper>Explore More</ButtonWrapper>
+          <ButtonWrapper>Explore More</ButtonWrapper>
         </Link>
       </div>
     );
@@ -57,11 +78,16 @@ const CareersPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-10">
       <div className="bg-white shadow-md rounded-md p-8 w-full max-w-2xl">
-        <h2 className="text-2xl font-bold mb-6 text-center">Apply for a Role</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Apply for a Role
+        </h2>
         <p className="mb-5 text-gray-500 text-sm text-center">
           We’re excited to hear from you. Upload your resume and let’s talk.
         </p>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
           <div className="col-span-2 md:col-span-1">
             <label className="block text-sm font-medium mb-1">Full Name</label>
             <input
@@ -75,7 +101,9 @@ const CareersPage = () => {
           </div>
 
           <div className="col-span-2 md:col-span-1">
-            <label className="block text-sm font-medium mb-1">Phone Number</label>
+            <label className="block text-sm font-medium mb-1">
+              Phone Number
+            </label>
             <input
               type="text"
               name="phone"
@@ -87,7 +115,9 @@ const CareersPage = () => {
           </div>
 
           <div className="col-span-2">
-            <label className="block text-sm font-medium mb-1">Email Address</label>
+            <label className="block text-sm font-medium mb-1">
+              Email Address
+            </label>
             <input
               type="email"
               name="email"
@@ -99,7 +129,9 @@ const CareersPage = () => {
           </div>
 
           <div className="col-span-2">
-            <label className="block text-sm font-medium mb-1">Upload Resume</label>
+            <label className="block text-sm font-medium mb-1">
+              Upload Resume
+            </label>
             <input
               type="file"
               name="resume"

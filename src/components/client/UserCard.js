@@ -52,7 +52,7 @@ const UserCards = () => {
         setPinError("");
       } else {
         debounceHandleClick(card._id, cards);
-        window.location.href = `/client/${card._id}`;
+        window.location.href = `/client/${card.name}`;
       }
     },
     [cards]
@@ -61,7 +61,7 @@ const UserCards = () => {
   const handlePinSubmit = () => {
     if (enteredPin === selectedCard.pin) {
       localStorage.setItem("selectedCard", JSON.stringify(selectedCard));
-      window.location.href = `/client/${selectedCard._id}`;
+      window.location.href = `/client/${selectedCard.name}`;
     } else {
       setPinError("Incorrect PIN. Please try again.");
     }

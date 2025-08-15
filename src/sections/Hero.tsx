@@ -12,7 +12,7 @@ type CarouselImage = {
 export const Hero = () => {
   const [homepageImage, setHomepageImage] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -50,7 +50,7 @@ export const Hero = () => {
       {/* Fallback Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/hero-img.jpg"
+          src={isMobile ? "/hero-img-mobile.jpg" : "/hero-img.jpg"}
           alt="Fallback Hero"
           layout="fill"
           objectFit="cover"

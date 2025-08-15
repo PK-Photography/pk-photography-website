@@ -109,9 +109,8 @@ const marqueeData = [
 ];
 
 export default function Service() {
-  const title = "Creative Visual Solutions Seamlessly Delivered";
-  const description =
-    "Bring your vision to life with PK Photography—offering professional photography, videography, live streaming, and more, all crafted to capture and share your story with impact.";
+  const title = "Events That Impress";
+  const description = "Heartfelt moments, beautifully preserved";
 
   const [speed, setSpeed] = useState(50); // default speed
 

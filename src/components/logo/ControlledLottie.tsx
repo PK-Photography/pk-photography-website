@@ -8,6 +8,16 @@ const ControlledLottie = () => {
 
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -59,10 +69,10 @@ const ControlledLottie = () => {
     <div
       ref={containerRef}
       style={{
-        width: "300px",
+        width: isMobile ? "250px" : "300px",
         height: "300px",
         marginTop: "-140px",
-        marginLeft: "-50px",
+        marginLeft: isMobile ? "-65px" : "-50px",
       }}
     />
   );

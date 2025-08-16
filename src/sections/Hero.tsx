@@ -12,7 +12,7 @@ type CarouselImage = {
 export const Hero = () => {
   const [homepageImage, setHomepageImage] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -48,18 +48,20 @@ export const Hero = () => {
     <section className="relative h-screen overflow-hidden font-sans">
       {/* Background Image */}
       {/* Fallback Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={isMobile ? "/hero-img-mobile.jpg" : "/hero-img.jpg"}
-          alt="Fallback Hero"
-          layout="fill"
-          objectFit="cover"
-          quality={80}
-          className={`${
-            loaded ? "opacity-0" : "opacity-100"
-          } transition-opacity duration-700`}
-        />
-      </div>
+      {isMobile !== null && (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={isMobile ? "/hero-img-mobile.jpg" : "/hero-img.jpg"}
+            alt="Fallback Hero"
+            layout="fill"
+            objectFit="cover"
+            quality={80}
+            className={`${
+              loaded ? "opacity-0" : "opacity-100"
+            } transition-opacity duration-700`}
+          />
+        </div>
+      )}
 
       {/* Homepage Media */}
       {homepageImage && (

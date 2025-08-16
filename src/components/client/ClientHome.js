@@ -240,7 +240,10 @@ const ClientHome = () => {
       const fetchSelectedCard = async () => {
         try {
           const response = await axiosInstance.get(`/client/cards`);
-          const foundCard = response.data.find((card) => card._id === lastId);
+          const decodedLastId = decodeURIComponent(lastId);
+          const foundCard = response.data.find(
+            (card) => card.name.trim() === decodedLastId.trim()
+          );
           if (!foundCard) return;
 
           sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));

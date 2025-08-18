@@ -52,7 +52,7 @@ const services = [
     title: "Portfolio",
     description: "Prodessional headshots that speak success",
     image: "/servicesPage/portfolio.jpg",
-    link: "/portfolio",
+    link: "/portfolio"
   },
   {
     title: "E‑Commerce",

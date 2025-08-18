@@ -35,19 +35,19 @@ const GetStartedSection: React.FC<GetStartedSectionProps> = ({
         {/* Right Section - Description (Stacks Below on Mobile) */}
         <div className="w-full md:w-2/3 text-[#000000] text-base font-light leading-relaxed  md:text-left">
           <p>
-            Our Portfolio Photography service is designed for professionals and
-            creatives who want to present their work in the best light. With our
-            expert guidance, every image is a statement of your style and
-            vision.
+            Our Portfolio Photography service is designed for Models, Actors, Professionals, 
+            and Individuals who want to present themselves with impact. Whether you&apos;re building a 
+            presence for modelling, acting, corporate branding, matrimony, maternity, or 
+            personal expression, we craft visuals that truly represent you.
           </p>
           <br />
           <p>
-            We&apos;ll work closely with you to craft a collection of images
-            that highlights your strengths and positions you for success in your
-            chosen field. From concept development and styling to professional
-            retouching and final delivery, we&apos;ll guide you through every
-            step of the process, ensuring you have a portfolio that opens doors
-            and sets you apart.
+            From concept development and styling guidance to professional retouching and delivery, 
+            we walk you through every step of the process. Our goal is to highlight your unique strengths 
+            and create a portfolio that opens doors—whether it&apos; landing auditions, impressing clients, 
+            or simply capturing a moment in time with authenticity and style.
+           
+           Let us help you create a powerful first impression—one that speaks before you do.
           </p>
         </div>
       </div>

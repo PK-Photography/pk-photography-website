@@ -60,11 +60,11 @@ const Portfolio: React.FC = () => {
 
       {/* Desktop View */}
       <div className="hidden lg:flex flex-row justify-between w-full">
-        {/* Explore Model Link */}
+        {/* Explore Gallery Link */}
         <div className="flex items-center space-x-2 mb-4 lg:mb-0">
           <span className="text-lg md:text-xl leading-none">•</span>
           <a href="#" className="underline text- hover:text-gray-700">
-            Explore Model
+            Explore Gallery
           </a>
         </div>
 
@@ -77,7 +77,7 @@ const Portfolio: React.FC = () => {
         {/* Build for Section */}
         <div className="mb-4 lg:mb-0">
           <span className="block font-semibold text-gray-700">Build for:</span>
-          <span className="block">Models, Actors, <br /> Personal Portfolio</span>
+          <span className="block">Models, Actors, Professional and <br /> Personal Portfolio</span>
         </div>
 
         {/* Deliverables Section */}

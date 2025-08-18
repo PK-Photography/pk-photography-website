@@ -83,16 +83,18 @@ import DeliveryOptions from "./DeliveryOptions";
 
 const FinalDeliverySec = () => {
   const images = [
-    "/pricing/PKP_2826.jpg",
-    "/pricing/PKP_7172.jpg",
-    "/pricing/PKP_2826.jpg",
-    "/pricing/PKP_7172.jpg",
-    "/pricing/PKP_2826.jpg",
-    "/pricing/PKP_7172.jpg",
+    "/portfolioImages/lastCardsSingleGirls/anushakaa.jpg",
+    "/portfolioImages/lastCardsSingleGirls/Anushka2.jpg",
+    "/portfolioImages/lastCardsSingleGirls/Anushka4.jpg",
+    "/portfolioImages/lastCardsSingleGirls/Anushka5.jpg",
+    "/portfolioImages/lastCardsSingleGirls/Anushka6.jpg",
+    "/portfolioImages/lastCardsSingleGirls/Anushka9.jpg",
   ];
 
   return (
     <div className="container mx-auto px-4 py-10 flex flex-col items-center justify-center gap-10">
+      
+      {/* Image Row */}
       <div className="flex justify-center items-center overflow-x-auto md:overflow-x-visible">
         {images.map((image, idx) => (
           <motion.div
@@ -100,22 +102,26 @@ const FinalDeliverySec = () => {
             style={{ rotate: Math.random() * 20 - 10 }}
             whileHover={{ scale: 1.1, rotate: 0, zIndex: 100 }}
             whileTap={{ scale: 1.1, rotate: 0, zIndex: 100 }}
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden"
+            className="rounded-xl -mr-4 mt-4 p-0 bg-transparent overflow-hidden"
           >
             <Image
               src={image}
-              alt="bali images"
-              width="800"
-              height="800"
-              className="rounded-lg h-60 w-32 md:w-40 object-cover shrink-0"
+              alt={`final delivery ${idx + 1}`}
+              width={800}
+              height={800}
+              className="rounded-lg h-60 w-32 md:w-40 object-cover shrink-0 border-4 border-white shadow-lg"
             />
           </motion.div>
         ))}
       </div>
 
+      {/* Delivery Options Component */}
       <DeliveryOptions />
     </div>
   );
 };
 
 export default FinalDeliverySec;
+
+
+

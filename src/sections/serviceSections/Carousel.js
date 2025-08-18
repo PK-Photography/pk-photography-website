@@ -9,9 +9,18 @@ const Carousel = () => {
     const sliderRef = useRef(null);
 
     const images = [
-        { src: "/pricing/PKP_7172.jpg" },
-        { src: "/pricing/PKP_2826.jpg" },
-        { src: "/pricing/cover.jpg" },
+        { src: "/portfolioImages/carousal/1.jpg" },
+        { src: "/portfolioImages/carousal/2.jpg" },
+        { src: "/portfolioImages/carousal/3.jpg" },
+        { src: "/portfolioImages/carousal/4.jpg" },
+        { src: "/portfolioImages/carousal/5.jpg" },
+        { src: "/portfolioImages/carousal/6.jpg" },
+        { src: "/portfolioImages/carousal/7.jpg" },
+        { src: "/portfolioImages/carousal/8.jpg" },
+        { src: "/portfolioImages/carousal/9.jpg" },
+        { src: "/portfolioImages/carousal/10.jpg" },
+        { src: "/portfolioImages/carousal/11.jpg" },
+        { src: "/portfolioImages/carousal/12.jpg" },
     ];
 
     const settings = {
@@ -45,8 +54,8 @@ const Carousel = () => {
                             className="w-full h-[519.55px] object-cover rounded-lg"
                             src={each.src}
                             alt={`Slide ${index + 1}`}
-                            width={1200} // Adjust width as needed
-                            height={520} // Adjust height as needed
+                            width={1200}
+                            height={520}
                             priority
                         />
                     </div>
@@ -58,8 +67,9 @@ const Carousel = () => {
                 {images.map((_, index) => (
                     <div
                         key={index}
-                        className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${index === currentSlide ? "bg-[#7B61FF]" : "bg-gray-300"
-                            }`}
+                        className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
+                            index === currentSlide ? "bg-[#7B61FF]" : "bg-gray-300"
+                        }`}
                         onClick={() => goToSlide(index)}
                     ></div>
                 ))}
@@ -69,3 +79,4 @@ const Carousel = () => {
 };
 
 export default Carousel;
+

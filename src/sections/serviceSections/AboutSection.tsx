@@ -1,64 +1,3 @@
-// import React from "react";
-
-// const AboutSection: React.FC = () => {
-//   return (
-//     <div className="bg-white py-16 px-4">
-//       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
-//         {/* Image Section */}
-//         <div className="w-full flex justify-center">
-//           <img
-//             src="/pricing/cover.jpg"
-//             alt="Model"
-//             className="rounded-lg shadow-lg w-80 h-auto object-cover"
-//           />
-//         </div>
-
-//         {/* Text Section */}
-//         <div className="w-full lg:w-1/2">
-//           <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
-//             What Makes Us Different?
-//           </h2>
-//           <div className="space-y-6">
-//             <div>
-//               <h3 className="text-xl font-semibold text-gray-800">
-//                 Experienced Team:
-//               </h3>
-//               <p className="text-gray-600">
-//                 Our team comprises highly skilled photographers and creative
-//                 directors with years of experience in the industry. We
-//                 understand what it takes to create a portfolio that gets you
-//                 noticed.
-//               </p>
-//             </div>
-//             <div>
-//               <h3 className="text-xl font-semibold text-gray-800">
-//                 Customized Styling:
-//               </h3>
-//               <p className="text-gray-600">
-//                 A well-styled portfolio can make all the difference. We'll help
-//                 you create a look that is both professional and memorable,
-//                 giving you a competitive edge in the industry.
-//               </p>
-//             </div>
-//             <div>
-//               <h3 className="text-xl font-semibold text-gray-800">
-//                 Professional Editing:
-//               </h3>
-//               <p className="text-gray-600">
-//                 High-quality editing is essential for a polished and
-//                 professional portfolio. We'll ensure your images are flawless
-//                 and ready to impress potential clients.
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AboutSection;
-
 import React from "react";
 
 const testimonials = [
@@ -90,7 +29,7 @@ const AboutSection: React.FC = () => {
               key={index}
               className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition"
             >
-              <p className="text-gray-700 italic">"{testimonial.feedback}"</p>
+              <p className="text-gray-700 italic">{testimonial.feedback}</p>
               <p className="text-sm font-semibold text-gray-900 mt-4">
                 — {testimonial.name}
               </p>
@@ -121,9 +60,9 @@ const AboutSection: React.FC = () => {
                 Creative Lighting That Sets the Mood
               </h3>
               <p className="text-gray-600 mt-5">
-                Lighting isn’t just technical — it’s emotional. We use cinematic
+                {`Lighting isn’t just technical — it’s emotional. We use cinematic
                 lighting setups to create drama, softness, or editorial impact,
-                depending on the story you want your photos to tell.
+                depending on the story you want your photos to tell.`}
               </p>
             </div>
 
@@ -154,10 +93,10 @@ const AboutSection: React.FC = () => {
                 Fully Personalized Shooting Experience
               </h3>
               <p className="text-gray-600 mt-5">
-                Your shoot is never generic. We work closely with you to
+                {`Your shoot is never generic. We work closely with you to
                 understand your purpose — whether it’s modelling, acting,
                 matrimony, or personal branding — and tailor every frame to
-                reflect your style, confidence, and personality.
+                reflect your style, confidence, and personality.`}
               </p>
             </div>
           </div>

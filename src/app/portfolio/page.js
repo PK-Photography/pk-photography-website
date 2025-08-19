@@ -7,11 +7,11 @@ import PortfolioGrid from "@/sections/serviceSections/PortfolioCards";
 import AboutSection from "@/sections/serviceSections/AboutSection";
 import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
-import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
+// import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
+// import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
 import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
 import PricingSection from "@/sections/serviceSections/PricingSection";
-import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
+// import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
 import FAQSection from "@/components/live-streaming/FAQ";
@@ -30,7 +30,12 @@ export default function page() {
       <PortfolioGrid />
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />
-      <WardrobePropSuggestionsSec />
+
+      {/* Wardrobe & Prop Suggestions Section removed */}
+      {/* <WardrobePropSuggestionsSec /> */}
+
+      {/* Service Grid image removed */}
+      {/* 
       <div className="flex justify-center items-center mt-20 mb-20 px-4">
         <Image
           src="/serviceGrid.png"
@@ -40,30 +45,38 @@ export default function page() {
           className="w-full max-w-[924px] h-auto object-cover"
         />
       </div>
-      <MoodBoardSection />
-      <LocationStylingTipsSec />
+      */}
+
+      {/* Mood Board Inspiration Section removed */}
+      {/* <MoodBoardSection /> */}
+
+      {/* Location & Styling Tips Section removed */}
+      {/* <LocationStylingTipsSec /> */}
+
       <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
       <PricingSection />
+
       {/* Before / After Section */}
-<BeforeAfterSlider
-  imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
-  imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
-/>
+      <BeforeAfterSlider
+        imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
+        imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
+      />
 
-{/* Final Delivery Text moved here */}
-<div className="container mx-auto px-4 py-8">
-  <h3 className="text-base sm:text-lg font-bold mb-2">FINAL DELIVERY</h3>
-  <p className="text-xs sm:text-sm mb-6">
-    The refined, high-resolution images are delivered via your choice of methods:
-    a Google Drive link, an online gallery, a downloadable PDF, a pendrive,
-    or even as a high-quality printed Album — ensuring a delivery process
-    that is both convenient and personalized to your needs.
-  </p>
-</div>
+      {/* Final Delivery Text moved here */}
+      <div className="container mx-auto px-4 py-8">
+        <h3 className="text-base sm:text-lg font-bold mb-2">FINAL DELIVERY</h3>
+        <p className="text-xs sm:text-sm mb-6">
+          The refined, high-resolution images are delivered via your choice of methods:
+          a Google Drive link, an online gallery, a downloadable PDF, a pendrive,
+          or even as a high-quality printed Album — ensuring a delivery process
+          that is both convenient and personalized to your needs.
+        </p>
+      </div>
 
-<FinalDeliverySec />
+      <FinalDeliverySec />
       <FAQSection />
     </div>
   );
 }
+
 

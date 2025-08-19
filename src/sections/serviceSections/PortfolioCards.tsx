@@ -95,25 +95,25 @@ const cardData: Card[] = [
     title: "Aspiring Models",
     description:
       "Step into the spotlight with confidence. We help you build a stunning modeling portfolio that reflects your style and versatility. Whether you're just starting out or refreshing your book, our shoots are designed to help you stand out to agencies and brands.",
-    src: "/portfolioImages/lastCardsSingleGirls/anushakaa.jpg",
+    src: "/photos/ForModelsthumbnail.jpg",
   },
   {
     title: "Actors & Actresses",
     description:
       "Your portfolio is your first audition. Get cinematic headshots and expressive portraits that showcase your personality, emotional range, and presence—perfect for casting directors, production houses, or talent scouts.",
-    src: "/portfolioImages/lastCardsSingleGirls/Anushka2.jpg",
+    src: "/photos/ActorAndActressThumbnail.jpg",
   },
   {
     title: "Creative Professionals",
     description:
       "Build a brand that speaks without words. Ideal for entrepreneurs, artists, designers, and freelancers—this session focuses on strong, clean visuals that help you tell your story, enhance your personal branding, and stand out on LinkedIn or your website.",
-    src: "/portfolioImages/lastCardsSingleGirls/Anushka4.jpg",
+    src: "/photos/ForcreativeProfessionalthumbnail.jpg",
   },
   {
     title: "Personal Portfolio",
     description:
       "Portraits that reflect who you are. Whether it's for social media, matrimonial profiles, maternity memories, or personal branding, we create expressive and refined portraits that celebrate your individuality, milestones, and personal style.",
-    src: "/portfolioImages/lastCardsSingleGirls/Anushka6.jpg",
+    src: "/photos/Forpersonalusethumbnail.jpg",
   },
 ];
 

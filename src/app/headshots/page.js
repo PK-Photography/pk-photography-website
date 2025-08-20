@@ -135,7 +135,7 @@ export default function Headshots() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="headshots" />
       <MultiCard />
       <FAQ2 />
       <div className="mb-[5%]">

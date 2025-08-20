@@ -15,6 +15,7 @@ import PricingSection from "@/sections/serviceSections/PricingSection";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
 import FAQSection from "@/components/live-streaming/FAQ";
+import Pricing from "@/components/live-streaming/Pricing";
 
 export default function page() {
   return (
@@ -54,7 +55,7 @@ export default function page() {
       {/* <LocationStylingTipsSec /> */}
 
       <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
-      <PricingSection />
+      <Pricing serviceName="portfolio" />
 
       {/* Before / After Section */}
       <BeforeAfterSlider
@@ -66,10 +67,11 @@ export default function page() {
       <div className="container mx-auto px-4 py-8">
         <h3 className="text-base sm:text-lg font-bold mb-2">FINAL DELIVERY</h3>
         <p className="text-xs sm:text-sm mb-6">
-          The refined, high-resolution images are delivered via your choice of methods:
-          a Google Drive link, an online gallery, a downloadable PDF, a pendrive,
-          or even as a high-quality printed Album — ensuring a delivery process
-          that is both convenient and personalized to your needs.
+          The refined, high-resolution images are delivered via your choice of
+          methods: a Google Drive link, an online gallery, a downloadable PDF, a
+          pendrive, or even as a high-quality printed Album — ensuring a
+          delivery process that is both convenient and personalized to your
+          needs.
         </p>
       </div>
 
@@ -78,5 +80,3 @@ export default function page() {
     </div>
   );
 }
-
-

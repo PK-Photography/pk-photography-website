@@ -31,14 +31,13 @@ export default function page() {
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />
 
-      {/* Consultation Process Components */}
       <ConsultationMoodBoard />
       <WardrobePropSuggestions />
       <LocationStylingTips />
       <ExpertPhotography />
       <PricingSection />
 
-      {/* Before / After Section */}
+      
       <HighEndRetouching />
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"

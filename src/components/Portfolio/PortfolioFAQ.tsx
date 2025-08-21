@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
+import Image from "next/image";
 
 const faqManImg = "/live-streaming/faq_man.webp";
 
@@ -15,12 +16,25 @@ interface FAQItem {
 const PortfolioFAQ: React.FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const refs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const [speed, setSpeed] = useState(50);
 
   useEffect(() => {
     setActiveQuestion(null);
+
+    const updateSpeed = () => {
+      if (window.innerWidth <= 768) {
+        setSpeed(80);
+      } else {
+        setSpeed(50);
+      }
+    };
+
+    updateSpeed();
+    window.addEventListener("resize", updateSpeed);
+    return () => window.removeEventListener("resize", updateSpeed);
   }, []);
 
-  const faqData: FAQItem[] = [
+ const faqData: FAQItem[] = [
     {
       id: 1,
       question: "What makes PK Photography unique in Andheri, Mumbai?",
@@ -128,6 +142,21 @@ const PortfolioFAQ: React.FC = () => {
     },
   ];
 
+  const marqueeData = [
+    { src: "/portfolioImages/carousal/1.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/2.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/3.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/4.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/5.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/6.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/7.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/8.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/9.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/10.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/11.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/12.jpg", width: 350, height: 450 },
+  ];
+
   const handleQuestionClick = (id: number) => {
     const newActive = id === activeQuestion ? null : id;
     setActiveQuestion(newActive);
@@ -191,38 +220,40 @@ const PortfolioFAQ: React.FC = () => {
           </div>
         </div>
       </div>
-    {/* Marquee Section After FAQ */}
-<div className="mt-16">
-  <h2 className="text-3xl font-bold text-center mb-8">
-    Capturing Life's Moments with Passion and Precision
-  </h2>
-  <Marquee pauseOnHover speed={60} gradient={false}>
-    {[
-      "/portfolioImages/carousal/1.jpg",
-      "/portfolioImages/carousal/2.jpg",
-      "/portfolioImages/carousal/3.jpg",
-      "/portfolioImages/carousal/4.jpg",
-      "/portfolioImages/carousal/5.jpg",
-      "/portfolioImages/carousal/6.jpg",
-      "/portfolioImages/carousal/7.jpg",
-      "/portfolioImages/carousal/8.jpg",
-      "/portfolioImages/carousal/9.jpg",
-      "/portfolioImages/carousal/10.jpg",
-      "/portfolioImages/carousal/11.jpg",
-      "/portfolioImages/carousal/12.jpg",
-    ].map((src, index) => (
-      <div key={index} className="mx-3">
-        <img
-          src={src}
-          alt={`Portfolio image ${index + 1}`}
-          className="h-72 w-auto rounded-xl shadow-md object-cover"
-        />
+
+      {/* Marquee Section */}
+      <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
+  Capturing Life&apos;s Moments with Passion and Precision
+</h2>
+
+      <div className="mt-16">
+        <Marquee speed={speed} gradient={false} className="py-4">
+          {marqueeData.map((image, idx) => (
+            <div
+              key={idx}
+              className="relative mx-4 flex flex-col items-center justify-center rounded-2xl overflow-hidden shadow-md bg-black"
+              style={{
+                width: image.width,
+                height: image.height,
+                maxWidth: image.width,
+                maxHeight: image.height,
+              }}
+            >
+              <Image
+                src={image.src}
+                alt={`marquee-${idx}`}
+                width={image.width}
+                height={image.height}
+                className="rounded-2xl object-cover w-full h-full"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          ))}
+        </Marquee>
       </div>
-    ))}
-  </Marquee>
-</div>
     </section>
   );
 };
 
 export default PortfolioFAQ;
+

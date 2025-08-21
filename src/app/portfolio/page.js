@@ -9,9 +9,6 @@ import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
 // import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
 // import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ConsultationMoodBoard from "@/sections/serviceSections/ConsultationMoodBoard";
-import WardrobePropSuggestions from "@/sections/serviceSections/WardrobePropSuggestions";
-import LocationStylingTips from "@/sections/serviceSections/LocationStylingTips";
 import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
 import PricingSection from "@/sections/serviceSections/PricingSection";
 // import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
@@ -56,9 +53,8 @@ export default function page() {
       {/* Location & Styling Tips Section removed */}
       {/* <LocationStylingTipsSec /> */}
 
-      <ConsultationMoodBoard />
-      <WardrobePropSuggestions />
-      <LocationStylingTips />
+      
+      
       <ExpertPhotography />  
       <PricingSection />
 

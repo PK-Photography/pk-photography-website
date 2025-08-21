@@ -7,11 +7,12 @@ import PortfolioGrid from "@/sections/serviceSections/PortfolioCards";
 import AboutSection from "@/sections/serviceSections/AboutSection";
 import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
-// import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
-// import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
+import ConsultationMoodBoard from "@/components/ConsultationMoodBoard/ConsultationMoodBoard";
+import WardrobePropSuggestions from "@/components/WardrobePropSuggestions/WardrobePropSuggestions";
+import LocationStylingTips from "@/components/LocationStylingTips/LocationStylingTips";
+import ExpertPhotography from "@/components/ExpertPhotography/ExpertPhotography";
 import PricingSection from "@/sections/serviceSections/PricingSection";
-// import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
+import HighEndRetouching from "@/components/HighEndRetouching/HighEndRetouching";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
 import PortfolioFAQ from "@/components/Portfolio/PortfolioFAQ";
@@ -26,45 +27,23 @@ export default function page() {
         text3="Stunning Portfolio"
       />
       <Gallery />
-      {/* <ImageBreak /> */}
       <PortfolioGrid />
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />
 
-      {/* Wardrobe & Prop Suggestions Section removed */}
-      {/* <WardrobePropSuggestionsSec /> */}
-
-      {/* Service Grid image removed */}
-      {/* 
-      <div className="flex justify-center items-center mt-20 mb-20 px-4">
-        <Image
-          src="/serviceGrid.png"
-          width={924}
-          height={582}
-          alt="Service Grid"
-          className="w-full max-w-[924px] h-auto object-cover"
-        />
-      </div>
-      */}
-
-      {/* Mood Board Inspiration Section removed */}
-      {/* <MoodBoardSection /> */}
-
-      {/* Location & Styling Tips Section removed */}
-      {/* <LocationStylingTipsSec /> */}
-
-      
-      
+      {/* Consultation Process Components */}
+      <ConsultationMoodBoard />
+      <WardrobePropSuggestions />
+      <LocationStylingTips />
       <ExpertPhotography />  
-      <PricingSection />
+      <HighEndRetouching />
 
-      {/* Before / After Section */}
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
         imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
       />
 
-      {/* Final Delivery Text moved here */}
+      {/* Final Delivery Text */}
       <div className="container mx-auto px-4 py-8">
         <h3 className="text-base sm:text-lg font-bold mb-2">FINAL DELIVERY</h3>
         <p className="text-xs sm:text-sm mb-6">
@@ -76,7 +55,9 @@ export default function page() {
       </div>
 
       <FinalDeliverySec />
+      <PricingSection />
       <PortfolioFAQ />
+
     </div>
   );
 }

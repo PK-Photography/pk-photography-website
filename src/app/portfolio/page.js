@@ -58,10 +58,10 @@ export default function page() {
       {/* <LocationStylingTipsSec /> */}
 
       <ConsultationMoodBoard />
-      <WardrobePropSuggestions />
-      <LocationStylingTips />
-      <ExpertPhotography />
-      <PricingSection />
+<WardrobePropSuggestions />
+<LocationStylingTips />
+<ExpertPhotography />
+<PricingSection />
 
       {/* Before / After Section */}
       <HighEndRetouching />

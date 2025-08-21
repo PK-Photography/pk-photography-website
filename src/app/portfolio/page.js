@@ -14,7 +14,8 @@ import PricingSection from "@/sections/serviceSections/PricingSection";
 // import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
-import FAQSection from "@/components/live-streaming/FAQ";
+import FAQSection from "@/components/Portfolio/PortfolioFAQ";
+import PortfolioFAQ from "@/components/Portfolio/PortfolioFAQ";
 
 export default function page() {
   return (
@@ -74,7 +75,7 @@ export default function page() {
       </div>
 
       <FinalDeliverySec />
-      <FAQSection />
+      <PortfolioFAQ />
     </div>
   );
 }

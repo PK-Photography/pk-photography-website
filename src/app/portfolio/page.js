@@ -15,7 +15,7 @@ import PricingSection from "@/sections/serviceSections/PricingSection";
 import HighEndRetouching from "@/components/HighEndRetouching/HighEndRetouching";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
-import FAQSection from "@/components/live-streaming/FAQ";
+import PortfolioFAQ from "@/components/Portfolio/PortfolioFAQ";
 
 export default function page() {
   return (
@@ -31,13 +31,14 @@ export default function page() {
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />
 
+      {/* Consultation Process Components */}
       <ConsultationMoodBoard />
       <WardrobePropSuggestions />
       <LocationStylingTips />
       <ExpertPhotography />
       <PricingSection />
 
-      
+      {/* Before / After Section */}
       <HighEndRetouching />
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
@@ -56,7 +57,7 @@ export default function page() {
       </div>
 
       <FinalDeliverySec />
-      <FAQSection />
+      <PortfolioFAQ />
     </div>
   );
 }

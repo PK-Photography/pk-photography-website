@@ -16,12 +16,12 @@ export default function LocationStylingTips() {
             Location & Styling Tips
           </h3>
           <p className="text-gray-600 mt-5">
-            Benefit from guidance on choosing settings that enhance the overall
+            {`Benefit from guidance on choosing settings that enhance the overall
             mood, whether it's an urban backdrop, a natural landscape, or a styled
-            studio session.
+            studio session.`}
           </p>
           <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
-            "The perfect location can tell a story before a single word is spoken."
+            {`"The perfect location can tell a story before a single word is spoken."`}
           </p>
         </div>
 

@@ -21,7 +21,7 @@ export default function ConsultationMoodBoard() {
             for the shoot.
           </p>
           <p className="text-gray-700 italic text-sm mt-4">
-            "Every great photoshoot begins with understanding your unique story and vision."
+            {`"Every great photoshoot begins with understanding your unique story and vision."`}
           </p>
         </div>
 

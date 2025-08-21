@@ -31,7 +31,7 @@ export default function WardrobePropSuggestions() {
             captures your unique personality and professional edge.
           </p>
           <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
-            "The right wardrobe and props can transform a good photo into an extraordinary one."
+            {`"The right wardrobe and props can transform a good photo into an extraordinary one."`}
           </p>
         </div>
         

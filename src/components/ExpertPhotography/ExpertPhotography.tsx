@@ -33,7 +33,7 @@ export default function ExpertPhotography() {
             poses that truly represent your vision.
           </p>
           <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
-            "Great photography is about depth of feeling, not depth of field."
+            {`"Great photography is about depth of feeling, not depth of field."`}
           </p>
         </div>
         

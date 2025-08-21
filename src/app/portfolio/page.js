@@ -9,12 +9,14 @@ import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
 // import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
 // import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
+import ConsultationMoodBoard from "@/sections/serviceSections/ConsultationMoodBoard";
+import WardrobePropSuggestions from "@/sections/serviceSections/WardrobePropSuggestions";
+import LocationStylingTips from "@/sections/serviceSections/LocationStylingTips";
 import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
 import PricingSection from "@/sections/serviceSections/PricingSection";
 // import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
-import FAQSection from "@/components/Portfolio/PortfolioFAQ";
 import PortfolioFAQ from "@/components/Portfolio/PortfolioFAQ";
 
 export default function page() {
@@ -54,7 +56,10 @@ export default function page() {
       {/* Location & Styling Tips Section removed */}
       {/* <LocationStylingTipsSec /> */}
 
-      <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
+      <ConsultationMoodBoard />
+      <WardrobePropSuggestions />
+      <LocationStylingTips />
+      <ExpertPhotography />  
       <PricingSection />
 
       {/* Before / After Section */}

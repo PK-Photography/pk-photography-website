@@ -223,8 +223,8 @@ const PortfolioFAQ: React.FC = () => {
 
       {/* Marquee Section */}
       <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
-  Capturing Life&apos;s Moments with Passion and Precision
-</h2>
+        Capturing Life&apos;s Moments with Passion and Precision
+      </h2>
 
       <div className="mt-16">
         <Marquee speed={speed} gradient={false} className="py-4">

@@ -9,9 +9,13 @@ import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
 // import MoodBoardSection from "@/sections/serviceSections/MoodBoardSection";
 // import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
+import ConsultationMoodBoard from "@/components/ConsultationMoodBoard/ConsultationMoodBoard";
+import WardrobePropSuggestions from "@/components/WardrobePropSuggestions/WardrobePropSuggestions";
+import LocationStylingTips from "@/components/LocationStylingTips/LocationStylingTips";
+import ExpertPhotography from "@/components/ExpertPhotography/ExpertPhotography";
 import PricingSection from "@/sections/serviceSections/PricingSection";
 // import WardrobePropSuggestionsSec from "@/sections/serviceSections/WardrobePropSuggestionsSec";
+import HighEndRetouching from "@/components/HighEndRetouching/HighEndRetouching";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
 import FAQSection from "@/components/live-streaming/FAQ";
@@ -53,10 +57,14 @@ export default function page() {
       {/* Location & Styling Tips Section removed */}
       {/* <LocationStylingTipsSec /> */}
 
-      <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
+      <ConsultationMoodBoard />
+      <WardrobePropSuggestions />
+      <LocationStylingTips />
+      <ExpertPhotography />
       <PricingSection />
 
       {/* Before / After Section */}
+      <HighEndRetouching />
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
         imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"

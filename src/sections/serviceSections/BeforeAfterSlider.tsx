@@ -14,10 +14,6 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
 }) => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center gap-10 bg-white px-4">
-      
-      {/* Section Header */}
-      <h2 className="text-3xl font-bold mb-6 text-center">Before & After</h2>
-
       {/* Compare Component */}
       <div className="w-full max-w-6xl">
         <div className="p-4 rounded-xl">
@@ -26,7 +22,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
             secondImage={imageUrl2}
             firstImageClassName="object-cover"
             secondImageClassname="object-cover"
-            className="w-full h-[80vh]" // large height for full-page effect
+            className="w-full h-[80vh]" 
             slideMode="drag"
           />
         </div>
@@ -36,5 +32,6 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
 };
 
 export default BeforeAfterSlider;
+
 
 

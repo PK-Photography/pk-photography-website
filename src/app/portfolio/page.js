@@ -31,20 +31,13 @@ export default function page() {
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />
 
- feature/consultation-mood-board
       {/* Consultation Process Components */}
       <ConsultationMoodBoard />
       <WardrobePropSuggestions />
       <LocationStylingTips />
-      <ExpertPhotography />
-
-      
-      
       <ExpertPhotography />  
-      <PricingSection />
-
-     
       <HighEndRetouching />
+
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
         imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
@@ -62,7 +55,9 @@ export default function page() {
       </div>
 
       <FinalDeliverySec />
+      <PricingSection />
       <PortfolioFAQ />
+
     </div>
   );
 }

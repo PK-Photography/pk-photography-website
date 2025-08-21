@@ -8,8 +8,8 @@ export default function ConsultationMoodBoard() {
       <div className="container mx-auto flex flex-col lg:flex-row items-start justify-center gap-12">
         
         {/* Left Side - Content */}
-        <div className="w-full lg:w-1/3 space-y-6">
-          <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+        <div className="w-full lg:w-1/2 space-y-6">
+          <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
             Our Process
           </h2>
           <h3 className="text-xl font-semibold text-[#2A2A2A]">
@@ -26,15 +26,16 @@ export default function ConsultationMoodBoard() {
         </div>
 
         {/* Right Side - Image Card */}
-        <div className="w-full lg:w-2/3">
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+        <div className="w-full lg:w-1/2">
+          <div className="relative w-full h-80 sm:h-80 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
             <Image
-              src="/consultation/consultation_2.jpg"
+              src="/portfolioImages/consultation.jpg"
               alt="Consultation & Mood Board"
-              width={320}  
-              height={400} 
-              className="rounded-lg w-80 h-auto object-cover"
-             />
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center"
+              priority
+            />
           </div>
         </div>
         

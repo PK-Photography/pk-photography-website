@@ -13,7 +13,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
   imageUrl2,
 }) => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center gap-10 bg-white px-4">
+    <div className="w-full min-h-screen flex flex-col items-center gap-10 bg-white">
       {/* Compare Component */}
       <div className="w-full max-w-6xl">
         <div className="p-4 rounded-xl">

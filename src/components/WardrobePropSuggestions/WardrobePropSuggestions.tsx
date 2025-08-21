@@ -7,8 +7,19 @@ export default function WardrobePropSuggestions() {
     <div className="bg-white py-16 px-4">
       <div className="container mx-auto flex flex-col lg:flex-row items-start justify-center gap-12">
         
-        {/* Left Side - Content */}
-        <div className="w-full lg:w-1/3 space-y-6">
+        <div className="w-full lg:w-1/2">
+          <div className="bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition">
+            <Image
+              src="/portfolioImages/wardrobe.jpg"
+              alt="Wardrobe & Prop Suggestions"
+              width={400}
+              height={350}
+              className="rounded-lg w-full h-80 md:h-80 object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="w-full lg:w-1/2 space-y-6">
           <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
             Our Process
           </h2>
@@ -22,19 +33,6 @@ export default function WardrobePropSuggestions() {
           <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
             "The right wardrobe and props can transform a good photo into an extraordinary one."
           </p>
-        </div>
-
-        {/* Right Side - Image Card */}
-        <div className="w-full lg:w-2/3">
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-            <Image
-              src="/wardrobe/wardrobe.jpg"
-              alt="Wardrobe & Prop Suggestions"
-              width={600}
-              height={400}
-              className="rounded-lg w-full h-auto object-cover"
-            />
-          </div>
         </div>
         
       </div>

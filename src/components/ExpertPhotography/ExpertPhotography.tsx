@@ -7,8 +7,18 @@ export default function ExpertPhotography() {
     <div className="bg-white py-16 px-4">
       <div className="container mx-auto flex flex-col lg:flex-row items-start justify-center gap-12">
         
-        {/* Left Side - Content */}
-        <div className="w-full lg:w-1/3 space-y-6">
+        <div className="w-full lg:w-1/2">
+          <div className="bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition">
+            <Image
+              src="/portfolioImages/expert_photography.jpg"
+              alt="Expert Photography"
+              width={400}
+              height={350}
+              className="rounded-lg w-full h-80 md:h-80 object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-full lg:w-1/2 space-y-6">
           <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
             Our Process
           </h2>
@@ -25,19 +35,6 @@ export default function ExpertPhotography() {
           <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
             "Great photography is about depth of feeling, not depth of field."
           </p>
-        </div>
-
-        {/* Right Side - Image Card */}
-        <div className="w-full lg:w-2/3">
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-            <Image
-              src="/ep/expert_Photography.JPG"
-              alt="Expert Photography"
-              width={600}
-              height={400}
-              className="rounded-lg w-full h-auto object-cover"
-            />
-          </div>
         </div>
         
       </div>

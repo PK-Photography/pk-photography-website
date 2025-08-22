@@ -4,35 +4,35 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Design1 from "@/../public/design/Design_1.jpg";
-import Design2 from "@/../public/design/Design_2.jpg";
+import RealEstate1 from "@/../public/realestate/Realestate_1.jpg";
+import RealEstate2 from "@/../public/realestate/Realestate_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/design/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/design/ExpertPhotography";
-//import HighEndResolution from "@/components/design/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/design/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/design/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/design/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/design/WardrobeAndProp";
-import AboutSection from "@/components/design/AboutSection";
-import GetStartedSection from "@/components/design/GetStartedSection";
-import MultiImageAnimation from "@/components/design/MultiImageAnimation";
-import DeliveryOptions from "@/components/design/DeliveryOptions";
-import FAQ from "@/components/design/FAQ";
-import CallToAction from "@/components/design/CallToAction";
-import MultiCard from "@/components/design/MultiCard";
+//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/realestate/ExpertPhotography";
+//import HighEndResolution from "@/components/realestate/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
+import AboutSection from "@/components/realestate/AboutSection";
+import GetStartedSection from "@/components/realestate/GetStartedSection";
+import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
+import DeliveryOptions from "@/components/realestate/DeliveryOptions";
+import FAQ from "@/components/realestate/FAQ";
+import CallToAction from "@/components/realestate/CallToAction";
+import MultiCard from "@/components/realestate/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/design/Pricng"),{
+const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
   ssr:true,
 });
 
-export default function Design() {
+export default function RealEstate() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
         <div className="text-4xl md:text-6xl font-semibold">
-          <p className="pb-2.5 pt-3">Design</p>
+          <p className="pb-2.5 pt-3">Real Estate</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
@@ -93,12 +93,12 @@ export default function Design() {
           </a>
         </div>
         <Image
-          src={Design1}
+          src={RealEstate1}
           alt="Headshot 1"
           className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
-          src={Design2}
+          src={RealEstate2}
           alt="Headshot 2"
           className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />

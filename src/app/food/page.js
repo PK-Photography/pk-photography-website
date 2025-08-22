@@ -4,35 +4,35 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Boudoir1 from "@/../public/boudoir/Boudoir_1.jpg";
-import Boudoir2 from "@/../public/boudoir/Boudoir_2.jpg";
+import Food1 from "@/../public/food/Food_1.jpg";
+import Food2 from "@/../public/food/Food_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/boudoir/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/boudoir/ExpertPhotography";
-//import HighEndResolution from "@/components/boudoir/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/boudoir/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/boudoir/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/boudoir/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/boudoir/WardrobeAndProp";
-import AboutSection from "@/components/boudoir/AboutSection";
-import GetStartedSection from "@/components/boudoir/GetStartedSection";
-import MultiImageAnimation from "@/components/boudoir/MultiImageAnimation";
-import DeliveryOptions from "@/components/boudoir/DeliveryOptions";
-import FAQ from "@/components/boudoir/FAQ";
-import CallToAction from "@/components/boudoir/CallToAction";
-import MultiCard from "@/components/boudoir/MultiCard";
+//import LocationStylingTipsSec from "@/components/food/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/food/ExpertPhotography";
+//import HighEndResolution from "@/components/food/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/food/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/food/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/food/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/food/WardrobeAndProp";
+import AboutSection from "@/components/food/AboutSection";
+import GetStartedSection from "@/components/food/GetStartedSection";
+import MultiImageAnimation from "@/components/food/MultiImageAnimation";
+import DeliveryOptions from "@/components/food/DeliveryOptions";
+import FAQ from "@/components/food/FAQ";
+import CallToAction from "@/components/food/CallToAction";
+import MultiCard from "@/components/food/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/boudoir/Pricng"),{
+const Pricing = dynamic (() => import("@/components/food/Pricng"),{
   ssr:true,
 });
 
-export default function Boudoir() {
+export default function Food() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
         <div className="text-4xl md:text-6xl font-semibold">
-          <p className="pb-2.5 pt-3">Boudoir</p>
+          <p className="pb-2.5 pt-3">Food</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
@@ -93,12 +93,12 @@ export default function Boudoir() {
           </a>
         </div>
         <Image
-          src={Boudoir1}
+          src={Food1}
           alt="Headshot 1"
           className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
-          src={Boudoir2}
+          src={Food2}
           alt="Headshot 2"
           className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />

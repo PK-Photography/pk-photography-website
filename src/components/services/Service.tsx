@@ -91,7 +91,7 @@ const cards: CardProps[] = [
     subtitle: "Mouth watering images for culinary Delights",
     id: 9,
     isLightBackground: true,
-    link: "/galleries?category=Food",
+    link: "/food",
   },
   {
     url: service10.src,
@@ -113,7 +113,7 @@ const cards: CardProps[] = [
     title: "Design",
     subtitle: "Your vision, our expertise in design",
     id: 12,
-    link: "/galleries?category=Design",
+    link: "/design",
   },
   {
     url: service13.src,

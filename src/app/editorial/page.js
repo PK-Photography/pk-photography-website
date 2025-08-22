@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
-
 import Editorial1 from "@/../public/editorial/Editorial_1.jpg";
 import Editorial2 from "@/../public/editorial/Editorial_2.jpg";
 

@@ -57,7 +57,7 @@ const services = [
   {
     title: "E‑Commerce",
     description: "Sell more with crisp visuals",
-    image: "/servicesPage/ecommerce.jpg",
+    image: "/ecommerce",
   },
   {
     title: "Products",

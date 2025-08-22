@@ -62,7 +62,7 @@ const cards: CardProps[] = [
     title: "Celebrity",
     subtitle: "Reflect your stardom with every shot",
     id: 5,
-    link: "/galleries?category=Celebrity",
+    link: "/celebrity",
   },
   {
     url: service6.src,

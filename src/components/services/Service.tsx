@@ -55,14 +55,14 @@ const cards: CardProps[] = [
     title: "Editorial",
     subtitle: "Magazine-Worthy Shots for Every Story Headshots",
     id: 4,
-    link: "/galleries?category=Editorial",
+    link: "/editorial",
   },
   {
     url: service5.src,
     title: "Celebrity",
     subtitle: "Reflect your stardom with every shot",
     id: 5,
-    link: "/galleries?category=Celebrity",
+    link: "/celebrity",
   },
   {
     url: service6.src,

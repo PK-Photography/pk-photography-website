@@ -38,7 +38,7 @@ const services = [
     title: "Celebrity",
     description: "Star quality. On demand",
     image: "/servicesPage/celebrity.jpg",
-    link: "/galleries?category=Celebrity",
+    link: "/celebrity",
   },
 
   {
@@ -69,7 +69,7 @@ const services = [
     title: "Editorials",
     description: "Magazine‑worthy visuals",
     image: "/servicesPage/editorial.jpg",
-    link: "/galleries?category=Editorial",
+    link: "/editorial",
   },
 
   {

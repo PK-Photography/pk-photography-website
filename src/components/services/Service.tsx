@@ -113,7 +113,7 @@ const cards: CardProps[] = [
     title: "Design",
     subtitle: "Your vision, our expertise in design",
     id: 12,
-    link: "/galleries?category=Design",
+    link: "/design",
   },
   {
     url: service13.src,

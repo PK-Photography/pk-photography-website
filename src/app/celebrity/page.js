@@ -7,22 +7,24 @@ import heart from "@/assets/headshot/heart.png";
 import Celebrity1 from "@/../public/service_page_thumble/Celebrity_1.JPG";
 import Celebrity2 from "@/../public/service_page_thumble/Celebrity_2.JPG";
 
-import LocationStylingTipsSec from "@/components/celebrity/LocationStylingTipsSec";
+//import LocationStylingTipsSec from "@/components/celebrity/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/celebrity/ExpertPhotography";
-import HighEndResolution from "@/components/celebrity/HighEndResolution";
-import MoodBoardSectionV2 from "@/components/celebrity/MoodBoardSectionV2";
+//import HighEndResolution from "@/components/celebrity/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/celebrity/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/celebrity/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/celebrity/LocationAndStylingTips";
 import WardrobeAndProp from "@/components/celebrity/WardrobeAndProp";
 import AboutSection from "@/components/celebrity/AboutSection";
 import GetStartedSection from "@/components/celebrity/GetStartedSection";
-import MultiImageAnimation from "@/components/celebrity/MultiImageAnimation"
+import MultiImageAnimation from "@/components/celebrity/MultiImageAnimation";
 import DeliveryOptions from "@/components/celebrity/DeliveryOptions";
-import FAQ2 from "@/components/celebrity/FAQ2";
+import FAQ from "@/components/celebrity/FAQ";
 import CallToAction from "@/components/celebrity/CallToAction";
 import MultiCard from "@/components/celebrity/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
-  ssr: true,
+const Pricing = dynamic (() => import("@/components/celebrity/Pricng"),{
+  ssr:true,
 });
 
 export default function Celebrity() {
@@ -107,13 +109,16 @@ export default function Celebrity() {
         text3="Headshots"
       />
       <AboutSection />
-      <WardrobeAndProp />
+      
       <div className="mt-[10%] flex flex-row justify-center items-center">
           </div>
-      <MoodBoardSectionV2  />
-      <LocationStylingTipsSec />
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      <ConsultationMoodBoard />
+      <WardrobeAndProp />
+      <LocationStylingTips />
       <ExpertPhotography  />
-      <HighEndResolution  />
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
@@ -129,7 +134,7 @@ export default function Celebrity() {
 
       <Pricing />
       <MultiCard />
-      <FAQ2 />
+      <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

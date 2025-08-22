@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
+import Image from "next/image";
 
 const faqManImg = "/live-streaming/faq_man.webp";
 
@@ -11,8 +13,9 @@ interface FAQItem {
   bgColor: string;
 }
 
-const FAQ2: React.FC = () => {
+const FAQ: React.FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+  const [speed, setSpeed] = useState(50);  
 
   useEffect(() => {
     setActiveQuestion(null);
@@ -59,6 +62,21 @@ const FAQ2: React.FC = () => {
     setActiveQuestion(id === activeQuestion ? null : id);
   };
 
+const marqueeData = [
+    { src: "/portfolioImages/carousal/1.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/2.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/3.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/4.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/5.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/6.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/7.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/8.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/9.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/10.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/11.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/12.jpg", width: 350, height: 450 },
+  ];
+  
   return (
     <section className="bg-white px-4 py-16 sm:mx-auto   md:py-14 lg:py-16 ">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -105,8 +123,39 @@ const FAQ2: React.FC = () => {
           </div>
         </div>
       </div>
+
+{/* Marquee Section */}
+      <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
+        Capturing Life&apos;s Moments with Passion and Precision
+      </h2>
+
+      <div className="mt-16">
+        <Marquee speed={speed} gradient={false} className="py-4">
+          {marqueeData.map((image, idx) => (
+            <div
+              key={idx}
+              className="relative mx-4 flex flex-col items-center justify-center rounded-2xl overflow-hidden shadow-md bg-black"
+              style={{
+                width: image.width,
+                height: image.height,
+                maxWidth: image.width,
+                maxHeight: image.height,
+              }}
+            >
+              <Image
+                src={image.src}
+                alt={`marquee-${idx}`}
+                width={image.width}
+                height={image.height}
+                className="rounded-2xl object-cover w-full h-full"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
     </section>
   );
 };
 
-export default FAQ2;
+export default FAQ;

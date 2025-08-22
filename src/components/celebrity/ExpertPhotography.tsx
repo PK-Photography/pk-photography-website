@@ -1,39 +1,43 @@
+"use client";
+
 import Image from "next/image";
-import { FC } from "react";
 
-type ExpertPhotographyProps = {
-  imageUrl: string;
-};
-
-const ExpertPhotography: React.FC<ExpertPhotographyProps> = ({ imageUrl }) => {
+export default function ExpertPhotography() {
   return (
-    <div className="container mx-auto px-4 pr-[8%] mt-[5%]">
-      <section className="flex flex-col lg:flex-row items-end gap-10">
-        <div className="flex flex-col items-end gap-10 lg:gap-28 w-full lg:w-2/5">
-          <div className="relative w-[250px] h-[300px]">
+    <div className="bg-white py-16 px-4">
+      <div className="container mx-auto flex flex-col lg:flex-row items-start justify-center gap-12">
+        
+        <div className="w-full lg:w-1/2">
+          <div className="bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition">
             <Image
-              src={imageUrl}
-              alt="Mood Board Inspiration"
-              fill
-              className="shadow-md object-cover rounded-md"
+              src="/portfolioImages/expert_photography.jpg"
+              alt="Expert Photography"
+              width={400}
+              height={350}
+              className="rounded-lg w-full h-80 md:h-80 object-cover"
             />
           </div>
         </div>
-
-        {/* Right Side: Content */}
-        <div className="flex flex-col justify-center gap-5 w-full lg:w-3/5 bg-gray-100 p-6 md:p-10 lg:p-20 rounded-md text-start">
-          <h2 className="text-sm font-semibold mb-3">Expert Photography</h2>
-          <p className="text-gray-700 text-base sm:text-lg leading-6">
+        <div className="w-full lg:w-1/2 space-y-6">
+          <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
+            Our Process
+          </h2>
+          <h3 className="text-xl font-semibold text-[#2A2A2A]">
+            Expert Photography
+          </h3>
+          <p className="text-gray-600 mt-5">
             Our seasoned photographers capture a dynamic range of images with a
             focus on creative lighting that brings depth and dimension to every
             shot. They offer comprehensive pose guidance to ensure you feel
             confident and natural, helping you achieve authentic and flattering
             poses that truly represent your vision.
           </p>
+          <p className="text-gray-700 italic text-sm font-semibold text-gray-900 mt-4">
+            {`"Great photography is about depth of feeling, not depth of field."`}
+          </p>
         </div>
-      </section>
+        
+      </div>
     </div>
   );
-};
-
-export default ExpertPhotography;
+}

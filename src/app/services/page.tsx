@@ -75,7 +75,7 @@ const services = [
   {
     title: "Boudoir",
     description: "Elegant. Empowering. Intimate",
-    image: "/servicesPage/boudoir2.jpg",
+    image: "/boudoir",
   },
   {
     title: "Baby",

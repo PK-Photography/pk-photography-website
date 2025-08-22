@@ -106,7 +106,7 @@ const cards: CardProps[] = [
     title: "Real Estate",
     subtitle: "Highlighting the beauty of every property",
     id: 11,
-    link: "/galleries?category=Real%20Estate",
+    link: "/realestate",
   },
   {
     url: service12.src,

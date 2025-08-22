@@ -41,7 +41,7 @@ const cards: CardProps[] = [
     subtitle: "Timeless portraits that reflect you",
     id: 2,
     isLightBackground: true,
-    link: "/galleries?category=Portrait",
+    link: "portrait",
   },
   {
     url: service3.src,

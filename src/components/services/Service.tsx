@@ -41,7 +41,7 @@ const cards: CardProps[] = [
     subtitle: "Timeless portraits that reflect you",
     id: 2,
     isLightBackground: true,
-    link: "/galleries?category=Portrait",
+    link: "portrait",
   },
   {
     url: service3.src,
@@ -55,21 +55,21 @@ const cards: CardProps[] = [
     title: "Editorial",
     subtitle: "Magazine-Worthy Shots for Every Story Headshots",
     id: 4,
-    link: "/galleries?category=Editorial",
+    link: "/editorial",
   },
   {
     url: service5.src,
     title: "Celebrity",
     subtitle: "Reflect your stardom with every shot",
     id: 5,
-    link: "/galleries?category=Celebrity",
+    link: "/celebrity",
   },
   {
     url: service6.src,
     title: "Ads",
     subtitle: "Highlights your products with flawless imagery",
     id: 6,
-    link: "/galleries?category=Ads",
+    link: "/ads",
   },
   {
     url: service7.src,
@@ -83,7 +83,7 @@ const cards: CardProps[] = [
     title: "Boudoir",
     subtitle: "Empower your confidence",
     id: 8,
-    link: "/galleries?category=Boudoir",
+    link: "/boudoir",
   },
   {
     url: service9.src,

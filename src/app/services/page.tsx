@@ -69,7 +69,7 @@ const services = [
     title: "Editorials",
     description: "Magazine‑worthy visuals",
     image: "/servicesPage/editorial.jpg",
-    link: "/galleries?category=Editorial",
+    link: "/editorial",
   },
 
   {

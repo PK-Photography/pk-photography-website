@@ -30,7 +30,7 @@ export default function Editorial() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
-        <div className="text-6xl font-semibold">
+        <div className="text-4xl md:text-6xl font-semibold">
           <p className="pb-2.5 pt-3">Editorial</p>
           <p>Photography</p>
         </div>
@@ -94,12 +94,12 @@ export default function Editorial() {
         <Image
           src={Editorial1}
           alt="Headshot 1"
-          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+          className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
           src={Editorial2}
           alt="Headshot 2"
-          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+          className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
       </div>
       <GetStartedSection

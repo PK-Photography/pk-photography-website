@@ -83,7 +83,7 @@ const cards: CardProps[] = [
     title: "Boudoir",
     subtitle: "Empower your confidence",
     id: 8,
-    link: "/galleries?category=Boudoir",
+    link: "/boudoir",
   },
   {
     url: service9.src,

@@ -1,36 +1,42 @@
-"use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
+
+
+import Design1 from "@/../public/design/Design_1.JPG";
+import Design2 from "@/../public/design/Design_2.JPG";
+
+//import LocationStylingTipsSec from "@/components/design/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/design/ExpertPhotography";
+//import HighEndResolution from "@/components/design/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/design/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/design/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/design/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/design/WardrobeAndProp";
+import AboutSection from "@/components/design/AboutSection";
+import GetStartedSection from "@/components/design/GetStartedSection";
+import MultiImageAnimation from "@/components/design/MultiImageAnimation";
+import DeliveryOptions from "@/components/design/DeliveryOptions";
+import FAQ from "@/components/design/FAQ";
+import CallToAction from "@/components/design/CallToAction";
+import MultiCard from "@/components/design/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-// Import sections
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
-import HighEndResolution from "@/sections/serviceSections/HighEndResolution";
-import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
-import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
-import AboutSection from "@/sections/serviceSections/AboutSection";
-import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
-import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
-import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
-import MultiCard from "@/sections/MutiCard";
-
-// Dynamic imports
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), { ssr: true });
-const FAQ2 = dynamic(() => import("@/components/live-streaming/FAQ2"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/live-streaming/CallToAction"), { ssr: true });
+const Pricing = dynamic (() => import("@/components/design/Pricng"),{
+  ssr:true,
+});
 
 export default function Design() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex sm:flex-col md:flex-row justify-between pb-9 border-b-2 border-[#747478]">
-        <div className="text-6xl font-semibold">
+      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
+        <div className="text-4xl md:text-6xl font-semibold">
           <p className="pb-2.5 pt-3">Design</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
-          <a href="/galleries?category=Design">
+          <a href="/galleries">
             <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
@@ -71,85 +77,64 @@ export default function Design() {
       <div className="pt-6 flex flex-col md:flex-row mb-[10%]">
         <div className="flex flex-col justify-start items-start border-r-2 border-[#747478] pr-12">
           <p className="pt-8">
-            Creative design photography that brings your vision to life.
+            Let us help you create the perfect professional image.
           </p>
           <p className="pt-1">
-            Capture innovative concepts and artistic compositions that{" "}
+            Personalized headshot photography to showcase your{" "}
           </p>
           <p className="pt-1">
-            showcase your design expertise. Your journey to exceptional design photography starts here.
+            personality. Your journey to a confident headshot starts here.
           </p>
 
-          <a href="/booking?service=design">
+          <a href="/booking">
             <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
               BOOK NOW
             </button>
           </a>
         </div>
-
-        {/* Design image 1 */}
-        <div className="sm:w-[80%] md:w-[40%] md:h-[40%] pl-5 mt-4">
-          <Image
-            src="/design/1.jpeg"
-            alt="Design Image 1"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
-
-        {/* Design image 2 */}
-        <div className="sm:w-[70%] md:w-[30%] md:h-[40%] pl-5 mt-4">
-          <Image
-            src="/design/2.jpeg"
-            alt="Design Image 2"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
+        <Image
+          src={Design1}
+          alt="Headshot 1"
+          className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+        />
+        <Image
+          src={Design2}
+          alt="Headshot 2"
+          className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+        />
       </div>
-      
       <GetStartedSection
-        text1="Bring Your Vision to Life"
-        text2=" with Creative"
-        text3="Design Photography"
+        text1="Elevate Your Presence"
+        text2=" with Professional"
+        text3="Headshots"
       />
-      
       <AboutSection />
-      <WardrobeAndProp />
       
       <div className="mt-[10%] flex flex-row justify-center items-center">
-        {/* Still placeholder for design image 4 */}
-        <div className="w-[65%] h-[50%] hidden md:block object-cover mt-10 pl-5 bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-500">Design Image 4</span>
-        </div>
-      </div>
-      
-      <MoodBoardSectionV2 imageUrl={""} />
-      <LocationStylingTipsSec />
-      <ExpertPhotography imageUrl={""} />
-      <HighEndResolution imageUrl={""} />
-      
+          </div>
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      <ConsultationMoodBoard />
+      <WardrobeAndProp />
+      <LocationStylingTips />
+      <ExpertPhotography  />
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
           The moment of final delivery marks the culmination of our dedicated
-          efforts to create innovative design images. It&apos;s
-          more than just a transaction - it&apos;s delivering images that showcase your creative vision.
+          efforts and your envisioned <br /> outcome brought to life. It&apos;s
+          more than just a transaction.
         </p>
       </div>
-      
       <MultiImageAnimation />
-      
       <div className="mx-[20%] my-[5%]">
         <DeliveryOptions />
       </div>
 
       <Pricing />
       <MultiCard />
-      <FAQ2 />
-      
+      <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

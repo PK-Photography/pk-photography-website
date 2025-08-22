@@ -1,40 +1,42 @@
-"use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
+
+
+import Ecommerce1 from "@/../public/ecommerce/Ecommerce_1.jpg";
+import Ecommerce2 from "@/../public/ecommerce/Ecommerce_2.jpg";
+
+//import LocationStylingTipsSec from "@/components/ecommerce/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/ecommerce/ExpertPhotography";
+//import HighEndResolution from "@/components/ecommerce/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/ecommerce/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/ecommerce/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/ecommerce/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/ecommerce/WardrobeAndProp";
+import AboutSection from "@/components/ecommerce/AboutSection";
+import GetStartedSection from "@/components/ecommerce/GetStartedSection";
+import MultiImageAnimation from "@/components/ecommerce/MultiImageAnimation";
+import DeliveryOptions from "@/components/ecommerce/DeliveryOptions";
+import FAQ from "@/components/ecommerce/FAQ";
+import CallToAction from "@/components/ecommerce/CallToAction";
+import MultiCard from "@/components/ecommerce/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-// Import sections
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
-import HighEndResolution from "@/sections/serviceSections/HighEndResolution";
-import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
-import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
-import AboutSection from "@/sections/serviceSections/AboutSection";
-import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
-import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
-import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
-import MultiCard from "@/sections/MutiCard";
+const Pricing = dynamic (() => import("@/components/ecommerce/Pricng"),{
+  ssr:true,
+});
 
-// Import e-commerce images
-import ecom1 from "@/../public/ecom/1.jpeg";
-import ecom2 from "@/../public/ecom/2.jpeg";
-
-// Dynamic imports
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), { ssr: true });
-const FAQ2 = dynamic(() => import("@/components/live-streaming/FAQ2"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/live-streaming/CallToAction"), { ssr: true });
-
-export default function ECommerce() {
+export default function Ecommerce() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex sm:flex-col md:flex-row justify-between pb-9 border-b-2 border-[#747478]">
-        <div className="text-6xl font-semibold">
-          <p className="pb-2.5 pt-3">E-commerce</p>
+      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
+        <div className="text-4xl md:text-6xl font-semibold">
+          <p className="pb-2.5 pt-3">Ecommerce</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
-          <a href="/galleries?category=E-Commerce">
+          <a href="/galleries">
             <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
@@ -75,73 +77,64 @@ export default function ECommerce() {
       <div className="pt-6 flex flex-col md:flex-row mb-[10%]">
         <div className="flex flex-col justify-start items-start border-r-2 border-[#747478] pr-12">
           <p className="pt-8">
-            Professional e-commerce photography that boosts your online sales.
+            Let us help you create the perfect professional image.
           </p>
           <p className="pt-1">
-            Create crisp, compelling product images that drive conversions and{" "}
+            Personalized headshot photography to showcase your{" "}
           </p>
           <p className="pt-1">
-            enhance your brand. Your journey to exceptional e-commerce photography starts here.
+            personality. Your journey to a confident headshot starts here.
           </p>
 
-          <a href="/booking?service=ecommerce">
+          <a href="/booking">
             <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
               BOOK NOW
             </button>
           </a>
         </div>
-
-        {/* E-commerce image 1 */}
-        <div className="sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4 overflow-hidden">
-          <Image src={ecom1} alt="E-commerce Image 1" className="object-cover rounded-lg" />
-        </div>
-
-        {/* E-commerce image 2 */}
-        <div className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg pl-5 mt-4 overflow-hidden">
-          <Image src={ecom2} alt="E-commerce Image 2" className="object-cover rounded-lg" />
-        </div>
+        <Image
+          src={Ecommerce1}
+          alt="Headshot 1"
+          className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+        />
+        <Image
+          src={Ecommerce2}
+          alt="Headshot 2"
+          className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+        />
       </div>
-      
       <GetStartedSection
-        text1="Boost Your Online Sales"
+        text1="Elevate Your Presence"
         text2=" with Professional"
-        text3="E-commerce Photography"
+        text3="Headshots"
       />
-      
       <AboutSection />
-      <WardrobeAndProp />
       
       <div className="mt-[10%] flex flex-row justify-center items-center">
-        {/* Placeholder for e-commerce image 4 */}
-        <div className="w-[65%] h-[50%] hidden md:block object-cover mt-10 pl-5 bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-500">E-commerce Image 4</span>
-        </div>
-      </div>
-      
-      <MoodBoardSectionV2 imageUrl={""} />
-      <LocationStylingTipsSec />
-      <ExpertPhotography imageUrl={""} />
-      <HighEndResolution imageUrl={""} />
-      
+          </div>
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      <ConsultationMoodBoard />
+      <WardrobeAndProp />
+      <LocationStylingTips />
+      <ExpertPhotography  />
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
           The moment of final delivery marks the culmination of our dedicated
-          efforts to create compelling e-commerce images. It&apos;s
-          more than just a transaction - it&apos;s delivering images that drive conversions and boost sales.
+          efforts and your envisioned <br /> outcome brought to life. It&apos;s
+          more than just a transaction.
         </p>
       </div>
-      
       <MultiImageAnimation />
-      
       <div className="mx-[20%] my-[5%]">
         <DeliveryOptions />
       </div>
 
       <Pricing />
       <MultiCard />
-      <FAQ2 />
-      
+      <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

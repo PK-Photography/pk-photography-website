@@ -99,7 +99,7 @@ const cards: CardProps[] = [
     subtitle: "Boost your sales: crisp, e-commerce photos",
     id: 10,
     isLightBackground: true,
-    link: "/galleries?category=E-Commerce",
+    link: "/ecommerce",
   },
   {
     url: service11.src,

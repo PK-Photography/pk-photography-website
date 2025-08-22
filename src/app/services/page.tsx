@@ -45,7 +45,7 @@ const services = [
     title: "Portrait",
     description: "Timeless portraits that reflect you",
     image: "/servicesPage/portrait.jpg",
-    link: "/galleries?category=Portrait",
+    link: "portrait",
   },
 
   {

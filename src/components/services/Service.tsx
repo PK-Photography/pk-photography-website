@@ -69,7 +69,7 @@ const cards: CardProps[] = [
     title: "Ads",
     subtitle: "Highlights your products with flawless imagery",
     id: 6,
-    link: "/galleries?category=Ads",
+    link: "/ads",
   },
   {
     url: service7.src,

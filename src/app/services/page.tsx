@@ -62,7 +62,7 @@ const services = [
   {
     title: "Products",
     description: "Make your product stand out",
-    image: "/servicesPage/product.jpg",
+    image: "/ads",
   },
 
   {

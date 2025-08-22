@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Marquee from "react-fast-marquee";
+import Image from "next/image";
 
 const faqManImg = "/live-streaming/faq_man.webp";
 
@@ -11,15 +13,28 @@ interface FAQItem {
   bgColor: string;
 }
 
-const FAQ: React.FC = () => {
+const PortfolioFAQ: React.FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const refs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const [speed, setSpeed] = useState(50);
 
   useEffect(() => {
     setActiveQuestion(null);
+
+    const updateSpeed = () => {
+      if (window.innerWidth <= 768) {
+        setSpeed(80);
+      } else {
+        setSpeed(50);
+      }
+    };
+
+    updateSpeed();
+    window.addEventListener("resize", updateSpeed);
+    return () => window.removeEventListener("resize", updateSpeed);
   }, []);
 
-  const faqData: FAQItem[] = [
+ const faqData: FAQItem[] = [
     {
       id: 1,
       question: "What makes PK Photography unique in Andheri, Mumbai?",
@@ -60,85 +75,86 @@ const FAQ: React.FC = () => {
       question: "What is the retouching process like at PK Photography?",
       answer:
         "After the photoshoot, our team carefully selects the best images for advanced retouching. We apply techniques such as skin smoothing, blemish removal, and color correction to produce polished images that remain natural and true to you.",
-      bgColor: "#f8d7f8",
+      bgColor: "#f8e7f8",
     },
     {
       id: 7,
       question: "How do you deliver the final images to your clients?",
       answer:
         "We offer multiple delivery options for your high-resolution images, including a Google Drive link, an online gallery, a downloadable PDF, a pendrive, printed copies, or a combination of these methods to suit your needs.",
-      bgColor: "#e7f8d7",
+      bgColor: "#f2f8d7",
     },
     {
       id: 8,
       question: "Do you provide both digital and printed copies of my portfolio?",
       answer:
         "Yes, we understand that clients have varying needs. In addition to digital files, we also offer high-quality printed copies, making it easy to showcase your portfolio both online and offline.",
-      bgColor: "#d7f0f8",
+      bgColor: "#d7f8f1",
     },
     {
       id: 9,
       question: "How can I book a portfolio photography session at PK Photography?",
-      answer: (
-        <>
-          Booking is simple—visit our website at{" "}
-          <a
-            href="https://www.pkphotography.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline"
-          >
-            www.pkphotography.in
-          </a>
-          , fill out the booking form, or contact us directly. We’ll schedule a
-          consultation to discuss your creative vision and set up your session
-          at our Andheri studio.
-        </>
-      ),
-      bgColor: "#f8f2d7",
+      answer:
+        "Booking is simple—visit our website at www.pkphotography.in, fill out the booking form, or contact us directly. We’ll schedule a consultation to discuss your creative vision and set up your session at our Andheri studio.",
+      bgColor: "#f8ded7",
     },
     {
       id: 10,
       question: "What types of packages does PK Photography offer for portfolio photography?",
       answer:
         "We offer a range of packages from basic sessions to exclusive, all-inclusive experiences. Each package is designed to be flexible and tailored, ensuring you receive a service that aligns perfectly with your personal and professional goals.",
-      bgColor: "#f8e7d7",
+      bgColor: "#e2d7f8",
     },
     {
       id: 11,
       question: "How long does a typical portfolio session last?",
       answer:
         "Depending on the package you choose, sessions typically range from 1 to 5 hours. This timeframe allows us to capture a variety of poses and setups, creating a diverse portfolio that highlights your strengths.",
-      bgColor: "#f8d7d7",
+      bgColor: "#f8efd7",
     },
     {
       id: 12,
       question: "What should I wear or bring to my photoshoot?",
       answer:
         "We recommend choosing outfits that reflect your personal style and professional image. Feel free to bring any props or personal accessories that help tell your story; our team will also provide wardrobe and styling advice during your consultation.",
-      bgColor: "#d7f8dc",
+      bgColor: "#d7f8eb",
     },
     {
       id: 13,
       question: "Can I schedule a consultation before my photoshoot?",
       answer:
         "Absolutely. We encourage you to book a consultation so we can discuss your vision, styling preferences, and any questions you may have. This ensures a personalized and seamless photography experience.",
-      bgColor: "#d7e8f8",
+      bgColor: "#f8d7ef",
     },
     {
       id: 14,
       question: "Do you offer free rescheduling for portfolio sessions?",
       answer:
         "Yes, we understand that plans can change. If you need to reschedule your session, simply notify us at least 2 days in advance, and we'll happily accommodate your request free of charge.",
-      bgColor: "#f8d7f8",
+      bgColor: "#d7e1f8",
     },
     {
       id: 15,
       question: "Why is PK Photography considered one of the best photography studios in Mumbai?",
       answer:
         "Our commitment to excellence, innovative use of creative lighting, detailed pose guidance, and high-end retouching has earned us a stellar reputation. Based in Andheri, our studio is known as one of the best photography studios in Mumbai, making us the ideal choice to elevate your visual brand.",
-      bgColor: "#e7f8d7",
+      bgColor: "#f8f4d7",
     },
+  ];
+
+  const marqueeData = [
+    { src: "/portfolioImages/carousal/1.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/2.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/3.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/4.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/5.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/6.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/7.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/8.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/9.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/10.jpg", width: 700, height: 450 },
+    { src: "/portfolioImages/carousal/11.jpg", width: 350, height: 450 },
+    { src: "/portfolioImages/carousal/12.jpg", width: 350, height: 450 },
   ];
 
   const handleQuestionClick = (id: number) => {
@@ -204,8 +220,39 @@ const FAQ: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Marquee Section */}
+      <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
+        Capturing Life&apos;s Moments with Passion and Precision
+      </h2>
+
+      <div className="mt-16">
+        <Marquee speed={speed} gradient={false} className="py-4">
+          {marqueeData.map((image, idx) => (
+            <div
+              key={idx}
+              className="relative mx-4 flex flex-col items-center justify-center rounded-2xl overflow-hidden shadow-md bg-black"
+              style={{
+                width: image.width,
+                height: image.height,
+                maxWidth: image.width,
+                maxHeight: image.height,
+              }}
+            >
+              <Image
+                src={image.src}
+                alt={`marquee-${idx}`}
+                width={image.width}
+                height={image.height}
+                className="rounded-2xl object-cover w-full h-full"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
     </section>
   );
 };
 
-export default FAQ;
+export default PortfolioFAQ;

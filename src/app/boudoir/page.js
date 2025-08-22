@@ -1,36 +1,42 @@
-"use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
+
+
+import Boudoir1 from "@/../public/boudoir/Boudoir_1.jpg";
+import Boudoir2 from "@/../public/boudoir/Boudoir_2.jpg";
+
+//import LocationStylingTipsSec from "@/components/boudoir/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/boudoir/ExpertPhotography";
+//import HighEndResolution from "@/components/boudoir/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/boudoir/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/boudoir/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/boudoir/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/boudoir/WardrobeAndProp";
+import AboutSection from "@/components/boudoir/AboutSection";
+import GetStartedSection from "@/components/boudoir/GetStartedSection";
+import MultiImageAnimation from "@/components/boudoir/MultiImageAnimation";
+import DeliveryOptions from "@/components/boudoir/DeliveryOptions";
+import FAQ from "@/components/boudoir/FAQ";
+import CallToAction from "@/components/boudoir/CallToAction";
+import MultiCard from "@/components/boudoir/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-// Import sections
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
-import HighEndResolution from "@/sections/serviceSections/HighEndResolution";
-import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
-import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
-import AboutSection from "@/sections/serviceSections/AboutSection";
-import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
-import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
-import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
-import MultiCard from "@/sections/MutiCard";
-
-// Dynamic imports
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), { ssr: true });
-const FAQ2 = dynamic(() => import("@/components/live-streaming/FAQ2"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/live-streaming/CallToAction"), { ssr: true });
+const Pricing = dynamic (() => import("@/components/boudoir/Pricng"),{
+  ssr:true,
+});
 
 export default function Boudoir() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex sm:flex-col md:flex-row justify-between pb-9 border-b-2 border-[#747478]">
+      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
         <div className="text-6xl font-semibold">
           <p className="pb-2.5 pt-3">Boudoir</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
-          <a href="/galleries?category=Boudoir">
+          <a href="/galleries">
             <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
@@ -71,95 +77,64 @@ export default function Boudoir() {
       <div className="pt-6 flex flex-col md:flex-row mb-[10%]">
         <div className="flex flex-col justify-start items-start border-r-2 border-[#747478] pr-12">
           <p className="pt-8">
-            Elegant and empowering boudoir photography that celebrates you.
+            Let us help you create the perfect professional image.
           </p>
           <p className="pt-1">
-            Create intimate, tasteful images that capture your confidence and{" "}
+            Personalized headshot photography to showcase your{" "}
           </p>
           <p className="pt-1">
-            beauty. Your journey to exceptional boudoir photography starts here.
+            personality. Your journey to a confident headshot starts here.
           </p>
 
-          <a href="/booking?service=boudoir">
+          <a href="/booking">
             <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
               BOOK NOW
             </button>
           </a>
         </div>
-
-        {/* Boudoir Image 1 */}
-        <div className="sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4">
-          <Image
-            src="/boudoir/1.jpeg"
-            alt="Boudoir Image 1"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
-
-        {/* Boudoir Image 2 */}
-        <div className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg pl-5 mt-4">
-          <Image
-            src="/boudoir/2.jpeg"
-            alt="Boudoir Image 2"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
+        <Image
+          src={Boudoir1}
+          alt="Headshot 1"
+          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+        />
+        <Image
+          src={Boudoir2}
+          alt="Headshot 2"
+          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+        />
       </div>
-      
       <GetStartedSection
-        text1="Celebrate Your Confidence"
-        text2=" with Elegant"
-        text3="Boudoir Photography"
+        text1="Elevate Your Presence"
+        text2=" with Professional"
+        text3="Headshots"
       />
-      
       <AboutSection />
       
-      <WardrobeAndProp />
-      
       <div className="mt-[10%] flex flex-row justify-center items-center">
-        {/* Boudoir Image 4 (reusing 1.jpeg for now since only 2 images provided) */}
-        <div className="w-[65%] h-[50%] hidden md:block object-cover mt-10 pl-5">
-          <Image
-            src="/boudoir/1.jpeg"
-            alt="Boudoir Image 4"
-            width={800}
-            height={600}
-            className="rounded-lg object-cover"
-          />
-        </div>
-      </div>
-      
-      <MoodBoardSectionV2 imageUrl={""} />
-      
-      <LocationStylingTipsSec />
-      
-      <ExpertPhotography imageUrl={""} />
-      
-      <HighEndResolution imageUrl={""} />
-      
+          </div>
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      <ConsultationMoodBoard />
+      <WardrobeAndProp />
+      <LocationStylingTips />
+      <ExpertPhotography  />
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
           The moment of final delivery marks the culmination of our dedicated
-          efforts to create elegant and empowering boudoir images. It&apos;s
-          more than just a transaction - it&apos;s delivering images that celebrate your confidence.
+          efforts and your envisioned <br /> outcome brought to life. It&apos;s
+          more than just a transaction.
         </p>
       </div>
-      
       <MultiImageAnimation />
-      
       <div className="mx-[20%] my-[5%]">
         <DeliveryOptions />
       </div>
 
       <Pricing />
       <MultiCard />
-      <FAQ2 />
-      
+      <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

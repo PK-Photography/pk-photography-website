@@ -32,7 +32,7 @@ const services = [
   {
     title: "Real Estate",
     description: "Highlight every detail beautifully",
-    image: "/servicesPage/realEstate.jpg",
+    image: "/realestate",
   },
   {
     title: "Celebrity",

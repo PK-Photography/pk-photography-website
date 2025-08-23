@@ -97,6 +97,7 @@ const services = [
     title: "Festival",
     description: "Celebrate with vibrant festival photography",
     image: "/servicesPage/festival.jpg",
+    link: "/portrait",
   },
 ];
 

@@ -32,7 +32,8 @@ const services = [
   {
     title: "Real Estate",
     description: "Highlight every detail beautifully",
-    image: "/realestate",
+    image: "/servicesPage/realEstate.jpg",
+    link: "/realestate",
   },
   {
     title: "Celebrity",
@@ -45,7 +46,7 @@ const services = [
     title: "Portrait",
     description: "Timeless portraits that reflect you",
     image: "/servicesPage/portrait.jpg",
-    link: "portrait",
+    link: "/portrait",
   },
 
   {
@@ -57,12 +58,14 @@ const services = [
   {
     title: "E‑Commerce",
     description: "Sell more with crisp visuals",
-    image: "/ecommerce",
+    image: "/servicesPage/ecommerce.jpg",
+    link: "/ecommerce"
   },
   {
     title: "Products",
     description: "Make your product stand out",
-    image: "/ads",
+    image: "/servicesPage/product.jpg",
+    link: "/ads",
   },
 
   {
@@ -75,7 +78,8 @@ const services = [
   {
     title: "Boudoir",
     description: "Elegant. Empowering. Intimate",
-    image: "/boudoir",
+    image: "/servicesPage/boudoir2.jpg",
+    link: "/boudoir",
   },
   {
     title: "Baby",

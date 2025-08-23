@@ -90,6 +90,7 @@ const services = [
     title: "Outdoor",
     description: "Capture the beauty of nature",
     image: "/servicesPage/outdoor.jpg",
+    link: "/portrait",
   },
   {
     title: "Festival",

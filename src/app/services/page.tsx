@@ -15,6 +15,7 @@ const services = [
     title: "Brand Shoot",
     description: "Elevate your brand with stunning visuals",
     image: "/servicesPage/brandShoot.jpg",
+    link: "/brandshoot"
   },
   {
     title: "Headshots",

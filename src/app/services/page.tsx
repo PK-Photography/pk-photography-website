@@ -85,6 +85,7 @@ const services = [
     title: "Baby",
     description: "Capture the joy of your little one",
     image: "/servicesPage/baby-photoshoot.jpg",
+    link: "/baby",
   },
   {
     title: "Outdoor",

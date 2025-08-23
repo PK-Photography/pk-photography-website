@@ -4,35 +4,35 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Ecommerce1 from "@/../public/ecommerce/Ecom1.jpg";
-import Ecommerce2 from "@/../public/ecommerce/Ecom2.jpg";
+import BrandShoot1 from "@/../public/brandshoot/Brand_1.jpg";
+import BrandShoot2 from "@/../public/brandshoot/Brand_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/ecommerce/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/ecommerce/ExpertPhotography";
-//import HighEndResolution from "@/components/ecommerce/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/ecommerce/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/ecommerce/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/ecommerce/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/ecommerce/WardrobeAndProp";
-import AboutSection from "@/components/ecommerce/AboutSection";
-import GetStartedSection from "@/components/ecommerce/GetStartedSection";
-import MultiImageAnimation from "@/components/ecommerce/MultiImageAnimation";
-import DeliveryOptions from "@/components/ecommerce/DeliveryOptions";
-import FAQ from "@/components/ecommerce/FAQ";
-import CallToAction from "@/components/ecommerce/CallToAction";
-import MultiCard from "@/components/ecommerce/MultiCard";
+//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/realestate/ExpertPhotography";
+//import HighEndResolution from "@/components/realestate/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
+import AboutSection from "@/components/realestate/AboutSection";
+import GetStartedSection from "@/components/realestate/GetStartedSection";
+import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
+import DeliveryOptions from "@/components/realestate/DeliveryOptions";
+import FAQ from "@/components/realestate/FAQ";
+import CallToAction from "@/components/realestate/CallToAction";
+import MultiCard from "@/components/realestate/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/ecommerce/Pricng"),{
+const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
   ssr:true,
 });
 
-export default function Ecommerce() {
+export default function BrandShoot() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
         <div className="text-4xl md:text-6xl font-semibold">
-          <p className="pb-2.5 pt-3">Ecommerce</p>
+          <p className="pb-2.5 pt-3">Brand Shoot</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
@@ -93,12 +93,12 @@ export default function Ecommerce() {
           </a>
         </div>
         <Image
-          src={Ecommerce1}
+          src={BrandShoot1}
           alt="Headshot 1"
           className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
-          src={Ecommerce2}
+          src={BrandShoot2}
           alt="Headshot 2"
           className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />

@@ -4,8 +4,8 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Boudoir1 from "@/../public/boudoir/Boudoir_1.jpg";
-import Boudoir2 from "@/../public/boudoir/Boudoir_2.jpg";
+import Boudoir1 from "@/../public/boudoir/Bou1.jpg";
+import Boudoir2 from "@/../public/boudoir/Bou2.jpg";
 
 //import LocationStylingTipsSec from "@/components/boudoir/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/boudoir/ExpertPhotography";

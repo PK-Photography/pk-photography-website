@@ -4,8 +4,8 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import RealEstate1 from "@/../public/realestate/Realestate_1.jpg";
-import RealEstate2 from "@/../public/realestate/Realestate_2.jpg";
+import RealEstate1 from "@/../public/realestate/Res_1.jpg";
+import RealEstate2 from "@/../public/realestate/Res_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/realestate/ExpertPhotography";

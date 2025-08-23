@@ -4,8 +4,8 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Ecommerce1 from "@/../public/ecommerce/Ecommerce_1.jpg";
-import Ecommerce2 from "@/../public/ecommerce/Ecommerce_2.jpg";
+import Ecommerce1 from "@/../public/ecommerce/Ecom1.jpg";
+import Ecommerce2 from "@/../public/ecommerce/Ecom2.jpg";
 
 //import LocationStylingTipsSec from "@/components/ecommerce/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/ecommerce/ExpertPhotography";

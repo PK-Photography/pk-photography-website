@@ -4,8 +4,8 @@ import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
 
-import Design1 from "@/../public/design/Design_1.jpg";
-import Design2 from "@/../public/design/Design_2.jpg";
+import Design1 from "@/../public/design/Des_1.jpg";
+import Design2 from "@/../public/design/Des_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/design/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/design/ExpertPhotography";

@@ -66,7 +66,7 @@ export default function LiveStreamingPage() {
       <About />
       <Services />
       <Equipment />
-      <Pricing />
+      <Pricing serviceName="live-streaming" />
       <LiveStreamDemo />
       <RecentWorks />
       <Testimonials />

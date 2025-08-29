@@ -7,23 +7,23 @@ import heart from "@/assets/headshot/heart.png";
 import Festival1 from "@/../public/festival/Fest_1.jpg";
 import Festival2 from "@/../public/festival/Fest_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/realestate/ExpertPhotography";
-//import HighEndResolution from "@/components/realestate/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
-import AboutSection from "@/components/realestate/AboutSection";
-import GetStartedSection from "@/components/realestate/GetStartedSection";
-import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
-import DeliveryOptions from "@/components/realestate/DeliveryOptions";
-import FAQ from "@/components/realestate/FAQ";
-import CallToAction from "@/components/realestate/CallToAction";
-import MultiCard from "@/components/realestate/MultiCard";
+//import LocationStylingTipsSec from "@/components/festival/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/festival/ExpertPhotography";
+//import HighEndResolution from "@/components/festival/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/festival/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/festival/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/festival/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/festival/WardrobeAndProp";
+import AboutSection from "@/components/festival/AboutSection";
+import GetStartedSection from "@/components/festival/GetStartedSection";
+import MultiImageAnimation from "@/components/festival/MultiImageAnimation";
+import DeliveryOptions from "@/components/festival/DeliveryOptions";
+import FAQ from "@/components/festival/FAQ";
+import CallToAction from "@/components/festival/CallToAction";
+import MultiCard from "@/components/festival/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/festival/Pricng"),{
   ssr:true,
 });
 
@@ -128,7 +128,7 @@ export default function Festival() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

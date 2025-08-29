@@ -7,23 +7,23 @@ import heart from "@/assets/headshot/heart.png";
 import Baby1 from "@/../public/baby/baby_1.jpg";
 import Baby2 from "@/../public/baby/baby_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/realestate/ExpertPhotography";
-//import HighEndResolution from "@/components/realestate/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
-import AboutSection from "@/components/realestate/AboutSection";
-import GetStartedSection from "@/components/realestate/GetStartedSection";
-import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
-import DeliveryOptions from "@/components/realestate/DeliveryOptions";
-import FAQ from "@/components/realestate/FAQ";
-import CallToAction from "@/components/realestate/CallToAction";
-import MultiCard from "@/components/realestate/MultiCard";
+//import LocationStylingTipsSec from "@/components/baby/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/baby/ExpertPhotography";
+//import HighEndResolution from "@/components/baby/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/baby/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/baby/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/baby/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/baby/WardrobeAndProp";
+import AboutSection from "@/components/baby/AboutSection";
+import GetStartedSection from "@/components/baby/GetStartedSection";
+import MultiImageAnimation from "@/components/baby/MultiImageAnimation";
+import DeliveryOptions from "@/components/baby/DeliveryOptions";
+import FAQ from "@/components/baby/FAQ";
+import CallToAction from "@/components/baby/CallToAction";
+import MultiCard from "@/components/baby/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/baby/Pricng"),{
   ssr:true,
 });
 
@@ -128,7 +128,7 @@ export default function Baby() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

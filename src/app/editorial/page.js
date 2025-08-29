@@ -127,7 +127,7 @@ export default function Editorial() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

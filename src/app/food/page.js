@@ -3,35 +3,35 @@ import dynamic from "next/dynamic";
 import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
-import Editorial1 from "@/../public/editorial/Editorial_1.jpg";
-import Editorial2 from "@/../public/editorial/Editorial_2.jpg";
+import Food1 from "@/../public/food/Food_1.jpg";
+import Food2 from "@/../public/food/Food_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/editorial/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/editorial/ExpertPhotography";
-//import HighEndResolution from "@/components/editorial/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/editorial/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/editorial/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/editorial/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/editorial/WardrobeAndProp";
-import AboutSection from "@/components/editorial/AboutSection";
-import GetStartedSection from "@/components/editorial/GetStartedSection";
-import MultiImageAnimation from "@/components/editorial/MultiImageAnimation";
-import DeliveryOptions from "@/components/editorial/DeliveryOptions";
-import FAQ from "@/components/editorial/FAQ";
-import CallToAction from "@/components/editorial/CallToAction";
-import MultiCard from "@/components/editorial/MultiCard";
+//import LocationStylingTipsSec from "@/components/food/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/food/ExpertPhotography";
+//import HighEndResolution from "@/components/food/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/food/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/food/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/food/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/food/WardrobeAndProp";
+import AboutSection from "@/components/food/AboutSection";
+import GetStartedSection from "@/components/food/GetStartedSection";
+import MultiImageAnimation from "@/components/food/MultiImageAnimation";
+import DeliveryOptions from "@/components/food/DeliveryOptions";
+import FAQ from "@/components/food/FAQ";
+import CallToAction from "@/components/food/CallToAction";
+import MultiCard from "@/components/food/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/editorial/Pricng"),{
+const Pricing = dynamic (() => import("@/components/food/Pricng"),{
   ssr:true,
 });
 
-export default function Editorial() {
+export default function Food() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-9 border-b-2 border-[#747478]">
         <div className="text-4xl font-semibold">
-          <p className="pb-2.5 pt-3">Editorial</p>
+          <p className="pb-2.5 pt-3">Food</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
@@ -92,12 +92,12 @@ export default function Editorial() {
           </a>
         </div>
         <Image
-          src={Editorial1}
+          src={Food1}
           alt="Headshot 1"
           className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
-          src={Editorial2}
+          src={Food2}
           alt="Headshot 2"
           className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
@@ -127,7 +127,7 @@ export default function Editorial() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

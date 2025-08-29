@@ -7,23 +7,23 @@ import heart from "@/assets/headshot/heart.png";
 import OutDoor1 from "@/../public/outdoors/Out_1.jpg";
 import OutDoor2 from "@/../public/outdoors/Out_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/realestate/ExpertPhotography";
-//import HighEndResolution from "@/components/realestate/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
-import AboutSection from "@/components/realestate/AboutSection";
-import GetStartedSection from "@/components/realestate/GetStartedSection";
-import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
-import DeliveryOptions from "@/components/realestate/DeliveryOptions";
-import FAQ from "@/components/realestate/FAQ";
-import CallToAction from "@/components/realestate/CallToAction";
-import MultiCard from "@/components/realestate/MultiCard";
+//import LocationStylingTipsSec from "@/components/outdoor/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/outdoor/ExpertPhotography";
+//import HighEndResolution from "@/components/outdoor/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/outdoor/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/outdoor/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/outdoor/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/outdoor/WardrobeAndProp";
+import AboutSection from "@/components/outdoor/AboutSection";
+import GetStartedSection from "@/components/outdoor/GetStartedSection";
+import MultiImageAnimation from "@/components/outdoor/MultiImageAnimation";
+import DeliveryOptions from "@/components/outdoor/DeliveryOptions";
+import FAQ from "@/components/outdoor/FAQ";
+import CallToAction from "@/components/outdoor/CallToAction";
+import MultiCard from "@/components/outdoor/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/outdoor/Pricng"),{
   ssr:true,
 });
 
@@ -128,7 +128,7 @@ export default function OutDoor() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

@@ -7,20 +7,20 @@ import heart from "@/assets/headshot/heart.png";
 import BrandShoot1 from "@/../public/brandshoot/Brand_1.jpg";
 import BrandShoot2 from "@/../public/brandshoot/Brand_2.jpg";
 
-import ExpertPhotography from "@/components/realestate/ExpertPhotography";
-import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
-import AboutSection from "@/components/realestate/AboutSection";
-import GetStartedSection from "@/components/realestate/GetStartedSection";
-import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
-import DeliveryOptions from "@/components/realestate/DeliveryOptions";
-import FAQ from "@/components/realestate/FAQ";
-import CallToAction from "@/components/realestate/CallToAction";
-import MultiCard from "@/components/realestate/MultiCard";
+import ExpertPhotography from "@/components/brandshoot/ExpertPhotography";
+import ConsultationMoodBoard from "@/components/brandshoot/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/brandshoot/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/brandshoot/WardrobeAndProp";
+import AboutSection from "@/components/brandshoot/AboutSection";
+import GetStartedSection from "@/components/brandshoot/GetStartedSection";
+import MultiImageAnimation from "@/components/brandshoot/MultiImageAnimation";
+import DeliveryOptions from "@/components/brandshoot/DeliveryOptions";
+import FAQ from "@/components/brandshoot/FAQ";
+import CallToAction from "@/components/brandshoot/CallToAction";
+import MultiCard from "@/components/brandshoot/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/brandshoot/Pricng"),{
   ssr:true,
 });
 

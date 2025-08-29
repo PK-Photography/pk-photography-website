@@ -1,36 +1,41 @@
-"use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
+
+import Editorial1 from "@/../public/editorial/Editorial_1.jpg";
+import Editorial2 from "@/../public/editorial/Editorial_2.jpg";
+
+//import LocationStylingTipsSec from "@/components/editorial/LocationStylingTipsSec";
+import ExpertPhotography from "@/components/editorial/ExpertPhotography";
+//import HighEndResolution from "@/components/editorial/HighEndResolution";
+//import MoodBoardSectionV2 from "@/components/editorial/MoodBoardSectionV2";
+import ConsultationMoodBoard from "@/components/editorial/ConsultationandMoodBoard";
+import LocationStylingTips from "@/components/editorial/LocationAndStylingTips";
+import WardrobeAndProp from "@/components/editorial/WardrobeAndProp";
+import AboutSection from "@/components/editorial/AboutSection";
+import GetStartedSection from "@/components/editorial/GetStartedSection";
+import MultiImageAnimation from "@/components/editorial/MultiImageAnimation";
+import DeliveryOptions from "@/components/editorial/DeliveryOptions";
+import FAQ from "@/components/editorial/FAQ";
+import CallToAction from "@/components/editorial/CallToAction";
+import MultiCard from "@/components/editorial/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-// Import sections
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
-import HighEndResolution from "@/sections/serviceSections/HighEndResolution";
-import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
-import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
-import AboutSection from "@/sections/serviceSections/AboutSection";
-import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
-import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
-import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
-import MultiCard from "@/sections/MutiCard";
+const Pricing = dynamic (() => import("@/components/editorial/Pricng"),{
+  ssr:true,
+});
 
-// Dynamic imports
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), { ssr: true });
-const FAQ2 = dynamic(() => import("@/components/live-streaming/FAQ2"), { ssr: true });
-const CallToAction = dynamic(() => import("@/components/live-streaming/CallToAction"), { ssr: true });
-
-export default function Food() {
+export default function Editorial() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-9 border-b-2 border-[#747478]">
         <div className="text-4xl font-semibold">
-          <p className="pb-2.5 pt-3">Food</p>
+          <p className="pb-2.5 pt-3">Editorial</p>
           <p>Photography</p>
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
-          <a href="/galleries?category=Food">
+          <a href="/galleries">
             <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
@@ -71,86 +76,64 @@ export default function Food() {
       <div className="pt-6 flex flex-col md:flex-row mb-[10%]">
         <div className="flex flex-col justify-start items-start border-r-2 border-[#747478] pr-12">
           <p className="pt-8">
-            Mouth-watering food photography that showcases culinary excellence.
+            Let us help you create the perfect professional image.
           </p>
           <p className="pt-1">
-            Create appetizing images that highlight flavors and make dishes{" "}
+            Personalized headshot photography to showcase your{" "}
           </p>
           <p className="pt-1">
-            irresistible. Your journey to exceptional food photography starts here.
+            personality. Your journey to a confident headshot starts here.
           </p>
 
-          <a href="/booking?service=food">
+          <a href="/booking">
             <button className="mt-8 py-3 px-8 bg-black text-white rounded-full">
               BOOK NOW
             </button>
           </a>
         </div>
-
-        {/* Food image 1 */}
-        <div className="sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4">
-          <Image
-            src="/food/1.jpeg"
-            alt="Food Image 1"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
-
-        {/* Food image 2 */}
-        <div className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg pl-5 mt-4">
-          <Image
-            src="/food/2.jpeg"
-            alt="Food Image 2"
-            width={600}
-            height={400}
-            className="rounded-lg object-cover"
-          />
-        </div>
+        <Image
+          src={Editorial1}
+          alt="Headshot 1"
+          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+        />
+        <Image
+          src={Editorial2}
+          alt="Headshot 2"
+          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+        />
       </div>
-      
       <GetStartedSection
-        text1="Showcase Culinary Excellence"
-        text2=" with Mouth-watering"
-        text3="Food Photography"
+        text1="Elevate Your Presence"
+        text2=" with Professional"
+        text3="Headshots"
       />
-      
       <AboutSection />
       
-      <WardrobeAndProp />
-      
       <div className="mt-[10%] flex flex-row justify-center items-center">
-        {/* Food image 4 (optional placeholder for future use) */}
-        <div className="w-[65%] h-[50%] hidden md:block object-cover mt-10 pl-5 bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-500">Food Image 4</span>
-        </div>
-      </div>
-      
-      <MoodBoardSectionV2 imageUrl={""} />
-      <LocationStylingTipsSec />
-      <ExpertPhotography imageUrl={""} />
-      <HighEndResolution imageUrl={""} />
-      
+          </div>
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      <ConsultationMoodBoard />
+      <WardrobeAndProp />
+      <LocationStylingTips />
+      <ExpertPhotography  />
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
           The moment of final delivery marks the culmination of our dedicated
-          efforts to create mouth-watering food images. It&apos;s
-          more than just a transaction - it&apos;s delivering images that make dishes irresistible.
+          efforts and your envisioned <br /> outcome brought to life. It&apos;s
+          more than just a transaction.
         </p>
       </div>
-      
       <MultiImageAnimation />
-      
       <div className="mx-[20%] my-[5%]">
         <DeliveryOptions />
       </div>
 
       <Pricing />
       <MultiCard />
-      <FAQ2 />
-      
+      <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

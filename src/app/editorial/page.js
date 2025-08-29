@@ -94,12 +94,12 @@ export default function Editorial() {
         <Image
           src={Editorial1}
           alt="Headshot 1"
-          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+          className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
           src={Editorial2}
           alt="Headshot 2"
-          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+          className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
       </div>
       <GetStartedSection

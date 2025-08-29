@@ -46,8 +46,7 @@ const MultiCard = () => {
           <div className="flex justify-between items-center">
             <h2 className="text-[36px] font-semibold">
               Reserve Your <br /> Session Today
-            </h2>
-           
+            </h2>           
           </div>
            <button className="bg-red-500 text-white px-4 py-1 rounded-full text-lg">
               BOOK NOW

@@ -5,13 +5,11 @@ import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
 import HeroSection from "@/sections/serviceSections/HeroSection";
 import PortfolioGrid from "@/sections/serviceSections/PortfolioCards";
 import AboutSection from "@/sections/serviceSections/AboutSection";
-import Image from "next/image";
 import ProcessOverview from "@/sections/serviceSections/ProcessOverview";
 import ConsultationMoodBoard from "@/components/ConsultationMoodBoard/ConsultationMoodBoard";
 import WardrobePropSuggestions from "@/components/WardrobePropSuggestions/WardrobePropSuggestions";
 import LocationStylingTips from "@/components/LocationStylingTips/LocationStylingTips";
 import ExpertPhotography from "@/components/ExpertPhotography/ExpertPhotography";
-import PricingSection from "@/sections/serviceSections/PricingSection";
 import HighEndRetouching from "@/components/HighEndRetouching/HighEndRetouching";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
@@ -38,27 +36,9 @@ export default function page() {
       <LocationStylingTips />
       <ExpertPhotography />  
       <HighEndRetouching />
-      {/* Service Grid image removed */}
-      {/* 
-      <div className="flex justify-center items-center mt-20 mb-20 px-4">
-        <Image
-          src="/serviceGrid.png"
-          width={924}
-          height={582}
-          alt="Service Grid"
-          className="w-full max-w-[924px] h-auto object-cover"
-        />
-      </div>
-      */}
-
-      {/* Mood Board Inspiration Section removed */}
-      {/* <MoodBoardSection /> */}
-
-      {/* Location & Styling Tips Section removed */}
-      {/* <LocationStylingTipsSec /> */}
 
       <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
-      <Pricing serviceName="portfolio" />
+      
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
         imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
@@ -77,7 +57,7 @@ export default function page() {
       </div>
 
       <FinalDeliverySec />
-      <PricingSection />
+      <Pricing serviceName="portfolio" />
       <PortfolioFAQ />
 
     </div>

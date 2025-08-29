@@ -7,10 +7,7 @@ import heart from "@/assets/headshot/heart.png";
 import BrandShoot1 from "@/../public/brandshoot/Brand_1.jpg";
 import BrandShoot2 from "@/../public/brandshoot/Brand_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
 import ExpertPhotography from "@/components/realestate/ExpertPhotography";
-//import HighEndResolution from "@/components/realestate/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
 import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
 import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
 import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
@@ -111,14 +108,11 @@ export default function BrandShoot() {
       <AboutSection />
       
       <div className="mt-[10%] flex flex-row justify-center items-center">
-          </div>
-      {/* <MoodBoardSectionV2  /> */}
-      {/* <LocationStylingTipsSec /> */}
+      </div>
       <ConsultationMoodBoard />
       <WardrobeAndProp />
       <LocationStylingTips />
       <ExpertPhotography  />
-      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
@@ -128,7 +122,7 @@ export default function BrandShoot() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

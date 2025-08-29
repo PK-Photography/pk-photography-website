@@ -15,6 +15,7 @@ import PricingSection from "@/sections/serviceSections/PricingSection";
 import HighEndRetouching from "@/components/HighEndRetouching/HighEndRetouching";
 import BeforeAfterSlider from "@/sections/serviceSections/BeforeAfterSlider";
 import FinalDeliverySec from "@/sections/serviceSections/FinalDeliverySec";
+import Pricing from "@/components/live-streaming/Pricing";
 import PortfolioFAQ from "@/components/Portfolio/PortfolioFAQ";
 
 export default function page() {
@@ -37,7 +38,27 @@ export default function page() {
       <LocationStylingTips />
       <ExpertPhotography />  
       <HighEndRetouching />
+      {/* Service Grid image removed */}
+      {/* 
+      <div className="flex justify-center items-center mt-20 mb-20 px-4">
+        <Image
+          src="/serviceGrid.png"
+          width={924}
+          height={582}
+          alt="Service Grid"
+          className="w-full max-w-[924px] h-auto object-cover"
+        />
+      </div>
+      */}
 
+      {/* Mood Board Inspiration Section removed */}
+      {/* <MoodBoardSection /> */}
+
+      {/* Location & Styling Tips Section removed */}
+      {/* <LocationStylingTipsSec /> */}
+
+      <ExpertPhotography imageUrl="/pricing/PKP_2826.jpg" />
+      <Pricing serviceName="portfolio" />
       <BeforeAfterSlider
         imageUrl1="/portfolioImages/edtBeforeAfter/0N3A9612_before.jpg"
         imageUrl2="/portfolioImages/edtBeforeAfter/0N3A9612_after.jpg"
@@ -47,10 +68,11 @@ export default function page() {
       <div className="container mx-auto px-4 py-8">
         <h3 className="text-base sm:text-lg font-bold mb-2">FINAL DELIVERY</h3>
         <p className="text-xs sm:text-sm mb-6">
-          The refined, high-resolution images are delivered via your choice of methods:
-          a Google Drive link, an online gallery, a downloadable PDF, a pendrive,
-          or even as a high-quality printed Album — ensuring a delivery process
-          that is both convenient and personalized to your needs.
+          The refined, high-resolution images are delivered via your choice of
+          methods: a Google Drive link, an online gallery, a downloadable PDF, a
+          pendrive, or even as a high-quality printed Album — ensuring a
+          delivery process that is both convenient and personalized to your
+          needs.
         </p>
       </div>
 
@@ -61,5 +83,3 @@ export default function page() {
     </div>
   );
 }
-
-

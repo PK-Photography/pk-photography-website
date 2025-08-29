@@ -30,8 +30,8 @@ const Pricing = dynamic (() => import("@/components/ads/Pricng"),{
 export default function Ads() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
-        <div className="text-6xl font-semibold">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-9 border-b-2 border-[#747478]">
+        <div className="text-4xl font-semibold">
           <p className="pb-2.5 pt-3">Ads</p>
           <p>Photography</p>
         </div>

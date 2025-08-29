@@ -47,10 +47,11 @@ const MultiCard = () => {
             <h2 className="text-[36px] font-semibold">
               Reserve Your <br /> Session Today
             </h2>
-            <button className="bg-red-500 text-white px-4 py-1 rounded-full text-lg">
+           
+          </div>
+           <button className="bg-red-500 text-white px-4 py-1 rounded-full text-lg">
               BOOK NOW
             </button>
-          </div>
           <p className="text-lg text-gray-600 mt-2">
             Ready to take the next step? Reserve Your Session with our
             easy-to-use online booking system. Simply select your preferred date

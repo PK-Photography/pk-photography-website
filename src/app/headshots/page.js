@@ -31,8 +31,8 @@ const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
 export default function Headshots() {
   return (
     <div className="pl-6 pr-6 ">
-      <div className="flex sm:flex-col md:flex-row  justify-between pb-9 border-b-2  border-[#747478] ">
-        <div className="text-6xl font-semibold">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-9 border-b-2 border-[#747478]">
+        <div className="text-4xl font-semibold">
           <p className="pb-2.5 pt-3">Headshot</p>
           <p>Photography</p>
         </div>
@@ -96,12 +96,12 @@ export default function Headshots() {
         <Image
           src={img1}
           alt="Headshot 1"
-          className=" sm:w-[80%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
+          className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
           src={img2}
           alt="Headshot 2"
-          className="sm:w-[70%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
+          className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
       </div>
       <GetStartedSection
@@ -131,7 +131,7 @@ export default function Headshots() {
         </p>
       </div>
       <MultiImageAnimation />
-      <div className="mx-[20%] my-[5%]">
+      <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 

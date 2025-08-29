@@ -15,6 +15,7 @@ const services = [
     title: "Brand Shoot",
     description: "Elevate your brand with stunning visuals",
     image: "/servicesPage/brandShoot.jpg",
+    link: "/brandshoot"
   },
   {
     title: "Headshots",
@@ -33,19 +34,20 @@ const services = [
     title: "Real Estate",
     description: "Highlight every detail beautifully",
     image: "/servicesPage/realEstate.jpg",
+    link: "/realestate",
   },
   {
     title: "Celebrity",
     description: "Star quality. On demand",
     image: "/servicesPage/celebrity.jpg",
-    link: "/galleries?category=Celebrity",
+    link: "/celebrity",
   },
 
   {
     title: "Portrait",
     description: "Timeless portraits that reflect you",
     image: "/servicesPage/portrait.jpg",
-    link: "/galleries?category=Portrait",
+    link: "/portrait",
   },
 
   {
@@ -58,39 +60,45 @@ const services = [
     title: "E‑Commerce",
     description: "Sell more with crisp visuals",
     image: "/servicesPage/ecommerce.jpg",
+    link: "/ecommerce"
   },
   {
     title: "Products",
     description: "Make your product stand out",
     image: "/servicesPage/product.jpg",
+    link: "/ads",
   },
 
   {
     title: "Editorials",
     description: "Magazine‑worthy visuals",
     image: "/servicesPage/editorial.jpg",
-    link: "/galleries?category=Editorial",
+    link: "/editorial",
   },
 
   {
     title: "Boudoir",
     description: "Elegant. Empowering. Intimate",
     image: "/servicesPage/boudoir2.jpg",
+    link: "/boudoir",
   },
   {
     title: "Baby",
     description: "Capture the joy of your little one",
     image: "/servicesPage/baby-photoshoot.jpg",
+    link: "/baby",
   },
   {
     title: "Outdoor",
     description: "Capture the beauty of nature",
     image: "/servicesPage/outdoor.jpg",
+    link: "/portrait",
   },
   {
     title: "Festival",
     description: "Celebrate with vibrant festival photography",
     image: "/servicesPage/festival.jpg",
+    link: "/portrait",
   },
 ];
 

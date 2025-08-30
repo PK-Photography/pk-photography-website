@@ -132,7 +132,7 @@ export default function OutDoor() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="outdoor" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

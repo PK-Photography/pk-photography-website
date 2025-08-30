@@ -131,7 +131,7 @@ export default function Editorial() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="editorial" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

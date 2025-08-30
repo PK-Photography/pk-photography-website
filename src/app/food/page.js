@@ -131,7 +131,7 @@ export default function Food() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="food" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -132,7 +132,7 @@ export default function Portrait() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="portrait" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

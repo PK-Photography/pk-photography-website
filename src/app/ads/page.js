@@ -132,7 +132,7 @@ export default function Ads() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="ads" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

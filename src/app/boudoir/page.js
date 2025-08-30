@@ -132,7 +132,7 @@ export default function Boudoir() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="boudoir" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -132,7 +132,7 @@ export default function Festival() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="festival" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

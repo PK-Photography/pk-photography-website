@@ -132,7 +132,7 @@ export default function Baby() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="baby" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -126,7 +126,7 @@ export default function BrandShoot() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="brandshoot" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

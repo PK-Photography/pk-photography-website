@@ -132,7 +132,7 @@ export default function Celebrity() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="celebrity" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

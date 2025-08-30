@@ -132,7 +132,7 @@ export default function Design() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="design" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

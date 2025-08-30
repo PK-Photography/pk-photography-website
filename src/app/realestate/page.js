@@ -132,7 +132,7 @@ export default function RealEstate() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="realestate" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

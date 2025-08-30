@@ -132,7 +132,7 @@ export default function Ecommerce() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="ecommerce" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -8,12 +8,9 @@ import Boudoir1 from "@/../public/boudoir/Bou1.jpg";
 import Boudoir2 from "@/../public/boudoir/Bou2.jpg";
 
 //import LocationStylingTipsSec from "@/components/boudoir/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/boudoir/ExpertPhotography";
 //import HighEndResolution from "@/components/boudoir/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/boudoir/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/boudoir/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/boudoir/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/boudoir/WardrobeAndProp";
+import OurProcess from "@/components/boudoir/OurProcess";
 import AboutSection from "@/components/boudoir/AboutSection";
 import GetStartedSection from "@/components/boudoir/GetStartedSection";
 import MultiImageAnimation from "@/components/boudoir/MultiImageAnimation";
@@ -114,10 +111,7 @@ export default function Boudoir() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>

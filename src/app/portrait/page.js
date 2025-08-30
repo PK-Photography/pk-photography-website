@@ -8,12 +8,9 @@ import Portrait1 from "@/../public/portrait/Portrait1.jpg";
 import Portrait2 from "@/../public/portrait/Portrait3.jpg";
 
 //import LocationStylingTipsSec from "@/components/portrait/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/portrait/ExpertPhotography";
 //import HighEndResolution from "@/components/portrait/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/portrait/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/portrait/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/portrait/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/portrait/WardrobeAndProp";
+import OurProcess from "@/components/portrait/OurProcess";
 import AboutSection from "@/components/portrait/AboutSection";
 import GetStartedSection from "@/components/portrait/GetStartedSection";
 import MultiImageAnimation from "@/components/portrait/MultiImageAnimation";
@@ -114,10 +111,7 @@ export default function Portrait() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>

@@ -37,53 +37,53 @@ export default function Portrait() {
         </div>
         <div className="flex flex-col text-right gap-4 sm:mt-[10%] md:mt-0">
           <a href="/galleries">
-            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
-                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
-                </div>
-                <span>GALLERY</span>
-              </div>
-              <ChevronRight className="ml-11 w-4 h-4" />
-            </div>
-          </a>
+  <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
+    <div className="flex items-center gap-2">
+      <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+        <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+      </div>
+      <span>GALLERY</span> {/* Keep this one */}
+    </div>
+    <ChevronRight className="ml-11 w-4 h-4" />
+  </div>
+</a>
 
-          <a href="/portfolio">
-            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
-                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
-                </div>
-                <span>PORTFOLIO</span>
-              </div>
-              <ChevronRight className="ml-11 w-4 h-4" />
-            </div>
-          </a>
+<a href="/portfolio">
+  <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold border-b-2 border-[#747478] pb-4">
+    <div className="flex items-center gap-2">
+      <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+        <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+      </div>
+      <span>PORTFOLIO</span> {/* Change to PROJECTS */}
+    </div>
+    <ChevronRight className="ml-11 w-4 h-4" />
+  </div>
+</a>
 
-          <a href="/profile">
-            <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold pb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
-                  <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
-                </div>
-                <span>PROFILE</span>
-              </div>
-              <ChevronRight className="ml-11 w-4 h-4" />
-            </div>
-          </a>
+<a href="/profile">
+  <div className="flex justify-between items-center text-[#747478] text-[13px] font-bold pb-4">
+    <div className="flex items-center gap-2">
+      <div className="w-6 h-6 rounded-full mr-1 bg-gray-300 overflow-hidden flex items-center justify-center">
+        <Image src={heart} alt="icon" className="w-2.5 h-2.5" />
+      </div>
+      <span>PROFILE</span> {/* Change to PRICING */}
+    </div>
+    <ChevronRight className="ml-11 w-4 h-4" />
+  </div>
+</a>
         </div>
       </div>
 
       <div className="pt-6 flex flex-col md:flex-row mb-[10%]">
         <div className="flex flex-col justify-start items-start border-r-2 border-[#747478] pr-12">
           <p className="pt-8">
-            Let us help you create the perfect professional image.
+           Let us help you create timeless portraits that celebrate who you are.
           </p>
           <p className="pt-1">
-            Personalized headshot photography to showcase your{" "}
+            Personalized portrait photography to capture your individuality, relationships, and story.{" "}
           </p>
           <p className="pt-1">
-            personality. Your journey to a confident headshot starts here.
+           Your journey to stunning, memorable portraits starts here.
           </p>
 
           <a href="/booking">

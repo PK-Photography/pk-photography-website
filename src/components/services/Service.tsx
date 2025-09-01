@@ -41,11 +41,11 @@ const cards: CardProps[] = [
     subtitle: "Timeless portraits that reflect you",
     id: 2,
     isLightBackground: true,
-    link: "portrait",
+    link: "/portrait", // ✅ Added missing slash
   },
   {
     url: service3.src,
-    title: "Headshots",
+    title: "Headshots", 
     subtitle: "Professional headshots that speak success",
     id: 3,
     link: "/headshots",

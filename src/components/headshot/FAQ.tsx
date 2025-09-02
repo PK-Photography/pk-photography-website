@@ -24,37 +24,71 @@ const FAQ: React.FC = () => {
   const faqData: FAQItem[] = [
     {
       id: 1,
-      question: "What types of events do you cover?",
+      question: "Why do I need a professional headshot?",
       answer: (
         <>
-          We cover a wide range of events including church masses, corporate meetings, weddings, political events, fashion shows, stage performances, and sports events.
+          A quality headshot is your first impression on LinkedIn, company websites, and other digital platforms. In Mumbai&apos;s competitive market, a professional headshot boosts your personal brand, helps you stand out, and increases your chances of making strong networking connections.
         </>
       ),
       bgColor: "#f8d7d7",
     },
     {
       id: 2,
-      question: "How do you ensure uninterrupted streaming?",
+      question: "What makes your headshot service unique in Mumbai?",
       answer: (
         <>
-          Our robust setup—with high-definition cameras, reliable internet connectivity, and backup systems—ensures that your event streams seamlessly without any interruptions.
+          We specialize in LinkedIn headshots, corporate portraits, and business profile photography for executives, entrepreneurs, and creative professionals. You get personalized posing guidance, professional retouching, and a fast, comfortable process—delivered by experienced Mumbai headshot photographers.
         </>
       ),
       bgColor: "#f8e7d7",
     },
     {
       id: 3,
-      question: "Can I customize my live streaming package?",
-      answer:
-        "Yes, our packages are fully customizable to suit the specific needs and budget of your event. We work closely with you to design the perfect streaming solution.",
+      question: "How should I prepare for my headshot session?",
+      answer: "Choose outfits that reflect your professional role. Avoid busy patterns or logos. We offer styling tips, and you can bring multiple clothing options. Natural makeup, well-groomed hair, and a good rest before your session help you look your best.",
       bgColor: "#f8f2d7",
     },
     {
       id: 4,
-      question: "How far in advance should I book?",
-      answer:
-        "We recommend booking at least 2-3 weeks prior to your event to ensure all technical and logistical preparations are handled efficiently.",
+      question: "How long does a headshot session take?",
+      answer: "A typical session lasts 30-60 minutes, giving you enough time to try different poses and expressions. We make sure there's no rush and you feel comfortable.",
       bgColor: "#d7f8dc",
+    },
+    {
+      id: 5,
+      question: "Where will my headshot session take place?",
+      answer: "Generally, we shoot in our Andheri West PK Photography studio, but the location can be changed as per your convenience as an add-on. Choose our studio, your office, or a convenient on-site setting. Outdoor headshots are also available on request.",
+      bgColor: "#d7e8f8",
+    },
+    {
+      id: 6,
+      question: "Will my headshots be retouched?",
+      answer: "Yes, all selected images are professionally retouched for a polished yet natural look—ideal for LinkedIn, websites, and print media.",
+      bgColor: "#e8d7f8",
+    },
+    {
+      id: 7,
+      question: "How soon will I receive my headshots?",
+      answer: "You'll receive your high-resolution, web-optimized images within 3-5 business days, delivered via Google Drive link, online gallery, or as optional add-on prints and pendrive.",
+      bgColor: "#f8d7ed",
+    },
+    {
+      id: 8,
+      question: "Can I use my headshots for multiple purposes?",
+      answer: "Absolutely! Your Mumbai headshots are perfect for LinkedIn, company websites, business cards, press releases, speaking engagements, and more.",
+      bgColor: "#f8f2d7",
+    },
+    {
+      id: 9,
+      question: "Do you offer corporate or team headshot packages in Mumbai?",
+      answer: "Yes, we provide tailored packages for companies, including consistent team headshots that align with your brand identity. Inquire for special rates and scheduling.",
+      bgColor: "#d7f8e8",
+    },
+    {
+      id: 10,
+      question: "How do I book my session?",
+      answer: "Contact us online, call, WhatsApp or email to schedule your professional headshot session. Flexible slots are available to fit your busy Mumbai career!",
+      bgColor: "#f8e7d7",
     }
   ];
 

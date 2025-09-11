@@ -120,6 +120,11 @@ const cardData: Card[] = [
 
 const PortfolioGrid: React.FC = () => {
   return (
+    <div className="portfolio-section">
+      {/* Add your new heading here */}
+      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '2.5rem' }}>
+    Tailored Portfolio Shoots for Every Purpose
+</h1>
     <div className="bg-[#f5f5f5] min-h-screen flex items-center justify-center px-4 md:px-10 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 max-w-5xl w-full">
         {cardData.map((card, index) => (
@@ -152,6 +157,7 @@ const PortfolioGrid: React.FC = () => {
         ))}
       </div>
     </div>
+  </div>
   );
 };
 

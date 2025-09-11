@@ -125,30 +125,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Additional Images Section - NEW SECTION */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 hidden md:flex gap-4">
-        {/* Wedding Image */}
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-lg overflow-hidden shadow-lg border-2 border-white">
-          <Image
-            src="/wedding/bridalPortrait.jpg"          
-            alt="Wedding Photography"
-            width={128}
-            height={128}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        {/* Corporate Headshot Image */}
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-lg overflow-hidden shadow-lg border-2 border-white">
-          <Image
-            src="/live-streaming/fashion_show.jpg"
-            alt="Corporate Headshot Photography"
-            width={128}
-            height={128}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
+      
     </section>
   );
 };

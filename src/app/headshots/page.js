@@ -7,16 +7,14 @@ import heart from "@/assets/headshot/heart.png";
 import Headshot1 from "@/../public/headshot/Hed_1.jpg";
 import Headshot2 from "@/../public/headshot/Hed_2.jpg";
 
-//import LocationStylingTipsSec from "@/components/headshot/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/headshot/ExpertPhotography";
-//import HighEndResolution from "@/components/headshot/HighEndResolution";
-//import MoodBoardSectionV2 from "@/components/headshot/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/headshot/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/headshot/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/headshot/WardrobeAndProp";
+//import ExpertPhotography from "@/components/headshot/ExpertPhotography";
+//import ConsultationMoodBoard from "@/components/headshot/ConsultationandMoodBoard";
+//import LocationStylingTips from "@/components/headshot/LocationAndStylingTips";
+//import WardrobeAndProp from "@/components/headshot/WardrobeAndProp";
 import AboutSection from "@/components/headshot/AboutSection";
 import GetStartedSection from "@/components/headshot/GetStartedSection";
 import MultiImageAnimation from "@/components/headshot/MultiImageAnimation";
+import OurProcess from "@/components/headshot/OurProcess";
 import DeliveryOptions from "@/components/headshot/DeliveryOptions";
 import FAQ from "@/components/headshot/FAQ";
 import CallToAction from "@/components/headshot/CallToAction";
@@ -109,15 +107,15 @@ export default function Headshot() {
         text3="Headshots"
       />
       <AboutSection />
-      
+      <OurProcess />
       <div className="mt-[10%] flex flex-row justify-center items-center">
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
+      {/* <ConsultationMoodBoard /> */}
+      {/* <WardrobeAndProp />
       <LocationStylingTips />
-      <ExpertPhotography  />
+      <ExpertPhotography  /> */}
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -127,14 +125,16 @@ export default function Headshot() {
           more than just a transaction.
         </p>
       </div>
+      
       <MultiImageAnimation />
+      
       <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 
       <Pricing />
       <MultiCard />
-      <FAQ />
+            <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

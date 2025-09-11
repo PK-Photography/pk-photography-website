@@ -1,32 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import axiosInstance from "../../utils/axiosConfig";
 
-const Pricing = ({ serviceName }) => {
-  const [subServices, setSubServices] = useState([]);
-
-  useEffect(() => {
-    const fetchSubServices = async () => {
-  try {
-    const response = await axiosInstance.get(`/subServices/${serviceName}`);
-    if (response.status !== 400 && response.status !== 500) {
-      setSubServices(response.data);
-    }
-  } catch (error) {
-    console.error("Error fetching subServices:", error);
-  }
-};
-    fetchSubServices();
-  }, [serviceName]);
-  const router = useRouter();
-
-  const navToBook = ()=> {
-    router.push("/booking");
-  }
-
+const Pricing = () => {
+   const router = useRouter();
   return (
     <PricingSection>
       <SectionHeader>
@@ -37,203 +16,161 @@ const Pricing = ({ serviceName }) => {
           and budgets. We offer three main packages:
         </SectionDescription>
       </SectionHeader>
-      {subServices.length === 0 ? (
-        <PricingCardsContainer>
-          <PricingCard>
-            <PackageHeader>
-              <PackageIcon>📌</PackageIcon>
-              <PackageName>Basic Package</PackageName>
-            </PackageHeader>
 
-            <PackagePrice>
-              <CurrencySymbol>₹</CurrencySymbol>8,000{" "}
-              <Duration>(3 Hours)</Duration>
-            </PackagePrice>
+      <PricingCardsContainer>
+        <PricingCard>
+          <PackageHeader>
+            <PackageIcon>📌</PackageIcon>
+            <PackageName>Basic Package</PackageName>
+          </PackageHeader>
 
-            <PackageSummary>
-              <SummaryIcon>📷</SummaryIcon> Effortless & Reliable Streaming – A
-              solid choice for events that need professional live coverage
-              without the frills.
-            </PackageSummary>
+          <PackagePrice>
+            <CurrencySymbol>₹</CurrencySymbol>8,000{" "}
+            <Duration>(3 Hours)</Duration>
+          </PackagePrice>
 
-            <FeaturesList>
-              <FeaturesTitle>
-                <CheckIcon>✅</CheckIcon> What You Get:
-              </FeaturesTitle>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Single-camera setup on a sturdy tripod
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> HD-quality streaming with clear visuals
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Professional audio setup for crisp
-                sound
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Ideal for church services, webinars,
-                small meetings
-              </FeatureItem>
-            </FeaturesList>
+          <PackageSummary>
+            <SummaryIcon>📷</SummaryIcon> Effortless & Reliable Streaming – A
+            solid choice for events that need professional live coverage without
+            the frills.
+          </PackageSummary>
 
-            <UpgradeOption>
-              <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Add extra hours at
-              just ₹3,000/hr!
-            </UpgradeOption>
+          <FeaturesList>
+            <FeaturesTitle>
+              <CheckIcon>✅</CheckIcon> What You Get:
+            </FeaturesTitle>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Single-camera setup on a sturdy tripod
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> HD-quality streaming with clear visuals
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Professional audio setup for crisp sound
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Ideal for church services, webinars,
+              small meetings
+            </FeatureItem>
+          </FeaturesList>
 
-            <PerfectFor>
-              <DiamondIcon>♦</DiamondIcon> Perfect for: Small gatherings,
-              speaker sessions, religious services
-            </PerfectFor>
+          <UpgradeOption>
+            <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Add extra hours at
+            just ₹3,000/hr!
+          </UpgradeOption>
 
-            <ActionButton onClick={navToBook}>Get Started</ActionButton>
-          </PricingCard>
+          <PerfectFor>
+            <DiamondIcon>♦</DiamondIcon> Perfect for: Small gatherings, speaker
+            sessions, religious services
+          </PerfectFor>
 
-          <PricingCard featured>
-            <PopularTag>Popular</PopularTag>
-            <PackageHeader>
-              <PackageIcon>📌</PackageIcon>
-              <PackageName>Standard Package</PackageName>
-            </PackageHeader>
+          <ActionButton>Get Started</ActionButton>
+        </PricingCard>
 
-            <PackagePrice>
-              <CurrencySymbol>₹</CurrencySymbol>15,000{" "}
-              <Duration>(3 Hours)</Duration>
-            </PackagePrice>
+        <PricingCard featured>
+          <PopularTag>Popular</PopularTag>
+          <PackageHeader>
+            <PackageIcon>📌</PackageIcon>
+            <PackageName>Standard Package</PackageName>
+          </PackageHeader>
 
-            <PackageSummary>
-              <SummaryIcon>📷</SummaryIcon> Two Cameras, Twice the Impact! –
-              Give your audience a multi-angle experience with smooth
-              transitions.
-            </PackageSummary>
+          <PackagePrice>
+            <CurrencySymbol>₹</CurrencySymbol>15,000{" "}
+            <Duration>(3 Hours)</Duration>
+          </PackagePrice>
 
-            <FeaturesList>
-              <FeaturesTitle>
-                <CheckIcon>✅</CheckIcon> What You Get:
-              </FeaturesTitle>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Dual-camera setup (both on tripods) for
-                dynamic switching
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Basic live editing & scene transitions
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Professional audio setup for crisp
-                sound
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Ideal for corporate meetings, panel
-                discussions, and mid-scale weddings
-              </FeatureItem>
-            </FeaturesList>
+          <PackageSummary>
+            <SummaryIcon>📷</SummaryIcon> Two Cameras, Twice the Impact! – Give
+            your audience a multi-angle experience with smooth transitions.
+          </PackageSummary>
 
-            <UpgradeOption>
-              <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Extend coverage at
-              just ₹5,000/hr!
-            </UpgradeOption>
+          <FeaturesList>
+            <FeaturesTitle>
+              <CheckIcon>✅</CheckIcon> What You Get:
+            </FeaturesTitle>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Dual-camera setup (both on tripods) for
+              dynamic switching
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Basic live editing & scene transitions
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Professional audio setup for crisp sound
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Ideal for corporate meetings, panel
+              discussions, and mid-scale weddings
+            </FeatureItem>
+          </FeaturesList>
 
-            <PerfectFor>
-              <DiamondIcon>♦</DiamondIcon> Perfect for: Corporate events, panel
-              discussions, training sessions
-            </PerfectFor>
+          <UpgradeOption>
+            <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Extend coverage at
+            just ₹5,000/hr!
+          </UpgradeOption>
 
-            <ActionButton onClick={navToBook}>Get Started</ActionButton>
-          </PricingCard>
+          <PerfectFor>
+            <DiamondIcon>♦</DiamondIcon> Perfect for: Corporate events, panel
+            discussions, training sessions
+          </PerfectFor>
 
-          <PricingCard>
-            <PackageHeader>
-              <PackageIcon>📌</PackageIcon>
-              <PackageName>Premium Package</PackageName>
-            </PackageHeader>
+          <ActionButton>Get Started</ActionButton>
+        </PricingCard>
 
-            <PackagePrice>
-              <CurrencySymbol>₹</CurrencySymbol>20,000{" "}
-              <Duration>(3 Hours)</Duration>
-            </PackagePrice>
+        <PricingCard>
+          <PackageHeader>
+            <PackageIcon>📌</PackageIcon>
+            <PackageName>Premium Package</PackageName>
+          </PackageHeader>
 
-            <PackageSummary>
-              <SummaryIcon>📷</SummaryIcon> Cinematic Live Streaming – Your
-              Event, Your Story! – With three cameras and smooth gimbal shots,
-              we take your live stream to the next level.
-            </PackageSummary>
+          <PackagePrice>
+            <CurrencySymbol>₹</CurrencySymbol>20,000{" "}
+            <Duration>(3 Hours)</Duration>
+          </PackagePrice>
 
-            <FeaturesList>
-              <FeaturesTitle>
-                <CheckIcon>✅</CheckIcon> What You Get:
-              </FeaturesTitle>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Three-camera setup: Two on tripods for
-                stable coverage
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> One on a gimbal for cinematic movement
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Live mixing for seamless scene
-                transitions
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Upgraded audio for better sound clarity
-              </FeatureItem>
-              <FeatureItem>
-                <CheckMark>✓</CheckMark> Perfect for weddings, concerts, fashion
-                shows, and big corporate launches
-              </FeatureItem>
-            </FeaturesList>
+          <PackageSummary>
+            <SummaryIcon>📷</SummaryIcon> Cinematic Live Streaming – Your Event,
+            Your Story! – With three cameras and smooth gimbal shots, we take
+            your live stream to the next level.
+          </PackageSummary>
 
-            <UpgradeOption>
-              <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Extra hour? No
-              problem – just ₹6,000/hr!
-            </UpgradeOption>
+          <FeaturesList>
+            <FeaturesTitle>
+              <CheckIcon>✅</CheckIcon> What You Get:
+            </FeaturesTitle>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Three-camera setup: Two on tripods for
+              stable coverage
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> One on a gimbal for cinematic movement
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Live mixing for seamless scene
+              transitions
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Upgraded audio for better sound clarity
+            </FeatureItem>
+            <FeatureItem>
+              <CheckMark>✓</CheckMark> Perfect for weddings, concerts, fashion
+              shows, and big corporate launches
+            </FeatureItem>
+          </FeaturesList>
 
-            <PerfectFor>
-              <DiamondIcon>♦</DiamondIcon> Perfect for: Large weddings, Sports,
-              high-profile events, music gigs, and award shows
-            </PerfectFor>
+          <UpgradeOption>
+            <UpgradeIcon>✨</UpgradeIcon> Upgrade Option: Extra hour? No problem
+            – just ₹6,000/hr!
+          </UpgradeOption>
 
-            <ActionButton onClick={navToBook}>Get Started</ActionButton>
-          </PricingCard>
-        </PricingCardsContainer>
-      ) : <PricingCardsContainer>
-    {subServices.map((subService) => (
-      <PricingCard key={subService._id || subService.name}>
-        <PackageHeader>
-          <PackageIcon>📌</PackageIcon>
-          <PackageName>{subService.name}</PackageName>
-        </PackageHeader>
+          <PerfectFor>
+            <DiamondIcon>♦</DiamondIcon> Perfect for: Large weddings, Sports,
+            high-profile events, music gigs, and award shows
+          </PerfectFor>
 
-        <PackagePrice>
-          <CurrencySymbol>₹</CurrencySymbol>
-          {subService.price} {" "}
-          <Duration>({subService.time})</Duration>
-        </PackagePrice>
-
-        <PackageSummary>
-          <SummaryIcon>📷</SummaryIcon> {subService.description}
-        </PackageSummary>
-
-        <FeaturesList>
-          <FeaturesTitle>
-            <CheckIcon>✅</CheckIcon> What You Get:
-          </FeaturesTitle>
-          <FeatureItem>{subService.whatYouGet}</FeatureItem>
-        </FeaturesList>
-
-        <UpgradeOption>
-          <UpgradeIcon>✨</UpgradeIcon> Upgrade Option:{" "}
-          {subService.upgradeOption}
-        </UpgradeOption>
-
-        <PerfectFor>
-          <DiamondIcon>♦</DiamondIcon> Perfect for: {subService.perfectFor}
-        </PerfectFor>
-
-        <ActionButton onClick={navToBook}>Get Started</ActionButton>
-      </PricingCard>
-    ))}
-  </PricingCardsContainer>
-  }
+          <ActionButton>Get Started</ActionButton>
+        </PricingCard>
+      </PricingCardsContainer>
 
       <CustomPackageContainer>
         <CustomPackageHeader>
@@ -280,7 +217,7 @@ const Pricing = ({ serviceName }) => {
         </DisclaimerText>
       </CustomPackageContainer>
 
-      <ContactButton onClick={() => router.push("/booking")}>
+      <ContactButton  onClick={() => router.push("/booking")}>
         <ContactIcon>💡</ContactIcon> Get in touch for a custom quote!
       </ContactButton>
     </PricingSection>

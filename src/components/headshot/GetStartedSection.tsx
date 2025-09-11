@@ -37,17 +37,16 @@ const GetStartedSection: React.FC<GetStartedSectionProps> = ({
         {/* Right Section - Description (Stacks Below on Mobile) */}
         <div className="w-full md:w-2/3 text-[#000000] text-base font-light leading-relaxed  md:text-left">
           <p>
-            Our Portfolio Photography service is designed for Models, Actors, Professionals, 
-            and Individuals who want to present themselves with impact. Whether you&apos;re building a 
-            presence for modelling, acting, corporate branding, matrimony, maternity, or 
-            personal expression, we craft visuals that truly represent you.
+            Our Headshot Photography in Mumbai is tailored for CEOs, business leaders, corporate teams, 
+            lawyers, doctors, and artists who want to enhance their professional image. 
+            Perfect for LinkedIn, corporate websites, social profiles, and print, PK Photography 
+            delivers high-quality, business and creative headshots that make a strong first impression.
           </p>
           <br />
           <p>
-            From concept development and styling guidance to professional retouching and delivery, 
-            we walk you through every step of the process. Our goal is to highlight your unique strengths 
-            and create a portfolio that opens doors—whether it&apos; landing auditions, impressing clients, 
-            or simply capturing a moment in time with authenticity and style.
+            With expert guidance, premium lighting, and authentic expression, we showcase your 
+            unique brand and personality. Trust us to provide standout portraits for all your 
+            professional and creative needs.
            
            Let us help you create a powerful first impression—one that speaks before you do.
           </p>

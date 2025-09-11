@@ -40,51 +40,54 @@ const AboutSection: React.FC = () => {
         {/* Text Section */}
         <div className="w-full lg:w-2/3">
           <h2 className="text-gray-600 text-sm uppercase tracking-wider mb-4">
-            What Sets Our Portfolio Shoots Apart
+            WHAT MAKES OUR HEADSHOTS STAND OUT
           </h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-[#2A2A2A]">
-                Experts Who Know What Clicks
+                 Personal Branding, Not Just a Photo
               </h3>
               <p className="text-gray-600 mt-5">
-                Our team of fashion-forward photographers and creative
-                directors bring years of experience shooting for models, actors,
-                professionals, and brands. We know what casting agents, clients,
-                and audiences look for — and we help you deliver it.
+                We specialize in headshots that capture your success. 
+                Whether for LinkedIn, your company website, or a global brand, 
+                our shoots bring out the professional image that recruiters, colleagues, 
+                and clients want to see. Every portrait tells your career story.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-[#2A2A2A]">
-                Creative Lighting That Sets the Mood
+                Confident, Authentic Style Inspired by the Best
               </h3>
               <p className="text-gray-600 mt-5">
-                {`Lighting isn’t just technical — it’s emotional. We use cinematic
-                lighting setups to create drama, softness, or editorial impact,
-                depending on the story you want your photos to tell.`}
+                {`Guided by global industry leaders like Peter Hurley, 
+                we focus on genuine expressions and expert lighting. 
+                Our India-based team ensures you look polished and 
+                confident—delivering photos ready for executive roles, 
+                business growth, or creative portfolios.`}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-[#2A2A2A]">
-                Makeup & Hair by Industry Pros
+                Seamless Experience, Professional Touch
               </h3>
               <p className="text-gray-600 mt-5">
-                A professional makeup and hair artist is included to ensure you
-                look your best on camera — natural, elegant, or bold — based on
-                your goals and shoot concept.
+                From clothing and hair advice to comfortable posing, 
+                we manage every detail so you look and feel successful. 
+                With industry pro makeup, minimal retouching, and a relaxed environment,
+                 your individuality and expertise shine through.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-[#2A2A2A]">
-                Styling Guidance Tailored to You
+                 Focused on Your Success
               </h3>
               <p className="text-gray-600 mt-5">
-                We provide detailed tips and support in selecting outfits,
-                colors, and looks that work best for your body type, shoot
-                style, and industry standards.
+                Our headshots help you advance your career, boost your personal brand, 
+                and make a memorable first impression—online and in print. 
+                Trusted by India’s leaders, our photography opens doors worldwide.
               </p>
             </div>
 

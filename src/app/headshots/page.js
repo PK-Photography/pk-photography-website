@@ -1,38 +1,35 @@
-"use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import img1 from "@/assets/headshot/img1.png";
-import img2 from "@/assets/headshot/img2.png";
-import img3 from "@/assets/headshot/img3.png";
-import img4 from "@/assets/headshot/img4.png";
-import img5 from "@/assets/headshot/img5.png";
-import img6 from "@/assets/headshot/img6.png";
 import img7 from "@/assets/headshot/img7.png";
 import heart from "@/assets/headshot/heart.png";
 
-import LocationStylingTipsSec from "@/sections/serviceSections/LocationStylingTipsSec";
-import ExpertPhotography from "@/sections/serviceSections/ExpertPhotography";
-import HighEndResolution from "@/sections/serviceSections/HighEndResolution";
-import MoodBoardSectionV2 from "@/sections/serviceSections/MoodBoardSectionV2";
-import WardrobeAndProp from "@/sections/serviceSections/WardrobeAndProp";
-import AboutSection from "@/sections/serviceSections/AboutSection";
-import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
-import MultiImageAnimation from "@/sections/serviceSections/MutliImageAnimation";
-import DeliveryOptions from "@/sections/serviceSections/DeliveryOptions";
-import FAQ2 from "@/components/live-streaming/FAQ2";
-import CallToAction from "@/components/live-streaming/CallToAction";
-import MultiCard from "@/sections/MutiCard";
+
+import Headshot1 from "@/../public/headshot/Hed_1.jpg";
+import Headshot2 from "@/../public/headshot/Hed_2.jpg";
+
+//import ExpertPhotography from "@/components/headshot/ExpertPhotography";
+//import ConsultationMoodBoard from "@/components/headshot/ConsultationandMoodBoard";
+//import LocationStylingTips from "@/components/headshot/LocationAndStylingTips";
+//import WardrobeAndProp from "@/components/headshot/WardrobeAndProp";
+import AboutSection from "@/components/headshot/AboutSection";
+import GetStartedSection from "@/components/headshot/GetStartedSection";
+import MultiImageAnimation from "@/components/headshot/MultiImageAnimation";
+import OurProcess from "@/components/headshot/OurProcess";
+import DeliveryOptions from "@/components/headshot/DeliveryOptions";
+import FAQ from "@/components/headshot/FAQ";
+import CallToAction from "@/components/headshot/CallToAction";
+import MultiCard from "@/components/headshot/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic(() => import("@/components/live-streaming/Pricing"), {
-  ssr: true,
+const Pricing = dynamic (() => import("@/components/headshot/Pricng"),{
+  ssr:true,
 });
 
-export default function Headshots() {
+export default function Headshot() {
   return (
     <div className="pl-6 pr-6 ">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-9 border-b-2 border-[#747478]">
-        <div className="text-4xl font-semibold">
+        <div className="text-4xl md:text-6xl font-semibold">
           <p className="pb-2.5 pt-3">Headshot</p>
           <p>Photography</p>
         </div>
@@ -94,12 +91,12 @@ export default function Headshots() {
           </a>
         </div>
         <Image
-          src={img1}
+          src={Headshot1}
           alt="Headshot 1"
           className=" sm:w-[100%] md:w-[40%] md:h-[40%] rounded-lg pl-5 mt-4"
         />
         <Image
-          src={img2}
+          src={Headshot2}
           alt="Headshot 2"
           className="sm:w-[100%] md:w-[30%] md:h-[40%] rounded-lg  pl-5 mt-4"
         />
@@ -109,19 +106,17 @@ export default function Headshots() {
         text2=" with Professional"
         text3="Headshots"
       />
-      <AboutSection imageUrl={img3} />
-      <WardrobeAndProp />
+      <AboutSection />
+      <OurProcess />
       <div className="mt-[10%] flex flex-row justify-center items-center">
-        <Image
-          src={img4}
-          alt="Headshot 4"
-          className="w-[65%] h-[50%] hidden md:block  object-cover mt-10 pl-5 "
-        />
-      </div>
-      <MoodBoardSectionV2 imageUrl={img5} />
-      <LocationStylingTipsSec />
-      <ExpertPhotography imageUrl={img6} />
-      <HighEndResolution imageUrl={img7} />
+          </div>
+      {/* <MoodBoardSectionV2  /> */}
+      {/* <LocationStylingTipsSec /> */}
+      {/* <ConsultationMoodBoard /> */}
+      {/* <WardrobeAndProp />
+      <LocationStylingTips />
+      <ExpertPhotography  /> */}
+      {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">
@@ -130,14 +125,16 @@ export default function Headshots() {
           more than just a transaction.
         </p>
       </div>
+      
       <MultiImageAnimation />
+      
       <div className="mx-[10%] my-[5%]">
         <DeliveryOptions />
       </div>
 
-      <Pricing serviceName="headshots" />
+      <Pricing />
       <MultiCard />
-      <FAQ2 />
+            <FAQ />
       <div className="mb-[5%]">
         <CallToAction />
       </div>

@@ -35,8 +35,8 @@ const DeliveryOptions = () => {
         download="portfolio.pdf"
         style={{ textDecoration: "none" }}
       >
-        <button className="bg-black text-white text-sm py-2 px-6 rounded-full transition-transform transform hover:scale-105">
-          DOWNLOAD YOUR PORTFOLIO PREP CHECKLIST
+        <button className="bg-black text-white text-xs py-4 px-6 rounded-[10px] transition-transform transform hover:scale-105">
+          <strong>DOWNLOAD YOUR PREP CHECKLIST</strong>
         </button>
       </a>
     </div>

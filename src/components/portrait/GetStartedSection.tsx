@@ -37,19 +37,15 @@ const GetStartedSection: React.FC<GetStartedSectionProps> = ({
         {/* Right Section - Description (Stacks Below on Mobile) */}
         <div className="w-full md:w-2/3 text-[#000000] text-base font-light leading-relaxed  md:text-left">
           <p>
-            Our Portfolio Photography service is designed for Models, Actors, Professionals, 
-            and Individuals who want to present themselves with impact. Whether you&apos;re building a 
-            presence for modelling, acting, corporate branding, matrimony, maternity, or 
-            personal expression, we craft visuals that truly represent you.
+            Our Portrait Photography service in Mumbai is perfect for individuals, 
+            couples, and families who want to capture genuine moments and connections.
           </p>
           <br />
           <p>
-            From concept development and styling guidance to professional retouching and delivery, 
-            we walk you through every step of the process. Our goal is to highlight your unique strengths 
-            and create a portfolio that opens doors—whether it&apos; landing auditions, impressing clients, 
-            or simply capturing a moment in time with authenticity and style.
-           
-           Let us help you create a powerful first impression—one that speaks before you do.
+            From creative planning to expert posing and professional editing, 
+            we guide you through a seamless experience—delivering timeless portraits 
+            that celebrate your unique story. Trust PK Photography for high-quality 
+            portraits and a memorable, personalized session.
           </p>
         </div>
       </div>

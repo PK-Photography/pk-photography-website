@@ -67,7 +67,6 @@ const Banner = ({
         >
           <Title>{title}</Title>
           <Description>{description}</Description>
-          <CTAButton onClick={()=> router.push("/booking")}>Reserve Your Date</CTAButton>
         </motion.div>
       </Content>
     </HeroSection>
@@ -99,8 +98,8 @@ const HeroSection = styled.div`
   color: white;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: end;
 
   &:before {
     content: "";
@@ -167,95 +166,71 @@ const StyledVideo = styled.video`
 `;
 
 const Content = styled.div`
-  padding: 0 2rem; /* Adjusted padding */
+  padding: 0 3rem; /* Adjusted padding */
   margin-top: 2rem;
   max-width: 1100px;
   position: relative;
   z-index: 2;
-  text-align: center; /* Center text alignment */
+  @media (max-width: 768px) {
+    padding-left: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 0.5rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 4rem; /* Adjusted font size */
+  font-size: 4.5rem;
   font-weight: bold;
-  margin-bottom: 0.5rem; /* Reduced margin */
+  margin-bottom: 1.5rem;
   line-height: 1.1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: start;
 
-  /* Responsive Design */
   @media (max-width: 1200px) {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
-  @media (max-width: 992px) {
-    font-size: 2.3rem;
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 
-  @media (max-width: 576px) {
-    font-size: 1.5rem;
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
   }
 `;
 
 const Description = styled.p`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   max-width: 800px;
-  margin: 0 auto 1rem; /* Center text and reduce margin bottom */
   line-height: 1.6;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 4rem;
+  text-align: start;
 
-  /* Responsive Design */
-  @media (max-width: 1200px) {
+  @media (max-width: 1024px) {
     font-size: 1.1rem;
-  }
-
-  @media (max-width: 992px) {
-    font-size: 1rem;
+    max-width: 650px;
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 576px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const CTAButton = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 35px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  text-align: center;
-  
-
-  &:hover {
-    background-color: #ff5f00;
-    transform: translateY(-5px);
-  }
-
-  &:active {
-    transform: translateY(2px);
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1200px) {
     font-size: 1rem;
+    line-height: 1.5;
+     margin-bottom: 2rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
+     margin-bottom: 2rem;
   }
 `;
+
 
 export default Banner;

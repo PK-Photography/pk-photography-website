@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import BlogList from "./components/BlogList";
 import TopPicks from "./components/TopPicks";

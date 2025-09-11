@@ -32,6 +32,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "pk-photography-backend.onrender.com",
       "localhost",
+      "pkprod.s3.ap-south-1.amazonaws.com",
     ],
   },
   compiler: {

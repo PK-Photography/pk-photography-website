@@ -23,7 +23,7 @@ import CallToAction from "@/components/celebrity/CallToAction";
 import MultiCard from "@/components/celebrity/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/celebrity/Pricng"),{
+const Pricing = dynamic (() => import("@/components/celebrity/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Celebrity() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="celebrity" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

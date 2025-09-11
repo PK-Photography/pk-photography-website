@@ -23,7 +23,7 @@ import CallToAction from "@/components/baby/CallToAction";
 import MultiCard from "@/components/baby/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/baby/Pricng"),{
+const Pricing = dynamic (() => import("@/components/baby/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Baby() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="baby" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

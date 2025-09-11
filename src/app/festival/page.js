@@ -23,7 +23,7 @@ import CallToAction from "@/components/festival/CallToAction";
 import MultiCard from "@/components/festival/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/festival/Pricng"),{
+const Pricing = dynamic (() => import("@/components/festival/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Festival() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="festival" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

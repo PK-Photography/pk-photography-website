@@ -23,7 +23,7 @@ import CallToAction from "@/components/realestate/CallToAction";
 import MultiCard from "@/components/realestate/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/realestate/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function RealEstate() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="realestate" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

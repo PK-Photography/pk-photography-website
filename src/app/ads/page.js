@@ -23,7 +23,7 @@ import CallToAction from "@/components/ads/CallToAction";
 import MultiCard from "@/components/ads/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/ads/Pricng"),{
+const Pricing = dynamic (() => import("@/components/ads/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Ads() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="ads" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

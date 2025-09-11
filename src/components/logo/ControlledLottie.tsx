@@ -5,11 +5,10 @@ import animationData from "@/assets/logo.json";
 const ControlledLottie = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<AnimationItem | null>(null);
-
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isAtTop, setIsAtTop] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [visible, setVisible] = useState(true);
 
+  // Handle responsive width
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
@@ -19,51 +18,35 @@ const ControlledLottie = () => {
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
+  // Initialize Lottie animation
   useEffect(() => {
     if (!containerRef.current) return;
 
     const anim = lottie.loadAnimation({
       container: containerRef.current,
       renderer: "svg",
-      loop: false,
-      autoplay: false,
+      loop: true,
+      autoplay: true,
       animationData,
     });
 
     animRef.current = anim;
-
-    anim.goToAndStop(secondsToFrame(5), true);
 
     return () => {
       anim.destroy();
     };
   }, []);
 
+  // Scroll listener to toggle visibility
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      const anim = animRef.current;
-      if (!anim) return;
-
-      const scrollingDown = currentY > lastScrollY;
-      const scrollingUp = currentY < lastScrollY;
-      const nearTop = currentY < 10;
-
-      if (scrollingDown && isAtTop) {
-        playFromTo(anim, 0, secondsToFrame(8));
-        setIsAtTop(false);
-      } else if (scrollingUp && nearTop && !isAtTop) {
-        // Play from 0 to 5 seconds directly on scroll up to top
-        playFromTo(anim, 0, secondsToFrame(5));
-        setIsAtTop(true);
-      }
-
-      setLastScrollY(currentY);
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      setVisible(scrollTop < 50); // Hide if scrolled down even slightly
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isAtTop]);
+  }, []);
 
   return (
     <div
@@ -73,15 +56,12 @@ const ControlledLottie = () => {
         height: "300px",
         marginTop: "-140px",
         marginLeft: isMobile ? "-65px" : "-50px",
+        opacity: visible ? 1 : 0,
+        transition: "opacity 0.3s ease-in-out",
+        pointerEvents: visible ? "auto" : "none", // Prevent interaction when hidden
       }}
     />
   );
-};
-
-const secondsToFrame = (seconds: number, fps = 60) => seconds * fps;
-
-const playFromTo = (anim: AnimationItem, from: number, to: number) => {
-  anim.playSegments([from, to], true);
 };
 
 export default ControlledLottie;

@@ -8,12 +8,9 @@ import Baby1 from "@/../public/baby/baby_1.jpg";
 import Baby2 from "@/../public/baby/baby_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/baby/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/baby/ExpertPhotography";
 //import HighEndResolution from "@/components/baby/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/baby/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/baby/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/baby/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/baby/WardrobeAndProp";
+import OurProcess from "@/components/baby/OurProcess";
 import AboutSection from "@/components/baby/AboutSection";
 import GetStartedSection from "@/components/baby/GetStartedSection";
 import MultiImageAnimation from "@/components/baby/MultiImageAnimation";
@@ -114,10 +111,7 @@ export default function Baby() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+         <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>

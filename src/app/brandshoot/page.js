@@ -7,10 +7,7 @@ import heart from "@/assets/headshot/heart.png";
 import BrandShoot1 from "@/../public/brandshoot/Brand_1.jpg";
 import BrandShoot2 from "@/../public/brandshoot/Brand_2.jpg";
 
-import ExpertPhotography from "@/components/brandshoot/ExpertPhotography";
-import ConsultationMoodBoard from "@/components/brandshoot/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/brandshoot/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/brandshoot/WardrobeAndProp";
+import OurProcess from "@/components/brandshoot/OurProcess";
 import AboutSection from "@/components/brandshoot/AboutSection";
 import GetStartedSection from "@/components/brandshoot/GetStartedSection";
 import MultiImageAnimation from "@/components/brandshoot/MultiImageAnimation";
@@ -109,10 +106,7 @@ export default function BrandShoot() {
       
       <div className="mt-[10%] flex flex-row justify-center items-center">
       </div>
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+       <OurProcess />
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
         <p className="text-[15px] text-[#5C5C5C] mt-4 max-w-3xl text-center">

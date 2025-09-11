@@ -7,12 +7,9 @@ import Food1 from "@/../public/food/Food_1.jpg";
 import Food2 from "@/../public/food/Food_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/food/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/food/ExpertPhotography";
 //import HighEndResolution from "@/components/food/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/food/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/food/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/food/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/food/WardrobeAndProp";
+import OurProcess from "@/components/food/OurProcess";
 import AboutSection from "@/components/food/AboutSection";
 import GetStartedSection from "@/components/food/GetStartedSection";
 import MultiImageAnimation from "@/components/food/MultiImageAnimation";
@@ -22,7 +19,7 @@ import CallToAction from "@/components/food/CallToAction";
 import MultiCard from "@/components/food/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/food/Pricng"),{
+const Pricing = dynamic (() => import("@/components/food/Pricing"),{
   ssr:true,
 });
 
@@ -113,10 +110,7 @@ export default function Food() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -131,7 +125,7 @@ export default function Food() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="food" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

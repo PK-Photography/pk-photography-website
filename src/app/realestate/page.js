@@ -8,12 +8,9 @@ import RealEstate1 from "@/../public/realestate/Res_1.jpg";
 import RealEstate2 from "@/../public/realestate/Res_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/realestate/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/realestate/ExpertPhotography";
 //import HighEndResolution from "@/components/realestate/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/realestate/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/realestate/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/realestate/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/realestate/WardrobeAndProp";
+import OurProcess from "@/components/realestate/OurProcess";
 import AboutSection from "@/components/realestate/AboutSection";
 import GetStartedSection from "@/components/realestate/GetStartedSection";
 import MultiImageAnimation from "@/components/realestate/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/realestate/CallToAction";
 import MultiCard from "@/components/realestate/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/realestate/Pricng"),{
+const Pricing = dynamic (() => import("@/components/realestate/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function RealEstate() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function RealEstate() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="realestate" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

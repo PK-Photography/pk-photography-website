@@ -8,12 +8,9 @@ import OutDoor1 from "@/../public/outdoors/Out_1.jpg";
 import OutDoor2 from "@/../public/outdoors/Out_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/outdoor/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/outdoor/ExpertPhotography";
 //import HighEndResolution from "@/components/outdoor/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/outdoor/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/outdoor/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/outdoor/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/outdoor/WardrobeAndProp";
+import OurProcess from "@/components/outdoor/OurProcess";
 import AboutSection from "@/components/outdoor/AboutSection";
 import GetStartedSection from "@/components/outdoor/GetStartedSection";
 import MultiImageAnimation from "@/components/outdoor/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/outdoor/CallToAction";
 import MultiCard from "@/components/outdoor/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/outdoor/Pricng"),{
+const Pricing = dynamic (() => import("@/components/outdoor/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function OutDoor() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function OutDoor() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="outdoor" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

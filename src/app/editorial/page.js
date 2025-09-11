@@ -7,12 +7,9 @@ import Editorial1 from "@/../public/editorial/Editorial_1.jpg";
 import Editorial2 from "@/../public/editorial/Editorial_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/editorial/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/editorial/ExpertPhotography";
 //import HighEndResolution from "@/components/editorial/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/editorial/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/editorial/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/editorial/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/editorial/WardrobeAndProp";
+import OurProcess from "@/components/editorial/OurProcess";
 import AboutSection from "@/components/editorial/AboutSection";
 import GetStartedSection from "@/components/editorial/GetStartedSection";
 import MultiImageAnimation from "@/components/editorial/MultiImageAnimation";
@@ -22,7 +19,7 @@ import CallToAction from "@/components/editorial/CallToAction";
 import MultiCard from "@/components/editorial/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/editorial/Pricng"),{
+const Pricing = dynamic (() => import("@/components/editorial/Pricing"),{
   ssr:true,
 });
 
@@ -113,10 +110,7 @@ export default function Editorial() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -131,7 +125,7 @@ export default function Editorial() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="editorial" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

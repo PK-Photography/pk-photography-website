@@ -24,58 +24,37 @@ const FAQ: React.FC = () => {
   const faqData: FAQItem[] = [
     {
       id: 1,
-      question: "What is included in your portrait photography packages in Mumbai?",
+      question: "What types of events do you cover?",
       answer: (
         <>
-          Our portrait photography packages include a guided photo session (indoor or outdoor), professional editing, delivery of high-resolution images, and options for prints, albums, or digital downloads.
+          We cover a wide range of events including church masses, corporate meetings, weddings, political events, fashion shows, stage performances, and sports events.
         </>
       ),
       bgColor: "#f8d7d7",
     },
     {
       id: 2,
-      question: "Do you offer both indoor and outdoor portrait photography in Mumbai?",
+      question: "How do you ensure uninterrupted streaming?",
       answer: (
         <>
-          Yes! We specialize in both studio portraits and outdoor portrait shoots at popular Mumbai locations, so you can choose the setting that best fits your style.
+          Our robust setup—with high-definition cameras, reliable internet connectivity, and backup systems—ensures that your event streams seamlessly without any interruptions.
         </>
       ),
       bgColor: "#f8e7d7",
     },
     {
       id: 3,
-      question: "How do I book the best portrait photographer in Mumbai?",
+      question: "Can I customize my live streaming package?",
       answer:
-        "Booking is simple—just use our online booking form to select your date and session type, and we'll confirm your appointment with personalized details.",
+        "Yes, our packages are fully customizable to suit the specific needs and budget of your event. We work closely with you to design the perfect streaming solution.",
       bgColor: "#f8f2d7",
     },
     {
       id: 4,
-      question: "How soon can I expect my finished portraits?",
+      question: "How far in advance should I book?",
       answer:
-        "You'll receive your edited, high-quality portraits within 7 days after your session, delivered via online gallery, Google Drive, or USB pendrive.",
+        "We recommend booking at least 2-3 weeks prior to your event to ensure all technical and logistical preparations are handled efficiently.",
       bgColor: "#d7f8dc",
-    },
-    {
-      id: 5,
-      question: "Do you provide makeup and hair services for portrait sessions?",
-      answer:
-        "Yes, professional makeup and hair styling is available as an add-on to ensure you look your best during your photoshoot.",
-      bgColor: "#d7e8f8",
-    },
-    {
-      id: 6,
-      question: "Can I get my portraits printed in a premium album?",
-      answer:
-        "Absolutely! We offer high-quality printed albums so you can preserve your portrait memories beautifully.",
-      bgColor: "#e7d7f8",
-    },
-    {
-      id: 7,
-      question: "How far in advance should I schedule my portrait session in Mumbai?",
-      answer:
-        "For best availability, we recommend booking your portrait session at least 1-2 weeks ahead, especially during weekends and festive seasons.",
-      bgColor: "#f8d7f0",
     }
   ];
 

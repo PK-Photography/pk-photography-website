@@ -8,12 +8,9 @@ import Ads1 from "@/../public/ads/Ads1.jpg";
 import Ads2 from "@/../public/ads/Ads2.jpg";
 
 //import LocationStylingTipsSec from "@/components/ads/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/ads/ExpertPhotography";
 //import HighEndResolution from "@/components/ads/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/ads/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/ads/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/ads/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/ads/WardrobeAndProp";
+import OurProcess from "@/components/ads/OurProcess";
 import AboutSection from "@/components/ads/AboutSection";
 import GetStartedSection from "@/components/ads/GetStartedSection";
 import MultiImageAnimation from "@/components/ads/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/ads/CallToAction";
 import MultiCard from "@/components/ads/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/ads/Pricng"),{
+const Pricing = dynamic (() => import("@/components/ads/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function Ads() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+        <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function Ads() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="ads" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

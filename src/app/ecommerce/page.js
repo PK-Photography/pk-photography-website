@@ -8,12 +8,9 @@ import Ecommerce1 from "@/../public/ecommerce/Ecom1.jpg";
 import Ecommerce2 from "@/../public/ecommerce/Ecom2.jpg";
 
 //import LocationStylingTipsSec from "@/components/ecommerce/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/ecommerce/ExpertPhotography";
 //import HighEndResolution from "@/components/ecommerce/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/ecommerce/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/ecommerce/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/ecommerce/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/ecommerce/WardrobeAndProp";
+import OurProcess from "@/components/ecommerce/OurProcess";
 import AboutSection from "@/components/ecommerce/AboutSection";
 import GetStartedSection from "@/components/ecommerce/GetStartedSection";
 import MultiImageAnimation from "@/components/ecommerce/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/ecommerce/CallToAction";
 import MultiCard from "@/components/ecommerce/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/ecommerce/Pricng"),{
+const Pricing = dynamic (() => import("@/components/ecommerce/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function Ecommerce() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function Ecommerce() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="ecommerce" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -1,8 +1,8 @@
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Btn from "../EncrptButton/Btn";
-// import "@fontsource/montserrat/700.css"; // Import Montserrat with 700 weight
 import "@fontsource/montserrat";
+import Link from "next/link";
 
 import service1 from "@/assets/service1.webp";
 import service2 from "@/assets/service2.webp";
@@ -41,11 +41,11 @@ const cards: CardProps[] = [
     subtitle: "Timeless portraits that reflect you",
     id: 2,
     isLightBackground: true,
-    link: "portrait",
+    link: "/portrait",
   },
   {
     url: service3.src,
-    title: "Headshots",
+    title: "Headshots", 
     subtitle: "Professional headshots that speak success",
     id: 3,
     link: "/headshots",
@@ -131,42 +131,44 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
   const isLastThree = index >= cards.length - 3;
 
   return (
-    <div
-      key={card.id}
-      className={`group relative h-[620px] md:w-[468px] md:h-[650px] sm:w-[404px] overflow-hidden bg-neutral-200 rounded-3xl ${
-        card.isLightBackground ? "text-black" : "text-white"
-      }`}
-    >
+    <Link href={card.link} key={card.id}>
       <div
-        style={{
-          backgroundImage: `url(${card.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 rounded-lg"
-      ></div>
+        className={`group relative h-[620px] md:w-[468px] md:h-[650px] sm:w-[404px] overflow-hidden bg-neutral-200 rounded-3xl cursor-pointer ${
+          card.isLightBackground ? "text-black" : "text-white"
+        }`}
+      >
+        {/* Background Image */}
+        <div
+          style={{
+            backgroundImage: `url(${card.url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 rounded-lg"
+        ></div>
 
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-8 w-1 bg-[#2874a6]"></div>
+        {/* Blue Vertical Line */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-8 w-1 bg-[#2874a6]"></div>
 
-      <div className="absolute top-0 z-10 w-full text-center pt-8">
-        <p
-          className={`px-6 py-2 text-4xl font-extrabold uppercase rounded-t-lg ${
-            isLastThree ? "text-white" : "text-[#2874a6]"
-          }`}
-          style={{ fontFamily: "Montserrat", fontWeight: 700 }}
-        >
-          {card.title}
-        </p>
-        <p className="px-4 py-1 mt-2 text-lg font-medium">{card.subtitle}</p>
-        <div className="mt-1 flex justify-center">
-          <a href={card.link}>
+        {/* Text + Button */}
+        <div className="absolute top-0 z-10 w-full text-center pt-8">
+          <p
+            className={`px-6 py-2 text-4xl font-extrabold uppercase rounded-t-lg ${
+              isLastThree ? "text-white" : "text-[#2874a6]"
+            }`}
+            style={{ fontFamily: "Montserrat", fontWeight: 700 }}
+          >
+            {card.title}
+          </p>
+          <p className="px-4 py-1 mt-2 text-lg font-medium">{card.subtitle}</p>
+          <div className="mt-1 flex justify-center">
             <Btn
               className={card.isLightBackground ? "text-black" : "text-white"}
             />
-          </a>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

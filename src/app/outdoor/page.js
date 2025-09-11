@@ -23,7 +23,7 @@ import CallToAction from "@/components/outdoor/CallToAction";
 import MultiCard from "@/components/outdoor/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/outdoor/Pricng"),{
+const Pricing = dynamic (() => import("@/components/outdoor/Pricing"),{
   ssr:true,
 });
 

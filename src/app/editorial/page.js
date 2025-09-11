@@ -22,7 +22,7 @@ import CallToAction from "@/components/editorial/CallToAction";
 import MultiCard from "@/components/editorial/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/editorial/Pricng"),{
+const Pricing = dynamic (() => import("@/components/editorial/Pricing"),{
   ssr:true,
 });
 

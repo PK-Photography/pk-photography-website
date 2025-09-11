@@ -20,7 +20,7 @@ import CallToAction from "@/components/brandshoot/CallToAction";
 import MultiCard from "@/components/brandshoot/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/brandshoot/Pricng"),{
+const Pricing = dynamic (() => import("@/components/brandshoot/Pricing"),{
   ssr:true,
 });
 

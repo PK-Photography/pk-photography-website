@@ -53,17 +53,19 @@ export default function Home() {
 
   return (
     <div className="bg-white">
-      <Hero />
-      <div className="hidden md:block">
-        <CardStack />
-      </div>
+      <Hero /> 
       <AboutStudio />
-      <BubbleText text="Our Services" id="Our-Services" />
-      <Service />
-      <FAQ />
-      <OurClients />
-      <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
-      <PricingCardIndex />
+      <BubbleText text="Our Services" id="Our-Services" /> 
+      <Service /> 
+      <OurClients /> 
+      <div className="hidden md:block">
+        <CardStack /> 
+      </div>
+      <Reviews /> 
+      <FAQ /> 
+       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
+      <PricingCardIndex />       
+    
 
       <LoginPromptModal
         isOpen={showLoginPrompt}

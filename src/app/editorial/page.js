@@ -22,7 +22,7 @@ import CallToAction from "@/components/editorial/CallToAction";
 import MultiCard from "@/components/editorial/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/editorial/Pricng"),{
+const Pricing = dynamic (() => import("@/components/editorial/Pricing"),{
   ssr:true,
 });
 
@@ -131,7 +131,7 @@ export default function Editorial() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="editorial" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

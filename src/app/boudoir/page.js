@@ -23,7 +23,7 @@ import CallToAction from "@/components/boudoir/CallToAction";
 import MultiCard from "@/components/boudoir/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/boudoir/Pricng"),{
+const Pricing = dynamic (() => import("@/components/boudoir/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Boudoir() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="boudoir" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

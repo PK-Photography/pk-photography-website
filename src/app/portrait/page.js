@@ -23,7 +23,7 @@ import CallToAction from "@/components/portrait/CallToAction";
 import MultiCard from "@/components/portrait/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/portrait/Pricng"),{
+const Pricing = dynamic (() => import("@/components/portrait/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function Portrait() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="portrait" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -23,7 +23,7 @@ import CallToAction from "@/components/outdoor/CallToAction";
 import MultiCard from "@/components/outdoor/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/outdoor/Pricng"),{
+const Pricing = dynamic (() => import("@/components/outdoor/Pricing"),{
   ssr:true,
 });
 
@@ -132,7 +132,7 @@ export default function OutDoor() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="outdoor" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

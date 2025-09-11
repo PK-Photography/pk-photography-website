@@ -1,6 +1,6 @@
 "use client";
 
-import Gallery from "@/sections/serviceSections/GallarySection";
+//import Gallery from "@/sections/serviceSections/GallarySection";
 import GetStartedSection from "@/sections/serviceSections/GetStartedSection";
 import HeroSection from "@/sections/serviceSections/HeroSection";
 import PortfolioGrid from "@/sections/serviceSections/PortfolioCards";
@@ -25,7 +25,7 @@ export default function page() {
         text2="Talent with a"
         text3="Stunning Portfolio"
       />
-      <Gallery />
+      {/* <Gallery /> */}
       <PortfolioGrid />
       <AboutSection imageUrl="/pricing/PKP_2826.jpg" />
       <ProcessOverview />

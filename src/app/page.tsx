@@ -52,24 +52,25 @@ export default function Home() {
   }, [session, router]);
 
   return (
-  <div className="bg-white">
-    <Hero />                          {/* 1. Cover Page */}
-    <AboutStudio />                   {/* 2. About Us */}
-    <BubbleText text="Our Services" id="Our-Services" />
-    <Service />                       {/* 3. Services */}
-    <OurClients />                    {/* 4. Our Clients */}
-    <div className="hidden md:block">
-      <CardStack />                   {/* 5. Visual Stories */}
-    </div>
-    <Reviews />                       {/* 6. Testimonials - ADDED BACK! */}
-    <FAQ />                           {/* 7. FAQ */}
-    <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
-    <PricingCardIndex />              {/* 8. Pricing */}
+    <div className="bg-white">
+      <Hero /> 
+      <AboutStudio />
+      <BubbleText text="Our Services" id="Our-Services" /> 
+      <Service /> 
+      <OurClients /> 
+      <div className="hidden md:block">
+        <CardStack /> 
+      </div>
+      <Reviews /> 
+      <FAQ /> 
+       <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
+      <PricingCardIndex />       
+    
 
-    <LoginPromptModal
-      isOpen={showLoginPrompt}
-      onClose={() => setShowLoginPrompt(false)}
-    />
-  </div>
-);
+      <LoginPromptModal
+        isOpen={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
+    </div>
+  );
 }

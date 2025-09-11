@@ -8,12 +8,9 @@ import Celebrity1 from "@/../public/service_page_thumble/Celebrity_1.JPG";
 import Celebrity2 from "@/../public/service_page_thumble/Celebrity_2.JPG";
 
 //import LocationStylingTipsSec from "@/components/celebrity/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/celebrity/ExpertPhotography";
 //import HighEndResolution from "@/components/celebrity/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/celebrity/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/celebrity/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/celebrity/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/celebrity/WardrobeAndProp";
+import OurProcess from "@/components/celebrity/OurProcess";
 import AboutSection from "@/components/celebrity/AboutSection";
 import GetStartedSection from "@/components/celebrity/GetStartedSection";
 import MultiImageAnimation from "@/components/celebrity/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/celebrity/CallToAction";
 import MultiCard from "@/components/celebrity/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/celebrity/Pricng"),{
+const Pricing = dynamic (() => import("@/components/celebrity/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function Celebrity() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function Celebrity() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="celebrity" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

@@ -8,12 +8,9 @@ import Design1 from "@/../public/design/Des_1.jpg";
 import Design2 from "@/../public/design/Des_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/design/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/design/ExpertPhotography";
 //import HighEndResolution from "@/components/design/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/design/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/design/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/design/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/design/WardrobeAndProp";
+import OurProcess from "@/components/design/OurProcess";
 import AboutSection from "@/components/design/AboutSection";
 import GetStartedSection from "@/components/design/GetStartedSection";
 import MultiImageAnimation from "@/components/design/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/design/CallToAction";
 import MultiCard from "@/components/design/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/design/Pricng"),{
+const Pricing = dynamic (() => import("@/components/design/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function Design() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function Design() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="design" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

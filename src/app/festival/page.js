@@ -8,12 +8,9 @@ import Festival1 from "@/../public/festival/Fest_1.jpg";
 import Festival2 from "@/../public/festival/Fest_2.jpg";
 
 //import LocationStylingTipsSec from "@/components/festival/LocationStylingTipsSec";
-import ExpertPhotography from "@/components/festival/ExpertPhotography";
 //import HighEndResolution from "@/components/festival/HighEndResolution";
 //import MoodBoardSectionV2 from "@/components/festival/MoodBoardSectionV2";
-import ConsultationMoodBoard from "@/components/festival/ConsultationandMoodBoard";
-import LocationStylingTips from "@/components/festival/LocationAndStylingTips";
-import WardrobeAndProp from "@/components/festival/WardrobeAndProp";
+import OurProcess from "@/components/festival/OurProcess";
 import AboutSection from "@/components/festival/AboutSection";
 import GetStartedSection from "@/components/festival/GetStartedSection";
 import MultiImageAnimation from "@/components/festival/MultiImageAnimation";
@@ -23,7 +20,7 @@ import CallToAction from "@/components/festival/CallToAction";
 import MultiCard from "@/components/festival/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/festival/Pricng"),{
+const Pricing = dynamic (() => import("@/components/festival/Pricing"),{
   ssr:true,
 });
 
@@ -114,10 +111,7 @@ export default function Festival() {
           </div>
       {/* <MoodBoardSectionV2  /> */}
       {/* <LocationStylingTipsSec /> */}
-      <ConsultationMoodBoard />
-      <WardrobeAndProp />
-      <LocationStylingTips />
-      <ExpertPhotography  />
+      <OurProcess />
       {/*<HighEndResolution  /> */}
       <div className="flex flex-col items-center justify-center mt-10">
         <p className="text-[25px]">Final Delivery</p>
@@ -132,7 +126,7 @@ export default function Festival() {
         <DeliveryOptions />
       </div>
 
-      <Pricing />
+      <Pricing serviceName="festival" />
       <MultiCard />
       <FAQ />
       <div className="mb-[5%]">

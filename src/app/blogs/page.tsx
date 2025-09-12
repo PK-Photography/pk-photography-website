@@ -46,7 +46,7 @@ const BlogsPage: React.FC = () => {
           <BookingPrompt />
           <ExploreGallery />
           <OurServices />
-          <FooterNav /> {/* ✅ Footer navigation here */}
+          {/* <FooterNav /> ✅ Footer navigation here */}
         </aside>
       </div>
     </div>

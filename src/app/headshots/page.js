@@ -21,7 +21,7 @@ import CallToAction from "@/components/headshot/CallToAction";
 import MultiCard from "@/components/headshot/MultiCard";
 import { ChevronRight } from "lucide-react";
 
-const Pricing = dynamic (() => import("@/components/headshot/Pricng"),{
+const Pricing = dynamic (() => import("@/components/headshot/Pricing"),{
   ssr:true,
 });
 

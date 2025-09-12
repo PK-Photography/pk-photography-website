@@ -13,27 +13,27 @@ import {
 
 const steps = [
   {
-    icon: <FaCalendarCheck className="text-pink-500 text-3xl" />,
+    icon: <FaCalendarCheck className="text-[##5c899d] text-3xl" />,
     title: "Consultation & Booking",
     description: "We understand your story & rituals.",
   },
   {
-    icon: <FaPalette className="text-rose-500 text-3xl" />,
+    icon: <FaPalette className="text-[#5c899d] text-3xl" />,
     title: "Moodboard & Shot Planning",
     description: "We curate styling & key moments.",
   },
   {
-    icon: <FaCamera className="text-blue-500 text-3xl" />,
+    icon: <FaCamera className="text-[#5c899d] text-3xl" />,
     title: "Shoot Days",
     description: "Relax & enjoy. We’ll capture everything.",
   },
   {
-    icon: <FaEdit className="text-purple-500 text-3xl" />,
+    icon: <FaEdit className="text-[#5c899d] text-3xl" />,
     title: "Editing & Delivery",
     description: "All photos & videos via drive + printed album.",
   },
   {
-    icon: <FaHeart className="text-red-500 text-3xl" />,
+    icon: <FaHeart className="text-[#5c899d] text-3xl" />,
     title: "Forever Memories",
     description: "Relive your big day whenever you want.",
   },
@@ -44,12 +44,12 @@ const OurProcess: FC = () => {
     <section className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-14">
-          <span className="text-pink-500">Our Process</span>
+          <span className="text-[#5c899d]">Our Process</span>
         </h2>
 
         <div className="relative">
           {/* Vertical line for timeline */}
-          <div className="absolute left-6 top-0 bottom-0 w-1 bg-pink-200  md:block"></div>
+          <div className="absolute left-6 top-0 bottom-0 w-1 bg-[#b3c9d4] md:block"></div>
 
           <div className="space-y-12">
             {steps.map((step, idx) => (
@@ -62,7 +62,7 @@ const OurProcess: FC = () => {
                 className="relative flex items-start gap-6 md:gap-8"
               >
                 {/* Icon bubble */}
-                <div className="relative z-10 flex items-center justify-center w-12 h-12 bg-white border-4 border-pink-300 rounded-full shadow-md shrink-0">
+                <div className="relative z-10 flex items-center justify-center w-12 h-12 bg-white border-4 border-[#9db7c3] rounded-full shadow-md shrink-0">
                   {step.icon}
                 </div>
 

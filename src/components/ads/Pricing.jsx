@@ -468,7 +468,7 @@ const PackageName = styled.h3`
 const PackagePrice = styled.div`
   font-size: 2.3rem;
   font-weight: 400;
-  color: #5c899d;
+  color: #5c899dff;
   margin-bottom: 0.7rem;
   letter-spacing: 0.3px;
 

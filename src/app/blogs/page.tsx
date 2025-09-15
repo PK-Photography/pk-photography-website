@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import BlogList from "./components/BlogList";
 import TopPicks from "./components/TopPicks";
@@ -45,7 +46,7 @@ const BlogsPage: React.FC = () => {
           <BookingPrompt />
           <ExploreGallery />
           <OurServices />
-          <FooterNav /> {/* ✅ Footer navigation here */}
+          {/* <FooterNav /> ✅ Footer navigation here */}
         </aside>
       </div>
     </div>

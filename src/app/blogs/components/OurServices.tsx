@@ -1,14 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const services = [
-  { label: "Portfolio", image: "/services/portfolio.png" },
-  { label: "Editorial", image: "/services/editorial.png" },
-  { label: "Headshots", image: "/services/headshots.png" },
-  { label: "Wedding", image: "/services/wedding.png" },
+  { label: "Portfolio", image: "/services/portfolio.png", url: "/portfolio" },
+  { label: "Editorial", image: "/services/editorial.png", url: "/editorial" },
+  { label: "Headshots", image: "/services/headshots.png", url: "/headshots" },
+  { label: "Wedding", image: "/services/wedding.png", url: "/wedding" },
 ];
 
 const OurServices: React.FC = () => {
+  const router = useRouter();
   return (
     <div className="mb-10">
       <h4 className="font-semibold mb-4 text-lg">Our Services</h4>
@@ -17,6 +19,7 @@ const OurServices: React.FC = () => {
           <div
             key={index}
             className="relative aspect-[16/9] rounded-xl overflow-hidden group"
+            onClick={() => router.push(service.url)}
           >
             <Image
               src={service.image}
@@ -32,7 +35,10 @@ const OurServices: React.FC = () => {
           </div>
         ))}
       </div>
-      <p className="text-sm mt-4 text-black underline cursor-pointer hover:opacity-80">
+      <p
+        className="text-sm mt-4 text-black underline cursor-pointer hover:opacity-80"
+        onClick={() => router.push("/services")}
+      >
         See all
       </p>
     </div>

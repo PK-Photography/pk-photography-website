@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ExploreGallery: React.FC = () => {
+  const router = useRouter();
   return (
-    <div className="mb-10">
+    <div className="mb-10" onClick={() => router.push("/galleries")}>
       <h4 className="font-semibold mb-4 text-lg">Explore Gallery</h4>
       <div className="w-full rounded-lg overflow-hidden">
         <Image

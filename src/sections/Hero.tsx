@@ -14,8 +14,9 @@ export const Hero = () => {
   const [images, setImages] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"horizontal" | "vertical">("horizontal");
 
-  // detect device type
+  // Detect device type
   useEffect(() => {
     const checkDevice = () => setIsMobile(window.innerWidth < 768);
     checkDevice();
@@ -23,65 +24,74 @@ export const Hero = () => {
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
-  // fetch multiple homepage images
-useEffect(() => {
+  // Fetch only homepage_web/homepage_mobile
+  useEffect(() => {
   const fetchHomepageImages = async () => {
     try {
       const res = await fetch("/api/visual_stories");
       const data = await res.json();
 
-      // homepage images
-      let homepageImages = data.data
-        .filter((img: CarouselImage) =>
-          isMobile
-            ? img.imageType === "homepage_mobile"
-            : img.imageType === "homepage_web"
-        )
+      // ✅ filter only homepage_web + homepage_mobile (case-insensitive)
+      const homepageImages = data.data
+        .filter((img: CarouselImage) => {
+          const type = img.imageType?.toLowerCase();
+          return type === "homepage_web" || type === "homepage_mobile";
+        })
         .map((img: CarouselImage) => img.imageUrl);
-
-      // if less than 3, also pull from Desktop/Mobile as fallback
-      if (homepageImages.length < 3) {
-        const fallbackImages = data.data
-          .filter((img: CarouselImage) =>
-            isMobile ? img.imageType === "mobile" : img.imageType === "Desktop"
-          )
-          .map((img: CarouselImage) => img.imageUrl);
-
-        homepageImages = [...homepageImages, ...fallbackImages].slice(0, 3);
-      }
 
       if (homepageImages.length > 0) {
         setImages(homepageImages);
+      } else {
+        console.warn("⚠️ No homepage_web/homepage_mobile images found in API");
       }
     } catch (error) {
       console.error("Error fetching homepage images:", error);
     }
   };
-  if (isMobile !== null) fetchHomepageImages();
-}, [isMobile]);
+
+  fetchHomepageImages();
+}, []);
 
 
-  // auto-change index like video
+  // Auto-change index + alternate transition direction
   useEffect(() => {
     if (images.length > 1) {
       const interval = setInterval(() => {
+        setDirection((prev) => (prev === "horizontal" ? "vertical" : "horizontal"));
         setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, 4000); // 4s per image
+      }, 4000);
       return () => clearInterval(interval);
     }
   }, [images]);
 
+  // Transition variants
+  const variants = {
+    enter: (dir: "horizontal" | "vertical") => ({
+      x: dir === "horizontal" ? "100%" : 0,
+      y: dir === "vertical" ? "100%" : 0,
+      opacity: 0,
+    }),
+    center: { x: 0, y: 0, opacity: 1 },
+    exit: (dir: "horizontal" | "vertical") => ({
+      x: dir === "horizontal" ? "-100%" : 0,
+      y: dir === "vertical" ? "-100%" : 0,
+      opacity: 0,
+    }),
+  };
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background rotating images */}
-      <AnimatePresence>
+      <AnimatePresence custom={direction}>
         {images.length > 0 && (
           <motion.div
             key={images[currentIndex]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image

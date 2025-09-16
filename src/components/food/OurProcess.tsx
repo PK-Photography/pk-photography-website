@@ -13,7 +13,7 @@ import {
 
 const steps = [
   {
-    icon: <FaCalendarCheck className="text-[##5c899d] text-3xl" />,
+    icon: <FaCalendarCheck className="text-[#5c899d] text-3xl" />,
     title: "Consultation & Booking",
     description: "We understand your story & rituals.",
   },

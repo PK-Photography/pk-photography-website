@@ -28,15 +28,17 @@ export const Hero = () => {
   useEffect(() => {
   const fetchHomepageImages = async () => {
     try {
-      const res = await fetch("/api/visual_stories");
+      const res = await fetch("https://pk-photography-backend.onrender.com/api/v1/carousel/all");
       const data = await res.json();
 
       // ✅ filter only homepage_web + homepage_mobile (case-insensitive)
       const homepageImages = data.data
         .filter((img: CarouselImage) => {
           const type = img.imageType?.toLowerCase();
-          return type === "homepage_web" || type === "homepage_mobile";
-        })
+          return isMobile
+            ? img.imageType === "homepage_mobile"
+            : img.imageType === "homepage_web"
+                })
         .map((img: CarouselImage) => img.imageUrl);
 
       if (homepageImages.length > 0) {
@@ -50,7 +52,7 @@ export const Hero = () => {
   };
 
   fetchHomepageImages();
-}, []);
+}, [isMobile]);
 
 
   // Auto-change index + alternate transition direction

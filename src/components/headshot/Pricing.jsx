@@ -172,7 +172,7 @@ const Pricing = () => {
         </PricingCard>
       </PricingCardsContainer>
 
-      <CustomPackageContainer>
+      {/* <CustomPackageContainer>
         <CustomPackageHeader>
           <CustomPackageIcon>📌</CustomPackageIcon>
           <CustomPackageTitle>
@@ -215,11 +215,11 @@ const Pricing = () => {
         <DisclaimerText>
           *Final price may vary based on specific requirements
         </DisclaimerText>
-      </CustomPackageContainer>
+      </CustomPackageContainer> 
 
-      <ContactButton  onClick={() => router.push("/booking")}>
-        <ContactIcon>💡</ContactIcon> Get in touch for a custom quote!
-      </ContactButton>
+      <ContactButton onClick={() => router.push("/booking")}>
+        <ContactIcon>💡</ContactIcon> Get in touch for a custom quote! 
+      </ContactButton>*/}
     </PricingSection>
   );
 };

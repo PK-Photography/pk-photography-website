@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 type CarouselImage = {
   _id: string;
@@ -10,122 +11,125 @@ type CarouselImage = {
 };
 
 export const Hero = () => {
-  const [homepageImage, setHomepageImage] = useState<string | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [images, setImages] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"horizontal" | "vertical">("horizontal");
 
+  // Detect device type
   useEffect(() => {
-    const checkDevice = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkDevice = () => setIsMobile(window.innerWidth < 768);
     checkDevice();
     window.addEventListener("resize", checkDevice);
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
+  // Fetch only homepage_web/homepage_mobile
   useEffect(() => {
-    const fetchHomepageImage = async () => {
-      try {
-        const res = await fetch("/api/visual_stories");
-        const data = await res.json();
-        const homepage = data.data.find((img: CarouselImage) =>
-          isMobile
+  const fetchHomepageImages = async () => {
+    try {
+      const res = await fetch("https://pk-photography-backend.onrender.com/api/v1/carousel/all");
+      const data = await res.json();
+
+      // ✅ filter only homepage_web + homepage_mobile (case-insensitive)
+      const homepageImages = data.data
+        .filter((img: CarouselImage) => {
+          const type = img.imageType?.toLowerCase();
+          return isMobile
             ? img.imageType === "homepage_mobile"
             : img.imageType === "homepage_web"
-        );
-        if (homepage?.imageUrl) {
-          setHomepageImage(homepage.imageUrl);
-        }
-      } catch (error) {
-        console.error("Error fetching homepage image:", error);
-      }
-    };
+                })
+        .map((img: CarouselImage) => img.imageUrl);
 
-    fetchHomepageImage();
-  }, [isMobile]);
+      if (homepageImages.length > 0) {
+        setImages(homepageImages);
+      } else {
+        console.warn("⚠️ No homepage_web/homepage_mobile images found in API");
+      }
+    } catch (error) {
+      console.error("Error fetching homepage images:", error);
+    }
+  };
+
+  fetchHomepageImages();
+}, [isMobile]);
+
+
+  // Auto-change index + alternate transition direction
+  useEffect(() => {
+    if (images.length > 1) {
+      const interval = setInterval(() => {
+        setDirection((prev) => (prev === "horizontal" ? "vertical" : "horizontal"));
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [images]);
+
+  // Transition variants
+  const variants = {
+    enter: (dir: "horizontal" | "vertical") => ({
+      x: dir === "horizontal" ? "100%" : 0,
+      y: dir === "vertical" ? "100%" : 0,
+      opacity: 0,
+    }),
+    center: { x: 0, y: 0, opacity: 1 },
+    exit: (dir: "horizontal" | "vertical") => ({
+      x: dir === "horizontal" ? "-100%" : 0,
+      y: dir === "vertical" ? "-100%" : 0,
+      opacity: 0,
+    }),
+  };
 
   return (
-    <section className="relative h-screen overflow-hidden font-sans">
-      {/* Background Image */}
-      {/* Fallback Image */}
-      {isMobile !== null && (
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src={isMobile ? "/hero-img-mobile.jpg" : "/hero-img.jpg"}
-            alt="Fallback Hero"
-            layout="fill"
-            objectFit="cover"
-            quality={80}
-            className={`${
-              loaded ? "opacity-0" : "opacity-100"
-            } transition-opacity duration-700`}
-          />
-        </div>
-      )}
-
-      {/* Homepage Media */}
-      {homepageImage && (
-        <div className="absolute inset-0 w-full h-full">
-          {/\.(mp4|webm|ogg)$/i.test(homepageImage) ? (
-            <video
-              src={homepageImage}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className={`transition-opacity duration-700 object-cover w-full h-full absolute inset-0 ${
-                loaded ? "opacity-100" : "opacity-0"
-              }`}
-              onLoadedData={() => setLoaded(true)}
-            />
-          ) : (
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Background rotating images */}
+      <AnimatePresence custom={direction}>
+        {images.length > 0 && (
+          <motion.div
+            key={images[currentIndex]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
             <Image
-              src={homepageImage}
-              alt="Hero"
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-              onLoad={() => setLoaded(true)}
-              className={`transition-opacity duration-700 ${
-                loaded ? "opacity-100" : "opacity-0"
-              }`}
+              src={images[currentIndex]}
+              alt="Hero background"
+              fill
+              className="object-cover"
+              priority
             />
-          )}
-        </div>
-      )}
+            <div className="absolute inset-0 bg-black bg-opacity-50" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
-
-      {/* Text Content */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+      {/* Text content */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
         <div className="w-full max-w-5xl mx-auto space-y-6">
-          {/* Headline - UPDATED TEXT */}
           <h1
-            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold leading-snug text-center"
+            className="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-snug"
             style={{ fontFamily: `'Playfair Display', serif` }}
           >
             Photography & Videography for Every Story
           </h1>
-
-          {/* Tagline - UPDATED TEXT */}
-          <p className="text-white text-lg md:text-xl font-light text-center lg:text-center max-w-3xl mx-auto">
+          <p className="text-white text-lg md:text-xl font-light max-w-3xl mx-auto">
             Portfolios, weddings, products, events, corporates, real estate & more—
             captured with passion, delivered with perfection.
           </p>
-
-          {/* Button - UPDATED TEXT */}
           <div className="mt-4">
             <Link href="/booking">
-              <button className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium text-sm md:text-base">
+              <button className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium">
                 Book Your Session
               </button>
             </Link>
           </div>
         </div>
       </div>
-
-      
     </section>
   );
 };

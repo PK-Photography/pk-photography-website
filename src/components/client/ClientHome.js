@@ -14,6 +14,8 @@ import ImageGalleryList from "../client/ImageGalleryList";
 import BannerSection from "../client/BannerSection";
 import Lottie from "lottie-react";
 import animationData from "@/assets/Picture.json";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const ClientHome = () => {
   const [selectedCard, setSelectedCard] = useState([]);
@@ -43,6 +45,8 @@ const ClientHome = () => {
   const [nasLoading, setNasLoading] = useState(true);
   const [hasMoreNasImages, setHasMoreNasImages] = useState(true);
   const [nasTotalCount, setNasTotalCount] = useState(0);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const isMobile =
     typeof window !== "undefined" &&
@@ -549,31 +553,42 @@ const ClientHome = () => {
   };
 
   useEffect(() => {
-    // Load favorites from localStorage on page load
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  const toggleFavorite = (image) => {
-    setFavorites((prevFavorites) => {
-      const isFavorited = prevFavorites.find((fav) => fav.id === image.id);
-      let updatedFavorites;
-
-      if (isFavorited) {
-        // Remove the image from favorites
-        updatedFavorites = prevFavorites.filter((fav) => fav.id !== image.id);
-      } else {
-        // Add the image to favorites
-        updatedFavorites = [...prevFavorites, image];
+    const getFavourites = async () => {
+      try {
+        if (!session?.user?.id) return;
+        const res = await axiosInstance.get(
+          `/user/getFavourites/${session.user.id}`
+        );
+        setFavorites(res.data || []);
+      } catch (err) {
+        console.error("Error fetching favourites:", err);
       }
+    };
 
-      // Save to localStorage
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    getFavourites();
+  }, [session?.user?.id]);
 
-      return updatedFavorites;
-    });
+  const toggleFavorite = async (image) => {
+    if (!session?.user?.id) {
+      router.push("/login");
+      return;
+    }
+
+    const isFavorited = favorites.find((fav) => fav.id === image.id);
+
+    try {
+      if (isFavorited) {
+        // Remove from server + local
+        await removeFromFavorites(image.id);
+        setFavorites((prev) => prev.filter((fav) => fav.id !== image.id));
+      } else {
+        // Add to server + local
+        await addToFavorites(image);
+        setFavorites((prev) => [...prev, image]);
+      }
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
   };
 
   const toggleFavoritesModal = () => {
@@ -584,6 +599,33 @@ const ClientHome = () => {
     const regex = /[?&]id=([^&]+)/;
     const match = url.match(regex);
     return match ? match[1] : null;
+  };
+
+  const addToFavorites = async (image) => {
+    try {
+      await axiosInstance.put("/user/addFavourite", {
+        userId: session?.user?.id,
+        id: image.id,
+        name: image.name,
+        mediumRes: image.mediumRes,
+        lowRes: image.lowRes,
+        shareableLink: image.shareableLink,
+        path: image.path,
+      });
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+    }
+  };
+
+  const removeFromFavorites = async (imageId) => {
+    try {
+      await axiosInstance.put("/user/removeFavourite", {
+        userId: session?.user?.id,
+        id: imageId,
+      });
+    } catch (error) {
+      console.error("Error removing from favorites:", error);
+    }
   };
 
   const handleDownloadFavorites = async () => {

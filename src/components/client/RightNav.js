@@ -23,7 +23,7 @@ const RightNav = ({
     {
       icon: <FaHeart className="text-lg" />,
       label: "Favourite",
-      total: favorites.length,
+      total: favorites?.length || 0,
       onClick: toggleFavoritesModal,
       show: true,
     },
@@ -57,7 +57,6 @@ const RightNav = ({
                 <span className="text-xs">({item.total})</span>
               )}
             </div>
-
           </div>
         ))}
     </div>

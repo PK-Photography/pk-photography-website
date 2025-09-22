@@ -411,6 +411,23 @@ const ClientHome = () => {
     }
   };
 
+  const handleMultiShare = (shareableLinks) => {
+    if (!shareableLinks || shareableLinks.length === 0) return;
+
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out my favorite images!",
+          text: "Here are my favorite images:\n" + shareableLinks.join("\n\n"),
+        })
+        .catch(() => {
+          // silently handle cancel/error
+        });
+    } else {
+      alert("Sharing is not supported on this browser.");
+    }
+  };
+
   const handleBuyPhoto = (image) => {
     handleAddToCart(image);
     // Optionally redirect to the Cart page
@@ -765,6 +782,8 @@ const ClientHome = () => {
       <FavouriteModal
         showFavoritesModal={showFavoritesModal}
         favorites={favorites}
+        handleShare={handleShare}
+        handleMultiShare={handleMultiShare}
         toggleFavorite={toggleFavorite}
         toggleFavoritesModal={toggleFavoritesModal}
         handleDownloadFavorites={handleDownloadFavorites}

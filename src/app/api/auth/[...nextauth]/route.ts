@@ -27,10 +27,13 @@ const handler = NextAuth({
         if (!credentials) return null;
 
         try {
-          const res = await axios.post(`https://pk-photography-backend.onrender.com/api/v1/user/signup`, {
-            fullName: credentials.fullName,
-            mobileNo: credentials.mobileNo,
-          });
+          const res = await axios.post(
+            `https://pk-photography-backend.onrender.com/api/v1/user/signup`,
+            {
+              fullName: credentials.fullName,
+              mobileNo: credentials.mobileNo,
+            }
+          );
 
           if (res.data?.success) {
             const user = res.data.data.user;
@@ -47,7 +50,7 @@ const handler = NextAuth({
           console.error("Credentials auth error:", err);
           return null;
         }
-      }
+      },
     }),
   ],
   secret: "F6VGV6OY457WFDM5",
@@ -55,6 +58,29 @@ const handler = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google") {
+        try {
+          const res = await axios.post(
+            `https://pk-photography-backend.onrender.com/api/v1/user/google-signup`,
+            {
+              fullName: user.name,
+              email: user.email,
+            }
+          );
+
+          if (res.data?.success) {
+            user.id = res.data.data.user._id;
+            user.accessToken = res.data.data.accessToken;
+          }
+        } catch (err) {
+          console.error("Google auth error:", err);
+          return false; // prevent login if backend fails
+        }
+      }
+      return true;
+    },
+
     async jwt({ token, user }) {
       if (user && typeof user === "object") {
         token.id = (user as any).id;

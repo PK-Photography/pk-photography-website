@@ -37,7 +37,7 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
       </h1>
 
       {/* Subtitle */}
-      <p className="text-gray-600 text-base sm:text-lg">{blog.subtitle}</p>
+      <p className="text-gray-800  text-base sm:text-xl">{blog.subtitle}</p>
 
       {/* Image */}
       <div className="relative w-full h-64 sm:h-80 md:h-96">
@@ -50,9 +50,10 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
       </div>
 
       {/* Content */}
-      <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-        {blog.content}
-      </p>
+      <div
+        className="prose prose-green max-w-none text-gray-700 text-base sm:text-lg leading-relaxed"
+        dangerouslySetInnerHTML={{ __html: blog.content }}
+      />
 
       {/* Author and Date */}
       <p className="text-sm text-gray-500">

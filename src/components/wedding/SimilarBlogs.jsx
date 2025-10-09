@@ -10,7 +10,7 @@ const preWedding = "/wedding/preWedding.jpg";
 const rituals = "/wedding/rituals.jpg";
 const reception = "/wedding/reception.jpg";
 
-const Services = () => {
+const SimilarBlogs = () => {
   const router = useRouter();
   const serviceItems = [
     {
@@ -72,11 +72,8 @@ const Services = () => {
   return (
     <ServicesSection>
       <SectionHeader>
-        <SectionTitle>Weddings We’ve Framed with Heart</SectionTitle>
-        <SectionDescription>
-          Every photo is a chapter in your wedding story. From haldi’s vibrant
-          hues to the calm of vidaai — we frame it all
-        </SectionDescription>
+        <SectionTitle>Similar Blogs</SectionTitle>
+        
       </SectionHeader>
 
       <ServiceGrid>
@@ -140,9 +137,9 @@ const SectionHeader = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-weight: 300;
   letter-spacing: 0.5px;
 
@@ -159,22 +156,7 @@ const SectionTitle = styled.h2`
   }
 `;
 
-const SectionDescription = styled.p`
-  font-size: 1.1rem;
-  color: #666;
-  line-height: 1.6;
-  font-weight: 300;
-  letter-spacing: 0.3px;
 
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-`;
 
 const ServiceGrid = styled.div`
   display: grid;
@@ -303,4 +285,4 @@ const ServiceDescription = styled.p`
   }
 `;
 
-export default Services;
+export default SimilarBlogs;

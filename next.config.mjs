@@ -30,7 +30,7 @@ const nextConfig = {
       "b3700355.smushcdn.com",
       "drive.google.com",
       "res.cloudinary.com",
-      "pk-photography-backend.onrender.com",
+      "pk.thetechthingy.com",
       "localhost",
       "pkprod.s3.ap-south-1.amazonaws.com",
     ],

@@ -28,7 +28,7 @@ const handler = NextAuth({
 
         try {
           const res = await axios.post(
-            `https://pk-photography-backend.onrender.com/api/v1/user/signup`,
+            `https://pk.thetechthingy.com/api/v1/user/signup`,
             {
               fullName: credentials.fullName,
               mobileNo: credentials.mobileNo,
@@ -62,7 +62,7 @@ const handler = NextAuth({
       if (account?.provider === "google") {
         try {
           const res = await axios.post(
-            `https://pk-photography-backend.onrender.com/api/v1/user/google-signup`,
+            `https://pk.thetechthingy.com/api/v1/user/google-signup`,
             {
               fullName: user.name,
               email: user.email,

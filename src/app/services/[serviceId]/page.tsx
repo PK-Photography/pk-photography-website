@@ -1,8 +1,6 @@
 
 import { allServices } from '@/lib/photography-data';
 import { notFound } from 'next/navigation';
-import Header from '@/components/photography/Header';
-import Footer from '@/components/photography/Footer';
 import type { Metadata } from 'next';
 import ServicePageContent from '@/components/photography/ServicePageContent';
 import type { FAQ } from '@/lib/types';
@@ -129,9 +127,7 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   return (
     <>
-      <Header />
       <ServicePageContent service={service} />
-      <Footer />
     </>
   );
 }

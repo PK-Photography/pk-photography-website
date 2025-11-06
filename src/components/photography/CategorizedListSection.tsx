@@ -92,8 +92,8 @@ const CategorizedListSection = ({ title, categories }: CategorizedListSectionPro
   const wrapperProps: any = isMobile
     ? {
         plugins: [autoplayPlugin.current],
-        // cast opts as any so TypeScript doesn't complain about align literal types
-        opts: { align: 'start', loop: true } as any,
+        // center align + scroll one slide at a time. Cast as any to avoid type issues.
+        opts: { align: 'center', loop: true, slidesToScroll: 1 } as any,
         className: 'w-full',
       }
     : {
@@ -101,7 +101,10 @@ const CategorizedListSection = ({ title, categories }: CategorizedListSectionPro
       };
 
   const ItemWrapper: any = isMobile ? CarouselItem : 'div';
-  const itemWrapperProps: any = isMobile ? { className: 'basis-full sm:basis-1/2' } : {};
+  // === IMPORTANT CHANGE: make mobile slides full-width and not flex-grow/shrink ===
+  const itemWrapperProps: any = isMobile
+    ? { className: 'basis-full flex-none w-full' } // ensures 100% width per slide on mobile
+    : { className: 'basis-full' };
 
   return (
     <section className="py-16 md:py-20 bg-background">

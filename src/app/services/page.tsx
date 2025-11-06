@@ -116,7 +116,7 @@ export default function ServicesPage() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-opacity duration-300 ${
+          className={`grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 transition-opacity duration-300 ${
             isPending ? 'opacity-50' : 'opacity-100'
           }`}
         >

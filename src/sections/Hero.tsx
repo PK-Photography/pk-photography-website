@@ -28,7 +28,7 @@ export const Hero = () => {
   useEffect(() => {
   const fetchHomepageImages = async () => {
     try {
-      const res = await fetch("https://pk-photography-backend.onrender.com/api/v1/carousel/all");
+      const res = await fetch("https://pk.thetechthingy.com/api/v1/carousel/all");
       const data = await res.json();
 
       // ✅ filter only homepage_web + homepage_mobile (case-insensitive)

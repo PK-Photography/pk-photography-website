@@ -1,0 +1,640 @@
+{
+    "placeholderImages": [
+      {
+        "id": "hero",
+        "description": "A professional photographer adjusting a camera on a tripod in a golden hour setting.",
+        "imageUrl": "https://images.unsplash.com/photo-1557587379-286dd2e7ac1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwaG90b2dyYXBoZXIlMjBzdW5zZXR8ZW58MHx8fHwxNzYxMTU5Njg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "photographer sunset"
+      },
+      {
+        "id": "portraiture-category",
+        "description": "A striking black and white portrait of a woman with compelling eyes.",
+        "imageUrl": "https://images.unsplash.com/photo-1615538785945-6625ccdb4b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTc2MTE1MDkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "portrait woman"
+      },
+      {
+        "id": "fashion-category",
+        "description": "A high-fashion model posing in a vibrant, artistic outfit against an urban backdrop.",
+        "imageUrl": "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmFzaGlvbiUyMG1vZGVsfGVufDB8fHx8MTc2MTA5NjA3OXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "fashion model"
+      },
+      {
+        "id": "commercial-category",
+        "description": "A beautifully styled product shot of a luxury watch on a dark, textured surface.",
+        "imageUrl": "https://images.unsplash.com/photo-1594075378084-b3099febb55e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwcm9kdWN0JTIwd2F0Y2h8ZW58MHx8fHwxNzYxMTU4MzE3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "product watch"
+      },
+      {
+        "id": "events-category",
+        "description": "A newly married couple sharing a joyful, intimate moment during their wedding.",
+        "imageUrl": "https://images.unsplash.com/photo-1621801306185-8c0ccf9c8eb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3ZWRkaW5nJTIwY291cGxlfGVufDB8fHx8MTc2MTEzMzkxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding couple"
+      },
+      {
+        "id": "real-estate-category",
+        "description": "Interior of a modern, stylish living room.",
+        "imageUrl": "https://images.unsplash.com/photo-1648536474504-7bbf8a1ee3ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwODY3Nzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "modern interior"
+      },
+      {
+        "id": "celebrity-category",
+        "description": "An influencer taking a selfie in a stylish location.",
+        "imageUrl": "https://images.unsplash.com/photo-1758273239228-04a19ba5a1b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmZsdWVuY2VyJTIwc2VsZmllfGVufDB8fHx8MTc2MTE1ODM1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "influencer selfie"
+      },
+      {
+        "id": "additional-services-category",
+        "description": "A person editing a photo on a computer.",
+        "imageUrl": "https://images.unsplash.com/photo-1744948961024-66baaafbb5dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwaG90byUyMGVkaXRpbmd8ZW58MHx8fHwxNzYxMTMwNTk2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "photo editing"
+      },
+      {
+        "id": "personal-portrait-1",
+        "description": "A closeup portrait of a man with interesting facial features.",
+        "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3J0cmFpdCUyMG1hbnxlbnwwfHx8fDE3NjEwNjM2MTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "portrait man"
+      },
+      {
+        "id": "personal-portrait-2",
+        "description": "An environmental portrait of a woman in a sunlit field.",
+        "imageUrl": "https://images.unsplash.com/photo-1625832954356-6ddaffc45853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGZpZWxkfGVufDB8fHx8MTc2MTE1OTY4NHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "woman field"
+      },
+      {
+        "id": "family-portrait-1",
+        "description": "A happy family laughing together in a park.",
+        "imageUrl": "https://images.unsplash.com/photo-1460788150444-d9dc07fa9dba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmYW1pbHklMjBwYXJrfGVufDB8fHx8MTc2MTA5NjcwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "family park"
+      },
+      {
+        "id": "family-portrait-2",
+        "description": "A tender moment between a mother and her child.",
+        "imageUrl": "https://images.unsplash.com/photo-1658928785630-78f3cda48e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3RoZXIlMjBjaGlsZHxlbnwwfHx8fDE3NjEwNzQ3Njh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "mother child"
+      },
+      {
+        "id": "baby-kids-1",
+        "description": "A cute baby smiling.",
+        "imageUrl": "https://images.unsplash.com/photo-1630304565761-d6f8d5a0facd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjdXRlJTIwYmFieXxlbnwwfHx8fDE3NjEwNjc1MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "cute baby"
+      },
+      {
+        "id": "baby-kids-2",
+        "description": "Kids playing outdoors.",
+        "imageUrl": "https://images.unsplash.com/photo-1613794713137-a78aba4be84a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraWRzJTIwcGxheWluZ3xlbnwwfHx8fDE3NjExMzc2Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "kids playing"
+      },
+      {
+        "id": "headshots-1",
+        "description": "Professional headshot of a businessman.",
+        "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjEwODY0MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "professional headshot"
+      },
+      {
+        "id": "headshots-2",
+        "description": "Creative headshot of an artist.",
+        "imageUrl": "https://images.unsplash.com/photo-1541293590517-e76751af59f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcnRpc3QlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "artist headshot"
+      },
+      {
+        "id": "fashion-shoots-1",
+        "description": "A model in avant-garde clothing in a studio setting.",
+        "imageUrl": "https://images.unsplash.com/photo-1474666488182-66ec723476c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXNoaW9uJTIwc3R1ZGlvfGVufDB8fHx8MTc2MTE0NDE4OXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "fashion studio"
+      },
+      {
+        "id": "fashion-shoots-2",
+        "description": "A dynamic shot of a model walking down a city street.",
+        "imageUrl": "https://images.unsplash.com/photo-1696159976626-40c781858e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXNoaW9uJTIwc3RyZWV0fGVufDB8fHx8MTc2MTE0MjY1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "fashion street"
+      },
+      {
+        "id": "magazine-editorial-1",
+        "description": "A storytelling image for a magazine.",
+        "imageUrl": "https://images.unsplash.com/photo-1641137806473-5fe07dd62d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWdhemluZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "magazine editorial"
+      },
+      {
+        "id": "magazine-editorial-2",
+        "description": "High fashion concept shot.",
+        "imageUrl": "https://images.unsplash.com/photo-1485518882345-15568b007407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxoaWdoJTIwZmFzaGlvbnxlbnwwfHx8fDE3NjExMjc0MDl8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "high fashion"
+      },
+      {
+        "id": "portfolio-creation-1",
+        "description": "A model's portfolio with diverse looks.",
+        "imageUrl": "https://images.unsplash.com/photo-1635420714630-39f59e9f4600?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2RlbCUyMHBvcnRmb2xpb3xlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "model portfolio"
+      },
+      {
+        "id": "portfolio-creation-2",
+        "description": "Close up of a model's face.",
+        "imageUrl": "https://images.unsplash.com/photo-1567022449718-a5c02a1242fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW9kZWwlMjBjbG9zZXVwfGVufDB8fHx8MTc2MTE1OTk4Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "model closeup"
+      },
+      {
+        "id": "boudoir-shoots-1",
+        "description": "An elegant boudoir photo.",
+        "imageUrl": "https://images.unsplash.com/photo-1728241965045-90b72c552d68?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVnYW50JTIwYm91ZG9pcnxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "elegant boudoir"
+      },
+      {
+        "id": "boudoir-shoots-2",
+        "description": "A sensual portrait.",
+        "imageUrl": "https://images.unsplash.com/photo-1637496046020-a4c1a03b870f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzZW5zdWFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxMTU0ODQ2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "sensual portrait"
+      },
+      {
+        "id": "brand-shoots-1",
+        "description": "A lifestyle shot for a brand campaign.",
+        "imageUrl": "https://images.unsplash.com/photo-1544635350-0b6d55caf30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxicmFuZCUyMGxpZmVzdHlsZXxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "brand lifestyle"
+      },
+      {
+        "id": "brand-shoots-2",
+        "description": "Product in use by a model.",
+        "imageUrl": "https://images.unsplash.com/photo-1597695172083-277df5cedec3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9kdWN0JTIwbW9kZWx8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "product model"
+      },
+      {
+        "id": "product-photography-1",
+        "description": "A cosmetic product with a clean, white background.",
+        "imageUrl": "https://images.unsplash.com/photo-1758613655900-61957c2aca5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3NtZXRpY3MlMjBzdHVkaW98ZW58MHx8fHwxNzYxMTU5Njg0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "cosmetics studio"
+      },
+      {
+        "id": "product-photography-2",
+        "description": "A piece of electronics shot with dramatic lighting.",
+        "imageUrl": "https://images.unsplash.com/photo-1636614223954-db6a663293ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJvbmljcyUyMHByb2R1Y3R8ZW58MHx8fHwxNzYxMTU5Njg0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "electronics product"
+      },
+      {
+        "id": "ecommerce-photography-1",
+        "description": "Clothing on a mannequin for an e-commerce store.",
+        "imageUrl": "https://images.unsplash.com/photo-1558234200-3efd43232f08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxlY29tbWVyY2UlMjBjbG90aGluZ3xlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "ecommerce clothing"
+      },
+      {
+        "id": "ecommerce-photography-2",
+        "description": "A collection of products for an online shop.",
+        "imageUrl": "https://images.unsplash.com/photo-1631982690223-8a0398f8243a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwY29sbGVjdGlvbnxlbnwwfHx8fDE3NjExNTk5ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "product collection"
+      },
+      {
+        "id": "wedding-photography-1",
+        "description": "A bride and groom exchanging vows.",
+        "imageUrl": "https://images.unsplash.com/photo-1606800052052-a08af7148866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWRkaW5nJTIwY2VyZW1vbnl8ZW58MHx8fHwxNzYxMTMzMDU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding ceremony"
+      },
+      {
+        "id": "wedding-photography-2",
+        "description": "A detailed shot of wedding rings.",
+        "imageUrl": "https://images.unsplash.com/photo-1606800052052-a08af7148866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmluZ3N8ZW58MHx8fHwxNzYxMDk5ODI2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding rings"
+      },
+      {
+        "id": "pre-wedding-shoots-1",
+        "description": "A couple on a pre-wedding photoshoot.",
+        "imageUrl": "https://images.unsplash.com/photo-1671531776382-f32dff368120?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcmUtd2VkZGluZyUyMGNvdXBsZXxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlibrb-4.1.0&q=80&w=1080",
+        "imageHint": "pre-wedding couple"
+      },
+      {
+        "id": "pre-wedding-shoots-2",
+        "description": "An engagement photo session in a scenic location.",
+        "imageUrl": "https://images.unsplash.com/photo-1669789756658-af7c567eb658?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbmdhZ2VtZW50JTIwc2Vzc2lvbnxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "engagement session"
+      },
+      {
+        "id": "event-photography-1",
+        "description": "Guests at a corporate event.",
+        "imageUrl": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb3Jwb3JhdGUlMjBldmVudHxlbnwwfHx8fDE3NjExNDI2MjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "corporate event"
+      },
+      {
+        "id": "event-photography-2",
+        "description": "A birthday party celebration.",
+        "imageUrl": "https://images.unsplash.com/photo-1631857455684-a54a2f033665f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiaXJ0aGRheSUyMHBhcnR5fGVufDB8fHx8MTc2MTA0MTM0N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "birthday party"
+      },
+      {
+        "id": "live-streaming-1",
+        "description": "A live streaming setup for an event.",
+        "imageUrl": "https://images.unsplash.com/photo-1522327646852-4e28586a40dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGl2ZSUyMHN0cmVhbWluZ3xlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "live streaming"
+      },
+      {
+        "id": "live-streaming-2",
+        "description": "A camera broadcasting a live event.",
+        "imageUrl": "https://images.unsplash.com/photo-1760895223972-57b1d858d77e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsaXZlJTIwYnJvYWRjYXN0fGVufDB8fHx8MTc2MTA3MDAyMXww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "live broadcast"
+      },
+      {
+        "id": "real-estate-1",
+        "description": "The exterior of a modern house.",
+        "imageUrl": "https://images.unsplash.com/photo-1613977257363-707ba9348227?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBob3VzZXxlbnwwfHx8fDE3NjEwNzA3NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "modern house"
+      },
+      {
+        "id": "real-estate-2",
+        "description": "A bright and airy kitchen in a home for sale.",
+        "imageUrl": "https://images.unsplash.com/photo-1635321350281-e2a91ecffd00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraXRjaGVuJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzYxMTUwNTM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "kitchen interior"
+      },
+      {
+        "id": "architectural-1",
+        "description": "A stunning architectural detail of a building.",
+        "imageUrl": "https://images.unsplash.com/photo-1671632991795-3a5990ab5d1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwZGV0YWlsfGVufDB8fHx8MTc2MTEyMTQxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "architectural detail"
+      },
+      {
+        "id": "architectural-2",
+        "description": "The facade of a skyscraper.",
+        "imageUrl": "https://images.unsplash.com/photo-1566478400307-97e695ff2c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxza3lzY3JhcGVyJTIwZmFjYWRlfGVufDB8fHx8MTc2MTEyNDYyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "skyscraper facade"
+      },
+      {
+        "id": "celebrity-shoots-1",
+        "description": "A celebrity posing for a magazine cover.",
+        "imageUrl": "https://images.unsplash.com/photo-1615229334052-94fc1f7e2482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2VsZWJyaXR5JTIwcGhvdG9zaG9vdHxlbnwwfHx8fDE3NjExNTk5ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "celebrity photoshoot"
+      },
+      {
+        "id": "celebrity-shoots-2",
+        "description": "A candid shot of a famous actor.",
+        "imageUrl": "https://images.unsplash.com/photo-1758525589410-d0a824b7d59c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYW5kaWQlMjBjZWxlYnJpdHl8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "candid celebrity"
+      },
+      {
+        "id": "influencer-content-1",
+        "description": "An influencer creating content for social media.",
+        "imageUrl": "https://images.unsplash.com/photo-1759393852314-59dc00faeed3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpbmZsdWVuY2VyJTIwY29udGVudHxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "influencer content"
+      },
+      {
+        "id": "influencer-content-2",
+        "description": "Flatlay of products for an influencer post.",
+        "imageUrl": "https://images.unsplash.com/photo-1629640013132-30943b2cf15b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9kdWN0JTIwZmxhdGxheXxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "product flatlay"
+      },
+      {
+        "id": "photo-editing-1",
+        "description": "Before and after photo retouching.",
+        "imageUrl": "https://images.unsplash.com/photo-1651245009905-a771d3b487cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwaG90byUyMHJldG91Y2hpbmd8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "photo retouching"
+      },
+      {
+        "id": "photo-editing-2",
+        "description": "A color grading example.",
+        "imageUrl": "https://images.unsplash.com/photo-1604073536770-8a33e332f830?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb2xvciUyMGdyYWRpbmd8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "color grading"
+      },
+      {
+        "id": "video-editing-1",
+        "description": "A cinematic video edit.",
+        "imageUrl": "https://images.unsplash.com/photo-1706300896496-9f8744e10455?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaW5lbWF0aWMlMjB2aWRlb3xlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "cinematic video"
+      },
+      {
+        "id": "video-editing-2",
+        "description": "A social media reel.",
+        "imageUrl": "https://images.unsplash.com/photo-1724862936518-ae7fcfc052c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzb2NpYWwlMjBtZWRpYXxlbnwwfHx8fDE3NjEwNzE4MDZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "social media"
+      },
+      {
+        "id": "album-design-1",
+        "description": "A beautifully designed photo album.",
+        "imageUrl": "https://images.unsplash.com/photo-1676883344237-a99061339b06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwaG90byUyMGFsYnVtfGVufDB8fHx8MTc2MTE1OTk4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "photo album"
+      },
+      {
+        "id": "album-design-2",
+        "description": "A wedding album layout.",
+        "imageUrl": "https://images.unsplash.com/photo-1675186253268-d37cf7f95719?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWRkaW5nJTIwYWxidW18ZW58MHx8fHwxNzYxMTMzOTE4fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding album"
+      },
+      {
+        "id": "drone-photography-1",
+        "description": "An aerial view of a landscape.",
+        "imageUrl": "https://images.unsplash.com/photo-1617121062439-0a9a1f41f080?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhZXJpYWwlMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzYxMTIyMDU2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "aerial landscape"
+      },
+      {
+        "id": "drone-photography-2",
+        "description": "A drone shot of a property.",
+        "imageUrl": "https://images.unsplash.com/photo-1641441371947-47dd2f4a4276?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkcm9uZSUyMHByb3BlcnR5fGVufDB8fHx8MTc2MTE1OTk4Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "drone property"
+      },
+      {
+        "id": "food-photography-1",
+        "description": "A vibrant and delicious-looking plate of food, professionally styled and photographed.",
+        "imageUrl": "https://images.unsplash.com/photo-1598214886806-2c88b7541f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmb29kJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzE2MjgwMzYyfDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "food photography"
+      },
+      {
+        "id": "food-photography-2",
+        "description": "A close-up shot of a chef meticulously plating a dish.",
+        "imageUrl": "https://images.unsplash.com/photo-1551218808-94e220e084d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaGVmJTIwcGxhdGluZ3xlbnwwfHx8fDE3MTYyODA0MDV8MA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "chef plating"
+      },
+      {
+        "id": "food-portfolio-1",
+        "description": "Dark and moody shot of a rustic pizza.",
+        "imageUrl": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaXp6YSUyMGZvb2R8ZW58MHx8fHwxNzE2MjgwNDQyfDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "pizza food"
+      },
+      {
+        "id": "food-portfolio-2",
+        "description": "Bright and colorful image of a fresh salad.",
+        "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmcmVzaCUyMHNhbGFkfGVufDB8fHx8MTcxNjI4MDQ4N3ww&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageHint": "fresh salad"
+      },
+      {
+        "id": "food-portfolio-3",
+        "description": "Action shot of syrup being poured over pancakes.",
+        "imageUrl": "https://images.unsplash.com/photo-1559828873-9457c09374c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwYW5jYWtlcyUyMHN5cnVwfGVufDB8fHx8MTcxNjI4MDUxNXww&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageHint": "pancakes syrup"
+      },
+      {
+        "id": "food-portfolio-4",
+        "description": "A flat lay of various Indian dishes.",
+        "imageUrl": "https://images.unsplash.com/photo-1626779979943-8a0398f8243a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmb29kJTIwZmxhdGxheXxlbnwwfHx8fDE3MTYyODA1NDV8MA&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageHint": "indian food"
+      },
+      {
+        "id": "podcast-recording",
+        "description": "Two people talking into microphones in a professional podcast recording studio.",
+        "imageUrl": "https://images.unsplash.com/photo-1590602848952-03381e5731e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb2RjYXN0JTIwcmVjb3JkaW5nfGVufDB8fHx8MTc2MTIzMzMxN3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "podcast recording"
+      },
+      {
+        "id": "podcast-editing",
+        "description": "A person editing audio waveforms on a computer screen for a podcast.",
+        "imageUrl": "https://images.unsplash.com/photo-1629237691511-add52599eb9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb2RjYXN0JTIwZWRpdGluZ3xlbnwwfHx8fDE3NjEyMzMzMzd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "podcast editing"
+      },
+      {
+        "id": "podcast-setup",
+        "description": "A professional podcast studio setup with microphones, headphones, and acoustic panels.",
+        "imageUrl": "https://images.unsplash.com/photo-1645548979753-8fd5fd389aa2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1371",
+        "imageHint": "podcast studio"
+      },
+      {
+        "id": "podcast-gear",
+        "description": "Close-up of a professional podcasting microphone and headphones.",
+        "imageUrl": "https://images.unsplash.com/photo-1593954203848-0b53ff29b23b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb2RjYXN0JTIwbWljcm9waG9uZXxlbnwwfHx8fDE3NjEyMzMzNzN8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "podcast microphone"
+      },
+      {
+        "id": "sensual-portrait",
+        "description": "A sensual portrait focusing on mood and shadow.",
+        "imageUrl": "https://images.unsplash.com/photo-1618332158577-3b6d53861f0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzZW5zdWFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxMTU0ODQ2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "sensual portrait"
+      },
+      {
+        "id": "portrait-woman",
+        "description": "A classic portrait of a woman.",
+        "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMHdvbWFufGVufDB8fHx8MTc2MTE1MDkzNHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "portrait woman"
+      },
+      {
+        "id": "elegant-boudoir",
+        "description": "Elegant boudoir shot with soft lighting.",
+        "imageUrl": "https://images.unsplash.com/photo-1611601339933-15a9359e995c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYm91ZG9pcnxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "elegant boudoir"
+      },
+      {
+        "id": "modern-interior",
+        "description": "A modern and sleek living room interior.",
+        "imageUrl": "https://images.unsplash.com/photo-1600121848594-d8644e57abab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjEwODY3Nzl8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "modern interior"
+      },
+      {
+        "id": "kitchen-interior",
+        "description": "A stylish and modern kitchen interior design.",
+        "imageUrl": "https://images.unsplash.com/photo-1556911220-bff31c812dba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzYxMTUwNTM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "kitchen interior"
+      },
+      {
+        "id": "drone-property",
+        "description": "Aerial drone shot of a residential property.",
+        "imageUrl": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkcm9uZSUyMHByb3BlcnR5fGVufDB8fHx8MTc2MTE1OTk4Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "drone property"
+      },
+      {
+        "id": "candid-celebrity",
+        "description": "A candid-style shot of a celebrity.",
+        "imageUrl": "https://images.unsplash.com/photo-1588092288448-c2b6f4a3f3a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjYW5kaWQlMjBjZWxlYnJpdHl8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "candid celebrity"
+      },
+      {
+        "id": "color-grading",
+        "description": "A sample image showing professional color grading.",
+        "imageUrl": "https://images.unsplash.com/photo-1582738412033-28e458c6d357?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2xvciUyMGdyYWRpbmd8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "color grading"
+      },
+      {
+        "id": "wedding-album",
+        "description": "An open wedding album displaying beautiful photos.",
+        "imageUrl": "https://images.unsplash.com/photo-1597854483707-d4f1349b1a23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwYWxidW18ZW58MHx8fHwxNzYxMTMzOTE4fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding album"
+      },
+      {
+        "id": "aerial-landscape",
+        "description": "A stunning aerial drone shot of a beautiful landscape.",
+        "imageUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhZXJpYWwlMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzYxMTIyMDU2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "aerial landscape"
+      },
+      {
+        "id": "corporate-event",
+        "description": "People networking at a corporate event.",
+        "imageUrl": "https://images.unsplash.com/photo-1549591061-f9b8d2a6e5b2?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3Jwb3JhdGUlMjBldmVudHxlbnwwfHx8fDE3NjExNDI2MjF8MA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "corporate event"
+      },
+      {
+        "id": "birthday-party",
+        "description": "Decorations and cake at a birthday party.",
+        "imageUrl": "https://images.unsplash.com/photo-1587880908865-c3e601509b7c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiaXJ0aGRheSUyMHBhcnR5fGVufDB8fHx8MTc2MTA0MTM0N3ww&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "birthday party"
+      },
+      {
+        "id": "design-service-1",
+        "description": "A designer's desk with a laptop showing graphic design software.",
+        "imageUrl": "https://images.unsplash.com/photo-1626785774573-4b799315345d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmFwaGljJTIwZGVzaWdufGVufDB8fHx8MTc2MTU4MTkyMXww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "graphic design"
+      },
+      {
+        "id": "design-service-2",
+        "description": "A mood board with color swatches, images, and fonts.",
+        "imageUrl": "https://images.unsplash.com/photo-1541462608143-67571c6738dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb29kJTIwYm9hcmR8ZW58MHx8fHwxNzYxNTgxOTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "mood board"
+      },
+      {
+        "id": "social-media-kit",
+        "description": "A person scrolling through an Instagram feed on a smartphone.",
+        "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMGZlZWR8ZW58MHx8fHwxNzYxNTgyMDAxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "social media"
+      },
+      {
+        "id": "brand-collateral",
+        "description": "A collection of branded items like business cards, letterheads, and notebooks.",
+        "imageUrl": "https://images.unsplash.com/photo-1558655146-34a34e2c2f7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGNvbGxhdGVyYWx8ZW58MHx8fHwxNzYxNTgyMDMyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "brand collateral"
+      },
+      {
+        "id": "lookbook-design",
+        "description": "An open page of a high-fashion lookbook magazine.",
+        "imageUrl": "https://images.unsplash.com/photo-1587823548906-8d6b8i01a75c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXNoaW9uJTIwbWFgemluZXxlbnwwfHx8fDE3NjE1ODIwNzB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "fashion magazine"
+      },
+      {
+        "id": "marketing-material",
+        "description": "A stack of professionally designed brochures or flyers.",
+        "imageUrl": "https://images.unsplash.com/photo-1607556736295-d2243202521f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYXJrZXRpbmclMjBtYXRlcmlhbHN8ZW58MHx8fHwxNzYxNTgyMTEyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "marketing materials"
+      },
+      {
+        "id": "corporate-industrial-thumb",
+        "description": "A professional videographer filming in a modern corporate office.",
+        "imageUrl": "https://images.unsplash.com/photo-1752170080773-fed7758395c3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1351",
+        "imageHint": "corporate video"
+      },
+      {
+        "id": "corporate-ad",
+        "description": "A behind-the-scenes shot of a corporate advertisement being filmed.",
+        "imageUrl": "https://images.unsplash.com/photo-1583332488887-93332488887a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBhZHxlbnwwfHx8fDE3MTgyNTU4ODJ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "corporate ad"
+      },
+      {
+        "id": "office-tour",
+        "description": "A wide shot of a modern, bustling office environment, perfect for an office tour video.",
+        "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2V8ZW58MHx8fHwxNzE4MjU1OTQxfDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "modern office"
+      },
+      {
+        "id": "factory-tour",
+        "description": "A wide-angle shot of a clean, modern factory floor with machinery in operation.",
+        "imageUrl": "https://images.unsplash.com/photo-1629828514588-e25287713835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmYWN0b3J5JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzE4MjU2MDM2fDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "factory interior"
+      },
+      {
+        "id": "manufacturing-process",
+        "description": "A close-up, detailed shot of a robotic arm working on an assembly line.",
+        "imageUrl": "https://images.unsplash.com/photo-1629828514588-e25287713835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW51ZmFjdHVyaW5nJTIwcm9ib3R8ZW58MHx8fHwxNzE4MjU2MDY5fDA&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageHint": "manufacturing robot"
+      },
+      {
+        "id": "construction-timelapse",
+        "description": "A long-exposure shot of a construction site at dusk, showing light trails and progress.",
+        "imageUrl": "https://images.unsplash.com/photo-1531973576160-7125cd663d86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTcxODI1NjEwN3ww&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageHint": "construction site"
+      },
+      {
+        "id": "wedding-engagement",
+        "description": "Joyful couple celebrating their engagement at a party.",
+        "imageUrl": "https://images.unsplash.com/photo-1618995963245-197b172b036e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbmdhZ2VtZW50JTIwcGFydHl8ZW58MHx8fHwxNzgyNzM5Mjg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "engagement party"
+      },
+      {
+        "id": "wedding-prewedding",
+        "description": "A romantic couple during a pre-wedding photoshoot in a scenic location.",
+        "imageUrl": "https://images.unsplash.com/photo-1597831410294-43de9f1c7136?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBwcmV3ZWRkaW5nJTIwY291cGxlfGVufDB8fHx8MTc4MjczOTM0MHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "indian prewedding"
+      },
+      {
+        "id": "wedding-bridal",
+        "description": "A stunning portrait of an Indian bride in full traditional attire.",
+        "imageUrl": "https://images.unsplash.com/photo-1629334863371-d41a355653b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBicmlkYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODI3MzkzODR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "indian bridal"
+      },
+      {
+        "id": "wedding-rituals",
+        "description": "An Indian wedding ceremony showing sacred couple rituals.",
+        "imageUrl": "https://images.unsplash.com/photo-1622332152347-9cea2a1e6462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjB3ZWRkaW5nJTIwcml0dWFsc3xlbnwwfHx8fDE3ODI3Mzk0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding rituals"
+      },
+      {
+        "id": "wedding-family",
+        "description": "A happy family posing for a group photo at an Indian wedding.",
+        "imageUrl": "https://images.unsplash.com/photo-1631899169658-100a499a0c64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmlhbiUyMHdlZGRpbmclMjBmYW1pbHl8ZW58MHx8fHwxNzgyNzM5NDY3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding family"
+      },
+      {
+        "id": "wedding-reception",
+        "description": "A bride and groom at their wedding reception party.",
+        "imageUrl": "https://images.unsplash.com/photo-1597157635251-643c332c6643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc4MjczOTQ5N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding reception"
+      },
+      {
+        "id": "wedding-category-prewedding",
+        "description": "A joyful Haldi ceremony in progress.",
+        "imageUrl": "https://images.unsplash.com/photo-1616164283620-8a1c1d0b5e4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBoYWxkaSUyMGNlcmVtb255fGVufDB8fHx8MTc5MTAzNjQ0OHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "haldi ceremony"
+      },
+      {
+        "id": "wedding-category-day",
+        "description": "Close up of bride and groom's hands during a wedding ritual.",
+        "imageUrl": "https://images.unsplash.com/photo-1588392160935-9494374199d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjB3ZWRkaW5nJTIwcml0dWFsc3xlbnwwfHx8fDE3ODI3Mzk0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding rituals"
+      },
+      {
+        "id": "wedding-category-family",
+        "description": "A candid emotional moment between a bride and her mother.",
+        "imageUrl": "https://images.unsplash.com/photo-1618778892182-551e6b399120?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmlhbiUyMHdlZGRpbmclMjBlbW90aW9uc3xlbnwwfHx8fDE3OTEwMzY1NTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding emotions"
+      },
+      {
+        "id": "wedding-category-post",
+        "description": "A newly married couple walking on a beach at sunset.",
+        "imageUrl": "https://images.unsplash.com/photo-1604997191194-7e04c35b3426?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3N0JTIwd2VkZGluZyUyMGNvdXBsZXxlbnwwfHx8fDE3OTEwMzY1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "post-wedding couple"
+      },
+      {
+        "id": "wedding-category-creative",
+        "description": "A drone shot overlooking a grand wedding venue.",
+        "imageUrl": "https://images.unsplash.com/photo-1600021692226-4d5a901844d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwZHJvbmV8ZW58MHx8fHwxNzkxMDM2NjI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding drone"
+      },
+      {
+        "id": "wedding-services-bg",
+        "description": "Close-up of a traditionally dressed Indian bride's hands and jewelry.",
+        "imageUrl": "https://images.unsplash.com/photo-1617983635951-872b7a9f60bb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "imageHint": "indian bride"
+      },
+      {
+        "id": "wedding-live-stream",
+        "description": "A professional camera setup for live streaming a wedding ceremony.",
+        "imageUrl": "https://images.unsplash.com/photo-1631899169658-100a499a0c64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwbGl2ZSUyMHN0cmVhbXxlbnwwfHx8fDE3OTEwNDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding live"
+      },
+      {
+        "id": "corporate-live-stream",
+        "description": "A speaker presenting at a corporate event being live-streamed.",
+        "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjB3ZWJpbmFyfGVufDB8fHx8MTc5MTA0MTIxM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "corporate webinar"
+      },
+      {
+        "id": "equipment-lighting",
+        "description": "A professional video lighting setup with softboxes and LED panels around a person being interviewed.",
+        "imageUrl": "https://images.unsplash.com/photo-1603561588612-927157a8b4f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsaWdodGluZyUyMHNldHVwfGVufDB8fHx8MTc5MTExMjM1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "lighting setup"
+      },
+      {
+        "id": "equipment-cameras",
+        "description": "A multi-camera production setup with video cameras on tripods pointed towards a stage.",
+        "imageUrl": "https://images.unsplash.com/photo-1575919385628-98e841893110?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtdWx0aSUyMGNhbWVyYSUyMHNldHVwfGVufDB8fHx8MTc5MTExMjM5M3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageHint": "multi camera"
+      },
+      {
+        "id": "equipment-audio",
+        "description": "A professional audio mixer with many channels, faders, and knobs.",
+        "imageUrl": "https://images.unsplash.com/photo-1599999589839-434548545806?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdWRpbyUyMG1peGVyfGVufDB8fHx8MTc5MTExMjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "audio mixer"
+      },
+      {
+        "id": "wedding-gear",
+        "description": "A flat lay of professional wedding photography gear, including a full-frame camera, lenses, and flash.",
+        "imageUrl": "https://images.unsplash.com/photo-1519685360792-0a9b1d935492?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcGhvdG9ncmFwaHklMjBnZWFyfGVufDB8fHx8MTc5MTExNTQxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "wedding gear"
+      }
+    ]
+  }

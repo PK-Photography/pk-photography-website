@@ -32,6 +32,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "images.unsplash.com",
       "pk.thetechthingy.com",
+      "picsum.photos",
       "localhost",
       "pkprod.s3.ap-south-1.amazonaws.com",
     ],

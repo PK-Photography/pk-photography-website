@@ -20,6 +20,7 @@
     "@tsparticles/slim": "^3.8.1",
     "axios": "^1.7.9",
     "browser-image-compression": "^2.0.2",
+    "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "file-saver": "^2.0.5",
@@ -33,6 +34,7 @@
     "motion": "^12.5.0",
     "next": "14.2.4",
     "next-auth": "^4.24.11",
+    "radix-ui": "^1.4.3",
     "react": "^18",
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.5",
@@ -48,7 +50,8 @@
     "slick-carousel": "^1.8.1",
     "split-text-js": "^1.0.3",
     "styled-components": "^6.1.17",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

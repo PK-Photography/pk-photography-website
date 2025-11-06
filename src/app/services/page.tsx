@@ -1,200 +1,139 @@
-"use client";
+'use client';
 
-import Card from "@/components/ServicesCard/Card";
-import { useEffect, useState } from "react";
-import React from "react";
-import Marquee from "react-fast-marquee";
-import Image from "next/image";
-import Banner from "@/components/servicesPage/Banner";
-const backgroundVideo1 = "/servicesPage/corporate.mp4";
-const backgroundVideo2 = "/servicesPage/danceVideo.mp4";
-const fallbackImage = "/servicesPage/event.jpg";
+import { useState, useTransition, useMemo, useEffect } from 'react';
+import { photographyCategories, allServices } from '@/lib/photography-data';
+import type { Category } from '@/lib/types';
+import { Button } from '@/components/ui/button';
+import ServiceCard from './ServiceCard';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import HeroSection from '@/components/HeroSection';
 
-const services = [
-  {
-    title: "Brand Shoot",
-    description: "Elevate your brand with stunning visuals",
-    image: "/servicesPage/brandShoot.jpg",
-    link: "/brandshoot"
+const containerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
   },
-  {
-    title: "Headshots",
-    description: "Professional. Polished. You.",
-    image: "/servicesPage/corporate.jpg",
-    link: "/headshots",
-  },
+};
 
-  {
-    title: "Weddings",
-    description: "Real moments. Lasting memories",
-    image: "/servicesPage/wedding.jpg",
-    link: "/wedding",
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
   },
-  {
-    title: "Real Estate",
-    description: "Highlight every detail beautifully",
-    image: "/servicesPage/realEstate.jpg",
-    link: "/realestate",
-  },
-  {
-    title: "Celebrity",
-    description: "Star quality. On demand",
-    image: "/servicesPage/celebrity.jpg",
-    link: "/celebrity",
-  },
+};
 
-  {
-    title: "Portrait",
-    description: "Timeless portraits that reflect you",
-    image: "/servicesPage/portrait.jpg",
-    link: "/portrait",
-  },
+const featuredServiceIds = ['weddings', 'events', 'portraits-headshots', 'editorial-portfolio'];
 
-  {
-    title: "Portfolio",
-    description: "Prodessional headshots that speak success",
-    image: "/servicesPage/portfolio.jpg",
-    link: "/portfolio"
-  },
-  {
-    title: "E‑Commerce",
-    description: "Sell more with crisp visuals",
-    image: "/servicesPage/ecommerce.jpg",
-    link: "/ecommerce"
-  },
-  {
-    title: "Products",
-    description: "Make your product stand out",
-    image: "/servicesPage/product.jpg",
-    link: "/ads",
-  },
+export default function ServicesPage() {
+  const getCategoryFromUrl = (): string | null => {
+    if (typeof window === 'undefined') return null;
+    const p = new URLSearchParams(window.location.search);
+    return p.get('category');
+  };
 
-  {
-    title: "Editorials",
-    description: "Magazine‑worthy visuals",
-    image: "/servicesPage/editorial.jpg",
-    link: "/editorial",
-  },
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(getCategoryFromUrl());
+  const [isPending, startTransition] = useTransition();
 
-  {
-    title: "Boudoir",
-    description: "Elegant. Empowering. Intimate",
-    image: "/servicesPage/boudoir2.jpg",
-    link: "/boudoir",
-  },
-  {
-    title: "Baby",
-    description: "Capture the joy of your little one",
-    image: "/servicesPage/baby-photoshoot.jpg",
-    link: "/baby",
-  },
-  {
-    title: "Outdoor",
-    description: "Capture the beauty of nature",
-    image: "/servicesPage/outdoor.jpg",
-    link: "/portrait",
-  },
-  {
-    title: "Festival",
-    description: "Celebrate with vibrant festival photography",
-    image: "/servicesPage/festival.jpg",
-    link: "/portrait",
-  },
-];
-
-const marqueeData = [
-  { src: "/corousal/img1.jpg", width: 350, height: 450 },
-  { src: "/corousal/img2.jpg", width: 700, height: 450 },
-  { src: "/corousal/img3.jpg", width: 350, height: 450 },
-  { src: "/corousal/img4.jpg", width: 700, height: 450 },
-  { src: "/corousal/img5.jpg", width: 350, height: 450 },
-  { src: "/corousal/img6.jpg", width: 350, height: 450 },
-  { src: "/corousal/img7.jpg", width: 350, height: 450 },
-  { src: "/corousal/img8.jpg", width: 350, height: 450 },
-  { src: "/corousal/img9.jpg", width: 350, height: 450 },
-  { src: "/corousal/img10.jpg", width: 700, height: 450 },
-  { src: "/corousal/img11.jpg", width: 350, height: 450 },
-];
-
-export default function Service() {
-  const title = "Events That Impress";
-  const description = "Heartfelt moments, beautifully preserved";
-
-  const [speed, setSpeed] = useState(50); // default speed
-
+  // sync when user navigates via browser (back/forward)
   useEffect(() => {
-    const updateSpeed = () => {
-      if (window.innerWidth <= 768) {
-        setSpeed(80);
-      } else {
-        setSpeed(50);
-      }
+    const onPop = () => {
+      setSelectedCategory(getCategoryFromUrl());
     };
-
-    updateSpeed();
-    window.addEventListener("resize", updateSpeed);
-
-    return () => window.removeEventListener("resize", updateSpeed);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
+
+  const handleCategorySelect = (categoryId: string | null) => {
+    startTransition(() => {
+      setSelectedCategory(categoryId);
+      const current = new URLSearchParams(window.location.search);
+      if (categoryId) {
+        current.set('category', categoryId);
+      } else {
+        current.delete('category');
+      }
+      const search = current.toString();
+      const query = search ? `?${search}` : '';
+      window.history.pushState(null, '', `${window.location.pathname}${query}`);
+    });
+  };
+
+  const servicesToShow = useMemo(() => {
+    const baseServices = selectedCategory
+      ? photographyCategories.find((cat) => cat.id === selectedCategory)?.services || []
+      : allServices;
+
+    const featured = baseServices.filter((s) => featuredServiceIds.includes(s.id));
+    const nonFeatured = baseServices.filter((s) => !featuredServiceIds.includes(s.id));
+
+    return [...featured, ...nonFeatured];
+  }, [selectedCategory]);
+
   return (
     <>
-      <Banner
-        fallbackImage={fallbackImage}
-        backgroundVideo1={backgroundVideo1}
-        backgroundVideo2={backgroundVideo2}
-        title={title}
-        description={description}
-      />
+      <HeroSection />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4">
-        {services.map((card, idx) => (
-          <Card key={idx} {...card} />
-        ))}
-      </div>
+      <section id="services" className="container mx-auto max-w-screen-xl py-12 px-4 sm:py-16 lg:py-20">
+        <div className="text-center mb-10">
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">Our Services</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            Explore our range of professional photography services tailored to your needs.
+          </p>
+        </div>
 
-      <h2 className="max-w-3xl mx-auto text-center my-[7%] text-4xl md:text-5xl font-bold mb-4">
-        Capturing Life&apos;s Moments with Passion and Precision
-      </h2>
-
-      <Marquee speed={speed} gradient={false} className="py-4">
-        {marqueeData.map((image, idx) => (
-          <div
-            key={idx}
-            className="relative mx-4 flex flex-col items-center justify-center rounded-2xl overflow-hidden shadow-md bg-black"
-            style={{
-              width: image.width,
-              height: image.height,
-              maxWidth: image.width,
-              maxHeight: image.height,
-            }}
+        <div className="flex justify-center flex-wrap gap-2 mb-10">
+          <Button
+            variant={!selectedCategory ? 'default' : 'outline'}
+            onClick={() => handleCategorySelect(null)}
+            className="rounded-full"
           >
-            <Image
-              src={image.src}
-              alt={`marquee-${idx}`}
-              width={image.width}
-              height={image.height}
-              className="rounded-2xl object-cover w-full h-full"
-              style={{ width: "100%", height: "100%" }}
-            />
-          </div>
-        ))}
-      </Marquee>
+            All Services
+          </Button>
 
-      <div className=" max-w-3xl mx-auto text-center my-[7%]">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          Book Your Photo Session
-        </h2>
-        <p className="text-lg mx-4 md:mx-0 md:text-xl mb-8 ">
-          From portraits to product shots, we capture your vision with
-          professional quality and care.
-        </p>
-        <a
-          href="/booking"
-          className="inline-block bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-full transition duration-300"
+          {photographyCategories.map((category: Category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? 'default' : 'outline'}
+              onClick={() => handleCategorySelect(category.id)}
+              className="rounded-full"
+            >
+              {category.name}
+            </Button>
+          ))}
+        </div>
+
+        <motion.div
+          key={selectedCategory || 'all'}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-opacity duration-300 ${
+            isPending ? 'opacity-50' : 'opacity-100'
+          }`}
         >
-          Book With Us
-        </a>
-      </div>
+          <AnimatePresence>
+            {servicesToShow.map((service) => (
+              <motion.div
+                key={service.id}
+                variants={itemVariants}
+                layout
+                className={cn(featuredServiceIds.includes(service.id) && 'lg:z-10')}
+              >
+                <ServiceCard service={service} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </section>
     </>
   );
 }

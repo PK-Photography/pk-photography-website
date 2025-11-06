@@ -135,12 +135,12 @@ export default function ServicePageContent({ service }: { service: Service }) {
                     )}
                 </div>
                 <div className="space-y-6 text-center md:text-left md:order-first">
-                <h2 className="font-headline text-2xl md:text-4xl text-primary text-center">About Our {service.name} Services</h2>
+                <h2 className="font-headline text-2xl md:text-4xl text-[#517587] text-center">About Our {service.name} Services</h2>
                 <div className="text-muted-foreground text-base md:text-lg leading-relaxed">
                   <p className={isAboutExpanded ? '' : 'line-clamp-4 md:line-clamp-none'}>
                       {pageContent.longDescription}
                   </p>
-                  <button onClick={() => setIsAboutExpanded(!isAboutExpanded)} className="text-primary font-semibold mt-2 md:hidden">
+                  <button onClick={() => setIsAboutExpanded(!isAboutExpanded)} className="text-[#557C8A] font-semibold mt-2 md:hidden">
                       {isAboutExpanded ? 'Read Less' : 'Read More'}
                   </button>
                 </div>
@@ -204,7 +204,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
               <div className="grid md:grid-cols-2 gap-8 items-start">
               {pageContent.whyChooseUs.map((item, index) => (
                 <div key={index} className="flex items-start gap-4">
-                  <Check className="h-8 w-8 text-accent mt-1 shrink-0" />
+                  <Check className="h-8 w-8 text-[#4CAF50] mt-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg mb-1">{item.split(':')[0]}</h3>
                     <p className="text-muted-foreground text-base hidden md:block">{item.split(': ')[1]}</p>
@@ -219,7 +219,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
         {pageContent.process && pageContent.process.length > 0 && (
           <div className="py-12">
             <section>
-              <h2 className="font-headline text-2xl md:text-3xl mb-12 text-center">Our Seamless Process</h2>
+              <h2 className="font-headline text-2xl md:text-3xl mb-12 text-center text-[#557C8A]">Our Seamless Process</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 {pageContent.process.map((step, index) => {
                    const Icon = (Icons as any)[step.icon] || Icons.HelpCircle;
@@ -238,13 +238,13 @@ export default function ServicePageContent({ service }: { service: Service }) {
                                     />
                                 )}
                                 <div className="absolute inset-0 bg-black/30" />
-                                <div className="absolute top-4 left-4 bg-primary/80 text-primary-foreground rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg backdrop-blur-sm">
+                                <div className="absolute top-4 left-4 bg-[#557C8A]/80 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg backdrop-blur-sm">
                                     {step.step}
                                 </div>
                             </div>
                           </CardHeader>
                           <CardContent className="p-6 flex-grow flex flex-col">
-                              <Icon className="h-8 w-8 text-primary mb-4" />
+                              <Icon className="h-8 w-8 text-[#557C8A] mb-4" />
                               <h3 className="font-headline text-xl mb-2">{step.title}</h3>
                               <p className="text-muted-foreground text-sm flex-grow hidden md:block">{step.description}</p>
                           </CardContent>
@@ -271,7 +271,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                         <CardHeader className="text-center pt-8">
                             <CardTitle className="font-headline text-2xl md:text-3xl">{pkg.name}</CardTitle>
                             <div className="pt-4 h-16 flex items-center justify-center">
-                                <p className="text-primary font-bold text-3xl font-headline">
+                                <p className="text-[#557C8A] font-bold text-3xl font-headline">
                                     {pkg.price}
                                 </p>
                             </div>
@@ -296,7 +296,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                 return (
                     <Card key={index} className={`flex flex-col rounded-xl shadow-lg transition-transform hover:-translate-y-2 duration-300 ${index === 1 && !pkg.price.toLowerCase().includes('quote') ? 'border-2 border-primary lg:scale-105 bg-card' : 'border bg-card/80'}`}>
                     {index === 1 && !pkg.price.toLowerCase().includes('quote') && (
-                        <div className="bg-primary text-primary-foreground text-center py-2 font-bold text-sm rounded-t-lg tracking-widest">MOST POPULAR</div>
+                        <div className="bg-[#557C8A] text-white text-center py-2 font-bold text-sm rounded-t-lg tracking-widest">MOST POPULAR</div>
                     )}
                     <>
                         <CardHeader className="text-center pt-8">
@@ -308,7 +308,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                                     {pkg.originalPrice}
                                 </span>
                                 )}
-                                <p className="text-primary font-bold text-3xl font-headline">
+                                <p className="text-[#557C8A] font-bold text-3xl font-headline">
                                     {pkg.price}
                                 </p>
                                 </div>
@@ -340,7 +340,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                     <Card className={`flex flex-col rounded-xl shadow-lg transition-transform hover:-translate-y-2 duration-300 h-full border bg-card/80`}>
                     <div className="p-8 flex flex-col h-full">
                         <CardTitle className="font-headline text-2xl md:text-3xl">{pageContent.customPackage.name}</CardTitle>
-                        <p className="text-primary font-bold text-3xl font-headline mt-2 mb-4">
+                        <p className="text-[#557C8A] font-bold text-3xl font-headline mt-2 mb-4">
                             {pageContent.customPackage.price}
                         </p>
                         <ul className="space-y-4 flex-grow">
@@ -381,7 +381,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
               <Accordion type="single" collapsible className="w-full space-y-4">
                   {pageContent.faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index} className="bg-secondary/50 rounded-lg px-4 border-l-4 border-primary">
-                      <AccordionTrigger className="text-base text-left font-semibold hover:no-underline [&[data-state=open]]:text-primary py-4">
+                      <AccordionTrigger className="text-base text-left font-semibold hover:no-underline [&[data-state=open]]:text-[#557C8A] py-4">
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="text-base text-muted-foreground pb-4 pr-4">
@@ -395,14 +395,14 @@ export default function ServicePageContent({ service }: { service: Service }) {
 
         {/* CTA */}
         <section className="text-center">
-            <Card className="bg-primary text-primary-foreground rounded-2xl">
+            <Card className="bg-[#557C8A] text-[#557C8A]-foreground rounded-2xl">
                 <CardContent className="p-8 md:p-12">
                     <Camera className="h-12 w-12 mx-auto mb-4"/>
                     <h2 className="font-headline text-3xl md:text-4xl mb-4">Ready to Capture Your Story?</h2>
-                    <p className="max-w-2xl mx-auto text-primary-foreground/80 mb-8 text-base">
+                    <p className="max-w-2xl mx-auto text-[#557C8A]-foreground/80 mb-8 text-base">
                         {`Let's create something beautiful together. Contact PK Photography today to discuss your project and book your session in Mumbai.`}
                     </p>
-                     <Button asChild size="lg" className="font-bold text-lg bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+                     <Button asChild size="lg" className="font-bold text-lg bg-[#557C8A]-foreground text-[#557C8A] hover:bg-[#557C8A]-foreground/90">
                         <Link href={`/booking/${service.id}`}>Inquire Now</Link>
                     </Button>
                 </CardContent>

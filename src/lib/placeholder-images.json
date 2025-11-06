@@ -177,7 +177,7 @@
       {
         "id": "ecommerce-photography-2",
         "description": "A collection of products for an online shop.",
-        "imageUrl": "https://images.unsplash.com/photo-1631982690223-8a0398f8243a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwY29sbGVjdGlvbnxlbnwwfHx8fDE3NjExNTk5ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1663061989677-8ca3b7fc2d16?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "product collection"
       },
       {
@@ -213,7 +213,7 @@
       {
         "id": "event-photography-2",
         "description": "A birthday party celebration.",
-        "imageUrl": "https://images.unsplash.com/photo-1631857455684-a54a2f033665f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiaXJ0aGRheSUyMHBhcnR5fGVufDB8fHx8MTc2MTA0MTM0N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1650584997985-e713a869ee77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "birthday party"
       },
       {
@@ -327,7 +327,7 @@
       {
         "id": "food-photography-1",
         "description": "A vibrant and delicious-looking plate of food, professionally styled and photographed.",
-        "imageUrl": "https://images.unsplash.com/photo-1598214886806-2c88b7541f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmb29kJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzE2MjgwMzYyfDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1702827677450-211231129988?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1990",
         "imageHint": "food photography"
       },
       {
@@ -351,25 +351,25 @@
       {
         "id": "food-portfolio-3",
         "description": "Action shot of syrup being poured over pancakes.",
-        "imageUrl": "https://images.unsplash.com/photo-1559828873-9457c09374c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwYW5jYWtlcyUyMHN5cnVwfGVufDB8fHx8MTcxNjI4MDUxNXww&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1649750207771-51c0e9901234?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "pancakes syrup"
       },
       {
         "id": "food-portfolio-4",
         "description": "A flat lay of various Indian dishes.",
-        "imageUrl": "https://images.unsplash.com/photo-1626779979943-8a0398f8243a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmb29kJTIwZmxhdGxheXxlbnwwfHx8fDE3MTYyODA1NDV8MA&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1742281257687-092746ad6021?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974",
         "imageHint": "indian food"
       },
       {
         "id": "podcast-recording",
         "description": "Two people talking into microphones in a professional podcast recording studio.",
-        "imageUrl": "https://images.unsplash.com/photo-1590602848952-03381e5731e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb2RjYXN0JTIwcmVjb3JkaW5nfGVufDB8fHx8MTc2MTIzMzMxN3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1668609045837-5e2de3b006c6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "podcast recording"
       },
       {
         "id": "podcast-editing",
         "description": "A person editing audio waveforms on a computer screen for a podcast.",
-        "imageUrl": "https://images.unsplash.com/photo-1629237691511-add52599eb9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb2RjYXN0JTIwZWRpdGluZ3xlbnwwfHx8fDE3NjEyMzMzMzd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1617540702506-89475a91c171?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2064",
         "imageHint": "podcast editing"
       },
       {
@@ -381,13 +381,13 @@
       {
         "id": "podcast-gear",
         "description": "Close-up of a professional podcasting microphone and headphones.",
-        "imageUrl": "https://images.unsplash.com/photo-1593954203848-0b53ff29b23b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb2RjYXN0JTIwbWljcm9waG9uZXxlbnwwfHx8fDE3NjEyMzMzNzN8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1619190324856-af3f6eb55601?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "podcast microphone"
       },
       {
         "id": "sensual-portrait",
         "description": "A sensual portrait focusing on mood and shadow.",
-        "imageUrl": "https://images.unsplash.com/photo-1618332158577-3b6d53861f0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzZW5zdWFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYxMTU0ODQ2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1594094876221-030b925ae6ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "sensual portrait"
       },
       {
@@ -399,7 +399,7 @@
       {
         "id": "elegant-boudoir",
         "description": "Elegant boudoir shot with soft lighting.",
-        "imageUrl": "https://images.unsplash.com/photo-1611601339933-15a9359e995c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYm91ZG9pcnxlbnwwfHx8fDE3NjExNTk5ODZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1641851962154-c3ec4aa07ede?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "elegant boudoir"
       },
       {
@@ -423,13 +423,13 @@
       {
         "id": "candid-celebrity",
         "description": "A candid-style shot of a celebrity.",
-        "imageUrl": "https://images.unsplash.com/photo-1588092288448-c2b6f4a3f3a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjYW5kaWQlMjBjZWxlYnJpdHl8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1720084025937-eb47b2d2be06?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2076",
         "imageHint": "candid celebrity"
       },
       {
         "id": "color-grading",
         "description": "A sample image showing professional color grading.",
-        "imageUrl": "https://images.unsplash.com/photo-1582738412033-28e458c6d357?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2xvciUyMGdyYWRpbmd8ZW58MHx8fHwxNzYxMTU5OTg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1716471330459-063b3baf247e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "color grading"
       },
       {
@@ -447,13 +447,13 @@
       {
         "id": "corporate-event",
         "description": "People networking at a corporate event.",
-        "imageUrl": "https://images.unsplash.com/photo-1549591061-f9b8d2a6e5b2?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3Jwb3JhdGUlMjBldmVudHxlbnwwfHx8fDE3NjExNDI2MjF8MA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1762158008280-3dcb1d1cbd99?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2071",
         "imageHint": "corporate event"
       },
       {
         "id": "birthday-party",
         "description": "Decorations and cake at a birthday party.",
-        "imageUrl": "https://images.unsplash.com/photo-1587880908865-c3e601509b7c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiaXJ0aGRheSUyMHBhcnR5fGVufDB8fHx8MTc2MTA0MTM0N3ww&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1741969494307-55394e3e4071?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "birthday party"
       },
       {
@@ -477,19 +477,19 @@
       {
         "id": "brand-collateral",
         "description": "A collection of branded items like business cards, letterheads, and notebooks.",
-        "imageUrl": "https://images.unsplash.com/photo-1558655146-34a34e2c2f7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGNvbGxhdGVyYWx8ZW58MHx8fHwxNzYxNTgyMDMyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1654481414716-2f4ab5fe0fbe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1932",
         "imageHint": "brand collateral"
       },
       {
         "id": "lookbook-design",
         "description": "An open page of a high-fashion lookbook magazine.",
-        "imageUrl": "https://images.unsplash.com/photo-1587823548906-8d6b8i01a75c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXNoaW9uJTIwbWFgemluZXxlbnwwfHx8fDE3NjE1ODIwNzB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1652992322820-4fb6f06898d7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2100",
         "imageHint": "fashion magazine"
       },
       {
         "id": "marketing-material",
         "description": "A stack of professionally designed brochures or flyers.",
-        "imageUrl": "https://images.unsplash.com/photo-1607556736295-d2243202521f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYXJrZXRpbmclMjBtYXRlcmlhbHN8ZW58MHx8fHwxNzYxNTgyMTEyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1714876275718-1e87cc3a2087?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1925",
         "imageHint": "marketing materials"
       },
       {
@@ -501,7 +501,7 @@
       {
         "id": "corporate-ad",
         "description": "A behind-the-scenes shot of a corporate advertisement being filmed.",
-        "imageUrl": "https://images.unsplash.com/photo-1583332488887-93332488887a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBhZHxlbnwwfHx8fDE3MTgyNTU4ODJ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1637250096679-c10f2751def8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "corporate ad"
       },
       {
@@ -513,13 +513,13 @@
       {
         "id": "factory-tour",
         "description": "A wide-angle shot of a clean, modern factory floor with machinery in operation.",
-        "imageUrl": "https://images.unsplash.com/photo-1629828514588-e25287713835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmYWN0b3J5JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzE4MjU2MDM2fDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1747085040719-55282cc206b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "factory interior"
       },
       {
         "id": "manufacturing-process",
         "description": "A close-up, detailed shot of a robotic arm working on an assembly line.",
-        "imageUrl": "https://images.unsplash.com/photo-1629828514588-e25287713835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW51ZmFjdHVyaW5nJTIwcm9ib3R8ZW58MHx8fHwxNzE4MjU2MDY5fDA&ixlib-rb-4.0.3&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1707948952416-67f9dd252265?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "manufacturing robot"
       },
       {
@@ -531,19 +531,19 @@
       {
         "id": "wedding-engagement",
         "description": "Joyful couple celebrating their engagement at a party.",
-        "imageUrl": "https://images.unsplash.com/photo-1618995963245-197b172b036e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbmdhZ2VtZW50JTIwcGFydHl8ZW58MHx8fHwxNzgyNzM5Mjg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1638623144308-446d2b097345?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "engagement party"
       },
       {
         "id": "wedding-prewedding",
         "description": "A romantic couple during a pre-wedding photoshoot in a scenic location.",
-        "imageUrl": "https://images.unsplash.com/photo-1597831410294-43de9f1c7136?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBwcmV3ZWRkaW5nJTIwY291cGxlfGVufDB8fHx8MTc4MjczOTM0MHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1758221943117-6e1f900b957a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2069",
         "imageHint": "indian prewedding"
       },
       {
         "id": "wedding-bridal",
         "description": "A stunning portrait of an Indian bride in full traditional attire.",
-        "imageUrl": "https://images.unsplash.com/photo-1629334863371-d41a355653b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBicmlkYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODI3MzkzODR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1645856049085-47672ad2c043?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "indian bridal"
       },
       {
@@ -597,13 +597,13 @@
       {
         "id": "wedding-services-bg",
         "description": "Close-up of a traditionally dressed Indian bride's hands and jewelry.",
-        "imageUrl": "https://images.unsplash.com/photo-1617983635951-872b7a9f60bb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "imageUrl": "https://images.unsplash.com/photo-1661877574666-c6574f69fa9d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1932",
         "imageHint": "indian bride"
       },
       {
         "id": "wedding-live-stream",
         "description": "A professional camera setup for live streaming a wedding ceremony.",
-        "imageUrl": "https://images.unsplash.com/photo-1631899169658-100a499a0c64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwbGl2ZSUyMHN0cmVhbXxlbnwwfHx8fDE3OTEwNDExODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1738851952441-2a7d17487545?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding live"
       },
       {
@@ -615,19 +615,19 @@
       {
         "id": "equipment-lighting",
         "description": "A professional video lighting setup with softboxes and LED panels around a person being interviewed.",
-        "imageUrl": "https://images.unsplash.com/photo-1603561588612-927157a8b4f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsaWdodGluZyUyMHNldHVwfGVufDB8fHx8MTc5MTExMjM1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1652200179648-fa872b03a7b5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "lighting setup"
       },
       {
         "id": "equipment-cameras",
         "description": "A multi-camera production setup with video cameras on tripods pointed towards a stage.",
-        "imageUrl": "https://images.unsplash.com/photo-1575919385628-98e841893110?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtdWx0aSUyMGNhbWVyYSUyMHNldHVwfGVufDB8fHx8MTc5MTExMjM5M3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1762028894947-427157955fea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "multi camera"
       },
       {
         "id": "equipment-audio",
         "description": "A professional audio mixer with many channels, faders, and knobs.",
-        "imageUrl": "https://images.unsplash.com/photo-1599999589839-434548545806?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdWRpbyUyMG1peGVyfGVufDB8fHx8MTc5MTExMjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1651838644572-0a42d740d902?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974",
         "imageHint": "audio mixer"
       },
       {

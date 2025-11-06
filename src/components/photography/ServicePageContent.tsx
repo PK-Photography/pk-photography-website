@@ -135,7 +135,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                     )}
                 </div>
                 <div className="space-y-6 text-center md:text-left md:order-first">
-                <h2 className="font-headline text-2xl md:text-4xl text-primary text-center">About Our {service.name} Services</h2>
+                <h2 className="font-headline text-2xl md:text-4xl text-[#517587] text-center">About Our {service.name} Services</h2>
                 <div className="text-muted-foreground text-base md:text-lg leading-relaxed">
                   <p className={isAboutExpanded ? '' : 'line-clamp-4 md:line-clamp-none'}>
                       {pageContent.longDescription}

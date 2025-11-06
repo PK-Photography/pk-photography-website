@@ -435,7 +435,7 @@
       {
         "id": "wedding-album",
         "description": "An open wedding album displaying beautiful photos.",
-        "imageUrl": "https://images.unsplash.com/photo-1597854483707-d4f1349b1a23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwYWxidW18ZW58MHx8fHwxNzYxMTMzOTE4fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1571502189597-d7d3a0f114fd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2069",
         "imageHint": "wedding album"
       },
       {
@@ -549,49 +549,49 @@
       {
         "id": "wedding-rituals",
         "description": "An Indian wedding ceremony showing sacred couple rituals.",
-        "imageUrl": "https://images.unsplash.com/photo-1622332152347-9cea2a1e6462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjB3ZWRkaW5nJTIwcml0dWFsc3xlbnwwfHx8fDE3ODI3Mzk0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1588336135074-fbd6baec5493?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding rituals"
       },
       {
         "id": "wedding-family",
         "description": "A happy family posing for a group photo at an Indian wedding.",
-        "imageUrl": "https://images.unsplash.com/photo-1631899169658-100a499a0c64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmlhbiUyMHdlZGRpbmclMjBmYW1pbHl8ZW58MHx8fHwxNzgyNzM5NDY3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1645856052484-2e5506e20942?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding family"
       },
       {
         "id": "wedding-reception",
         "description": "A bride and groom at their wedding reception party.",
-        "imageUrl": "https://images.unsplash.com/photo-1597157635251-643c332c6643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc4MjczOTQ5N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1627580356426-c3b2c0cd53fc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding reception"
       },
       {
         "id": "wedding-category-prewedding",
         "description": "A joyful Haldi ceremony in progress.",
-        "imageUrl": "https://images.unsplash.com/photo-1616164283620-8a1c1d0b5e4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBoYWxkaSUyMGNlcmVtb255fGVufDB8fHx8MTc5MTAzNjQ0OHww&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1741441033545-24408e2308d3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1973",
         "imageHint": "haldi ceremony"
       },
       {
         "id": "wedding-category-day",
         "description": "Close up of bride and groom's hands during a wedding ritual.",
-        "imageUrl": "https://images.unsplash.com/photo-1588392160935-9494374199d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjB3ZWRkaW5nJTIwcml0dWFsc3xlbnwwfHx8fDE3ODI3Mzk0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1611105672452-1db1501c528e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding rituals"
       },
       {
         "id": "wedding-category-family",
         "description": "A candid emotional moment between a bride and her mother.",
-        "imageUrl": "https://images.unsplash.com/photo-1618778892182-551e6b399120?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmlhbiUyMHdlZGRpbmclMjBlbW90aW9uc3xlbnwwfHx8fDE3OTEwMzY1NTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1612872642947-931dc3bcb5ac?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding emotions"
       },
       {
         "id": "wedding-category-post",
         "description": "A newly married couple walking on a beach at sunset.",
-        "imageUrl": "https://images.unsplash.com/photo-1604997191194-7e04c35b3426?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3N0JTIwd2VkZGluZyUyMGNvdXBsZXxlbnwwfHx8fDE3OTEwMzY1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1723603016905-db4293271fec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "post-wedding couple"
       },
       {
         "id": "wedding-category-creative",
         "description": "A drone shot overlooking a grand wedding venue.",
-        "imageUrl": "https://images.unsplash.com/photo-1600021692226-4d5a901844d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwZHJvbmV8ZW58MHx8fHwxNzkxMDM2NjI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
         "imageHint": "wedding drone"
       },
       {
@@ -633,7 +633,7 @@
       {
         "id": "wedding-gear",
         "description": "A flat lay of professional wedding photography gear, including a full-frame camera, lenses, and flash.",
-        "imageUrl": "https://images.unsplash.com/photo-1519685360792-0a9b1d935492?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcGhvdG9ncmFwaHklMjBnZWFyfGVufDB8fHx8MTc5MTExNTQxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "https://images.unsplash.com/photo-1664786496885-2bc564aa002f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2071",
         "imageHint": "wedding gear"
       }
     ]

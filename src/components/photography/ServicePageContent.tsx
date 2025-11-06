@@ -260,7 +260,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
         {(standardPackages.length > 0 || quotePackages.length > 0) && (
           <section>
             <h2 className="font-headline text-3xl md:text-4xl mb-12 text-center">Packages & Pricing</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
               
               {pageContent.packages.map((pkg, index) => {
                 const isQuotePackage = pkg.price.toLowerCase().includes('quote');

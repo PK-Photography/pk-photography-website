@@ -137,9 +137,9 @@ const CategorizedListSection = ({ title, categories }: CategorizedListSectionPro
                             <CardContent className="p-6 flex-grow flex flex-col">
                               <div className="flex flex-col items-center text-center gap-2 mb-6">
                                 <div className="bg-primary/10 p-3 rounded-full">
-                                  <Icon className="h-6 w-6 text-primary" />
+                                  <Icon className="h-6 w-6 text-[#557C8A]" />
                                 </div>
-                                <CardTitle className="font-headline text-xl text-primary">{category.categoryTitle}</CardTitle>
+                                <CardTitle className="font-headline text-xl text-[#557C8A]">{category.categoryTitle}</CardTitle>
                               </div>
 
                               <ul className="space-y-4 flex-grow text-center">
@@ -187,9 +187,9 @@ const CategorizedListSection = ({ title, categories }: CategorizedListSectionPro
                           <CardContent className="p-6 flex-grow flex flex-col">
                             <div className="flex flex-col items-center text-center gap-2 mb-6">
                               <div className="bg-primary/10 p-3 rounded-full">
-                                <Icon className="h-6 w-6 text-primary" />
+                                <Icon className="h-6 w-6 text-[#557C8A]" />
                               </div>
-                              <CardTitle className="font-headline text-xl text-primary">{category.categoryTitle}</CardTitle>
+                              <CardTitle className="font-headline text-xl text-[#557C8A]">{category.categoryTitle}</CardTitle>
                             </div>
 
                             <ul className="space-y-4 flex-grow text-center">

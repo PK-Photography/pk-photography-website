@@ -157,35 +157,39 @@ export const Footer = () => {
             <div className="flex justify-between w-full gap-10">
               <div>
                 <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">
-                  Videography
+                  Services
                 </li>
                 <FooterLink
-                  text="Wedding & Events"
-                  href="/galleries"
+                  text="Wedding Photography & Videography"
+                  href="/services/weddings"
                 />
-                <FooterLink text="Live Streaming" href="/live-streaming" />
-                {/* <FooterLink text="Corporate Ads" href="/galleries" />
-                <FooterLink text="Product Ads" href="/galleries" />
-                <FooterLink text="Influencer Videos" href="/galleries" />
-                <FooterLink text="Design" href="/galleries" /> */}
+                <FooterLink text="Event Photography and Videography" href="/services/events" />
+                <FooterLink text="Portraits & Headshots" href="/services/portraits-headshots" />
+                <FooterLink text="Editorial & Portfolio" href="/services/editorial-portfolio" />
+                <FooterLink text="Live Streaming" href="/services/live-streaming" />
+                <FooterLink text="Family & Kids" href="/services/family-kids" />
+                <FooterLink text="Fashion Shoots & Lookbooks" href="/services/fashion-shoots" />
+                <FooterLink text="Boudoir Shoots" href="/services/boudoir-shoots" />
+                <FooterLink
+                  text="Brand & Content"
+                  href="/services/brand-content"
+                />
+                <FooterLink text="Product & E-Commerce" href="/services/product-ecommerce" />
               </div>
 
               <div>
                 <li className="lg:text-lg text-sm list-none font-semibold text-[#2C2D2E] py-2 uppercase">
-                  Navigate
+                  Services
                 </li>
-                <FooterLink
-                  text="Clients"
-                  href="/client"
-                />
-                 <FooterLink
-                  text="Booking"
-                  href="/booking"
-                />
-                 <FooterLink
-                  text="Gallery"
-                  href="/galleries"
-                />
+                <FooterLink text="Food Photography" href="/services/food-photography" />
+                <FooterLink text="Corporate & Industrial" href="/services/corporate-industrial" />
+                <FooterLink text="Real Estate & Architectural" href="/services/real-estate-architectural" />
+                <FooterLink text="Influencer & Celebrity Content" href="/services/influencer-celebrity" />
+                <FooterLink text="Podcast Production" href="/services/podcast-production" />
+                <FooterLink text="Photo & Video Editing" href="/services/editing-retouching" />
+                <FooterLink text="Album Design & Printing" href="/services/album-design" />
+                <FooterLink text="Drone Photography & Videography" href="/services/drone-services" />
+                <FooterLink text="Design Services" href="/services/design-services" />
               </div>
               <div></div>
               <div></div>

@@ -69,7 +69,7 @@ const cards: CardProps[] = [
     title: "Ads",
     subtitle: "Highlights your products with flawless imagery",
     id: 6,
-    link: "/services/product-ecommerce",
+    link: "/services/brand-content",
   },
   {
     url: service7.src,

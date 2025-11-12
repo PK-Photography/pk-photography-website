@@ -499,7 +499,7 @@ export const photographyCategories: Category[] = [
         description: 'Personalized sessions for individuals, professionals, and artists to capture your unique personality.',
         price: 'Starting at ₹5,000',
         thumbnailImage: getImage('portraiture-category'),
-        images: [getImage('personal-portrait-1'), getImage('headshots-1')],
+        images: [getImage('personal-portrait'), getImage('headshots-portraits')],
         details: ['For individuals, actors, corporate teams', '30-minute to 1-hour sessions', 'Professional retouching', 'Studio or on-location'],
         pageContent: {
           longDescription: "In the bustling city of Mumbai, standing out is key. Our Portrait & Headshot sessions are more than just taking a picture; they're about capturing the very essence of who you are. Whether you're a professional aiming to enhance your LinkedIn profile, an actor in need of a compelling headshot, or an individual wanting to capture a personal milestone, we create images that speak volumes. We craft lighting and composition to reflect your personality, creating authentic and powerful portraits that make a lasting impression.",
@@ -535,12 +535,27 @@ export const photographyCategories: Category[] = [
             { question: "How long does it take to receive the final retouched photos?", answer: "Our standard turnaround time is 7-10 business days after you have made your final selections from the proofing gallery. Expedited delivery is available with certain packages." }
           ],
           portfolio: [
-            getImage('personal-portrait-1'), 
-            getImage('headshots-1'),
-            getImage('personal-portrait-2'),
-            getImage('headshots-2'),
-            getImage('portraiture-category'),
-            getImage('celebrity-shoots-1')
+            getImage('personal-portraits-1'), 
+            getImage('personal-portraits-2'),
+            getImage('personal-portraits-3'), 
+            getImage('personal-portraits-4'),
+            getImage('personal-portraits-5'), 
+            getImage('personal-portraits-6'),
+            getImage('personal-portraits-7'), 
+            getImage('personal-portraits-8'),
+            getImage('personal-portraits-9'), 
+            getImage('personal-portraits-10'),
+            getImage('personal-portraits-11'), 
+            getImage('personal-portraits-12'),
+            getImage('personal-portraits-13'), 
+            getImage('personal-portraits-14'),
+            getImage('personal-portraits-15'), 
+            getImage('personal-portraits-16'),
+            getImage('personal-portraits-17'),
+            getImage('personal-portraits-18'), 
+            getImage('personal-portraits-19'),
+            getImage('personal-portraits-20'), 
+            getImage('personal-portraits-21'),
           ]
         }
       },

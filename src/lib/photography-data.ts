@@ -201,7 +201,7 @@ export const photographyCategories: Category[] = [
         description: 'Professional coverage for corporate functions, parties, anniversaries, and social gatherings.',
         price: 'Starting at ₹12,000',
         thumbnailImage: getImage('event-photography-1'),
-        images: [getImage('event-photography-1'), getImage('event-photography-2')],
+        images: [getImage('event-photography-1'), getImage('event-photography-cover')],
         details: ['Candid and posed shots', 'Online gallery for guests', 'Fast turnaround time'],
         pageContent: { 
             longDescription: 'From high-profile corporate summits in BKC to intimate birthday parties in Bandra, our event photography service captures the energy and key moments of your gathering. We work discreetly and professionally to document your event without being intrusive, delivering a gallery of high-quality images that showcase the atmosphere, guests, and important details.',
@@ -353,12 +353,14 @@ export const photographyCategories: Category[] = [
               { question: "What kind of corporate events do you specialize in?", answer: "We have extensive experience covering conferences, product launches, award ceremonies, exhibitions at venues like Jio World Centre, and corporate parties all across Mumbai and Thane." }
           ],
             portfolio: [
+                getImage('event-photography-5'),
+                getImage('event-photography-6'),
+                getImage('event-photography-7'),
+                getImage('event-photography-8'),
+                getImage('event-photography-9'),
+                getImage('event-photography-10'),
                 getImage('event-photography-1'),
-                getImage('event-photography-2'),
-                getImage('corporate-event'),
-                getImage('birthday-party'),
-                getImage('wedding-photography-2'),
-                getImage('celebrity-category')
+                getImage('event-photography-cover'),
             ]
         }
       },

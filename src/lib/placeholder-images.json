@@ -1150,6 +1150,110 @@
         "description": "Editorial portrait celebrating individuality, strength, and emotion through visual storytelling.",
         "imageUrl": "/magazine-editorials-12.jpg",
         "imageHint": "editorial portrait photography capturing emotion"
+      },
+      {
+        "id": "baby-kids",
+        "description": "Adorable baby and kids photography that captures pure joy, innocence, and every delightful expression with a warm, natural touch.",
+        "imageUrl": "/baby-kids.jpg",
+        "imageHint": "baby and kids photography capturing joyful candid moments"
+      },
+      {
+        "id": "family-cover",
+        "description": "Heartwarming family portraits that celebrate love, connection, and togetherness — beautifully captured across generations.",
+        "imageUrl": "/family-cover.jpg",
+        "imageHint": "family photography cover image showing love and connection"
+      },
+
+    
+      {
+        "id": "baby-kids-photo-1",
+        "description": "A tender newborn portrait capturing peaceful sleep and delicate innocence.",
+        "imageUrl": "/baby-kids-photo-1.jpg",
+        "imageHint": "newborn baby portrait sleeping peacefully"
+      },
+      {
+        "id": "baby-kids-photo-2",
+        "description": "Joyful candid shot of a toddler’s laughter during a sunny outdoor play session.",
+        "imageUrl": "/baby-kids-photo-2.jpg",
+        "imageHint": "toddler laughing during outdoor kids photoshoot"
+      },
+      {
+        "id": "baby-kids-photo-3",
+        "description": "Sibling portrait celebrating love and connection with bright, natural light.",
+        "imageUrl": "/baby-kids-photo-3.jpg",
+        "imageHint": "siblings portrait photography with warm lighting"
+      },
+      {
+        "id": "baby-kids-photo-4",
+        "description": "Playful moment captured mid-laughter — a celebration of pure childhood joy.",
+        "imageUrl": "/baby-kids-photo-4.jpg",
+        "imageHint": "candid baby laughing during playtime photography"
+      },
+      {
+        "id": "baby-kids-photo-5",
+        "description": "Soft-lit studio session showcasing a baby’s expressive eyes and sweet smile.",
+        "imageUrl": "/baby-kids-photo-5.jpg",
+        "imageHint": "studio baby portrait with soft natural lighting"
+      },
+      {
+        "id": "baby-kids-photo-6",
+        "description": "Whimsical birthday shoot filled with balloons, laughter, and vibrant colors.",
+        "imageUrl": "/baby-kids-photo-6.jpg",
+        "imageHint": "baby birthday photoshoot with colorful balloons"
+      },
+      {
+        "id": "baby-kids-photo-7",
+        "description": "Gentle black-and-white portrait highlighting the timeless bond between parent and child.",
+        "imageUrl": "/baby-kids-photo-7.jpg",
+        "imageHint": "black and white parent and baby portrait"
+      },
+      {
+        "id": "baby-kids-photo-8",
+        "description": "Playful sibling duo captured mid-jump — full of motion and contagious laughter.",
+        "imageUrl": "/baby-kids-photo-8.jpg",
+        "imageHint": "kids jumping outdoors in joyful sibling photoshoot"
+      },
+      {
+        "id": "baby-kids-photo-9",
+        "description": "A cozy at-home moment featuring soft blankets and genuine smiles.",
+        "imageUrl": "/baby-kids-photo-9.jpg",
+        "imageHint": "baby lifestyle photography at home with soft light"
+      },
+      {
+        "id": "baby-kids-photo-10",
+        "description": "Beautiful golden-hour portrait highlighting curiosity and wonder in a child’s eyes.",
+        "imageUrl": "/baby-kids-photo-10.jpg",
+        "imageHint": "golden hour kids photography portrait outdoors"
+      },
+      {
+        "id": "baby-kids-photo-11",
+        "description": "Playful close-up capturing the delight of discovery during a garden shoot.",
+        "imageUrl": "/baby-kids-photo-11.jpg",
+        "imageHint": "baby exploring nature during outdoor photography"
+      },
+      {
+        "id": "baby-kids-photo-12",
+        "description": "Classic milestone portrait marking baby’s first year — full of joy and growth.",
+        "imageUrl": "/baby-kids-photo-12.jpg",
+        "imageHint": "baby first birthday milestone photoshoot"
+      },
+      {
+        "id": "baby-kids-photo-13",
+        "description": "Soft, pastel-toned studio setup perfect for a calm and dreamy baby shoot.",
+        "imageUrl": "/baby-kids-photo-13.jpg",
+        "imageHint": "pastel themed baby studio portrait"
+      },
+      {
+        "id": "baby-kids-photo-14",
+        "description": "Candid shot of a little artist at play — capturing creativity and innocence.",
+        "imageUrl": "/baby-kids-photo-14.jpg",
+        "imageHint": "kids creative art themed photoshoot"
+      },
+      {
+        "id": "baby-kids-photo-15",
+        "description": "Family moment frozen in time — laughter, hugs, and genuine connection.",
+        "imageUrl": "/baby-kids-photo-15.jpg",
+        "imageHint": "family portrait with baby and parents smiling together"
       }
       
     ]

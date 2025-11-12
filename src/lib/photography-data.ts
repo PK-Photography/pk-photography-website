@@ -565,7 +565,7 @@ export const photographyCategories: Category[] = [
         description: 'Create lasting memories with your loved ones, from family gatherings to capturing precious childhood moments.',
         price: 'Starting at ₹8,000',
         thumbnailImage: getImage('family-portrait-1'),
-        images: [getImage('family-portrait-1'), getImage('baby-kids-1')],
+        images: [getImage('family-cover'), getImage('baby-kids')],
         details: ['1-hour+ sessions', 'Up to 6 people (custom for more)', '20+ professionally edited photos', 'Fun and relaxed atmosphere'],
         pageContent: {
           longDescription: "Childhood is fleeting, and family moments are precious. Our Family & Kids photography sessions in Mumbai are designed to capture the authentic love, laughter, and connection you share. We create a relaxed and playful environment where children can be themselves and families can interact naturally. From the sunny beaches of Juhu to the lush greenery of Sanjay Gandhi National Park, we'll find the perfect backdrop for your family's story, creating timeless heirlooms you'll cherish for generations.",
@@ -600,12 +600,19 @@ export const photographyCategories: Category[] = [
             { question: "Can we include our pet in the family photos?", answer: "Absolutely! Pets are part of the family, and we'd love to include them in your session. Just let us know in advance so we can plan accordingly and choose a pet-friendly location." }
           ],
           portfolio: [
-            getImage('family-portrait-1'),
-            getImage('baby-kids-1'),
-            getImage('family-portrait-2'),
-            getImage('baby-kids-2'),
-            getImage('portraiture-category'),
-            getImage('events-category')
+            getImage('baby-kids-photo-1'),
+            getImage('baby-kids-photo-2'),
+            getImage('baby-kids-photo-3'),
+            getImage('baby-kids-photo-4'),
+            getImage('baby-kids-photo-5'),
+            getImage('baby-kids-photo-6'),
+            getImage('baby-kids-photo-7'),
+            getImage('baby-kids-photo-8'),
+            getImage('baby-kids-photo-9'),
+            getImage('baby-kids-photo-10'),
+            getImage('baby-kids-photo-11'),
+            getImage('baby-kids-photo-12'),
+            getImage('baby-kids-photo-13')
           ]
         }
       },

@@ -1065,6 +1065,91 @@
         "description": "Emotive close-ups that capture genuine personality and timeless character.",
         "imageUrl": "/personal-portraits-21.jpg",
         "imageHint": "emotive close-up portrait photography"
+      },
+      {
+        "id": "portfolio-creations",
+        "description": "Showcasing powerful portfolio creations designed to highlight talent, personality, and professionalism across every frame.",
+        "imageUrl": "/portfolio-creations.jpg",
+        "imageHint": "portfolio photography showcasing creative professional portraits"
+      },
+      {
+        "id": "magazine-editorial",
+        "description": "High-fashion and magazine-style editorial photography that blends storytelling, creativity, and sophistication in every frame.",
+        "imageUrl": "/magazine-editorial.jpg",
+        "imageHint": "magazine editorial fashion photography"
+      },
+
+      {
+        "id": "magazine-editorials-1",
+        "description": "Striking editorial portrait featuring bold lighting and couture styling for a high-fashion magazine spread.",
+        "imageUrl": "/magazine-editorials-1.jpg",
+        "imageHint": "high fashion editorial portrait with dramatic lighting"
+      },
+      {
+        "id": "magazine-editorials-2",
+        "description": "A creative outdoor shoot blending natural textures with avant-garde fashion aesthetics.",
+        "imageUrl": "/magazine-editorials-2.jpg",
+        "imageHint": "outdoor magazine editorial with avant garde fashion"
+      },
+      {
+        "id": "magazine-editorials-3",
+        "description": "Studio editorial capturing clean lines, poise, and luxury-inspired elegance in every pose.",
+        "imageUrl": "/magazine-editorials-3.jpg",
+        "imageHint": "studio editorial with minimalist luxury fashion theme"
+      },
+      {
+        "id": "magazine-editorials-4",
+        "description": "A moody black-and-white editorial shoot focusing on expression and contrast-driven storytelling.",
+        "imageUrl": "/magazine-editorials-4.jpg",
+        "imageHint": "black and white editorial portrait photography"
+      },
+      {
+        "id": "magazine-editorials-5",
+        "description": "Fashion-forward editorial showcasing statement accessories and expressive character shots.",
+        "imageUrl": "/magazine-editorials-5.jpg",
+        "imageHint": "editorial fashion shoot with accessories focus"
+      },
+      {
+        "id": "magazine-editorials-6",
+        "description": "A cinematic editorial narrative inspired by vintage film aesthetics and timeless charm.",
+        "imageUrl": "/magazine-editorials-6.jpg",
+        "imageHint": "vintage inspired magazine editorial photography"
+      },
+      {
+        "id": "magazine-editorials-7",
+        "description": "Editorial series emphasizing powerful silhouettes and contemporary art direction.",
+        "imageUrl": "/magazine-editorials-7.jpg",
+        "imageHint": "fashion editorial highlighting silhouettes and contrast"
+      },
+      {
+        "id": "magazine-editorials-8",
+        "description": "An urban-inspired fashion editorial capturing city energy and street couture vibrance.",
+        "imageUrl": "/magazine-editorials-8.jpg",
+        "imageHint": "urban fashion editorial with city backdrop"
+      },
+      {
+        "id": "magazine-editorials-9",
+        "description": "Luxury-inspired editorial shoot blending refined wardrobe styling with soft cinematic tones.",
+        "imageUrl": "/magazine-editorials-9.jpg",
+        "imageHint": "luxury editorial portrait photography"
+      },
+      {
+        "id": "magazine-editorials-10",
+        "description": "Creative magazine shoot exploring color play, movement, and expressive editorial posing.",
+        "imageUrl": "/magazine-editorials-10.jpg",
+        "imageHint": "colorful editorial fashion photography"
+      },
+      {
+        "id": "magazine-editorials-11",
+        "description": "Avant-garde editorial inspired by art and form, focusing on bold shapes and textures.",
+        "imageUrl": "/magazine-editorials-11.jpg",
+        "imageHint": "art inspired editorial photography"
+      },
+      {
+        "id": "magazine-editorials-12",
+        "description": "Editorial portrait celebrating individuality, strength, and emotion through visual storytelling.",
+        "imageUrl": "/magazine-editorials-12.jpg",
+        "imageHint": "editorial portrait photography capturing emotion"
       }
       
     ]

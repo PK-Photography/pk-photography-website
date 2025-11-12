@@ -16,8 +16,8 @@ interface AnimatedGalleryProps {
 
 const aspectRatios = [
     'aspect-[3/4]', // portrait
-    'aspect-video', // landscape
-    'aspect-square',
+    'aspect-[3/4]', // portrait
+    'aspect-[3/4]', // portrait
 ];
 
 const INITIAL_LOAD = 6;

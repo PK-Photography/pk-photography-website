@@ -395,7 +395,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
 
         {/* CTA */}
         <section className="text-center">
-            <Card className="bg-[#557C8A] text-[#557C8A]-foreground rounded-2xl">
+            <Card className="bg-[white] text-[#557C8A]-foreground rounded-2xl">
                 <CardContent className="p-8 md:p-12">
                     <Camera className="h-12 w-12 mx-auto mb-4"/>
                     <h2 className="font-headline text-3xl md:text-4xl mb-4">Ready to Capture Your Story?</h2>

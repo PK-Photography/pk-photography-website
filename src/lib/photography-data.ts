@@ -38,7 +38,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Pre-Wedding Functions",
               icon: "PartyPopper",
-              image: getImage('wedding-category-prewedding'),
+              image: getImage('pre-wedding'),
               list: [
                 { title: "Roka & Engagement", description: "Celebrate the beginning of your forever with warm, emotional photographs that capture your love and family joy." },
                 { title: "Pre-Wedding Shoot", description: "Turn your love story into a cinematic experience with creative pre-wedding photography that’s uniquely “you.”" },
@@ -49,7 +49,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Wedding Day Coverage",
               icon: "Landmark",
-              image: getImage('wedding-category-day'),
+              image: getImage('wedding-coverage'),
               list: [
                 { title: "Bride & Groom Portraits", description: "Beautifully styled and natural portraits that highlight your charm, confidence, and wedding-day glow." },
                 { title: "Getting Ready", description: "Candid, behind-the-scenes captures of your excitement and emotions before you say “I do.”" },
@@ -60,7 +60,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Family & Emotional Moments",
               icon: "Users",
-              image: getImage('wedding-category-family'),
+              image: getImage('family-emotional'),
               list: [
                   { title: "Candid Family Moments", description: "The unscripted tears, smiles, and loving glances that happen when you think no one is watching." },
                   { title: "Group Photographs", description: "Classic portraits of your cherished friends and family, organized efficiently and beautifully." },
@@ -71,7 +71,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Post-Wedding Celebrations",
               icon: "Star",
-              image: getImage('wedding-category-post'),
+              image: getImage('post-wedding'),
               list: [
                 { title: "Gala Reception", description: "Capturing the elegance, energy, and excitement of your first party as a married couple." },
                 { title: "Post-Wedding Shoot", description: "A relaxed, romantic session after the main events, focused entirely on the two of you." },
@@ -82,7 +82,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Creative Add-Ons",
               icon: "Film",
-              image: getImage('wedding-category-creative'),
+              image: getImage('creative-add-ons'),
               list: [
                 { title: "Highlight Film", description: "A cinematic summary of your wedding story, perfect for sharing with friends and family online." },
                 { title: "Drone Videography", description: "Grand, aerial shots of your venue and ceremony, adding a spectacular sense of scale to your film." },
@@ -93,7 +93,7 @@ export const photographyCategories: Category[] = [
             {
               categoryTitle: "Post Deliveries",
               icon: "Gift",
-              image: getImage('wedding-album'),
+              image: getImage('post-delivery'),
               list: [
                   { title: "Custom Photo Albums", description: "Work with our designers to create a stunning, lay-flat album that tells your wedding story beautifully." },
                   { title: "Mini Albums for Parents", description: "Create smaller, identical copies of your main album, a perfect and cherished gift for your parents." },
@@ -103,10 +103,11 @@ export const photographyCategories: Category[] = [
             }
           ],
           whoIsItFor: [
-            { text: "Engaged Couples", image: getImage('pre-wedding-shoots-1') },
-            { text: "Destination Weddings", image: getImage('wedding-reception') },
-            { text: "Candid Moments", image: getImage('wedding-family') },
-            { text: "Creative Teams", image: getImage('wedding-photography-1') }
+            { text: "Cinematic Video & Aerials", image: getImage('cinematic-video-aerials') },
+            { text: "Cultural Ceremonies", image: getImage('cultural-ceremonies') },
+            { text: "Destination Weddings", image: getImage('destination-weddings') },
+            { text: "Engaged Couples", image: getImage('engaged-couples') },
+            { text: "Event Planners", image: getImage('event-planners') }
           ],
           whyChooseUs: [
             "Experienced with multi-day, diverse cultural weddings.",
@@ -123,7 +124,7 @@ export const photographyCategories: Category[] = [
                       "A wide array of professional G-Master lenses",
                       "Exceptional low-light performance for candle-lit ceremonies"
                   ],
-                  image: getImage('wedding-gear')
+                  image: getImage('high-resolution-camera-systems')
               },
               {
                   title: "Cinematic Video & Aerials",
@@ -133,7 +134,7 @@ export const photographyCategories: Category[] = [
                       "Breathtaking 4K drone videography for epic scale",
                       "Discreet, high-quality audio recording for clear sound"
                   ],
-                  image: getImage('equipment-cameras')
+                  image: getImage('cinematic-video-aerials')
               },
               {
                   title: "Creative Lighting & Luxury Albums",
@@ -143,13 +144,13 @@ export const photographyCategories: Category[] = [
                       "Creative lighting tools for reception and sangeet events",
                       "Access to the finest luxury printed albums and wall art"
                   ],
-                  image: getImage('wedding-album')
+                  image: getImage('luxury-album')
               }
           ],
           process: [
-            { step: 1, title: "Meet & Plan", description: "We love to meet our couples (in person or via video call) to hear your story and understand the timeline and cultural aspects of your wedding.", icon: "Users", image: getImage('wedding-category-prewedding') },
-            { step: 2, title: "The Big Day(s)", description: "Our team provides full coverage of your events, from the Haldi and Sangeet to the ceremony and reception, capturing all the key moments and emotions.", icon: "Heart", image: getImage('wedding-rituals') },
-            { step: 3, title: "Creative Post-Production", description: "Your photos are artfully edited, and your wedding film is crafted into a beautiful story with licensed music and professional color grading.", icon: "Wand2", image: getImage('video-editing-1') },
+            { step: 1, title: "Meet & Plan", description: "We love to meet our couples (in person or via video call) to hear your story and understand the timeline and cultural aspects of your wedding.", icon: "Users", image: getImage('meet-and-plan') },
+            { step: 2, title: "The Big Day(s)", description: "Our team provides full coverage of your events, from the Haldi and Sangeet to the ceremony and reception, capturing all the key moments and emotions.", icon: "Heart", image: getImage('the-big-days') },
+            { step: 3, title: "Creative Post-Production", description: "Your photos are artfully edited, and your wedding film is crafted into a beautiful story with licensed music and professional color grading.", icon: "Wand2", image: getImage('creative-post-production') },
             { step: 4, title: "Your Wedding Story Delivered", description: "You receive a comprehensive online gallery with all your photos and videos, plus beautifully crafted albums and prints as part of our premium packages.", icon: "Gift", image: getImage('wedding-album') }
           ],
           packages: [
@@ -167,14 +168,29 @@ export const photographyCategories: Category[] = [
             { question: "Can we customize a wedding package?", answer: "Yes. While our packages are designed to suit most needs, we are happy to create a custom wedding photography or videography package tailored to your specific events, coverage hours, and deliverables." }
           ],
           portfolio: [
-            getImage('wedding-couple'),
-            getImage('wedding-family'),
-            getImage('pre-wedding-shoots-1'),
-            getImage('wedding-rituals'),
-            getImage('wedding-photography-2'),
-            getImage('live-streaming-1'),
-            getImage('album-design-1'),
-            getImage('wedding-reception')
+            getImage('wedding-2'),
+            getImage('wedding-3'),
+            getImage('wedding-4'),
+            getImage('wedding-5'),
+            getImage('wedding-6'),
+            getImage('wedding-7'),
+            getImage('wedding-8'),
+            getImage('wedding-9'),
+            getImage('wedding-10'),
+            getImage('wedding-11'),
+            getImage('wedding-12'),
+            getImage('wedding-13'),
+            getImage('wedding-14'),
+            getImage('wedding-15'),
+            getImage('wedding-16'),
+            getImage('wedding-17'),
+            getImage('wedding-18'),
+            getImage('wedding-19'),
+            getImage('wedding-20'),
+            getImage('wedding-21'),
+            getImage('wedding-22'),
+            getImage('wedding-23'),
+            getImage('wedding-24'),
           ]
         }
       },

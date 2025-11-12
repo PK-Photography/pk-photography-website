@@ -675,7 +675,7 @@ export const photographyCategories: Category[] = [
         description: 'Story-driven visuals for publication or building a stunning portfolio to showcase your talent as an artist.',
         price: 'Starting at ₹12,000',
         thumbnailImage: getImage('portfolio-creation-1'),
-        images: [getImage('magazine-editorial-1'), getImage('portfolio-creation-1')],
+        images: [getImage('magazine-editorial'), getImage('portfolio-creations')],
         details: ['Collaboration with creative teams', 'Multiple looks and locations', 'Guidance on posing and expression'],
         pageContent: { 
             longDescription: 'Create a powerful narrative with our Editorial & Portfolio sessions. Designed for models, artists, and influencers in Mumbai, we help you build a collection of images that showcases your versatility and talent. We collaborate with you to develop concepts that align with your brand, producing high-impact visuals ready for magazine submissions, agency applications, or social media dominance.',
@@ -710,12 +710,18 @@ export const photographyCategories: Category[] = [
               { question: "Do I get to choose the final images for retouching?", answer: "Yes. After the shoot, we will provide you with a proofing gallery of the best images. You can then select your favorites for final high-end retouching." }
             ],
             portfolio: [
-                getImage('magazine-editorial-1'),
-                getImage('portfolio-creation-1'),
-                getImage('fashion-shoots-1'),
-                getImage('celebrity-shoots-1'),
-                getImage('headshots-2'),
-                getImage('fashion-category')
+                getImage('magazine-editorials-1'),
+                getImage('magazine-editorials-2'),
+                getImage('magazine-editorials-3'),
+                getImage('magazine-editorials-4'),
+                getImage('magazine-editorials-5'),
+                getImage('magazine-editorials-6'),
+                getImage('magazine-editorials-7'),
+                getImage('magazine-editorials-8'),
+                getImage('magazine-editorials-9'),
+                getImage('magazine-editorials-10'),
+                getImage('magazine-editorials-11'),
+                getImage('magazine-editorials-12'),
             ]
         }
       },

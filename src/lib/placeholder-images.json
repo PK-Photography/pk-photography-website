@@ -1334,6 +1334,101 @@
         "description": "Conceptual editorial representing bold individuality and modern glamour.",
         "imageUrl": "/fashion-shoots-about-12.jpg",
         "imageHint": "conceptual editorial fashion modern glamour"
+      },
+
+    
+      {
+        "id": "boudoir-shoots-image-1",
+        "description": "Softly lit silhouette capturing elegance, confidence, and subtle allure.",
+        "imageUrl": "/boudoir-shoots-image-1.jpg",
+        "imageHint": "boudoir photography silhouette soft lighting confidence"
+      },
+      {
+        "id": "boudoir-shoots-image-2",
+        "description": "A delicate composition blending light, texture, and poise with artistic intimacy.",
+        "imageUrl": "/boudoir-shoots-image-2.jpg",
+        "imageHint": "artistic boudoir portrait soft tones elegance"
+      },
+      {
+        "id": "boudoir-shoots-image-3",
+        "description": "Natural daylight portrait that balances vulnerability with empowerment.",
+        "imageUrl": "/boudoir-shoots-image-3.jpg",
+        "imageHint": "natural light boudoir portrait empowering style"
+      },
+      {
+        "id": "boudoir-shoots-image-4",
+        "description": "Black-and-white moment showcasing timeless beauty and quiet confidence.",
+        "imageUrl": "/boudoir-shoots-image-4.jpg",
+        "imageHint": "black and white boudoir photography timeless elegance"
+      },
+      {
+        "id": "boudoir-shoots-image-5",
+        "description": "Intimate window-lit frame with soft focus and cinematic atmosphere.",
+        "imageUrl": "/boudoir-shoots-image-5.jpg",
+        "imageHint": "window light boudoir cinematic soft focus"
+      },
+      {
+        "id": "boudoir-shoots-image-6",
+        "description": "Lace and linen textures meeting soft natural tones in an elegant setup.",
+        "imageUrl": "/boudoir-shoots-image-6.jpg",
+        "imageHint": "boudoir textures lace fabric warm tones"
+      },
+      {
+        "id": "boudoir-shoots-image-7",
+        "description": "Artful low-key lighting emphasizing form, mood, and confidence.",
+        "imageUrl": "/boudoir-shoots-image-7.jpg",
+        "imageHint": "low light boudoir photography moody portrait"
+      },
+      {
+        "id": "boudoir-shoots-image-8",
+        "description": "Fine-art boudoir portrait evoking grace and quiet sophistication.",
+        "imageUrl": "/boudoir-shoots-image-8.jpg",
+        "imageHint": "fine art boudoir graceful pose artistic photo"
+      },
+      {
+        "id": "boudoir-shoots-image-9",
+        "description": "Delicate interplay of shadows and curves that celebrates body positivity.",
+        "imageUrl": "/boudoir-shoots-image-9.jpg",
+        "imageHint": "shadow play boudoir body positivity"
+      },
+      {
+        "id": "boudoir-shoots-image-10",
+        "description": "A cozy indoor scene that merges softness, intimacy, and authenticity.",
+        "imageUrl": "/boudoir-shoots-image-10.jpg",
+        "imageHint": "indoor boudoir cozy natural light setting"
+      },
+      {
+        "id": "boudoir-shoots-image-11",
+        "description": "Dramatic composition using contrast and posture to convey inner strength.",
+        "imageUrl": "/boudoir-shoots-image-11.jpg",
+        "imageHint": "dramatic boudoir portrait confident composition"
+      },
+      {
+        "id": "boudoir-shoots-image-12",
+        "description": "Editorial-style boudoir frame balancing fashion and intimacy effortlessly.",
+        "imageUrl": "/boudoir-shoots-image-12.jpg",
+        "imageHint": "editorial boudoir photography fashion inspired"
+      },
+
+      {
+        "id": "boudoir-shoots-cover",
+        "description": "An intimate yet powerful portrait that captures confidence and poise in soft light.",
+        "imageUrl": "/boudoir-shoots-cover.jpg",
+        "imageHint": "boudoir cover portrait confidence soft lighting"
+      },
+
+      {
+        "id": "boudoir-shoots-about",
+        "description": "An intimate yet powerful portrait that captures confidence and poise in soft light.",
+        "imageUrl": "/boudoir-shoots-about.jpg",
+        "imageHint": "boudoir cover portrait confidence soft lighting"
+      },
+
+      {
+        "id": "boudoir-shoots-thumbnail",
+        "description": "An intimate yet powerful portrait that captures confidence and poise in soft light.",
+        "imageUrl": "/boudoir-shoots-thumbnail.jpg",
+        "imageHint": "boudoir cover portrait confidence soft lighting"
       }
       
     ]

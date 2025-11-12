@@ -925,6 +925,147 @@
         "description": "Closing moments and finale shots that encapsulate the success and joy of your event.",
         "imageUrl": "/event-photography-12.jpg",
         "imageHint": "event finale photography closing moments"
+      },
+      {
+        "id": "headshots-portraits",
+        "description": "Professional headshots and portrait photography that capture personality, confidence, and authenticity — perfect for business, creative, or personal use.",
+        "imageUrl": "/headshots-portraits.jpg",
+        "imageHint": "professional headshots and portrait photography"
+      },
+      {
+        "id": "personal-portrait",
+        "description": "Elegant personal portrait sessions designed to capture your individuality, style, and story through refined composition and natural expression.",
+        "imageUrl": "/personal-portrait.jpg",
+        "imageHint": "personal portrait photography session"
+      },
+
+      {
+        "id": "personal-portraits-1",
+        "description": "Natural light portraits that reflect genuine confidence and warmth.",
+        "imageUrl": "/personal-portraits-1.jpg",
+        "imageHint": "natural light personal portrait photography"
+      },
+      {
+        "id": "personal-portraits-2",
+        "description": "Studio portraits crafted to showcase individuality with clean, modern aesthetics.",
+        "imageUrl": "/personal-portraits-2.jpg",
+        "imageHint": "studio personal portrait photography"
+      },
+      {
+        "id": "personal-portraits-3",
+        "description": "Artistic compositions blending shadow, tone, and expression for timeless appeal.",
+        "imageUrl": "/personal-portraits-3.jpg",
+        "imageHint": "artistic personal portrait photography"
+      },
+      {
+        "id": "personal-portraits-4",
+        "description": "Candid lifestyle portraits that capture authentic personality and emotion.",
+        "imageUrl": "/personal-portraits-4.jpg",
+        "imageHint": "lifestyle portrait photography"
+      },
+      {
+        "id": "personal-portraits-5",
+        "description": "Black-and-white portraits emphasizing emotion, depth, and fine detail.",
+        "imageUrl": "/personal-portraits-5.jpg",
+        "imageHint": "black and white portrait photography"
+      },
+      {
+        "id": "personal-portraits-6",
+        "description": "Outdoor portraits with natural backdrops and soft ambient lighting.",
+        "imageUrl": "/personal-portraits-6.jpg",
+        "imageHint": "outdoor personal portrait photography"
+      },
+      {
+        "id": "personal-portraits-7",
+        "description": "Creative editorial-style portraits that express individuality and story.",
+        "imageUrl": "/personal-portraits-7.jpg",
+        "imageHint": "editorial style portrait photography"
+      },
+      {
+        "id": "personal-portraits-8",
+        "description": "Minimalist portraits focused on emotion, texture, and composition.",
+        "imageUrl": "/personal-portraits-8.jpg",
+        "imageHint": "minimalist portrait photography"
+      },
+      {
+        "id": "personal-portraits-9",
+        "description": "Environmental portraits that blend subject and surroundings harmoniously.",
+        "imageUrl": "/personal-portraits-9.jpg",
+        "imageHint": "environmental portrait photography"
+      },
+      {
+        "id": "personal-portraits-10",
+        "description": "Modern lifestyle portraits perfect for personal branding and creatives.",
+        "imageUrl": "/personal-portraits-10.jpg",
+        "imageHint": "personal branding portrait photography"
+      },
+      {
+        "id": "personal-portraits-11",
+        "description": "Elegant close-up portraits highlighting personality through subtle detail and lighting.",
+        "imageUrl": "/personal-portraits-11.jpg",
+        "imageHint": "close-up portrait photography"
+      },
+
+      {
+        "id": "personal-portraits-12",
+        "description": "Golden hour portraits filled with warmth, glow, and natural radiance.",
+        "imageUrl": "/personal-portraits-12.jpg",
+        "imageHint": "golden hour outdoor portrait photography"
+      },
+      {
+        "id": "personal-portraits-13",
+        "description": "Soft indoor portraits with gentle tones and intimate expressions.",
+        "imageUrl": "/personal-portraits-13.jpg",
+        "imageHint": "indoor portrait photography soft lighting"
+      },
+      {
+        "id": "personal-portraits-14",
+        "description": "Cinematic portraits inspired by film aesthetics and storytelling.",
+        "imageUrl": "/personal-portraits-14.jpg",
+        "imageHint": "cinematic portrait photography"
+      },
+      {
+        "id": "personal-portraits-15",
+        "description": "Urban portraits blending personality with modern architecture and textures.",
+        "imageUrl": "/personal-portraits-15.jpg",
+        "imageHint": "urban portrait photography city backdrop"
+      },
+      {
+        "id": "personal-portraits-16",
+        "description": "Playful and expressive portraits capturing real moments of joy.",
+        "imageUrl": "/personal-portraits-16.jpg",
+        "imageHint": "expressive candid portrait photography"
+      },
+      {
+        "id": "personal-portraits-17",
+        "description": "Dramatic portraits emphasizing contrast, form, and fine lighting.",
+        "imageUrl": "/personal-portraits-17.jpg",
+        "imageHint": "dramatic lighting portrait photography"
+      },
+      {
+        "id": "personal-portraits-18",
+        "description": "Soft pastel-toned portraits exuding calmness and modern elegance.",
+        "imageUrl": "/personal-portraits-18.jpg",
+        "imageHint": "pastel tone portrait photography"
+      },
+      {
+        "id": "personal-portraits-19",
+        "description": "Creative concept portraits blending fashion, art, and storytelling.",
+        "imageUrl": "/personal-portraits-19.jpg",
+        "imageHint": "conceptual portrait photography"
+      },
+      {
+        "id": "personal-portraits-20",
+        "description": "Refined editorial portraits ideal for magazines, campaigns, and profiles.",
+        "imageUrl": "/personal-portraits-20.jpg",
+        "imageHint": "editorial fashion portrait photography"
+      },
+      {
+        "id": "personal-portraits-21",
+        "description": "Emotive close-ups that capture genuine personality and timeless character.",
+        "imageUrl": "/personal-portraits-21.jpg",
+        "imageHint": "emotive close-up portrait photography"
       }
+      
     ]
   }

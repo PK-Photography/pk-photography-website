@@ -631,7 +631,7 @@ export const photographyCategories: Category[] = [
         description: 'High-quality fashion photography and videography for your brand, portfolio, or lookbook.',
         price: 'Starting at ₹20,000',
         thumbnailImage: getImage('fashion-category'),
-        images: [getImage('fashion-shoots-1'), getImage('fashion-shoots-2')],
+        images: [getImage('fashion-shoots-1'), getImage('fashion-shoots-about')],
         details: ['Half-day or full-day rates', 'Concept development & styling assistance', 'Advanced retouching', 'Photo & video packages'],
         pageContent: {
           longDescription: "In the competitive fashion landscape of Mumbai, powerful imagery is not a luxury—it's a necessity. Our fashion photography and lookbook services are designed to make your collection stand out. We collaborate with brands and designers to create visually stunning narratives that resonate with your target audience. From edgy street style in Bandra to elegant shoots in South Mumbai, we bring your creative vision to life with technical precision and artistic flair.",
@@ -666,12 +666,15 @@ export const photographyCategories: Category[] = [
             { question: "Are video services included in the fashion packages?", answer: "Our 'Campaign Pro' and 'Brand Launch' packages include video deliverables. We can also add video services, such as a fashion film or social media reels, to any package as a custom add-on." }
           ],
           portfolio: [
-            getImage('fashion-shoots-1'),
-            getImage('fashion-shoots-2'),
-            getImage('magazine-editorial-1'),
-            getImage('portfolio-creation-1'),
-            getImage('fashion-category'),
-            getImage('boudoir-shoots-1')
+            getImage('fashion-shoots-about-1'),
+            getImage('fashion-shoots-about-2'),
+            getImage('fashion-shoots-about-3'),
+            getImage('fashion-shoots-about-4'),
+            getImage('fashion-shoots-about-5'),
+            getImage('fashion-shoots-about-6'),
+            getImage('fashion-shoots-about-7'),
+            getImage('fashion-shoots-about-8'),
+            getImage('fashion-shoots-about-9')
           ]
         }
       },

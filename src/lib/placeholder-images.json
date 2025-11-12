@@ -870,6 +870,61 @@
         "description": "The perfect finale — cinematic closing shots to conclude your love story.",
         "imageUrl": "/wedding-24.jpg",
         "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "event-photography-cover",
+        "description": "Dynamic event coverage capturing key highlights, energy, and atmosphere — from grand openings to intimate gatherings.",
+        "imageUrl": "/event-photography-cover.jpg",
+        "imageHint": "event photography cover image showcasing lively atmosphere"
+      },
+
+      {
+        "id": "event-photography-5",
+        "description": "Engaging candid captures that showcase the spirit and emotion of your event’s attendees.",
+        "imageUrl": "/event-photography-5.jpg",
+        "imageHint": "event photography candid guest moments"
+      },
+      {
+        "id": "event-photography-6",
+        "description": "Professional coverage of stage moments and performances that define the evening.",
+        "imageUrl": "/event-photography-6.jpg",
+        "imageHint": "event stage photography performance coverage"
+      },
+      {
+        "id": "event-photography-7",
+        "description": "Vibrant photos of décor, lighting, and ambiance — preserving every creative detail.",
+        "imageUrl": "/event-photography-7.jpg",
+        "imageHint": "event decor and ambience photography"
+      },
+      {
+        "id": "event-photography-8",
+        "description": "Networking and corporate interaction shots that highlight meaningful connections.",
+        "imageUrl": "/event-photography-8.jpg",
+        "imageHint": "corporate networking event photography"
+      },
+      {
+        "id": "event-photography-9",
+        "description": "Wide-angle views capturing the scale and energy of the event crowd.",
+        "imageUrl": "/event-photography-9.jpg",
+        "imageHint": "wide angle crowd photography at events"
+      },
+      {
+        "id": "event-photography-10",
+        "description": "Behind-the-scenes storytelling through spontaneous, authentic moments.",
+        "imageUrl": "/event-photography-10.jpg",
+        "imageHint": "behind the scenes event photography"
+      },
+      {
+        "id": "event-photography-11",
+        "description": "Elegant portraits of speakers, performers, and VIP guests in natural lighting.",
+        "imageUrl": "/event-photography-11.jpg",
+        "imageHint": "event portrait photography of speakers and guests"
+      },
+      {
+        "id": "event-photography-12",
+        "description": "Closing moments and finale shots that encapsulate the success and joy of your event.",
+        "imageUrl": "/event-photography-12.jpg",
+        "imageHint": "event finale photography closing moments"
       }
     ]
   }

@@ -183,13 +183,13 @@
       {
         "id": "wedding-photography-1",
         "description": "A bride and groom exchanging vows.",
-        "imageUrl": "https://images.unsplash.com/photo-1606800052052-a08af7148866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWRkaW5nJTIwY2VyZW1vbnl8ZW58MHx8fHwxNzYxMTMzMDU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageUrl": "/wedding-photography-1.jpg",
         "imageHint": "wedding ceremony"
       },
       {
         "id": "wedding-photography-2",
         "description": "A detailed shot of wedding rings.",
-        "imageUrl": "https://images.unsplash.com/photo-1606800052052-a08af7148866?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwcmluZ3N8ZW58MHx8fHwxNzYxMDk5ODI2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+        "imageUrl": "/wedding-photography-1.jpg",
         "imageHint": "wedding rings"
       },
       {
@@ -635,6 +635,241 @@
         "description": "A flat lay of professional wedding photography gear, including a full-frame camera, lenses, and flash.",
         "imageUrl": "https://images.unsplash.com/photo-1664786496885-2bc564aa002f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2071",
         "imageHint": "wedding gear"
+      },
+      {
+        "id": "cinematic-video-aerials",
+        "description": "Cinematic aerial and ground video captures showcasing sweeping wedding scenes and storytelling moments.",
+        "imageUrl": "/cinematic-video-aerials.jpg",
+        "imageHint": "cinematic video & aerials"
+      },
+      {
+        "id": "cultural-ceremonies",
+        "description": "Traditional and cultural wedding ceremonies highlighting heritage, rituals, and timeless customs.",
+        "imageUrl": "/cultural-ceremonies.png",
+        "imageHint": "cultural ceremonies"
+      },
+      {
+        "id": "destination-weddings",
+        "description": "Scenic destination wedding captures blending breathtaking landscapes with intimate celebrations.",
+        "imageUrl": "/destination-weddings.jpg",
+        "imageHint": "destination weddings"
+      },
+      {
+        "id": "engaged-couples",
+        "description": "Portraits and lifestyle shoots of engaged couples that capture connection, warmth, and anticipation.",
+        "imageUrl": "/engaged-couples.jpg",
+        "imageHint": "engaged couples"
+      },
+      {
+        "id": "event-planners",
+        "description": "Behind-the-scenes imagery and coordination moments with event planners bringing celebrations to life.",
+        "imageUrl": "/event-planners.jpg",
+        "imageHint": "event planners"
+      },
+      {
+        "id": "creative-add-ons",
+        "description": "Unique creative add-ons that elevate your wedding storytelling through innovative visual elements.",
+        "imageUrl": "/creative-add-ons.jpg",
+        "imageHint": "creative add ons"
+      },
+      {
+        "id": "family-emotional",
+        "description": "Candid emotional moments shared between family members — raw, heartfelt, and genuine.",
+        "imageUrl": "/family-emotional.jpg",
+        "imageHint": "family emotional"
+      },
+      {
+        "id": "post-delivery",
+        "description": "The final stage of our work — timely delivery, refined edits, and stunning presentation packages.",
+        "imageUrl": "/post-delivery.jpg",
+        "imageHint": "post delivery"
+      },
+      {
+        "id": "post-wedding",
+        "description": "Elegant post-wedding sessions capturing relaxed, joyful, and intimate newlywed moments.",
+        "imageUrl": "/post-wedding.jpg",
+        "imageHint": "post wedding"
+      },
+      {
+        "id": "pre-wedding",
+        "description": "Stylized pre-wedding shoots blending cinematic flair with genuine chemistry and emotion.",
+        "imageUrl": "/pre-wedding.jpg",
+        "imageHint": "pre wedding"
+      },
+      {
+        "id": "wedding-coverage",
+        "description": "Comprehensive wedding-day coverage from every angle — ensuring no moment goes unseen.",
+        "imageUrl": "/wedding-coverage.jpg",
+        "imageHint": "wedding coverage"
+      },
+      {
+        "id": "high-resolution-camera-systems",
+        "description": "Advanced high-resolution camera systems designed for unmatched clarity and detail in every frame.",
+        "imageUrl": "/high-resolution-camera-systems.jpg",
+        "imageHint": "high resolution camera systems"
+      },
+      {
+        "id": "luxury-album",
+        "description": "Elegant, handcrafted luxury albums that preserve your memories in timeless sophistication.",
+        "imageUrl": "/luxury-album.jpg",
+        "imageHint": "luxury wedding album"
+      },
+      {
+        "id": "creative-post-production",
+        "description": "Expert editing and color grading to bring cinematic polish and emotional depth to every frame.",
+        "imageUrl": "/creative-post-production.png",
+        "imageHint": "creative photo and video post production"
+      },
+      {
+        "id": "meet-and-plan",
+        "description": "Collaborative pre-shoot consultation to align on themes, locations, and creative direction for your event.",
+        "imageUrl": "/meet-and-plan.jpg",
+        "imageHint": "photography planning meeting"
+      },
+      {
+        "id": "the-big-days",
+        "description": "Full coverage of your main event days — capturing every emotion, detail, and unforgettable moment.",
+        "imageUrl": "/the-big-days.jpg",
+        "imageHint": "wedding day photography coverage"
+      },
+      {
+        "id": "wedding-17",
+        "description": "Full coverage of your main event days — capturing every emotion, detail, and unforgettable moment.",
+        "imageUrl": "/wedding-17.jpg",
+        "imageHint": "wedding day photography coverage"
+      },
+      {
+        "id": "wedding-2",
+        "description": "Intimate candid moments captured with authenticity and warmth.",
+        "imageUrl": "/wedding-2.jpg",
+        "imageHint": "wedding candid photography"
+      },
+      {
+        "id": "wedding-3",
+        "description": "Beautifully composed portraits that reflect your connection and story.",
+        "imageUrl": "/wedding-3.jpg",
+        "imageHint": "wedding portrait photography"
+      },
+      {
+        "id": "wedding-4",
+        "description": "Cinematic wide shots showcasing the ambience and décor of your celebration.",
+        "imageUrl": "/wedding-4.jpg",
+        "imageHint": "wedding venue decor photography"
+      },
+      {
+        "id": "wedding-5",
+        "description": "Joyful candid frames highlighting family and friends in celebration.",
+        "imageUrl": "/wedding-5.jpg",
+        "imageHint": "wedding guests candid moments"
+      },
+      {
+        "id": "wedding-6",
+        "description": "Emotional exchanges frozen in time — the vows, the laughter, the tears.",
+        "imageUrl": "/wedding-6.jpg",
+        "imageHint": "emotional wedding moments"
+      },
+      {
+        "id": "wedding-7",
+        "description": "Artistic captures with creative lighting and composition for timeless memories.",
+        "imageUrl": "/wedding-7.jpg",
+        "imageHint": "artistic wedding photography"
+      },
+      {
+        "id": "wedding-8",
+        "description": "Capturing every ritual and tradition with attention to cultural detail.",
+        "imageUrl": "/wedding-8.jpg",
+        "imageHint": "traditional wedding photography"
+      },
+      {
+        "id": "wedding-9",
+        "description": "Elegant couple portraits blending emotion and sophistication.",
+        "imageUrl": "/wedding-9.jpg",
+        "imageHint": "elegant couple portraits"
+      },
+      {
+        "id": "wedding-10",
+        "description": "Vibrant images that showcase the energy and colors of your ceremony.",
+        "imageUrl": "/wedding-10.jpg",
+        "imageHint": "colorful wedding photography"
+      },
+      {
+        "id": "wedding-11",
+        "description": "Tender interactions and subtle gestures that tell a deeper story.",
+        "imageUrl": "/wedding-11.jpg",
+        "imageHint": "intimate wedding moments"
+      },
+      {
+        "id": "wedding-12",
+        "description": "Stunning bridal portraits that capture elegance and grace.",
+        "imageUrl": "/wedding-12.jpg",
+        "imageHint": "bridal portrait photography"
+      },
+      {
+        "id": "wedding-13",
+        "description": "The grandeur of your ceremony preserved in cinematic frames.",
+        "imageUrl": "/wedding-13.jpg",
+        "imageHint": "ceremony photography"
+      },
+      {
+        "id": "wedding-14",
+        "description": "Reception highlights filled with laughter, dance, and emotion.",
+        "imageUrl": "/wedding-14.jpg",
+        "imageHint": "wedding reception photography"
+      },
+      {
+        "id": "wedding-15",
+        "description": "Groom and family moments — stylish, candid, and full of charm.",
+        "imageUrl": "/wedding-15.jpg",
+        "imageHint": "groom wedding portraits"
+      },
+      {
+        "id": "wedding-16",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-16.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+
+      {
+        "id": "wedding-18",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-18.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-19",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-19.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-20",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-20.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-21",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-21.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-22",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-22.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-23",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-23.jpg",
+        "imageHint": "wedding closing moments photography"
+      },
+      {
+        "id": "wedding-24",
+        "description": "The perfect finale — cinematic closing shots to conclude your love story.",
+        "imageUrl": "/wedding-24.jpg",
+        "imageHint": "wedding closing moments photography"
       }
     ]
   }

@@ -741,8 +741,8 @@ export const photographyCategories: Category[] = [
         categoryName: 'Fashion & Editorial',
         description: 'Empowering and intimate photography sessions that celebrate you in a private, comfortable setting.',
         price: 'Starting at ₹15,000',
-        thumbnailImage: getImage('boudoir-shoots-1'),
-        images: [getImage('boudoir-shoots-1'), getImage('boudoir-shoots-2')],
+        thumbnailImage: getImage('boudoir-shoots-thumbnail'),
+        images: [getImage('boudoir-shoots-cover'), getImage('boudoir-shoots-about')],
         details: ['Private and comfortable setting', 'Professional hair and makeup optional', 'Discreet and tasteful editing'],
         pageContent: { 
             longDescription: 'Celebrate yourself with a boudoir photography session in our private and secure Mumbai studio. Our all-female team creates a comfortable and empowering environment where you can explore your sensuality and confidence. These sessions are a beautiful gift to yourself or a partner, resulting in tasteful, artistic, and intimate portraits that you will treasure.',
@@ -777,12 +777,18 @@ export const photographyCategories: Category[] = [
               { question: "Who is a boudoir shoot for?", answer: "It's for everyone! It's a powerful way to celebrate your body, a milestone, or your relationship. Many clients do it as a personal confidence boost, while others create a beautiful, intimate gift for a partner." }
             ],
             portfolio: [
-                getImage('boudoir-shoots-1'),
-                getImage('boudoir-shoots-2'),
-                getImage('sensual-portrait'),
-                getImage('portrait-woman'),
-                getImage('elegant-boudoir'),
-                getImage('personal-portrait-2')
+              getImage('boudoir-shoots-image-1'),
+              getImage('boudoir-shoots-image-2'),
+              getImage('boudoir-shoots-image-3'),
+              getImage('boudoir-shoots-image-4'),
+              getImage('boudoir-shoots-image-5'),
+              getImage('boudoir-shoots-image-6'),
+              getImage('boudoir-shoots-image-7'),
+              getImage('boudoir-shoots-image-8'),
+              getImage('boudoir-shoots-image-9'),
+              getImage('boudoir-shoots-image-10'),
+              getImage('boudoir-shoots-image-11'),
+              getImage('boudoir-shoots-image-12')
             ]
         }
       },

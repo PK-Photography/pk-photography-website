@@ -103,7 +103,6 @@ export const photographyCategories: Category[] = [
             }
           ],
           whoIsItFor: [
-            { text: "Cinematic Video & Aerials", image: getImage('cinematic-video-aerials') },
             { text: "Cultural Ceremonies", image: getImage('cultural-ceremonies') },
             { text: "Destination Weddings", image: getImage('destination-weddings') },
             { text: "Engaged Couples", image: getImage('engaged-couples') },

@@ -1254,6 +1254,86 @@
         "description": "Family moment frozen in time — laughter, hugs, and genuine connection.",
         "imageUrl": "/baby-kids-photo-15.jpg",
         "imageHint": "family portrait with baby and parents smiling together"
+      },
+      {
+        "id": "fashion-shoots-about",
+        "description": "Elegant studio portrait showcasing timeless couture and refined lighting.",
+        "imageUrl": "/fashion-shoots-about.jpg",
+        "imageHint": "studio fashion portrait classic couture lighting"
+      },
+
+    
+      {
+        "id": "fashion-shoots-about-1",
+        "description": "Elegant studio portrait showcasing timeless couture and refined lighting.",
+        "imageUrl": "/fashion-shoots-about-1.jpg",
+        "imageHint": "studio fashion portrait classic couture lighting"
+      },
+      {
+        "id": "fashion-shoots-about-2",
+        "description": "Dynamic runway-inspired pose capturing the essence of motion and style.",
+        "imageUrl": "/fashion-shoots-about-2.jpg",
+        "imageHint": "runway editorial photography dynamic model pose"
+      },
+      {
+        "id": "fashion-shoots-about-3",
+        "description": "Minimalist monochrome editorial emphasizing form, attitude, and grace.",
+        "imageUrl": "/fashion-shoots-about-3.jpg",
+        "imageHint": "black and white fashion editorial photography"
+      },
+      {
+        "id": "fashion-shoots-about-4",
+        "description": "High-fashion lookbook setup with dramatic lighting and textured fabrics.",
+        "imageUrl": "/fashion-shoots-about-4.jpg",
+        "imageHint": "lookbook photography dramatic fashion lighting"
+      },
+      {
+        "id": "fashion-shoots-about-5",
+        "description": "Urban fashion editorial blending modern streetwear with architectural lines.",
+        "imageUrl": "/fashion-shoots-about-5.jpg",
+        "imageHint": "urban fashion shoot street style architecture"
+      },
+      {
+        "id": "fashion-shoots-about-6",
+        "description": "Vibrant color-blocked outfit captured under creative studio lighting.",
+        "imageUrl": "/fashion-shoots-about-6.jpg",
+        "imageHint": "colorful studio fashion portrait"
+      },
+      {
+        "id": "fashion-shoots-about-7",
+        "description": "Outdoor editorial shoot at golden hour highlighting natural elegance.",
+        "imageUrl": "/fashion-shoots-about-7.jpg",
+        "imageHint": "outdoor fashion photography golden hour"
+      },
+      {
+        "id": "fashion-shoots-about-8",
+        "description": "Avant-garde concept shoot emphasizing bold textures and dramatic mood.",
+        "imageUrl": "/fashion-shoots-about-8.jpg",
+        "imageHint": "avant garde fashion photography creative concept"
+      },
+      {
+        "id": "fashion-shoots-about-9",
+        "description": "Detailed close-up showcasing intricate accessories and styling finesse.",
+        "imageUrl": "/fashion-shoots-about-9.jpg",
+        "imageHint": "fashion accessories close up editorial detail"
+      },
+      {
+        "id": "fashion-shoots-about-10",
+        "description": "Editorial duo shot with contrasting tones and synchronized energy.",
+        "imageUrl": "/fashion-shoots-about-10.jpg",
+        "imageHint": "editorial duo fashion photography contrast lighting"
+      },
+      {
+        "id": "fashion-shoots-about-11",
+        "description": "Soft-lit portrait emphasizing texture, emotion, and sophisticated simplicity.",
+        "imageUrl": "/fashion-shoots-about-11.jpg",
+        "imageHint": "soft light studio fashion portrait simplicity"
+      },
+      {
+        "id": "fashion-shoots-about-12",
+        "description": "Conceptual editorial representing bold individuality and modern glamour.",
+        "imageUrl": "/fashion-shoots-about-12.jpg",
+        "imageHint": "conceptual editorial fashion modern glamour"
       }
       
     ]

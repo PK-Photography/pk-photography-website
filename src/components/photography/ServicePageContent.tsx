@@ -130,7 +130,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                             alt={`${service.name} detail shot`}
                             data-ai-hint={service.images[1].imageHint}
                             fill
-                            className="object-cover object-center"
+                            className="object-cover object-top"
                         />
                     )}
                 </div>
@@ -187,7 +187,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                                       alt={item.text}
                                       data-ai-hint={item.image.imageHint}
                                       fill
-                                      className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                                      className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                                   />
                               )}
                           </div>
@@ -234,7 +234,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                                         alt={step.title}
                                         data-ai-hint={image.imageHint}
                                         fill
-                                        className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                                        className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                                     />
                                 )}
                                 <div className="absolute inset-0 bg-black/30" />

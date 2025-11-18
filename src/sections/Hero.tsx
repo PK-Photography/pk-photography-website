@@ -1,29 +1,64 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
+
+const getYouTubeEmbedUrl = (url: string): string | null => {
+  let videoId: string | null = null;
+  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const match = url.match(youtubeRegex);
+  if (match && match[1]) {
+    videoId = match[1];
+  } else {
+    const idMatch = url.match(/^[a-zA-Z0-9_-]{11}$/);
+    if (idMatch) {
+      videoId = idMatch[0];
+    }
+  }
+
+  if (videoId) {
+    const params = new URLSearchParams({
+      autoplay: '1',
+      mute: '1',
+      loop: '1',
+      playlist: videoId,
+      controls: '0',
+      modestbranding: '1',
+      playsinline: '1',
+    });
+    return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+  }
+  return null;
+};
 
 export const Hero = () => {
-  return (
-    <section className="relative h-screen w-full overflow-hidden">
+  // change this to whichever video URL you want to embed
+  const videoUrl = "https://www.youtube.com/watch?v=22SExhaXwi0";
+  const embedSrc = useMemo(() => getYouTubeEmbedUrl(videoUrl), [videoUrl]);
 
-      {/* 🔥 Background Video */}
-      <iframe
-        className="absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        src="https://www.youtube.com/embed/22SExhaXwi0?autoplay=1&mute=1&loop=1&playlist=22SExhaXwi0&controls=0&modestbranding=1&playsinline=1"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{
-          width: "100vw",
-          height: "56.25vw",
-          minHeight: "100vh",
-          minWidth: "177.77vh",
-        }}
-      />
+  return (
+    <section className="relative h-[80vh] w-full text-white flex items-center justify-center overflow-hidden">
+      {/* Background Video (same sizing / class pattern as service page) */}
+      {embedSrc && (
+        <div className="relative h-[80vh] w-full text-white flex items-center justify-center overflow-hidden">
+          <iframe
+          className="absolute z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: '100vw',
+            height: '56.25vw',
+            minHeight: '100vh',
+            minWidth: '177.77vh',
+          }}
+          src={embedSrc}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+        </div>
+      )}
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-0" />
+      <div className="absolute inset-0 bg-black/50 z-0" />
 
       {/* Content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
@@ -49,7 +84,8 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };
+
+export default Hero;

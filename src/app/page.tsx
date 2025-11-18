@@ -21,14 +21,14 @@ export default function Home() {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    const alreadyRedirected = sessionStorage.getItem("redirectedToServices");
+    // const isMobile = window.innerWidth <= 768;
+    // const alreadyRedirected = sessionStorage.getItem("redirectedToServices");
 
-    if (isMobile && !alreadyRedirected) {
-      sessionStorage.setItem("redirectedToServices", "true");
-      router.push("/services");
-      return;
-    }
+    // if (isMobile && !alreadyRedirected) {
+    //   sessionStorage.setItem("redirectedToServices", "true");
+    //   router.push("/services");
+    //   return;
+    // }
     // Scroll to hash if present
     const hash = window.location.hash;
     if (hash) {

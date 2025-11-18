@@ -6,6 +6,44 @@ import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// ----------------------------------------
+// HARDCODED GOOGLE REVIEW DATA
+// ----------------------------------------
+const HARDCODED_REVIEWS = [
+  {
+    author_name: "Nirmesh Raghav",
+    profile_photo_url:
+      "https://randomuser.me/api/portraits/men/32.jpg",
+    text: "We recently hired PK Photography for our Game Changer program in Mumbai on 9th November and we are very much happy with the experience. The entire team was incredibly skilled, professional and attentive throughout the event. They captured every moment beautifully and delivered all the photos and videos right on time. Their promptness, coordination and high-quality work truly stood out. We are extremely satisfied with their service and would highly recommend them to anyone looking for a reliable and talented photography team. Thank you for making our event even more memorable....",
+    rating: 5,
+    relative_time_description: "2 weeks ago",
+  },
+  {
+    author_name: "Siddharth Tiwari",
+    profile_photo_url:
+      "https://randomuser.me/api/portraits/men/44.jpg",
+    text: "I had a wonderful experience with Prabhakar Kumar (P K Photography). Despite it being a Sunday and on very short notice, he arranged everything quickly and handled the entire process smoothly. He was extremely patient throughout and delivered the edited photos within a day, which was truly impressive. I would definitely recommend P K Photography to anyone looking for professional and reliable photography services.",
+    rating: 5,
+    relative_time_description: "1 month ago",
+  },
+  {
+    author_name: "Jessica Mahood",
+    profile_photo_url:
+      "https://randomuser.me/api/portraits/women/12.jpg",
+    text: "The best experience! Super easy booking process, really enjoyable vibe in the studio, finished products are perfect. Would highly recommend for anyone looking to build their portfolio.",
+    rating: 4,
+    relative_time_description: "3 weeks ago",
+  },
+  {
+    author_name: "Akanksha Madhwani",
+    profile_photo_url:
+      "https://randomuser.me/api/portraits/women/28.jpg",
+    text: "I had my professional portfolio shoot at this studio. Team is cooperative and provided support in having it done. Prabhakar Ji (Photographer) was calm and tried the best possible postures for our shoot.",
+    rating: 5,
+    relative_time_description: "5 days ago",
+  },
+];
+
 // Arrow styles
 const arrowBase = "text-2xl transition duration-200 ease-in-out";
 const activeArrow = "text-[#0f1110] hover:text-[#1a1a1a]";
@@ -59,13 +97,9 @@ const Reviews = () => {
   const [expandedStates, setExpandedStates] = useState([]);
 
   useEffect(() => {
-    fetch("/api/google-reviews")
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews(data || []);
-        setExpandedStates(Array(data.length || 0).fill(false));
-      })
-      .catch((err) => console.error("Failed to fetch reviews", err));
+    // direct injection of hardcoded reviews
+    setReviews(HARDCODED_REVIEWS);
+    setExpandedStates(Array(HARDCODED_REVIEWS.length).fill(false));
   }, []);
 
   const toggleExpand = (index) => {
@@ -91,13 +125,13 @@ const Reviews = () => {
   };
 
   return (
-    <section className="bg-white py-20 px-4  sm:mx-4 lg:px-9 relative">
-      <div className="max-w-7xl  mx-auto text-center">
+    <section className="bg-white py-20 px-4 sm:mx-4 lg:px-9 relative">
+      <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-[#0f1110] mb-4">
           What Our Clients Say
         </h2>
         <p className="text-lg text-gray-600 mb-10">
-          Based on real reviews from our Google profile
+          Based on real experiences shared by our clients
         </p>
 
         {reviews.length > 0 ? (
@@ -109,7 +143,7 @@ const Reviews = () => {
 
               return (
                 <div key={index} className="px-4 mb-6 ">
-                  <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px]   flex flex-col justify-between text-left">
+                  <div className="bg-white shadow-lg rounded-xl p-6 h-full min-h-[360px] flex flex-col justify-between text-left">
                     <div className="mb-4">
                       <p className="text-gray-800 text-base leading-relaxed">
                         {expanded || !showToggle
@@ -154,7 +188,7 @@ const Reviews = () => {
           <p className="text-gray-400">Loading reviews...</p>
         )}
 
-        {/* CTA Button */}
+        {/* CTA */}
         <div className="mt-10">
           <a
             href="https://g.page/r/CVhvUcwRhP2GEAE/review"

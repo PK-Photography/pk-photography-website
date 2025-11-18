@@ -35,7 +35,7 @@ export default function Header() {
             Gallery
           </a>
           <Link href="/booking">Booking</Link>
-          <Link href="/services/live-streaming">Live Streaming</Link>
+          <Link href="/services/weddings">Weddings</Link>
         </div>
 
         {/* CTAs + Burger */}

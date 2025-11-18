@@ -365,7 +365,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
       </div>
         {/* Portfolio */}
         {pageContent.portfolio && pageContent.portfolio.length > 0 && (
-          <section className="py-16 md:py-20">
+          <section id="portfolio" className="py-16 md:py-20">
             <div className="container mx-auto max-w-screen-lg px-4 text-center">
               <h2 className="font-headline text-3xl md:text-4xl mb-12">Portfolio Showcase</h2>
               <AnimatedGallery portfolio={pageContent.portfolio} serviceName={service.name} />
@@ -403,7 +403,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                         {`Let's create something beautiful together. Contact PK Photography today to discuss your project and book your session in Mumbai.`}
                     </p>
                      <Button asChild size="lg" className="font-bold text-lg bg-[#557C8A]-foreground text-[#557C8A] hover:bg-[#557C8A]-foreground/90">
-                        <Link href={`/booking/${service.id}`}>Inquire Now</Link>
+                        <Link href={`/booking`}>Inquire Now</Link>
                     </Button>
                 </CardContent>
             </Card>

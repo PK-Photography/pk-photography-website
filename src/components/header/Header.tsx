@@ -33,7 +33,7 @@ export default function Header() {
           <Link href="/services">Services</Link>
           <a href="/galleries" rel="noopener noreferrer">
             Gallery
-          </a>
+          </a>  
           <Link href="/booking">Booking</Link>
           <Link href="/services/weddings">Weddings</Link>
         </div>

@@ -88,13 +88,20 @@ export default function ServicePageContent({ service }: { service: Service }) {
       {weddingVideoUrl ? (
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
             <iframe
-                className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 md:w-[177.77vh] md:h-[100vh] min-w-[177.77vh] min-h-[100vh]"
-                src={weddingVideoUrl}
-                title="Wedding videography background"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
+              src="https://www.youtube.com/embed/Y2KPmB1eMPQ?autoplay=1&mute=1&controls=0&loop=1&playlist=Y2KPmB1eMPQ&modestbranding=1&showinfo=0"
+              title="Shaadifilms hero video"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              style={{
+                width: '100vw',
+                height: '56.25vw', // 16:9
+                minHeight: '100vh',
+                minWidth: '177.77vh',
+                border: 0,
+              }}
+              frameBorder="0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
         </div>
       ) : heroImage && (
         <Image

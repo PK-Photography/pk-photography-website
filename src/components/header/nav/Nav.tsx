@@ -56,7 +56,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
     >
       {/* Top Bar */}
       <div className="relative w-full px-6 pt-6 h-20 flex items-center justify-between">
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 flex justify-left items-left">
           <button
             onClick={() => {
               router.push("/");
@@ -66,7 +66,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             aria-label="Go to Home"
           >
             {/* Replace 'PK' text with public/logo.png */}
-            <div className="mx-auto flex items-center">
+            <div className="mx-auto flex items-left">
               <Image
                 src="/pk-logo.png"
                 alt="PK Photography"

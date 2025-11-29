@@ -54,7 +54,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
       className="fixed inset-0 z-[100] bg-[#0f1110] text-white font-[Work Sans] overflow-y-auto md:overflow-hidden"
     >
       {/* Top Bar */}
-      <div className="relative w-full px-6 pt-6 h-20 flex items-center justify-between">
+      <div className="relative w-full px-6 pt-6 h-20 flex items-center justify-between mb-10 md:mb-0">
         <div className="flex-1 flex justify-left items-left">
           <button
             onClick={() => {
@@ -64,7 +64,6 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             className="focus:outline-none"
             aria-label="Go to Home"
           >
-            {/* Replace 'PK' text with public/logo.png */}
             <div className="mx-auto flex items-left">
               <Image
                 src="/pk-logo.png"
@@ -77,6 +76,7 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             </div>
           </button>
         </div>
+
         <button
           onClick={onClose}
           className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:opacity-70 z-50"

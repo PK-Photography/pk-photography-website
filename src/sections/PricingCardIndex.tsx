@@ -9,9 +9,9 @@ const packages = [
     title: "PREMIUM PACKAGE",
     price: "PRICE: 20,000 INR",
     images: [
-      "/pricing/cover.jpg",
+      "/pricing/PKP_7916l.jpg",
       "/pricing/PKP_2826.jpg",
-      "/pricing/PKP_7172.jpg",
+      "/pricing/PKP_0763 cover.jpg",
     ],
     shootType: "FULL PORTFOLIO SHOOT",
     duration: "Duration: 5 To 6 Hours",

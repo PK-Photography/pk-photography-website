@@ -65,8 +65,6 @@ export default function Home() {
       <FAQ /> 
        <BubbleText text="Shoot Pricing" id="Shoot-Pricing" />
       <PricingCardIndex />       
-    
-
       <LoginPromptModal
         isOpen={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}

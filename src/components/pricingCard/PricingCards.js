@@ -46,7 +46,7 @@ const PricingCards = ({ packages }) => {
                         key={i}
                         src={image}
                         alt={`${pkg.title} Image ${i + 1}`}
-                        className="w-full h-48 object-cover rounded-lg"
+                        className="w-full h-48 object-cover object-top rounded-lg"
                       />
                     ))}
                   </Slider>

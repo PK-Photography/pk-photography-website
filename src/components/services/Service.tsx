@@ -22,6 +22,7 @@ interface CardProps {
   id: number;
   url: string;
   link: string;
+  link2: string;
   title: string;
   subtitle: string;
   isLightBackground?: boolean;
@@ -34,6 +35,7 @@ const cards: CardProps[] = [
     subtitle: "Crafting your visual stories",
     id: 1,
     link: "/services/editorial-portfolio#portfolio",
+    link2: "/services/editorial-portfolio"
   },
   {
     url: service2.src,
@@ -42,13 +44,15 @@ const cards: CardProps[] = [
     id: 2,
     isLightBackground: true,
     link: "/services/portraits-headshots#portfolio",
+    link2: "/services/portraits-headshots",
   },
   {
     url: service3.src,
-    title: "Headshots", 
+    title: "Headshots",
     subtitle: "Professional headshots that speak success",
     id: 3,
     link: "/services/portraits-headshots#portfolio",
+    link2: "/services/portraits-headshots"
   },
   {
     url: service4.src,
@@ -56,6 +60,7 @@ const cards: CardProps[] = [
     subtitle: "Magazine-Worthy Shots for Every Story Headshots",
     id: 4,
     link: "/services/editorial-portfolio#portfolio",
+    link2: "/services/editorial-portfolio"
   },
   {
     url: service5.src,
@@ -63,6 +68,7 @@ const cards: CardProps[] = [
     subtitle: "Reflect your stardom with every shot",
     id: 5,
     link: "/services/influencer-celebrity#portfolio",
+    link2: "/services/influencer-celebrity"
   },
   {
     url: service6.src,
@@ -70,6 +76,7 @@ const cards: CardProps[] = [
     subtitle: "Highlights your products with flawless imagery",
     id: 6,
     link: "/services/brand-content#portfolio",
+    link2: "/services/brand-content",
   },
   {
     url: service7.src,
@@ -77,6 +84,7 @@ const cards: CardProps[] = [
     subtitle: "Your Big Day, perfectly captured",
     id: 7,
     link: "/services/weddings#portfolio",
+    link2: "/services/weddings",
   },
   {
     url: service8.src,
@@ -84,6 +92,7 @@ const cards: CardProps[] = [
     subtitle: "Empower your confidence",
     id: 8,
     link: "/services/boudoir-shoots#portfolio",
+    link2: "/services/boudoir-shoots",
   },
   {
     url: service9.src,
@@ -92,6 +101,7 @@ const cards: CardProps[] = [
     id: 9,
     isLightBackground: true,
     link: "/services/food-photography#portfolio",
+    link2: "/services/food-photography",
   },
   {
     url: service10.src,
@@ -100,6 +110,7 @@ const cards: CardProps[] = [
     id: 10,
     isLightBackground: true,
     link: "/services/product-ecommerce#portfolio",
+    link2: "/services/product-ecommerce",
   },
   {
     url: service11.src,
@@ -107,6 +118,7 @@ const cards: CardProps[] = [
     subtitle: "Highlighting the beauty of every property",
     id: 11,
     link: "/services/real-estate-architectural#portfolio",
+    link2: "/services/real-estate-architectural",
   },
   {
     url: service12.src,
@@ -114,6 +126,7 @@ const cards: CardProps[] = [
     subtitle: "Your vision, our expertise in design",
     id: 12,
     link: "/services/design-services#portfolio",
+    link2: "/services/design-services",
   },
   {
     url: service13.src,
@@ -121,6 +134,7 @@ const cards: CardProps[] = [
     subtitle: "Experience Live Streaming Like Never Before",
     id: 13,
     link: "/services/live-streaming#portfolio",
+    link2: "/services/live-streaming",
   },
 ];
 
@@ -131,7 +145,8 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
   const isLastThree = index >= cards.length - 3;
 
   return (
-    <Link href={card.link} key={card.id}>
+    // Entire card links to link2
+    <Link href={card.link2} key={card.id} className="no-underline">
       <div
         className={`group relative h-[620px] md:w-[468px] md:h-[650px] sm:w-[404px] overflow-hidden bg-neutral-200 rounded-3xl cursor-pointer ${
           card.isLightBackground ? "text-black" : "text-white"
@@ -145,10 +160,10 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
             backgroundPosition: "center",
           }}
           className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 rounded-lg"
-        ></div>
+        />
 
         {/* Blue Vertical Line */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-8 w-1 bg-[#2874a6]"></div>
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-8 w-1 bg-[#2874a6]" />
 
         {/* Text + Button */}
         <div className="absolute top-0 z-10 w-full text-center pt-8">
@@ -160,18 +175,20 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
           >
             {card.title}
           </p>
+
           <p className="px-4 py-1 mt-2 text-lg font-medium">{card.subtitle}</p>
+
+          {/* View Gallery Button → link */}
           <div className="mt-1 flex justify-center">
-            <Btn
-              className={card.isLightBackground ? "text-black" : "text-white"}
-            />
+            <Link href={card.link} className="z-20">
+              <Btn className={card.isLightBackground ? "text-black" : "text-white"} />
+            </Link>
           </div>
         </div>
       </div>
     </Link>
   );
 };
-
 const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({
   cards,
 }) => {

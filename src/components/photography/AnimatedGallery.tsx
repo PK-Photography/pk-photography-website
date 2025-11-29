@@ -130,7 +130,7 @@ export default function AnimatedGallery({
       )}
 
       {/* Masonry container */}
-      <div className="masonry-gallery container mx-auto px-4">
+      <div className="masonry-gallery w-full">
         {imagesToShow.map((img, idx) => (
           <motion.div
             key={`${img.id ?? img._id ?? idx}-${idx}`}

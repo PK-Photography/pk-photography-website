@@ -69,7 +69,7 @@ const BookingForm = () => {
             We have received your booking request. Thank you!
           </p>
         </div>
-        <Link href="/">
+        <Link href="/services">
           <ButtonWrapper>Explore More</ButtonWrapper>
         </Link>
       </div>

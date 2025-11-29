@@ -370,15 +370,16 @@ export default function ServicePageContent({ service }: { service: Service }) {
           </section>
         )}
       </div>
-        {/* Portfolio */}
-        {pageContent.portfolio && pageContent.portfolio.length > 0 && (
-          <section id="portfolio" className="py-16 md:py-20">
-            <div className="container mx-auto max-w-full px-4 text-center">
-              <h2 className="font-headline text-3xl md:text-4xl mb-12">Portfolio Showcase</h2>
-              <AnimatedGallery portfolio={pageContent.portfolio} serviceName={service.name} />
-            </div>
-          </section>
-        )}
+
+      {/* Portfolio */}
+      {pageContent.portfolio && pageContent.portfolio.length > 0 && (
+        <section id="portfolio" className="py-16 md:py-20">
+          <div className="container mx-auto max-w-full px-4 text-center">
+            <h2 className="font-headline text-3xl md:text-4xl mb-12">Portfolio Showcase</h2>
+            <AnimatedGallery portfolio={pageContent.portfolio} serviceName={service.name} />
+          </div>
+        </section>
+      )}
 
          {/* FAQs */}
         <div className="container mx-auto max-w-screen-lg py-12 md:py-16 px-4 space-y-12 md:space-y-24">

@@ -86,19 +86,6 @@ export default function CheckoutPage() {
   
     try {
       await axiosInstance.post("/booking/request", formData);
-  
-      // const amount = selectedPackage.price.match(/\d+/g)?.join(""); // "20000"
-      // const paymentRes = await axiosInstance.post("/phonepe/initiate", {
-      //   amount: Number(amount) * 100, // in paise
-      //   name: formData.name,
-      //   phone: formData.phone,
-      // });
-  
-      // if (paymentRes.data.redirectUrl) {
-      //   window.location.href = paymentRes.data.redirectUrl;
-      // } else {
-      //   throw new Error("No redirect URL from PhonePe");
-      // }
       setIsLoading(false);
     } catch (err) {
       console.error(err);

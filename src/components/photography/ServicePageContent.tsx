@@ -333,7 +333,7 @@ export default function ServicePageContent({ service }: { service: Service }) {
                         </CardContent>
                         <div className="p-6 pt-0">
                             <Button asChild size="lg" className="w-full font-bold text-lg" variant={index === 1 ? 'default' : 'outline'}>
-                                <Link href={`/booking/${service.id}`}>Book Now</Link>
+                                <Link href={`/booking`}>Book Now</Link>
                             </Button>
                         </div>
                     </>

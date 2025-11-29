@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -34,6 +33,12 @@ const BookingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    if (!formData.phone.trim()) {
+      toast.error("Phone number is required.");
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await axiosInstance.post("/booking/request", formData, {
@@ -73,20 +78,16 @@ const BookingForm = () => {
 
   const Label = ({ htmlFor, children, required }) => (
     <label htmlFor={htmlFor} className="block text-sm font-medium">
-      {children}{" "}
-      {required && <span className="text-red-500">*</span>}
+      {children} {required && <span className="text-red-500">*</span>}
     </label>
   );
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-10">
       <div className="bg-white shadow-md rounded-md p-8 w-full max-w-2xl">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Your Information
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Your Information</h2>
         <p className="mb-5 text-gray-500">
-          Please provide required information. We assure that we will not share
-          any of your information with anyone.
+          Please provide your information. Only phone number is required.
         </p>
 
         <form
@@ -95,7 +96,7 @@ const BookingForm = () => {
         >
           {/* Name */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="name" required>Name</Label>
+            <Label htmlFor="name">Name</Label>
             <input
               type="text"
               id="name"
@@ -103,13 +104,12 @@ const BookingForm = () => {
               value={formData.name}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
             />
           </div>
 
           {/* Email */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="email" required>Email</Label>
+            <Label htmlFor="email">Email</Label>
             <input
               type="email"
               id="email"
@@ -117,13 +117,14 @@ const BookingForm = () => {
               value={formData.email}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
             />
           </div>
 
-          {/* Phone */}
+          {/* Phone - REQUIRED */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="phone" required>Phone</Label>
+            <Label htmlFor="phone" required>
+              Phone
+            </Label>
             <input
               type="text"
               id="phone"
@@ -137,7 +138,7 @@ const BookingForm = () => {
 
           {/* Address */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="address" required>Address</Label>
+            <Label htmlFor="address">Address</Label>
             <input
               type="text"
               id="address"
@@ -145,19 +146,17 @@ const BookingForm = () => {
               value={formData.address}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
             />
           </div>
 
           {/* Service */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="service" required>Service</Label>
+            <Label htmlFor="service">Service</Label>
             <select
               name="service"
               value={formData.service}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
             >
               <option value="">Select a Service</option>
               <option value="Headshots">Headshots</option>
@@ -170,7 +169,7 @@ const BookingForm = () => {
 
           {/* Date */}
           <div className="col-span-2 md:col-span-1">
-            <Label htmlFor="date" required>Date</Label>
+            <Label htmlFor="date">Date</Label>
             <input
               type="date"
               id="date"
@@ -179,11 +178,10 @@ const BookingForm = () => {
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
               min={new Date().toISOString().split("T")[0]}
-              required
             />
           </div>
 
-          {/* Time (optional) */}
+          {/* Time */}
           <div className="col-span-2 md:col-span-1">
             <Label htmlFor="time">Time</Label>
             <input
@@ -198,14 +196,13 @@ const BookingForm = () => {
 
           {/* Message */}
           <div className="col-span-2">
-            <Label htmlFor="message" required>Message</Label>
+            <Label htmlFor="message">Message</Label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded"
-              required
             />
           </div>
 

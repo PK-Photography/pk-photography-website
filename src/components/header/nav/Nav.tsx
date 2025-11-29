@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
 
@@ -62,7 +65,17 @@ const Nav = ({ onClose }: { onClose: () => void }) => {
             className="focus:outline-none"
             aria-label="Go to Home"
           >
-            <p className="text-white text-4xl font-semibold mx-auto">PK</p>
+            {/* Replace 'PK' text with public/logo.png */}
+            <div className="mx-auto flex items-center">
+              <Image
+                src="/pk-logo.png"
+                alt="PK Photography"
+                width={140}
+                height={40}
+                className="object-contain"
+                priority
+              />
+            </div>
           </button>
         </div>
         <button

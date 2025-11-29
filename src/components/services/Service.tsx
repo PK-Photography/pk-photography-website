@@ -1,6 +1,6 @@
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-import Btn from "../EncrptButton/Btn";
+import Btn from "../EncrptButton/BtnMin";
 import "@fontsource/montserrat";
 import Link from "next/link";
 

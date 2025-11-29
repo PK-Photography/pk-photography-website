@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
 
 const navItems = [
-  { label: "Home", href: "/" },
   { label: "Clients", href: "/client" },
   { label: "Services", href: "/services" },
   { label: "Bookings", href: "/booking" },

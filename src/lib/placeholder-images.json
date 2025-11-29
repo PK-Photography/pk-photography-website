@@ -307,6 +307,12 @@
         "imageHint": "photo album"
       },
       {
+        "id": "discreet",
+        "description": "A beautifully designed photo album.",
+        "imageUrl": "/discreet.jpeg",
+        "imageHint": "photo album"
+      },
+      {
         "id": "album-design-2",
         "description": "A wedding album layout.",
         "imageUrl": "https://images.unsplash.com/photo-1675186253268-d37cf7f95719?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWRkaW5nJTIwYWxidW18ZW58MHx8fHwxNzYxMTMzOTE4fDA&ixlib-rb-4.1.0&q=80&w=1080",

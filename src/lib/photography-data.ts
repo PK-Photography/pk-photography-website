@@ -761,7 +761,7 @@ export const photographyCategories: Category[] = [
                 { step: 1, title: "Pre-Session Consultation", description: "A private chat to discuss your comfort level, style preferences, and the overall mood you want to create.", icon: "Lock", image: getImage('boudoir-shoots-2') },
                 { step: 2, title: "Pampering & Prep", description: "You'll be treated to professional hair and makeup (optional) to help you look and feel your absolute best.", icon: "Brush", image: getImage('headshots-2') },
                 { step: 3, title: "The Private Photoshoot", description: "Our photographer will guide you through elegant poses in a relaxed and supportive environment.", icon: "Heart", image: getImage('boudoir-shoots-1') },
-                { step: 4, title: "Discreet Viewing & Delivery", description: "You'll view your images in a private session and select your favorites for tasteful retouching. Final images are delivered securely.", icon: "Package", image: getImage('album-design-1') }
+                { step: 4, title: "Discreet Viewing & Delivery", description: "You'll view your images in a private session and select your favorites for tasteful retouching. Final images are delivered securely.", icon: "Package", image: getImage('discreet') }
             ],
             packages: [
                 { name: "The Classic", price: "₹15,000", originalPrice: "₹20,000", features: ["90-Minute Session", "3 Outfits", "10 Retouched Images", "All Raw/Unedited Photos Included", "Password-Protected Gallery"] },

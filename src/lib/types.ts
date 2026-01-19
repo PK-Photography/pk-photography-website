@@ -51,9 +51,9 @@ export interface Service {
   categoryName?: string;
   description: string;
   price: string;
-  thumbnailImage: ImagePlaceholder;
   images: ImagePlaceholder[];
   details: string[];
+  thumbnailCategory: string;
   
   // New detailed fields
   pageContent: {

@@ -1,4 +1,3 @@
-
 import { PlaceHolderImages } from './placeholder-images';
 import type { Category, Service } from './types';
 
@@ -29,7 +28,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Weddings & Events',
         description: "Complete photo and video coverage for your wedding day, capturing every moment of your celebration.",
         price: 'Starting at ₹75,000',
-        thumbnailImage: getImage('events-category'),
+        thumbnailCategory: "weddings-thumbnail",
         images: [getImage('wedding-photography-1'), getImage('wedding-photography-2')],
         details: ['8+ hours of coverage', 'Second photographer/videographer', '400+ edited photos & highlight film', 'Engagement session included'],
         pageContent: {
@@ -199,7 +198,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Weddings & Events',
         description: 'Professional coverage for corporate functions, parties, anniversaries, and social gatherings.',
         price: 'Starting at ₹12,000',
-        thumbnailImage: getImage('event-photography-1'),
+        thumbnailCategory: "events-thumbnail",
         images: [getImage('event-photography-1'), getImage('event-photography-cover')],
         details: ['Candid and posed shots', 'Online gallery for guests', 'Fast turnaround time'],
         pageContent: { 
@@ -369,7 +368,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Weddings & Events',
         description: 'Broadcast your event live to guests who can\'t be there in person with our professional streaming services.',
         price: 'Starting at ₹10,000',
-        thumbnailImage: getImage('live-streaming-1'),
+        thumbnailCategory: "live-streaming-thumbnail",
         images: [getImage('live-streaming-1'), getImage('live-streaming-2')],
         details: ['Multi-camera streaming setup', 'Professional audio', 'Broadcast to multiple platforms (YouTube, Facebook, etc.)'],
         pageContent: { 
@@ -497,7 +496,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Portraiture',
         description: 'Personalized sessions for individuals, professionals, and artists to capture your unique personality.',
         price: 'Starting at ₹5,000',
-        thumbnailImage: getImage('portraiture-category'),
+        thumbnailCategory: "portraits-headshots-thumbnail",
         images: [getImage('personal-portrait'), getImage('headshots-portraits')],
         details: ['For individuals, actors, corporate teams', '30-minute to 1-hour sessions', 'Professional retouching', 'Studio or on-location'],
         pageContent: {
@@ -563,7 +562,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Portraiture',
         description: 'Create lasting memories with your loved ones, from family gatherings to capturing precious childhood moments.',
         price: 'Starting at ₹8,000',
-        thumbnailImage: getImage('family-portrait-1'),
+        thumbnailCategory: "family-kids-thumbnail",
         images: [getImage('family-cover'), getImage('baby-kids')],
         details: ['1-hour+ sessions', 'Up to 6 people (custom for more)', '20+ professionally edited photos', 'Fun and relaxed atmosphere'],
         pageContent: {
@@ -629,7 +628,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Fashion & Editorial',
         description: 'High-quality fashion photography and videography for your brand, portfolio, or lookbook.',
         price: 'Starting at ₹20,000',
-        thumbnailImage: getImage('fashion-category'),
+        thumbnailCategory: "fashion-shoots-thumbnail",
         images: [getImage('fashion-shoots-1'), getImage('fashion-shoots-about')],
         details: ['Half-day or full-day rates', 'Concept development & styling assistance', 'Advanced retouching', 'Photo & video packages'],
         pageContent: {
@@ -683,7 +682,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Fashion & Editorial',
         description: 'Story-driven visuals for publication or building a stunning portfolio to showcase your talent as an artist.',
         price: 'Starting at ₹12,000',
-        thumbnailImage: getImage('portfolio-creation-1'),
+        thumbnailCategory: "editorial-portfolio-thumbnail",
         images: [getImage('magazine-editorial'), getImage('portfolio-creations')],
         details: ['Collaboration with creative teams', 'Multiple looks and locations', 'Guidance on posing and expression'],
         pageContent: { 
@@ -740,7 +739,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Fashion & Editorial',
         description: 'Empowering and intimate photography sessions that celebrate you in a private, comfortable setting.',
         price: 'Starting at ₹15,000',
-        thumbnailImage: getImage('boudoir-shoots-thumbnail'),
+        thumbnailCategory: "boudoir-shoots-thumbnail",
         images: [getImage('boudoir-shoots-cover'), getImage('boudoir-shoots-about')],
         details: ['Private and comfortable setting', 'Professional hair and makeup optional', 'Discreet and tasteful editing'],
         pageContent: { 
@@ -805,7 +804,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Commercial & Brands',
         description: 'Visual content that tells your brand\'s story, perfect for websites, social media, and marketing campaigns.',
         price: 'Starting at ₹25,000',
-        thumbnailImage: getImage('brand-shoots-1'),
+        thumbnailCategory: "brand-content-thumbnail",
         images: [getImage('brand-shoots-1'), getImage('brand-shoots-2')],
         details: ['Brand consultation', 'Lifestyle and product shots', 'Content for web and social media (photo/video)'],
         pageContent: { 
@@ -856,7 +855,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Commercial & Brands',
         description: 'Crisp, clean, and consistent images of your products for your online store, catalog, or marketplace.',
         price: 'Starting at ₹500/photo',
-        thumbnailImage: getImage('product-photography-1'),
+        thumbnailCategory: "product-ecommerce-thumbnail",
         images: [getImage('ecommerce-photography-1'), getImage('ecommerce-photography-2')],
         details: ['Studio shots with uniform background', 'Ghost mannequin or flat lay', 'Optimized for web & bulk discounts'],
         pageContent: {
@@ -907,7 +906,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Commercial & Brands',
         description: 'Mouth-watering photos for restaurants, menus, and social media that make your dishes look delicious.',
         price: 'Starting at ₹10,000',
-        thumbnailImage: getImage('food-photography-2'),
+        thumbnailCategory: "food-photography-thumbnail",
         images: [getImage('food-photography-1'), getImage('food-photography-2')],
         details: ['On-location at your restaurant', 'Menu, social media, and advertising shots', 'Styling and prop sourcing available'],
         pageContent: {
@@ -958,7 +957,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Commercial & Brands',
         description: 'High-impact video and photography for corporate branding, industrial processes, and marketing campaigns.',
         price: 'Contact for Quote',
-        thumbnailImage: getImage('corporate-industrial-thumb'),
+        thumbnailCategory: "corporate-industrial-thumbnail",
         images: [getImage('corporate-ad'), getImage('office-tour')],
         details: ['Corporate Ads & Brand Films', 'Factory & Office Tours', 'Construction Timelapses', 'Manufacturing Process Documentation'],
         pageContent: {
@@ -1017,7 +1016,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Property',
         description: 'High-quality photos, videos, and drone footage to make your property listings and projects stand out.',
         price: 'Starting at ₹7,000',
-        thumbnailImage: getImage('real-estate-category'),
+        thumbnailCategory: "real-estate-architectural-thumbnail",
         images: [getImage('real-estate-1'), getImage('architectural-1')],
         details: ['Interior, exterior, and aerial shots', 'Twilight and daytime options', 'Fast 24-hour turnaround for real estate'],
         pageContent: { 
@@ -1076,7 +1075,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Influencer & Celebrity',
         description: 'Professional, discreet photography and videography for public figures and social media content creation.',
         price: 'Contact for quote',
-        thumbnailImage: getImage('celebrity-category'),
+        thumbnailCategory: "influencer-celebrity-thumbnail",
         images: [getImage('celebrity-shoots-1'), getImage('influencer-content-1')],
         details: ['Experienced with high-profile clients', 'Confidentiality assured', 'Batch content creation for social media'],
         pageContent: { 
@@ -1127,7 +1126,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Influencer & Celebrity',
         description: 'Professional audio and multi-camera video production for podcasts, from recording to final edits.',
         price: 'Starting at ₹8,000',
-        thumbnailImage: getImage('podcast-setup'),
+        thumbnailCategory: "podcast-production-thumbnail",
         images: [getImage('podcast-recording'), getImage('podcast-editing')],
         details: ['Multi-camera video recording', 'High-quality microphone setup', 'Editing and social media clip creation'],
         pageContent: { 
@@ -1186,7 +1185,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Post-Production',
         description: 'Professional photo retouching and cinematic video editing for social media, reels, teasers, and more.',
         price: 'Contact for quote',
-        thumbnailImage: getImage('photo-editing-1'),
+        thumbnailCategory: "editing-retouching-thumbnail",
         images: [getImage('photo-editing-1'), getImage('video-editing-1')],
         details: ['Skin smoothing, color correction/grading', 'Object removal, motion graphics', 'Sound design'],
         pageContent: { 
@@ -1237,7 +1236,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Post-Production',
         description: 'Beautifully designed, custom photo albums to preserve your cherished memories for a lifetime.',
         price: 'Starting at ₹10,000',
-        thumbnailImage: getImage('album-design-1'),
+        thumbnailCategory: "album-design-thumbnail",
         images: [getImage('album-design-1'), getImage('album-design-2')],
         details: ['Lay-flat panoramic spreads', 'Variety of cover materials', 'Collaborative design process'],
         pageContent: { 
@@ -1288,7 +1287,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Post-Production',
         description: 'Stunning aerial shots to give a unique perspective to your project, event, or property listing.',
         price: 'Starting at ₹15,000',
-        thumbnailImage: getImage('drone-photography-1'),
+        thumbnailCategory: "drone-services-thumbnail",
         images: [getImage('drone-photography-1'), getImage('drone-photography-2')],
         details: ['Licensed and insured drone pilots', '4K video and high-resolution photos', 'Ideal for real estate, events, and commercial projects'],
         pageContent: { 
@@ -1339,7 +1338,7 @@ export const photographyCategories: Category[] = [
         categoryName: 'Post-Production',
         description: 'Custom graphic design to complement your brand, from social media templates to marketing materials.',
         price: 'Contact for quote',
-        thumbnailImage: getImage('design-service-1'),
+        thumbnailCategory: "design-services-thumbnail",
         images: [getImage('design-service-1'), getImage('design-service-2')],
         details: ['Social media templates', 'Marketing collateral (brochures, flyers)', 'Digital assets (banners, ads)'],
         pageContent: {
@@ -1453,5 +1452,3 @@ export const photographyCategories: Category[] = [
 ];
 
 export const allServices: Service[] = photographyCategories.flatMap((category) => category.services.map(service => ({...service, categoryName: category.name})));
-
-    

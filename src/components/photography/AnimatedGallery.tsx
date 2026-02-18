@@ -9,6 +9,8 @@ import { Loader2 } from 'lucide-react';
 interface AnimatedGalleryProps {
   portfolio: ImagePlaceholder[];
   serviceName: string;
+  /** When set to 'corporate-industrial', limits columns so images display larger (like weddings). */
+  serviceId?: string;
 }
 
 /**
@@ -22,7 +24,7 @@ interface AnimatedGalleryProps {
 const INITIAL_LOAD = 10;
 const MORE_LOAD = 10;
 
-export default function AnimatedGallery({ portfolio, serviceName }: AnimatedGalleryProps) {
+export default function AnimatedGallery({ portfolio, serviceName, serviceId }: AnimatedGalleryProps) {
   const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,8 +44,8 @@ export default function AnimatedGallery({ portfolio, serviceName }: AnimatedGall
 
   return (
     <>
-      {/* Masonry container */}
-      <div className="masonry-gallery">
+      {/* Masonry container: corporate-industrial uses fewer columns so images display larger */}
+      <div className={`masonry-gallery ${serviceId === 'corporate-industrial' ? 'corporate-gallery' : ''}`}>
         {imagesToShow.map((img, idx) => (
           <motion.div
             key={`${img.id}-${idx}`}
@@ -123,6 +125,10 @@ export default function AnimatedGallery({ portfolio, serviceName }: AnimatedGall
           .masonry-gallery {
             column-count: 4;
             column-gap: 12px;
+          }
+          /* Corporate page: keep 3 columns so images match wedding/other service size */
+          .corporate-gallery.masonry-gallery {
+            column-count: 3;
           }
         }
 

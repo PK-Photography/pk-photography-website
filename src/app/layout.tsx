@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import clsx from "clsx";
 import { ToastContainer } from "react-toastify";
@@ -32,23 +33,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="relative">
       <head>
-        {/* Google Analytics script */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-LEHXD05NMZ"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-LEHXD05NMZ', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
         <meta
           name="google-site-verification"
           content="xkkbCA30-55oudh-aQAwydfWkzUga0omPDIZ6lN9RB4"
@@ -56,6 +40,20 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LEHXD05NMZ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-LEHXD05NMZ', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
         <AuthProvider>
           <Header />
           {/* ToastContainer for global toast notifications */}

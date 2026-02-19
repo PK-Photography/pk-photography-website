@@ -279,7 +279,7 @@ const ClientHome = () => {
 
       fetchSelectedCard();
     }
-  }, []);
+  }, [fetchImagesFromDrive, fetchImagesFromNAS]);
 
   useEffect(() => {
     const updateColumns = () => {
@@ -856,37 +856,6 @@ const ClientHome = () => {
               Download Photo
             </button>
           </div>
-        </div>
-      )}
-
-      {hasMoreNasImages && !nasLoading && (
-        <div className="text-center my-6 pb-10">
-          <button
-            onClick={() => {
-              const nextPage = nasPage + 1;
-              setNasPage(nextPage);
-              const activeCat = categories.find(
-                (c) => c.name === activeCategory
-              );
-
-              if (
-                activeCat &&
-                activeCat.images.includes("/photo/") &&
-                selectedCard &&
-                activeCategory
-              ) {
-                fetchImagesFromNAS(
-                  activeCat.images,
-                  activeCategory,
-                  selectedCard._id,
-                  nextPage
-                );
-              }
-            }}
-            className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-black transition duration-300"
-          >
-            Load More
-          </button>
         </div>
       )}
 

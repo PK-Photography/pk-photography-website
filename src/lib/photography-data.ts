@@ -553,8 +553,7 @@ export const photographyCategories: Category[] = [
             getImage('personal-portraits-17'),
             getImage('personal-portraits-18'), 
             getImage('personal-portraits-19'),
-            getImage('personal-portraits-20'), 
-            getImage('personal-portraits-21'),
+            getImage('personal-portraits-20'),
           ]
         }
       },

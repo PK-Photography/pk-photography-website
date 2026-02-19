@@ -2,9 +2,7 @@
 
 import { motion } from 'framer-motion';
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
-import { useState, useMemo } from 'react';
-import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { useMemo } from 'react';
 
 interface AnimatedGalleryProps {
   portfolio: ImagePlaceholder[];
@@ -18,35 +16,17 @@ interface AnimatedGalleryProps {
  * - Images are fetched "as is" with <img> (natural dimensions preserved)
  * - Column-count changes responsively to fill available space
  * - Items avoid breaking across columns (break-inside: avoid) via CSS classes (not inline styles)
- * - Controlled load-more behavior
+ * - All portfolio images shown (no load-more).
  */
 
-const INITIAL_LOAD = 10;
-const MORE_LOAD = 10;
-
 export default function AnimatedGallery({ portfolio, serviceName, serviceId }: AnimatedGalleryProps) {
-  const [visibleCount, setVisibleCount] = useState(INITIAL_LOAD);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Ensure stable array reference if portfolio is large
   const images = useMemo(() => portfolio || [], [portfolio]);
-
-  const imagesToShow = images.slice(0, visibleCount);
-  const canLoadMore = visibleCount < images.length;
-
-  const handleLoadMore = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setVisibleCount((v) => v + MORE_LOAD);
-      setIsLoading(false);
-    }, 450);
-  };
 
   return (
     <>
       {/* Masonry container: corporate-industrial uses fewer columns so images display larger */}
       <div className={`masonry-gallery ${serviceId === 'corporate-industrial' ? 'corporate-gallery' : ''}`}>
-        {imagesToShow.map((img, idx) => (
+        {images.map((img, idx) => (
           <motion.div
             key={`${img.id}-${idx}`}
             initial={{ opacity: 0, y: 12 }}
@@ -74,15 +54,6 @@ export default function AnimatedGallery({ portfolio, serviceName, serviceId }: A
           </motion.div>
         ))}
       </div>
-
-      {canLoadMore && (
-        <div className="mt-8 text-center">
-          <Button onClick={handleLoadMore} disabled={isLoading} size="lg">
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isLoading ? 'Loading...' : 'Load More'}
-          </Button>
-        </div>
-      )}
 
       {/* Inline styles for masonry responsive behaviour */}
       <style jsx>{`

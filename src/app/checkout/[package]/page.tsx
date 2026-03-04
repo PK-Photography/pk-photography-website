@@ -47,6 +47,19 @@ const packages = [
   },
 ];
 
+const PHONE_REGEX = /^[\d\s+-]*$/;
+const MIN_PHONE_DIGITS = 10;
+const MAX_PHONE_DIGITS = 12;
+
+function validatePhone(value: string): string | null {
+  if (!value || !value.trim()) return "Phone number is required.";
+  const digitsOnly = value.replace(/\D/g, "");
+  if (digitsOnly.length < MIN_PHONE_DIGITS) return "Phone number must be at least 10 digits.";
+  if (digitsOnly.length > MAX_PHONE_DIGITS) return "Phone number must not exceed 12 digits.";
+  if (!PHONE_REGEX.test(value.trim())) return "Please enter a valid phone number (digits, +, -, spaces only).";
+  return null;
+}
+
 export default function CheckoutPage() {
   const params = useParams() as { package: string };
   const slug = params.package;
@@ -66,16 +79,28 @@ export default function CheckoutPage() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "phone") {
+      const err = validatePhone(value);
+      setPhoneError(err ?? "");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const phoneValidation = validatePhone(formData.phone);
+    if (phoneValidation) {
+      setPhoneError(phoneValidation);
+      toast.error(phoneValidation);
+      return;
+    }
+    setPhoneError("");
     setIsLoading(true);
   
     if (!selectedPackage) {
@@ -160,18 +185,44 @@ export default function CheckoutPage() {
         <div className="bg-white rounded-2xl shadow-lg p-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Booking Form</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {["name", "email", "phone", "address"].map((field) => (
+            {["name", "email"].map((field) => (
               <input
                 key={field}
-                type="text"
+                type={field === "email" ? "email" : "text"}
                 name={field}
                 placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                 value={formData[field as keyof typeof formData]}
                 onChange={handleChange}
-                required={["name", "email", "phone"].includes(field)}
+                required
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2874A6]"
               />
             ))}
+            <div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                aria-invalid={!!phoneError}
+                aria-describedby={phoneError ? "phone-error" : undefined}
+                className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#2874A6] ${phoneError ? "border-red-500" : "border-gray-300"}`}
+              />
+              {phoneError && (
+                <p id="phone-error" className="mt-1 text-sm text-red-500" role="alert">
+                  {phoneError}
+                </p>
+              )}
+            </div>
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2874A6]"
+            />
             <input
               type="date"
               name="date"

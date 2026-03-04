@@ -7,6 +7,19 @@ import ButtonWrapper from "@/components/spotbutton/SpotlightButton";
 import { toast } from "react-toastify";
 import axiosInstance from "../../utils/axiosConfig";
 
+const PHONE_REGEX = /^[\d\s+-]*$/;
+const MIN_PHONE_DIGITS = 10;
+const MAX_PHONE_DIGITS = 12;
+
+function validatePhone(value) {
+  if (!value || !value.trim()) return "Phone number is required.";
+  const digitsOnly = value.replace(/\D/g, "");
+  if (digitsOnly.length < MIN_PHONE_DIGITS) return "Phone number must be at least 10 digits.";
+  if (digitsOnly.length > MAX_PHONE_DIGITS) return "Phone number must not exceed 12 digits.";
+  if (!PHONE_REGEX.test(value.trim())) return "Please enter a valid phone number (digits, +, -, spaces only).";
+  return null;
+}
+
 const BookingForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -21,6 +34,7 @@ const BookingForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +42,21 @@ const BookingForm = () => {
       ...prev,
       [name]: value,
     }));
+    if (name === "phone") {
+      const err = validatePhone(value);
+      setPhoneError(err ?? "");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const phoneValidation = validatePhone(formData.phone);
+    if (phoneValidation) {
+      setPhoneError(phoneValidation);
+      toast.error(phoneValidation);
+      return;
+    }
+    setPhoneError("");
     setIsLoading(true);
 
     if (!formData.phone.trim()) {
@@ -126,14 +151,21 @@ const BookingForm = () => {
               Phone
             </Label>
             <input
-              type="text"
+              type="tel"
               id="phone"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
+              className={`mt-1 block w-full p-2 border rounded ${phoneError ? "border-red-500" : "border-gray-300"}`}
               required
+              aria-invalid={!!phoneError}
+              aria-describedby={phoneError ? "phone-error" : undefined}
             />
+            {phoneError && (
+              <p id="phone-error" className="mt-1 text-sm text-red-500" role="alert">
+                {phoneError}
+              </p>
+            )}
           </div>
 
           {/* Address */}

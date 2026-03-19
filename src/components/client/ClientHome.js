@@ -87,7 +87,7 @@ const ClientHome = () => {
           );
 
           const files = response.data.files.map((file, index) => ({
-            id: `${categoryName}-${allImages.length + index}`,
+          id: file.id,
             lowRes: `https://drive.google.com/thumbnail?id=${file.id}&sz=w200-h200`,
             mediumRes: `https://drive.google.com/uc?export=download&id=${file.id}`,
             highRes: `https://drive.google.com/uc?export=view&id=${file.id}`,
@@ -126,7 +126,7 @@ const ClientHome = () => {
         // const baseURL = "http://localhost:8081/api/v1";
 
         const newImages = response.data.images.map((img, index) => ({
-          id: `${categoryName}-${(page - 1) * nasPageSize + index}`,
+          id: img.path,
           name: img.name,
           mediumRes: `${baseURL}${img.mediumRes}`,
           lowRes: `${baseURL}${img.lowRes}`,
@@ -881,6 +881,8 @@ const ClientHome = () => {
           handlePreviousImage={handlePreviousImage}
           handleNextImage={handleNextImage}
           clicked={clicked}
+          toggleFavorite={toggleFavorite}
+          favorites={favorites}
         />
       )}
 

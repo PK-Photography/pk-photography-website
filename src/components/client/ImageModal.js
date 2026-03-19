@@ -6,6 +6,7 @@ import {
   FaCartPlus,
   FaArrowLeft,
   FaArrowRight,
+  FaHeart,
 } from "react-icons/fa";
 import Image from "next/image";
 import ShareModal from "../client/shareModal.js";
@@ -19,8 +20,11 @@ const ImageModal = ({
   handlePreviousImage,
   handleNextImage,
   clicked,
+  toggleFavorite,
+  favorites,
 }) => {
   const [shareModalVisible, setShareModalVisible] = useState(false); // State for ShareModal visibility
+  const isFavorited = favorites?.find((fav) => fav.id === currentImage?.id);
 
   const handleSocialShare = (platform) => {
     const url = currentImage?.shareableLink;
@@ -63,6 +67,15 @@ const ImageModal = ({
             <FaTimes size={20} />
           </button>
           <div className="flex items-center gap-4">
+            <button
+              className="group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm"
+              onClick={() => toggleFavorite(currentImage)}
+            >
+              <FaHeart
+                className={isFavorited ? "text-red-600" : "group-hover:text-[#3c2e21]"}
+              />
+              <span>Favorite</span>
+            </button>
             <button
               className={`group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm ${
                 clicked ? "z-0" : "z-50"

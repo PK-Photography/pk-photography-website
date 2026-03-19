@@ -73,11 +73,11 @@ const FavouriteModal = ({
 
                   {/* Image */}
                   <Image
-                    src={image.lowRes}
+                    src={image.mediumRes || image.lowRes}
                     alt={`Favorite ${index + 1}`}
                     width={300}
                     height={200}
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
 
                   {/* Share Button */}

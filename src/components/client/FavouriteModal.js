@@ -60,14 +60,24 @@ const FavouriteModal = ({
           {favorites.length === 0 ? (
             <p className="text-gray-500 text-center">No favorites added yet.</p>
           ) : (
-            <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <ul 
+              className="masonry gap-4 [column-fill:balance]"
+              style={{
+                columnCount: favorites.length < 3 ? favorites.length : 3,
+                columnGap: '16px',
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+              }}
+            >
               {favorites.map((image, index) => (
                 <li
                   key={image.id}
-                  className="relative group rounded-lg overflow-hidden border border-gray-200 hover:border-gray-300 transition"
+                  className="break-inside-avoid mb-4 relative group rounded-lg overflow-hidden border border-gray-200 hover:border-gray-300 transition"
+                  style={{ display: 'block', width: '100%' }}
                 >
                   {/* Number Badge */}
-                  <span className="absolute top-2 left-2 bg-gradient-to-r from-black/70 to-black/40 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md backdrop-blur-sm">
+                  <span className="absolute top-2 left-2 bg-gradient-to-r from-black/70 to-black/40 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md backdrop-blur-sm z-10">
                     #{index + 1}
                   </span>
 
@@ -77,13 +87,14 @@ const FavouriteModal = ({
                     alt={`Favorite ${index + 1}`}
                     width={300}
                     height={200}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                    layout="responsive"
+                    className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
                   />
 
                   {/* Share Button */}
                   <button
                     onClick={() => handleShare(image.shareableLink)}
-                    className="absolute top-2 right-10 bg-blue-500/90 hover:bg-blue-600 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full shadow-md transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                    className="absolute top-2 right-10 bg-blue-500/90 hover:bg-blue-600 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full shadow-md transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-10"
                     aria-label="Share favorite"
                   >
                     <FaShare className="w-3 h-3" />
@@ -92,7 +103,7 @@ const FavouriteModal = ({
                   {/* Remove Button */}
                   <button
                     onClick={() => toggleFavorite(image)}
-                    className="absolute top-2 right-2 bg-red-500/90 hover:bg-red-600 text-white text-xs px-2 py-1 rounded-full shadow-md transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                    className="absolute top-2 right-2 bg-red-500/90 hover:bg-red-600 text-white text-xs px-2 py-1 rounded-full shadow-md transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-10"
                     aria-label="Remove favorite"
                   >
                     ✕

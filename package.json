@@ -62,11 +62,15 @@
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
     "babel-preset-next": "^1.4.0",
-    "eslint": "^8",
-    "eslint-config-next": "^14.2.4",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.4",
+    "eslint-visitor-keys": "3.4.3",
     "postcss": "^8",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "eslint-visitor-keys": "3.4.3"
   }
 }

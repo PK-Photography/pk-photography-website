@@ -15,6 +15,7 @@ import AuthProvider from "@/components/SessionProvider";
 const dmSans = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pkphotography.in"),
   title: {
     default: "PK Photography-Best in photography and videography.",
     template: "%s - Best photography and videography service in Mumbai",

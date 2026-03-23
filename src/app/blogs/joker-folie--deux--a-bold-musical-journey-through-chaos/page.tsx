@@ -2,15 +2,19 @@
 
 import React from "react";
 
+import Image from "next/image";
+
 const JokerFolieBlog = () => {
   return (
     <main className="bg-white text-[#0f1110] font-sans min-h-screen">
       {/* Top Banner Image */}
       <div className="w-full h-[400px] lg:h-[500px] relative overflow-hidden">
-        <img
+        <Image
           src="/blogs/blog1.webp"
           alt="Joker Folie à Deux Banner"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
         />
       </div>
 

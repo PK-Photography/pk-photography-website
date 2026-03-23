@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const faqManImg = "/live-streaming/faq_man.webp";
 
@@ -85,9 +86,11 @@ const FAQ: React.FC = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left Illustration */}
         <div className="relative hidden lg:flex justify-center">
-          <img
+          <Image
             src={faqManImg}
             alt="FAQ Illustration"
+            width={170}
+            height={258}
             className="max-w-full h-auto"
           />
         </div>

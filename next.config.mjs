@@ -33,6 +33,8 @@ const nextConfig = {
       "images.unsplash.com",
       "pk.thetechthingy.com",
       "picsum.photos",
+      "pkphotography.in",
+      "randomuser.me",
       "localhost",
       "pkprod.s3.ap-south-1.amazonaws.com",
     ],

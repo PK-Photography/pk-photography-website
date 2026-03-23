@@ -1,20 +1,39 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 const weddingClientImg = "/live-streaming/wedding_client.jpg";
 const weddingClient001Img = "/live-streaming/wedding_client001.jpg";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Pastor Ramesh, Mumbai",
+    role: "Wedding Clients",
+    image: weddingClient001Img,
+    quote:
+      "PK Photography's live streaming services transformed our church mass experience. Congregants worldwide could join in the service seamlessly.",
+  },
+  {
+    id: 3,
+    name: "Anita Shah, Fashion Designer",
+    role: "Fashion Show Client",
+    image: weddingClientImg,
+    quote:
+      "My collection launch reached a global audience with PK Photography's impeccable streaming quality. The attention to detail was outstanding.",
+  },
+];
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) =>
       prev === testimonials.length - 1 ? 0 : prev + 1
     );
-  };
+  }, []);
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
@@ -34,32 +53,13 @@ const Testimonials = () => {
 
       return () => clearInterval(interval);
     }
-  }, [currentSlide, isPaused]);
+  }, [currentSlide, isPaused, nextSlide]);
 
   useEffect(() => {
     return () => {
       clearTimeout(intervalRef.current);
     };
   }, []);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Pastor Ramesh, Mumbai",
-      role: "Wedding Clients",
-      image: weddingClient001Img,
-      quote:
-        "PK Photography's live streaming services transformed our church mass experience. Congregants worldwide could join in the service seamlessly.",
-    },
-    {
-      id: 3,
-      name: "Anita Shah, Fashion Designer",
-      role: "Fashion Show Client",
-      image: weddingClientImg,
-      quote:
-        "My collection launch reached a global audience with PK Photography's impeccable streaming quality. The attention to detail was outstanding.",
-    },
-  ];
 
   return (
     <TestimonialsSection>

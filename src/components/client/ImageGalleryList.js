@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GoDownload } from 'react-icons/go';
 import { FaHeart, FaShare } from 'react-icons/fa';
 import ImageSkeleton from '../imageSkeleton/ImageSkeleton'; 
+import Image from "next/image";
 
 const ImageGalleryList = ({
   images = [],
@@ -23,6 +24,13 @@ const ImageGalleryList = ({
 
   const handleLoad = (id, src) => {
     setLoadedImages(prev => ({ ...prev, [id]: src }));
+  };
+
+  const getDimsFromUrl = (url) => {
+    if (!url || typeof url !== "string") return { width: 200, height: 200 };
+    const match = url.match(/w(\d+)-h(\d+)/i);
+    if (!match) return { width: 200, height: 200 };
+    return { width: Number(match[1]), height: Number(match[2]) };
   };
 
   return (
@@ -65,11 +73,13 @@ const ImageGalleryList = ({
             >
               <div className="relative w-full">
                 
-                <img
+                <Image
                   src={loadedImages[image.id] || image.lowRes}
                   alt={image.name || 'photo'}
+                  width={getDimsFromUrl(loadedImages[image.id] || image.lowRes).width}
+                  height={getDimsFromUrl(loadedImages[image.id] || image.lowRes).height}
                   className={`w-full transition duration-500 ${canView ? '' : 'blur-md'}`}
-                  onLoad={() => {
+                  onLoadingComplete={() => {
                     if (!loadedImages[image.id]) {
                       const bgImg = new window.Image();
                       bgImg.src = image.highRes;

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axiosInstance from "@/utils/axiosConfig";
+import Image from "next/image";
 
 const Slideshow = () => {
   const [images, setImages] = useState([]);
@@ -60,20 +61,20 @@ const Slideshow = () => {
     ) || [];
 
   return (
-    <div className="w-full overflow-hidden relative">
+    <div className="w-full overflow-hidden relative h-[500px]">
       {isLoading ? (
         <div className="w-full h-[500px] flex justify-center items-center bg-gray-300 animate-pulse"></div>
       ) : filteredImages.length > 0 ? (
         <>
           <Slider {...settings} ref={sliderRef}>
             {filteredImages.map((each, index) => (
-              <div key={index} className="w-full flex justify-center items-center">
-                <img
-                  className="w-full h-full object-cover rounded-lg bg-gray-300 animate-pulse"
+              <div key={index} className="relative w-full flex justify-center items-center h-full">
+                <Image
                   src={each.imageUrl}
                   alt={`Slide ${index + 1}`}
-                  loading="lazy"
-                  onLoad={(e) => e.currentTarget.classList.remove("animate-pulse")}
+                  fill
+                  className="object-cover rounded-lg"
+                  sizes="100vw"
                 />
               </div>
             ))}

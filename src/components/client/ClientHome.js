@@ -41,7 +41,7 @@ const ClientHome = () => {
   const [loadingImages, setLoadingImages] = useState({});
   const [nasAllImages, setNasAllImages] = useState([]); // All images from NAS
   const [nasPage, setNasPage] = useState(1);
-  const [nasPageSize] = useState(50);
+  const nasPageSize = 50;
   const [nasLoading, setNasLoading] = useState(true);
   const [hasMoreNasImages, setHasMoreNasImages] = useState(true);
   const [nasTotalCount, setNasTotalCount] = useState(0);

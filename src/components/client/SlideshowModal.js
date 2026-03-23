@@ -7,6 +7,7 @@ import { LiaDownloadSolid } from "react-icons/lia";
 import { PiHeart } from "react-icons/pi";
 import { PiShareFatLight } from "react-icons/pi";
 import { MdKeyboardBackspace } from "react-icons/md";
+import Image from "next/image";
 
 const SlideshowModal = ({
   images,
@@ -105,17 +106,22 @@ const SlideshowModal = ({
         key={currentImageIndex}
         drag="x"
         onDragEnd={handleDragEnd}
-        className="w-full flex flex-col justify-center items-center h-[85vh] px-4"
+        className="relative w-full flex flex-col justify-center items-center h-[85vh] px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <img
-          src={currentImage?.lowRes || currentImage?.mediumRes}
-          alt="Main"
-          className="max-h-[80vh] w-auto object-contain"
-          style={{ touchAction: "manipulation" }}
-        />
+        {(
+          currentImage?.lowRes || currentImage?.mediumRes
+        ) ? (
+          <Image
+            src={currentImage?.lowRes || currentImage?.mediumRes}
+            alt="Main"
+            fill
+            className="object-contain"
+            style={{ touchAction: "manipulation" }}
+          />
+        ) : null}
         {currentImage?.name && (
           <p className="mt-4 text-sm text-[#0f1110] font-medium text-center">
             {currentImage.name}

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 // ----------------------------------------
 // HARDCODED GOOGLE REVIEW DATA
@@ -160,9 +161,11 @@ const Reviews = () => {
                       )}
                     </div>
                     <div className="flex items-center gap-3">
-                      <img
+                      <Image
                         src={review.profile_photo_url}
                         alt={review.author_name}
+                        width={40}
+                        height={40}
                         className="w-10 h-10 rounded-full"
                       />
                       <div>

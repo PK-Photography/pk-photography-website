@@ -198,7 +198,12 @@ export default function ServicePageContent({ service }: { service: Service }) {
         ) : heroMedia.src ? (
           // fallback if heroMedia.src was imageUrl from carousel match but heroImage missing
           <div className="absolute inset-0">
-            <img src={heroMedia.src || undefined} alt={service.name} className="w-full h-full object-cover" />
+            <Image
+              src={heroMedia.src}
+              alt={service.name}
+              fill
+              className="object-cover"
+            />
           </div>
         ) : null}
 

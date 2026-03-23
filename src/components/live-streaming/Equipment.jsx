@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 const hdCameraImg = "/live-streaming/multi_camera_livestream.png";
 const audioEquipmentImg = "/live-streaming/audio_equipment.png";
@@ -8,82 +8,82 @@ const liveStreamingGearImg = "/live-streaming/live_streaming_gear.png";
 const hdmiWirelessImg =
   "/live-streaming/HD_HDMI_wireless_video_transmission.png";
 
+const equipmentData = [
+  {
+    id: 1,
+    title: "Multi-Camera Livestream Setup",
+    description:
+      "Our livestream production is powered by a professional multi-camera setup to ensure cinematic quality and seamless coverage from every angle. We use a combination of high-end cinema and mirrorless cameras.",
+    image: hdCameraImg,
+    features: [
+      "Sony FX6 – Full-frame cinema camera for stunning depth and dynamic range",
+      "Sony FX30, a7R V, Canon R6 & R8 – For creative angles and reliable autofocus",
+      "Sony PXW-Z90 – Broadcast-ready camcorder with 4K HDR capabilities",
+    ],
+    icon: "camera",
+  },
+  {
+    id: 2,
+    title: "Multi-Camera Switching System",
+    description:
+      "To deliver seamless and dynamic live productions, we use industry-standard multi-camera switchers that allow real-time switching between multiple camera feeds without any lag or delay.",
+    image: audioEquipmentImg,
+    features: [
+      "Blackmagic ATEM Mini – Ideal for compact shoots, enabling smooth transitions, picture-in-picture, and audio mixing in real-time",
+      "Blackmagic ATEM Extreme Pro – A powerhouse for larger productions with up to 8 HDMI inputs, advanced effects, live streaming, and multiview monitoring",
+    ],
+    icon: "stream",
+  },
+  {
+    id: 3,
+    title: "Professional-Grade Lighting Setup",
+    description:
+      "Lighting plays a crucial role in the visual quality of any livestream or video production. At PK Photography, we use professional-grade lighting equipment to ensure every subject is well-lit, skin tones look natural, and the overall scene has a cinematic depth.",
+    image: liveStreamingGearImg,
+    features: [
+      "Soft LED panels for even, flattering light",
+      "RGB lights to enhance mood and add creative tones",
+      "Spotlights and modifiers for controlled highlights and shadows",
+    ],
+    icon: "stream",
+  },
+  {
+    id: 4,
+    title: "High-Quality HDMI & Wireless Video Transmission",
+    description:
+      "To ensure flexibility and flawless video quality during live events, our setup includes premium HDMI cables and professional-grade wireless video transmitters.",
+    image: hdmiWirelessImg,
+    features: [
+      "High-speed HDMI cables supporting 4K resolution",
+      "Wireless video transmitters with real-time, low-latency transmission",
+      "Clean setup with minimal cabling for dynamic environments",
+    ],
+    icon: "transmission",
+  },
+];
+
+const slideInterval = 5000;
+
 const Equipment = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
 
-  const slideInterval = 5000;
-
-  const equipmentData = [
-    {
-      id: 1,
-      title: "Multi-Camera Livestream Setup",
-      description:
-        "Our livestream production is powered by a professional multi-camera setup to ensure cinematic quality and seamless coverage from every angle. We use a combination of high-end cinema and mirrorless cameras.",
-      image: hdCameraImg,
-      features: [
-        "Sony FX6 – Full-frame cinema camera for stunning depth and dynamic range",
-        "Sony FX30, a7R V, Canon R6 & R8 – For creative angles and reliable autofocus",
-        "Sony PXW-Z90 – Broadcast-ready camcorder with 4K HDR capabilities",
-      ],
-      icon: "camera",
-    },
-    {
-      id: 2,
-      title: "Multi-Camera Switching System",
-      description:
-        "To deliver seamless and dynamic live productions, we use industry-standard multi-camera switchers that allow real-time switching between multiple camera feeds without any lag or delay.",
-      image: audioEquipmentImg,
-      features: [
-        "Blackmagic ATEM Mini – Ideal for compact shoots, enabling smooth transitions, picture-in-picture, and audio mixing in real-time",
-        "Blackmagic ATEM Extreme Pro – A powerhouse for larger productions with up to 8 HDMI inputs, advanced effects, live streaming, and multiview monitoring",
-      ],
-      icon: "stream",
-    },
-    {
-      id: 3,
-      title: "Professional-Grade Lighting Setup",
-      description:
-        "Lighting plays a crucial role in the visual quality of any livestream or video production. At PK Photography, we use professional-grade lighting equipment to ensure every subject is well-lit, skin tones look natural, and the overall scene has a cinematic depth.",
-      image: liveStreamingGearImg,
-      features: [
-        "Soft LED panels for even, flattering light",
-        "RGB lights to enhance mood and add creative tones",
-        "Spotlights and modifiers for controlled highlights and shadows",
-      ],
-      icon: "stream",
-    },
-    {
-      id: 4,
-      title: "High-Quality HDMI & Wireless Video Transmission",
-      description:
-        "To ensure flexibility and flawless video quality during live events, our setup includes premium HDMI cables and professional-grade wireless video transmitters.",
-      image: hdmiWirelessImg,
-      features: [
-        "High-speed HDMI cables supporting 4K resolution",
-        "Wireless video transmitters with real-time, low-latency transmission",
-        "Clean setup with minimal cabling for dynamic environments",
-      ],
-      icon: "transmission",
-    },
-  ];
-
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setActiveSlide((prev) =>
       prev === equipmentData.length - 1 ? 0 : prev + 1
     );
-  };
+  }, []);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setActiveSlide((prev) =>
       prev === 0 ? equipmentData.length - 1 : prev - 1
     );
-  };
+  }, []);
 
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     setActiveSlide(index);
-  };
+  }, []);
 
   const pauseSlideshow = () => {
     setIsPaused(true);
@@ -104,7 +104,7 @@ const Equipment = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [isPaused]);
+  }, [isPaused, nextSlide]);
 
   useEffect(() => {
     return () => {

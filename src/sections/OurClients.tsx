@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const OurClients: React.FC = () => {
   const logos = [
@@ -26,12 +27,13 @@ const OurClients: React.FC = () => {
           {logos.map((logo, index) => (
             <div
               key={index}
-              className="w-[160px] h-[80px] flex items-center justify-center border border-gray-100 rounded-md bg-white"
+              className="relative w-[160px] h-[80px] flex items-center justify-center border border-gray-100 rounded-md bg-white"
             >
-              <img
+              <Image
                 src={logo}
                 alt={`Client Logo ${index + 1}`}
-                className="max-h-[60px] max-w-[120px] object-contain"
+                fill
+                className="object-contain"
               />
             </div>
           ))}

@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import './dropping.css';
 
-const Dropping = () => {
-  const words = [
-    "Photography",
-    "Videography",
-    "Events",
-    "Headshots",
-    "Weddings",
-    "Live Streaming",
-    "Insta Reels",
-    "Ads",
-    "Design",
-    "Talent",
-    "Influencers",
-  ];
+const words = [
+  "Photography",
+  "Videography",
+  "Events",
+  "Headshots",
+  "Weddings",
+  "Live Streaming",
+  "Insta Reels",
+  "Ads",
+  "Design",
+  "Talent",
+  "Influencers",
+];
 
+const Dropping = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {

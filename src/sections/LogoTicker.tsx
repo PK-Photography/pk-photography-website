@@ -2,7 +2,7 @@
 import styles from './page.module.css';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
@@ -11,8 +11,23 @@ export const LogoTicker = () => {
   const firstText=useRef(null);
   const secondText=useRef(null);
   const slider=useRef(null);
-  let xPercent=0;
-  let direction=-1;
+  const xPercentRef = useRef(0);
+  const directionRef = useRef<number>(-1);
+
+  const animation = useCallback(() => {
+    if (xPercentRef.current <= -100) {
+      xPercentRef.current = 0;
+    }
+    if (xPercentRef.current > 0) {
+      xPercentRef.current = -100;
+    }
+
+    gsap.set(firstText.current, { xPercent: xPercentRef.current });
+    gsap.set(secondText.current, { xPercent: xPercentRef.current });
+
+    xPercentRef.current += 0.05 * directionRef.current;
+    requestAnimationFrame(animation);
+  }, []);
 
   useEffect(()=>{
     gsap.registerPlugin(ScrollTrigger);
@@ -22,27 +37,14 @@ export const LogoTicker = () => {
         scrub: 0.25,
         start: 0,
         end: window.innerHeight,
-        onUpdate: e => direction = e.direction * -1
+        onUpdate: (e) => {
+          directionRef.current = e.direction * -1;
+        },
       },
       x: "-500px",
     })
     requestAnimationFrame(animation);
-  },[]);
-
-  const animation = ()=>{
-    if (xPercent <= -100)
-    {
-      xPercent = 0;
-    }
-    if (xPercent > 0)
-    {
-      xPercent = -100;
-    }
-    gsap.set(firstText.current, {xPercent: xPercent});
-    gsap.set(secondText.current, {xPercent: xPercent});
-    xPercent+=0.05*direction;
-    requestAnimationFrame(animation);
-  };
+  },[animation]);
 
 
   return (

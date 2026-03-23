@@ -6,6 +6,7 @@ import { Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import axiosInstance from "@/utils/axiosConfig";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const TalentsPage = () => {
   const [search, setSearch] = useState("");
@@ -65,11 +66,13 @@ const TalentsPage = () => {
   return (
     <>
       {/* Banner Section */}
-      <div className="w-full">
-        <img
+      <div className="relative w-full h-[320px] sm:h-[560px]">
+        <Image
           src="/live-streaming/executive_portraits.jpg"
           alt="Talents Banner"
-          className="w-full h-[320px] sm:h-[560px] object-cover"
+          fill
+          priority
+          className="object-cover"
         />
       </div>
 
@@ -113,11 +116,14 @@ const TalentsPage = () => {
                 key={talent._id}
                 className="bg-white rounded-md shadow-md overflow-hidden flex flex-col"
               >
-                <img
-                  src={talent.imageUrl}
-                  alt={talent.name}
-                  className="w-full h-64 object-cover"
-                />
+                <div className="relative w-full h-64">
+                  <Image
+                    src={talent.imageUrl}
+                    alt={talent.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="p-4 flex flex-col flex-1">
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-1">
@@ -249,11 +255,14 @@ const TalentsPage = () => {
             </div>
             {selectedTalent && (
               <div>
-                <img
-                  src={selectedTalent.imageUrl}
-                  alt={selectedTalent.name}
-                  className="w-full h-60 object-cover rounded-md mb-4"
-                />
+                <div className="relative w-full h-60 rounded-md mb-4 overflow-hidden">
+                  <Image
+                    src={selectedTalent.imageUrl}
+                    alt={selectedTalent.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <p className="text-sm text-gray-700 mb-1">
                   <b>City:</b> {selectedTalent.city}
                 </p>

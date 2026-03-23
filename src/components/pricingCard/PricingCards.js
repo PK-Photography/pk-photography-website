@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const PricingCards = ({ packages }) => {
   const settings = {
@@ -42,12 +43,18 @@ const PricingCards = ({ packages }) => {
                 <div className="mt-4">
                   <Slider {...settings}>
                     {pkg.images.map((image, i) => (
-                      <img
+                      <div
                         key={i}
-                        src={image}
-                        alt={`${pkg.title} Image ${i + 1}`}
-                        className="w-full h-48 object-cover object-top rounded-lg"
-                      />
+                        className="relative w-full h-48"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${pkg.title} Image ${i + 1}`}
+                          fill
+                          className="object-cover object-top rounded-lg"
+                          sizes="100vw"
+                        />
+                      </div>
                     ))}
                   </Slider>
                 </div>

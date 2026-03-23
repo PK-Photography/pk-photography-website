@@ -4,6 +4,7 @@ import { SparklesCore } from "./sparkles";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "../../lib/utils";
 import { PiDotsSixVerticalDuotone } from "react-icons/pi";
+import Image from "next/image";
 interface CompareProps {
   firstImage?: string;
   secondImage?: string;
@@ -205,14 +206,15 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <img
-                alt="first image"
+              <Image
                 src={firstImage}
+                alt="first image"
+                fill
+                draggable={false}
                 className={cn(
                   "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
                   firstImageClassName
                 )}
-                draggable={false}
               />
             </motion.div>
           ) : null}
@@ -221,15 +223,20 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         {secondImage ? (
-          <motion.img
+          <motion.div
             className={cn(
               "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
               secondImageClassname
             )}
-            alt="second image"
-            src={secondImage}
-            draggable={false}
-          />
+          >
+            <Image
+              src={secondImage}
+              alt="second image"
+              fill
+              draggable={false}
+              className="rounded-2xl select-none"
+            />
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </div>

@@ -6,6 +6,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import axiosInstance from '@/utils/axiosConfig';
+import Image from 'next/image';
 
 interface AnimatedGalleryProps {
   portfolio?: any[];
@@ -206,11 +207,12 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
               className="rounded-xl overflow-hidden shadow-md"
             >
               <div className="relative aspect-[3/4] w-full h-full">
-                <img
+                <Image
                   src={img.imageUrl}
                   alt={img.imageHint || `${serviceName || 'Gallery'} image`}
-                  className="w-full h-full object-cover object-top"
+                  fill
                   loading="lazy"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </motion.div>
@@ -245,18 +247,19 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.02 }}
                 whileHover={{ scale: 1.02 }}
-                className="rounded-xl overflow-hidden shadow-sm bg-gray-50"
+                className="relative rounded-xl overflow-hidden shadow-sm bg-gray-50"
                 style={{
                   width: img.displayWidth ? `${img.displayWidth}px` : 'auto',
                   height: img.displayHeight ? `${img.displayHeight}px` : `${targetRowHeight}px`,
                   flex: '0 0 auto',
                 }}
               >
-                <img
+                <Image
                   src={img.imageUrl}
                   alt={img.imageHint || `${serviceName || 'Gallery'} image`}
+                  fill
+                  loading="lazy"
                   className="w-full h-full object-cover object-top"
-                  style={{ display: 'block' }}
                 />
               </motion.div>
             ))}

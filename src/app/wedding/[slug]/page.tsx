@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/utils/axiosConfig";
 import { useSearchParams } from "next/navigation";
 import SimilarBlogs from "@/components/wedding/SimilarBlogs";
+import Image from "next/image";
 
 const WeddingBlog = (props: any) => {
   const { slug } = props.params;
@@ -58,11 +59,12 @@ const WeddingBlog = (props: any) => {
     <div className="px-[10%] flex flex-col items-center justify-center text-center my-10">
       {/* Optional featured image */}
       {image && (
-        <div className="w-full relative my-10 flex justify-center">
-          <img
+        <div className="relative w-full my-10 flex justify-center h-[75vh] max-h-[75vh]">
+          <Image
             src={image}
             alt="Service"
-            className="w-full h-auto max-h-[75vh] object-contain"
+            fill
+            className="object-contain"
           />
         </div>
       )}
@@ -100,12 +102,17 @@ const WeddingBlog = (props: any) => {
       {blog.imageUrls && blog.imageUrls.length > 0 && (
         <div className="w-full flex flex-col items-center gap-6">
           {blog.imageUrls.map((img, idx) => (
-            <img
+            <div
               key={idx}
-              src={img}
-              alt={`Blog Image ${idx + 1}`}
-              className="w-full max-w-3xl h-auto max-h-[75vh] object-contain"
-            />
+              className="relative w-full max-w-3xl h-[75vh] max-h-[75vh]"
+            >
+              <Image
+                src={img}
+                alt={`Blog Image ${idx + 1}`}
+                fill
+                className="object-contain"
+              />
+            </div>
           ))}
         </div>
       )}

@@ -92,6 +92,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 
   return {
+    metadataBase: new URL("https://pkphotography.in"),
     title: pageTitle,
     description: heroSubheadline,
     openGraph: {

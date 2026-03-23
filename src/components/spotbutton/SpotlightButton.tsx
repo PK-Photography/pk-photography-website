@@ -14,6 +14,9 @@ const SpotlightButton = () => {
   const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    const btnEl = btnRef.current;
+    if (!btnEl) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as HTMLButtonElement;
       const { width } = target.getBoundingClientRect();
@@ -30,12 +33,12 @@ const SpotlightButton = () => {
       );
     };
 
-    btnRef.current?.addEventListener("mousemove", handleMouseMove);
-    btnRef.current?.addEventListener("mouseleave", handleMouseLeave);
+    btnEl.addEventListener("mousemove", handleMouseMove);
+    btnEl.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      btnRef.current?.removeEventListener("mousemove", handleMouseMove);
-      btnRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+      btnEl.removeEventListener("mousemove", handleMouseMove);
+      btnEl.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 

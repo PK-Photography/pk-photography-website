@@ -179,6 +179,7 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
 
   const rows = buildJustifiedRows(visibleImages, targetRowHeight, containerWidth, 12);
 
+  const isPortraits = category === 'portraits-headshots';
   const loadMore = () => {
     setLoadingMore(true);
     setTimeout(() => {
@@ -186,6 +187,48 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
       setLoadingMore(false);
     }, 450);
   };
+
+  if (isPortraits) {
+    return (
+      <div className="w-full mt-10 px-4">
+        {isFetching && <div className="text-center text-sm text-muted-foreground">Loading gallery…</div>}
+        {!isFetching && visibleImages.length === 0 && <div className="text-center text-muted-foreground">No images found.</div>}
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {visibleImages.map((img: any, index: number) => (
+            <motion.div
+              key={`${img.id ?? index}-${index}`}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              className="rounded-xl overflow-hidden shadow-md"
+            >
+              <div className="relative aspect-[3/4] w-full h-full">
+                <img
+                  src={img.imageUrl}
+                  alt={img.imageHint || `${serviceName || 'Gallery'} image`}
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {visibleCount < (images || []).length && (
+          <div className="text-center mt-10 mb-10">
+            <Button size="lg" disabled={loadingMore} onClick={loadMore}>
+              {loadingMore && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {loadingMore ? 'Loading...' : 'Load More'}
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
 
   return (
     <>

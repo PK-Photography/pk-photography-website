@@ -67,9 +67,10 @@ const UserCards = () => {
     }
   };
 
-  const filteredCards = cards.filter((card) =>
-    card.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCards = cards.filter((card) => {
+    const isVisible = card.galleryVisibility === "pk_photography" || card.galleryVisibility === "both";
+    return isVisible && card.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
 

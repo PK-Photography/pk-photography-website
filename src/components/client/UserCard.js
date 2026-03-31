@@ -8,6 +8,9 @@ import { FaLock } from "react-icons/fa";
 import Modal from "@/components/ui/Modal";
 import Lottie from "lottie-react";
 import animationData from "@/assets/Picture.json";
+import { FaShareAlt } from "react-icons/fa";
+import ShareModal from "./shareModal";
+import { toast } from "react-hot-toast";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -27,6 +30,8 @@ const UserCards = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [pinError, setPinError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [shareModalVisible, setShareModalVisible] = useState(false);
+  const [shareData, setShareData] = useState({ link: "", title: "" });
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -66,6 +71,17 @@ const UserCards = () => {
       setPinError("Incorrect PIN. Please try again.");
     }
   };
+
+  const handleShare = (e, card) => {
+    e.stopPropagation();
+    const shareUrl = `${window.location.origin}/client/${card.name}`;
+    setShareData({
+      link: shareUrl,
+      title: `Share ${card.name.toUpperCase()}`,
+    });
+    setShareModalVisible(true);
+  };
+
 
   const filteredCards = cards.filter((card) => {
     const isVisible = card.galleryVisibility === "pk_photography" || card.galleryVisibility === "both";
@@ -175,6 +191,15 @@ const UserCards = () => {
                       objectFit="cover"
                       className="transition duration-300 group-hover:brightness-90"
                     />
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button
+                        onClick={(e) => handleShare(e, card)}
+                        className="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110"
+                        title="Share Album"
+                      >
+                        <FaShareAlt size={18} />
+                      </button>
+                    </div>
                   </div>
                   <div className="flex flex-col items-center mt-3">
                     <p className="text-md font-semibold text-gray-900 flex items-center gap-2">
@@ -266,6 +291,14 @@ const UserCards = () => {
           </div>
         </Modal>
       )}
+
+      {/* Share Modal */}
+      <ShareModal
+        showModal={shareModalVisible}
+        setShowModal={setShareModalVisible}
+        link={shareData.link}
+        title={shareData.title}
+      />
     </>
   );
 };

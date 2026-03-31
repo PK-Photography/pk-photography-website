@@ -22,31 +22,9 @@ const ImageModal = ({
   clicked,
   toggleFavorite,
   favorites,
+  handleShare, // Use the prop from ClientHome
 }) => {
-  const [shareModalVisible, setShareModalVisible] = useState(false); // State for ShareModal visibility
   const isFavorited = favorites?.find((fav) => fav.id === currentImage?.id);
-
-  const handleSocialShare = (platform) => {
-    const url = currentImage?.shareableLink;
-    if (!url) return;
-
-    switch (platform) {
-      case "facebook":
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
-        break;
-      case "twitter":
-        window.open(`https://twitter.com/intent/tweet?url=${url}`, "_blank");
-        break;
-      case "pinterest":
-        window.open(`https://pinterest.com/pin/create/button/?url=${url}`, "_blank");
-        break;
-      case "email":
-        window.open(`mailto:?subject=Check this out!&body=${url}`, "_self");
-        break;
-      default:
-        break;
-    }
-  };
 
   if (!modalVisible || !currentImage) return null;
 
@@ -87,7 +65,7 @@ const ImageModal = ({
             </button>
             <button
               className="group flex items-center gap-1 text-[#88745d] hover:text-[#3c2e21] focus:outline-none text-sm"
-              onClick={() => setShareModalVisible(true)} // Toggle ShareModal
+              onClick={() => handleShare(currentImage)} // Call global handleShare
             >
               <FaShareAlt className="group-hover:text-[#3c2e21]" />
               <span>Share</span>
@@ -130,17 +108,6 @@ const ImageModal = ({
           </button>
         </div>
       </div>
-
-      {/* ShareModal Component */}
-      <ShareModal
-        showModal={shareModalVisible}
-        currentImage={currentImage}
-        setShowModal={setShareModalVisible}
-        handleCopyLink={() =>
-          navigator.clipboard.writeText(currentImage?.shareableLink)
-        }
-        handleSocialShare={handleSocialShare}
-      />
     </div>
   );
 };

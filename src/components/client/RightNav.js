@@ -1,11 +1,11 @@
-import React from "react";
-import { FaHeart, FaImages } from "react-icons/fa";
+import { FaHeart, FaImages, FaShareAlt } from "react-icons/fa";
 import { GoDownload } from "react-icons/go";
 
 const RightNav = ({
   toggleFavoritesModal,
   handleDownloadAll,
   handleSlideshow,
+  handleShareAlbum, // New prop
   favorites,
   cartItems,
   canDownload,
@@ -33,6 +33,13 @@ const RightNav = ({
       total: null,
       onClick: handleDownloadAll,
       show: canDownload,
+    },
+    {
+      icon: <FaShareAlt className="text-lg" />,
+      label: "Share Album",
+      total: null,
+      onClick: handleShareAlbum,
+      show: true,
     },
   ];
 

@@ -88,13 +88,6 @@ const ImageGalleryList = ({
                   }}
                 />
 
-                 {nasLoading &&
-    Array.from({ length: 20 }).map((_, index) => (
-      <li key={`skeleton-${index}`} className="break-inside-avoid mb-[6px]">
-        <ImageSkeleton />
-      </li>
-    ))}
-
                 {!isMobile && (
                   <div
                     className={`absolute inset-0 flex items-end justify-end gap-1 p-1 opacity-0 group-hover:opacity-100 transition`}
@@ -128,7 +121,7 @@ const ImageGalleryList = ({
                       className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:text-black"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleShare(image.shareableLink);
+                        handleShare(image);
                       }}
                     >
                       <FaShare size={14} />

@@ -93,7 +93,7 @@ const FavouriteModal = ({
 
                   {/* Share Button */}
                   <button
-                    onClick={() => handleShare(image.shareableLink)}
+                    onClick={() => handleShare(image)}
                     className="absolute top-2 right-10 bg-blue-500/90 hover:bg-blue-600 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full shadow-md transition-opacity duration-200 opacity-0 group-hover:opacity-100 z-10"
                     aria-label="Share favorite"
                   >

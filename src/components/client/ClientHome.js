@@ -15,9 +15,12 @@ import BannerSection from "../client/BannerSection";
 import Lottie from "lottie-react";
 import animationData from "@/assets/Picture.json";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import ShareModal from "../client/shareModal";
+import { toast } from "react-hot-toast";
 
 const ClientHome = () => {
+  const pathname = usePathname();
   const [selectedCard, setSelectedCard] = useState([]);
   const [images, setImages] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -33,6 +36,8 @@ const ClientHome = () => {
   const [selectedSize, setSelectedSize] = useState("High Resolution");
   const [columns, setColumns] = useState(4);
   const [showModal, setShowModal] = useState(false);
+  const [shareModalVisible, setShareModalVisible] = useState(false);
+  const [shareData, setShareData] = useState({ link: "", title: "" });
   const [clicked, setClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [showFavoritesModal, setShowFavoritesModal] = useState(false);
@@ -61,8 +66,11 @@ const ClientHome = () => {
       if (cached) {
         setImages(JSON.parse(cached));
         setActiveCategory(categoryName);
+        setNasLoading(false);
         return;
       }
+
+      setNasLoading(true);
 
       const extractFolderId = (link) => link.match(/[-\w]{25,}/)?.[0] || null;
       const folderId = extractFolderId(driveLink);
@@ -103,6 +111,8 @@ const ClientHome = () => {
         setActiveCategory(categoryName);
       } catch (error) {
         console.error("Drive fetch error:", error);
+      } finally {
+        setNasLoading(false);
       }
     },
     []
@@ -202,7 +212,12 @@ const ClientHome = () => {
 
     const url = window.location.pathname;
     const parts = url.split("/");
-    const lastId = parts[parts.length - 1];
+    const lastId = decodeURIComponent(parts[parts.length - 1]);
+
+    // Reset page states for new album
+    setImages([]);
+    setNasLoading(true);
+
     const cacheKey = `card-${lastId}`;
     const cachedCard = sessionStorage.getItem(cacheKey);
 
@@ -226,6 +241,7 @@ const ClientHome = () => {
 
         if (cachedImages) {
           setImages(JSON.parse(cachedImages));
+          setNasLoading(false);
         } else {
           isDrive
             ? fetchImagesFromDrive(
@@ -241,14 +257,17 @@ const ClientHome = () => {
         }
       }
     } else {
+      setNasLoading(true);
       const fetchSelectedCard = async () => {
         try {
           const response = await axiosInstance.get(`/client/cards`);
-          const decodedLastId = decodeURIComponent(lastId);
           const foundCard = response.data.find(
-            (card) => card.name.trim() === decodedLastId.trim()
+            (card) => card.name.trim() === lastId.trim()
           );
-          if (!foundCard) return;
+          if (!foundCard) {
+            setNasLoading(false);
+            return;
+          }
 
           sessionStorage.setItem(cacheKey, JSON.stringify(foundCard));
           setSelectedCard(foundCard);
@@ -271,15 +290,19 @@ const ClientHome = () => {
                   firstCategory.name,
                   foundCard._id
                 );
+          } else {
+            // No categories fallback
+            setNasLoading(false);
           }
         } catch (error) {
           console.error("Error fetching selected card:", error);
+          setNasLoading(false);
         }
       };
 
       fetchSelectedCard();
     }
-  }, [fetchImagesFromDrive, fetchImagesFromNAS]);
+  }, [fetchImagesFromDrive, fetchImagesFromNAS, pathname]);
 
   useEffect(() => {
     const updateColumns = () => {
@@ -396,20 +419,60 @@ const ClientHome = () => {
     setCurrentImage(null);
   };
 
-  const handleShare = (shareableLink) => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Check out this image!",
-          url: shareableLink,
-        })
-        .catch(() => {
-          // Error handling without console
-        });
-    } else {
-      alert("Sharing is not supported on this browser.");
+  const handleShare = (image) => {
+    setCurrentImage(image);
+    setShareData({
+      link: image.shareableLink,
+      title: "Share This Image",
+    });
+    setShareModalVisible(true);
+  };
+
+  const handleShareAlbum = () => {
+    if (typeof window !== "undefined") {
+      setShareData({
+        link: window.location.href,
+        title: `Share ${selectedCard.name || "Album"}`,
+      });
+      setShareModalVisible(true);
     }
   };
+
+  const handleSocialShare = (platform, url) => {
+    if (!url) return;
+
+    switch (platform) {
+      case "whatsapp":
+        window.open(
+          `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`,
+          "_blank"
+        );
+        break;
+      case "facebook":
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            url
+          )}`,
+          "_blank"
+        );
+        break;
+      case "instagram":
+        toast.success("Link copied! Opening Instagram...");
+        setTimeout(() => {
+          window.open("https://www.instagram.com/", "_blank");
+        }, 800);
+        break;
+      case "email":
+        window.open(
+          `mailto:?subject=Check this out!&body=${encodeURIComponent(url)}`,
+          "_self"
+        );
+        break;
+      default:
+        break;
+    }
+  };
+
 
   const handleMultiShare = (shareableLinks) => {
     if (!shareableLinks || shareableLinks.length === 0) return;
@@ -770,6 +833,7 @@ const ClientHome = () => {
             toggleFavoritesModal={toggleFavoritesModal}
             handleDownloadAll={handleDownloadAll}
             handleSlideshow={handleSlideshow}
+            handleShareAlbum={handleShareAlbum}
             favorites={favorites}
             cartItems={cartItems}
             canDownload={canDownload}
@@ -789,23 +853,35 @@ const ClientHome = () => {
         handleDownloadFavorites={handleDownloadFavorites}
       />
 
+      {nasLoading && images.length === 0 && (
+        <div className="flex justify-center items-center min-h-[400px] w-full bg-[#eae8e4]">
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            className="w-32 h-32"
+          />
+        </div>
+      )}
+
       {/* here we are fetching the drive images and Display Images */}
-      <ImageGalleryList
-        images={images}
-        columns={columns}
-        canView={canView}
-        canDownload={canDownload}
-        isMobile={isMobile}
-        favorites={favorites}
-        loadingImages={loadingImages}
-        toggleFavorite={toggleFavorite}
-        handleOpenDownloadModal={handleOpenDownloadModal}
-        handleShare={handleShare}
-        setCurrentImageIndex={setCurrentImageIndex}
-        setSlideshowVisible={setSlideshowVisible}
-        imageContainerRef={imageContainerRef}
-        nasLoading={nasLoading}
-      />
+      {(!nasLoading || images.length > 0) && (
+        <ImageGalleryList
+          images={images}
+          columns={columns}
+          canView={canView}
+          canDownload={canDownload}
+          isMobile={isMobile}
+          favorites={favorites}
+          loadingImages={loadingImages}
+          toggleFavorite={toggleFavorite}
+          handleOpenDownloadModal={handleOpenDownloadModal}
+          handleShare={handleShare}
+          setCurrentImageIndex={setCurrentImageIndex}
+          setSlideshowVisible={setSlideshowVisible}
+          imageContainerRef={imageContainerRef}
+          nasLoading={nasLoading}
+        />
+      )}
 
       {/* We we click on download Icon, this page opens...Download Modal */}
       {downloadModalVisible && (
@@ -859,16 +935,6 @@ const ClientHome = () => {
         </div>
       )}
 
-      {nasLoading && (
-        <div className="flex justify-center items-center min-h-[300px]">
-          <Lottie
-            animationData={animationData}
-            loop={true}
-            className="w-24 h-24 "
-          />
-        </div>
-      )}
-
       {/* When we click on any image this page opens and there are download, share and but photo options */}
       {modalVisible && currentImage && (
         <ImageModal
@@ -902,6 +968,16 @@ const ClientHome = () => {
           handleOpenDownloadModal={handleOpenDownloadModal}
         />
       )}
+
+      {/* Share Modal */}
+      <ShareModal
+        showModal={shareModalVisible}
+        setShowModal={setShareModalVisible}
+        link={shareData.link}
+        title={shareData.title}
+        currentImage={currentImage}
+        handleSocialShare={handleSocialShare}
+      />
     </>
   );
 };

@@ -21,6 +21,7 @@ const ImageGalleryList = ({
 }) => {
   const primaryColor = '#1b4b7a';
   const [loadedImages, setLoadedImages] = useState({});
+  const [initialLoad, setInitialLoad] = useState({});
 
   const handleLoad = (id, src) => {
     setLoadedImages(prev => ({ ...prev, [id]: src }));
@@ -45,16 +46,9 @@ const ImageGalleryList = ({
           margin: 0,
         }}
       >
-       {
-         nasLoading && images.length === 0 ?
-    Array.from({ length: 20 }).map((_, index) => (
-      <li key={`skeleton-${index}`} className="break-inside-avoid mb-[6px]">
-        <ImageSkeleton />
-      </li>
-    )):
-        images.map((image, index) => {
+        {images.map((image, index) => {
           const isFavorited = favorites.find((fav) => fav.id === image.id);
-          const hasName = Boolean(image.name?.trim());
+          const isLoaded = Boolean(initialLoad[image.id]);
 
           return (
             <li
@@ -72,14 +66,19 @@ const ImageGalleryList = ({
               }}
             >
               <div className="relative w-full">
-                
+                {!isLoaded && (
+                  <div className="w-full">
+                     <ImageSkeleton />
+                  </div>
+                )}
                 <Image
                   src={loadedImages[image.id] || image.lowRes}
                   alt={image.name || 'photo'}
                   width={getDimsFromUrl(loadedImages[image.id] || image.lowRes).width}
                   height={getDimsFromUrl(loadedImages[image.id] || image.lowRes).height}
-                  className={`w-full transition duration-500 ${canView ? '' : 'blur-md'}`}
+                  className={`w-full transition duration-500 ${!isLoaded ? 'opacity-0 h-0' : 'opacity-100'} ${canView ? '' : 'blur-md'}`}
                   onLoadingComplete={() => {
+                    setInitialLoad((prev) => ({ ...prev, [image.id]: true }));
                     if (!loadedImages[image.id]) {
                       const bgImg = new window.Image();
                       bgImg.src = image.highRes;

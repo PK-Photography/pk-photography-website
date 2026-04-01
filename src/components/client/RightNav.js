@@ -51,17 +51,19 @@ const RightNav = ({
           <div
             key={index}
             onClick={item.onClick}
-            className="flex items-center space-x-2 cursor-pointer hover:text-black"
+            className="flex items-center space-x-2 cursor-pointer"
           >
-            {/* Icon + (total) together */}
-            <div className="flex items-center space-x-1 whitespace-nowrap">
+            {/* Icon + label + total badge */}
+            <div className="flex items-center space-x-1 whitespace-nowrap bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-full transition-colors font-semibold">
               {item.icon}
               {/* Desktop label */}
-              <span className="hidden sm:inline text-sm whitespace-nowrap">
+              <span className="hidden sm:inline text-sm ml-1">
                 {item.label}
               </span>
-              {item.total > 0 && (
-                <span className="text-xs">({item.total})</span>
+              {item.total !== null && (
+                <span className="bg-[#5A3E36] text-white text-[10px] font-bold px-2 py-0.5 rounded-full ml-1 min-w-[20px] text-center">
+                   {item.total}
+                </span>
               )}
             </div>
           </div>

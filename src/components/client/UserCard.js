@@ -90,10 +90,17 @@ const UserCards = () => {
 
   const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
 
-  const paginatedCards = filteredCards.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
+  const paginatedCards = filteredCards
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      if (dateB - dateA !== 0) return dateB - dateA;
+      return b.name.localeCompare(a.name);
+    })
+    .slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
+    );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -176,7 +183,7 @@ const UserCards = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
               {paginatedCards.map((card) => (
                 <button
                   key={card._id}
@@ -189,6 +196,7 @@ const UserCards = () => {
                       alt={card.name}
                       layout="fill"
                       objectFit="cover"
+                      objectPosition="top"
                       className="transition duration-300 group-hover:brightness-90"
                     />
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -235,11 +243,10 @@ const UserCards = () => {
                   return (
                     <button
                       key={pageNum}
-                      className={`w-8 h-8 ${
-                        isActive
+                      className={`w-8 h-8 ${isActive
                           ? "bg-[#5C899D] text-white font-semibold"
                           : "hover:bg-[#f0f4f7] text-[#5C899D]"
-                      }`}
+                        }`}
                       onClick={() => handlePageChange(pageNum)}
                     >
                       {pageNum}

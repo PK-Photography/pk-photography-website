@@ -13,7 +13,7 @@ const BannerSection = ({ selectedCard }) => {
     <>
       {/* Banner with responsive height (header ~80px assumed) */}
       <section
-        className="relative w-full min-h-[calc(75vh-40px)] bg-center bg-cover"
+        className="relative w-full min-h-[60vh] bg-top bg-cover"
         style={{
           backgroundImage: `url(${selectedCard?.imageUrl})`,
         }}

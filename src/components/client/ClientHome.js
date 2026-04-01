@@ -819,7 +819,7 @@ const ClientHome = () => {
       {/* Categories Navbar */}
       <nav className="bg-[#eae8e4] shadow-md py-4 px-6">
         <div className="container mx-auto">
-          <CategoryNav
+          {/* <CategoryNav
             categories={categories}
             activeCategory={activeCategory}
             fetchImagesFromDrive={fetchImagesFromDrive}
@@ -828,7 +828,7 @@ const ClientHome = () => {
             dropdownVisible={dropdownVisible}
             setDropdownVisible={setDropdownVisible}
             selectedCard={selectedCard}
-          />
+          /> */}
           <RightNav
             toggleFavoritesModal={toggleFavoritesModal}
             handleDownloadAll={handleDownloadAll}
@@ -853,35 +853,23 @@ const ClientHome = () => {
         handleDownloadFavorites={handleDownloadFavorites}
       />
 
-      {nasLoading && images.length === 0 && (
-        <div className="flex justify-center items-center min-h-[400px] w-full bg-[#eae8e4]">
-          <Lottie
-            animationData={animationData}
-            loop={true}
-            className="w-32 h-32"
-          />
-        </div>
-      )}
-
-      {/* here we are fetching the drive images and Display Images */}
-      {(!nasLoading || images.length > 0) && (
-        <ImageGalleryList
-          images={images}
-          columns={columns}
-          canView={canView}
-          canDownload={canDownload}
-          isMobile={isMobile}
-          favorites={favorites}
-          loadingImages={loadingImages}
-          toggleFavorite={toggleFavorite}
-          handleOpenDownloadModal={handleOpenDownloadModal}
-          handleShare={handleShare}
-          setCurrentImageIndex={setCurrentImageIndex}
-          setSlideshowVisible={setSlideshowVisible}
-          imageContainerRef={imageContainerRef}
-          nasLoading={nasLoading}
-        />
-      )}
+      <ImageGalleryList
+        key={`${activeCategory}-${selectedCard?._id}`}
+        images={images}
+        columns={columns}
+        canView={canView}
+        canDownload={canDownload}
+        isMobile={isMobile}
+        favorites={favorites}
+        loadingImages={loadingImages}
+        toggleFavorite={toggleFavorite}
+        handleOpenDownloadModal={handleOpenDownloadModal}
+        handleShare={handleShare}
+        setCurrentImageIndex={setCurrentImageIndex}
+        setSlideshowVisible={setSlideshowVisible}
+        imageContainerRef={imageContainerRef}
+        nasLoading={nasLoading}
+      />
 
       {/* We we click on download Icon, this page opens...Download Modal */}
       {downloadModalVisible && (

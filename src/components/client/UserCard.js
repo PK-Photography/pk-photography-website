@@ -183,14 +183,14 @@ const UserCards = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {paginatedCards.map((card) => (
                 <button
                   key={card._id}
                   onClick={() => handleClick(card)}
                   className="block text-left"
                 >
-                  <div className="relative h-80 w-full overflow-hidden bg-[white] group">
+                  <div className="relative aspect-square md:h-80 w-full overflow-hidden bg-[white] group">
                     <Image
                       src={card.imageUrl}
                       alt={card.name}

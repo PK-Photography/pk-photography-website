@@ -37,15 +37,22 @@ const ImageGalleryList = ({
   return (
     <div className="px-2 pt-4 bg-[#eae8e4]">
       <ul
-        className="masonry gap-[1px] [column-fill:_balance]"
+        className="block md:masonry gap-[6px] [column-fill:_balance]"
         style={{
-          columnCount: isMobile ? 2 : 4,
+          columnCount: 1, // Default for mobile
           columnGap: '6px',
           listStyle: 'none',
           padding: 0,
           margin: 0,
         }}
       >
+        <style jsx>{`
+          @media (min-width: 768px) {
+            ul {
+              column-count: 4 !important;
+            }
+          }
+        `}</style>
         {images.map((image, index) => {
           const isFavorited = favorites.find((fav) => fav.id === image.id);
           const isLoaded = Boolean(initialLoad[image.id]);
@@ -65,7 +72,7 @@ const ImageGalleryList = ({
                 }
               }}
             >
-              <div className="relative w-full">
+              <div className="relative w-full aspect-square md:aspect-auto">
                 {!isLoaded && (
                   <div className="w-full">
                      <ImageSkeleton />
@@ -76,7 +83,7 @@ const ImageGalleryList = ({
                   alt={image.name || 'photo'}
                   width={getDimsFromUrl(loadedImages[image.id] || image.lowRes).width}
                   height={getDimsFromUrl(loadedImages[image.id] || image.lowRes).height}
-                  className={`w-full transition duration-500 ${!isLoaded ? 'opacity-0 h-0' : 'opacity-100'} ${canView ? '' : 'blur-md'}`}
+                  className={`w-full transition duration-500 ${!isLoaded ? 'opacity-0 h-0' : 'opacity-100'} ${canView ? '' : 'blur-md'} h-full object-cover md:h-auto`}
                   onLoadingComplete={() => {
                     setInitialLoad((prev) => ({ ...prev, [image.id]: true }));
                     if (!loadedImages[image.id]) {

@@ -229,11 +229,32 @@ export const Footer = () => {
                   View on maps
                 </span>
                 <h2 className="text-xl  mt-5">Our Studio</h2>
-                <h3 className="text-sx text-[#666666] mt-1">
-                  C 1302 EVERSHINE COSMIC <br />
-                  Opp. Infiniti Mall, Veera Desai Industrial Estate <br />
-                  Andheri West, Mumbai, Maharashtra 400053 <br />
+                <h3 className="text-sx text-[#666666] mt-1 mb-3">
+                  <a
+                    href="https://www.google.com/maps/place/Shaadi+Films+I+Wedding+Photography+and+Videography+mumbai/@19.1412379,72.836069,1065m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7b7811d656dc5:0x7ce9c50c36f26d59!8m2!3d19.1412379!4d72.836069!16s%2Fg%2F11ylzns6kc?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    EVERSHINE COSMIC, C1302, <br />
+                    Veera Desai Industrial Estate, Andheri West, <br />
+                    Mumbai, Maharashtra 400053
+                  </a>
+                  <br />
                   Tel: +91 8888766739
+                </h3>
+
+                <h2 className="text-xl mt-5">Sands and Vows by Shaadi Films</h2>
+                <h3 className="text-sx text-[#666666] mt-1">
+                  <a
+                    href="https://www.google.com/maps/place/Sands+and+Vows+by+Shaadi+Films/data=!4m2!3m1!1s0x0:0xfe6368c888847e04?sa=X&ved=1t:2428&hl=en-GB&ictx=111"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    246, Katte Wada Rd, Morjim, <br />
+                    Goa 403512
+                  </a>
                 </h3>
               </div>
               <div className="text-start mr-40 ">

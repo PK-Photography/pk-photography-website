@@ -173,14 +173,6 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
 
   const visibleImages = (images || []).slice(0, visibleCount);
 
-  // container width: use window width minus page paddings if available
-  const containerWidth = typeof window !== 'undefined' ? Math.max(680, window.innerWidth - 160) : 1200;
-  // target row height: responsive
-  const targetRowHeight = typeof window !== 'undefined' && window.innerWidth < 640 ? 180 : 280;
-
-  const rows = buildJustifiedRows(visibleImages, targetRowHeight, containerWidth, 12);
-
-  const isPortraits = category === 'portraits-headshots';
   const loadMore = () => {
     setLoadingMore(true);
     setTimeout(() => {
@@ -189,8 +181,8 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
     }, 450);
   };
 
-  if (isPortraits) {
-    return (
+  return (
+    <>
       <div className="w-full mt-10 px-4">
         {isFetching && <div className="text-center text-sm text-muted-foreground">Loading gallery…</div>}
         {!isFetching && visibleImages.length === 0 && <div className="text-center text-muted-foreground">No images found.</div>}
@@ -221,53 +213,6 @@ export default function AnimatedGallery({ portfolio = [], category, serviceName 
 
         {visibleCount < (images || []).length && (
           <div className="text-center mt-10 mb-10">
-            <Button size="lg" disabled={loadingMore} onClick={loadMore}>
-              {loadingMore && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {loadingMore ? 'Loading...' : 'Load More'}
-            </Button>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-
-  return (
-    <>
-      <div className="w-full flex flex-col gap-6 mt-10 px-4">
-        {isFetching && <div className="text-center text-sm text-muted-foreground">Loading gallery…</div>}
-        {!isFetching && rows.length === 0 && <div className="text-center text-muted-foreground">No images found.</div>}
-
-        {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex gap-4 justify-center" style={{ width: '100%', overflow: 'hidden' }}>
-            {row.map((img: any, index: number) => (
-              <motion.div
-                key={`${img.id ?? index}-${index}`}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: index * 0.02 }}
-                whileHover={{ scale: 1.02 }}
-                className="relative rounded-xl overflow-hidden shadow-sm bg-gray-50"
-                style={{
-                  width: img.displayWidth ? `${img.displayWidth}px` : 'auto',
-                  height: img.displayHeight ? `${img.displayHeight}px` : `${targetRowHeight}px`,
-                  flex: '0 0 auto',
-                }}
-              >
-                <Image
-                  src={img.imageUrl}
-                  alt={img.imageHint || `${serviceName || 'Gallery'} image`}
-                  fill
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top"
-                />
-              </motion.div>
-            ))}
-          </div>
-        ))}
-
-        {visibleCount < (images || []).length && (
-          <div className="text-center mt-6 mb-10">
             <Button size="lg" disabled={loadingMore} onClick={loadMore}>
               {loadingMore && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {loadingMore ? 'Loading...' : 'Load More'}

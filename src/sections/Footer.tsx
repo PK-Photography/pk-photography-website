@@ -214,10 +214,12 @@ export const Footer = () => {
                   <span className="text-sx list-none  text-[#666666] py-2 ">
                     Want to be a member of our talent team?
                   </span>
-                  <h3 className="text-sx text-[#2C2D2E] mt-5">
-                    Become a Model
-                  </h3>
-                  <h2 className="text-xl mt-1 text-[#2C2D2E]">Join here</h2>
+                  <a href="https://pkphotography.in/talents" className="hover:underline">
+                    <h3 className="text-sx text-[#2C2D2E] mt-5">
+                      Become a Model
+                    </h3>
+                    <h2 className="text-xl mt-1 text-[#2C2D2E]">Join here</h2>
+                  </a>
                 </div>
               </div>
             </div>
@@ -241,10 +243,19 @@ export const Footer = () => {
                     Mumbai, Maharashtra 400053
                   </a>
                   <br />
-                  Tel: +91 8888766739
+                  Tel: <a href="tel:+918888766739" className="hover:underline">+91 8888766739</a>
                 </h3>
 
-                <h2 className="text-xl mt-5">Sands and Vows by Shaadi Films</h2>
+                <h2 className="text-xl mt-5">
+                  <a
+                    href="https://www.google.com/maps/place/Sands+and+Vows+by+Shaadi+Films/data=!4m2!3m1!1s0x0:0xfe6368c888847e04?sa=X&ved=1t:2428&hl=en-GB&ictx=111"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Sands and Vows by Shaadi Films
+                  </a>
+                </h2>
                 <h3 className="text-sx text-[#666666] mt-1">
                   <a
                     href="https://www.google.com/maps/place/Sands+and+Vows+by+Shaadi+Films/data=!4m2!3m1!1s0x0:0xfe6368c888847e04?sa=X&ved=1t:2428&hl=en-GB&ictx=111"
@@ -255,6 +266,8 @@ export const Footer = () => {
                     246, Katte Wada Rd, Morjim, <br />
                     Goa 403512
                   </a>
+                  <br />
+                  Tel: <a href="tel:+918188881905" className="hover:underline">+91-8188881905</a>
                 </h3>
               </div>
               <div className="text-start mr-40 ">
@@ -264,7 +277,7 @@ export const Footer = () => {
                 <h2 className="text-xl mt-5">We are active in</h2>
                 <h3 className="text-sx text-[#666666] mt-1">
                   Mumbai <br />
-                  Dubai <br />
+                  Goa <br />
                   Delhi
                 </h3>
               </div>

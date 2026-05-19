@@ -230,7 +230,16 @@ export const Footer = () => {
                 <span className="text-sx list-none  text-[#666666] py-2 ">
                   View on maps
                 </span>
-                <h2 className="text-xl  mt-5">Our Studio</h2>
+                <h2 className="text-xl mt-5">
+                  <a
+                    href="https://www.google.com/maps/place/Shaadi+Films+I+Wedding+Photography+and+Videography+mumbai/@19.1412379,72.836069,1065m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7b7811d656dc5:0x7ce9c50c36f26d59!8m2!3d19.1412379!4d72.836069!16s%2Fg%2F11ylzns6kc?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Our Studio PK Photography
+                  </a>
+                </h2>
                 <h3 className="text-sx text-[#666666] mt-1 mb-3">
                   <a
                     href="https://www.google.com/maps/place/Shaadi+Films+I+Wedding+Photography+and+Videography+mumbai/@19.1412379,72.836069,1065m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7b7811d656dc5:0x7ce9c50c36f26d59!8m2!3d19.1412379!4d72.836069!16s%2Fg%2F11ylzns6kc?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
@@ -267,7 +276,7 @@ export const Footer = () => {
                     Goa 403512
                   </a>
                   <br />
-                  Tel: <a href="tel:+918188881905" className="hover:underline">+91-8188881905</a>
+                  Tel: <a href="tel:+918888766739" className="hover:underline">+91 8888766739</a>
                 </h3>
               </div>
               <div className="text-start mr-40 ">

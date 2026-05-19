@@ -45,8 +45,9 @@ const ClientHome = () => {
   const [canDownload, setCanDownload] = useState(true); // State for canDownload
   const [loadingImages, setLoadingImages] = useState({});
   const [nasAllImages, setNasAllImages] = useState([]); // All images from NAS
+  const [allImagesPool, setAllImagesPool] = useState([]); // Full list for client-side pagination (Drive)
   const [nasPage, setNasPage] = useState(1);
-  const nasPageSize = 50;
+  const nasPageSize = 10;
   const [nasLoading, setNasLoading] = useState(true);
   const [hasMoreNasImages, setHasMoreNasImages] = useState(true);
   const [nasTotalCount, setNasTotalCount] = useState(0);
@@ -59,12 +60,24 @@ const ClientHome = () => {
   const dropdownRef = useRef(null);
   const imageContainerRef = useRef(null);
 
+  const applyPaginatedImages = useCallback((allImages) => {
+    setAllImagesPool(allImages);
+    setNasTotalCount(allImages.length);
+    if (allImages.length <= nasPageSize) {
+      setImages(allImages);
+      setHasMoreNasImages(false);
+    } else {
+      setImages(allImages.slice(0, nasPageSize));
+      setHasMoreNasImages(true);
+    }
+  }, []);
+
   const fetchImagesFromDrive = useCallback(
     async (driveLink, categoryName, cardId) => {
       const cacheKey = `drive-${cardId}-${categoryName}`;
       const cached = sessionStorage.getItem(cacheKey);
       if (cached) {
-        setImages(JSON.parse(cached));
+        applyPaginatedImages(JSON.parse(cached));
         setActiveCategory(categoryName);
         setNasLoading(false);
         return;
@@ -107,7 +120,7 @@ const ClientHome = () => {
         } while (pageToken);
 
         sessionStorage.setItem(cacheKey, JSON.stringify(allImages));
-        setImages(allImages);
+        applyPaginatedImages(allImages);
         setActiveCategory(categoryName);
       } catch (error) {
         console.error("Drive fetch error:", error);
@@ -115,7 +128,7 @@ const ClientHome = () => {
         setNasLoading(false);
       }
     },
-    []
+    [applyPaginatedImages]
   );
 
   const fetchImagesFromNAS = useCallback(
@@ -145,20 +158,24 @@ const ClientHome = () => {
         }));
 
         if (page === 1) {
+          setNasPage(1);
           setNasAllImages(newImages);
         } else {
           setNasAllImages((prev) => [...prev, ...newImages]);
         }
 
         setActiveCategory(categoryName);
-        setImages((prev) => (page === 1 ? newImages : [...prev, ...newImages]));
 
-        if (newImages.length < nasPageSize) {
-          setHasMoreNasImages(false);
-        } else {
-          setHasMoreNasImages(true);
-        }
-        setNasTotalCount(response.data.total || 0);
+        const total = Number(response.data.total) || 0;
+        setImages((prev) => {
+          const merged = page === 1 ? newImages : [...prev, ...newImages];
+          setHasMoreNasImages(
+            total > merged.length ||
+              (total === 0 && newImages.length >= nasPageSize)
+          );
+          setNasTotalCount(total > 0 ? total : merged.length);
+          return merged;
+        });
       } catch (error) {
         console.error("NAS fetch error:", error);
         setHasMoreNasImages(false);
@@ -169,41 +186,53 @@ const ClientHome = () => {
     []
   );
 
+  const handleLoadMore = useCallback(() => {
+    if (nasLoading || !hasMoreNasImages) return;
+
+    const activeCat = categories.find((c) => c.name === activeCategory);
+    if (!activeCat) return;
+
+    if (activeCat.images.includes("drive.google.com")) {
+      setImages((prev) => {
+        const next = allImagesPool.slice(
+          prev.length,
+          prev.length + nasPageSize
+        );
+        const merged = [...prev, ...next];
+        setHasMoreNasImages(merged.length < allImagesPool.length);
+        return merged;
+      });
+      return;
+    }
+
+    setNasPage((prev) => prev + 1);
+  }, [
+    nasLoading,
+    hasMoreNasImages,
+    categories,
+    activeCategory,
+    allImagesPool,
+  ]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const nearBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+    if (nasPage <= 1 || !selectedCard?._id || !activeCategory) return;
 
-      if (
-        nearBottom &&
-        !nasLoading &&
-        hasMoreNasImages &&
-        selectedCard &&
-        activeCategory &&
-        categories
-          .find((c) => c.name === activeCategory)
-          ?.images.includes("quickconnect.to")
-      ) {
-        setNasPage((prev) => {
-          return prev + 1;
-        });
-      }
-    };
+    const activeCat = categories.find((c) => c.name === activeCategory);
+    if (!activeCat || activeCat.images.includes("drive.google.com")) return;
 
-    window.addEventListener("scroll", handleScroll);
-    setTimeout(() => handleScroll(), 500);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [nasLoading, hasMoreNasImages, selectedCard, activeCategory, categories]);
+    fetchImagesFromNAS(
+      activeCat.images,
+      activeCategory,
+      selectedCard._id,
+      nasPage
+    );
+  }, [nasPage, selectedCard, activeCategory, categories, fetchImagesFromNAS]);
 
   useEffect(() => {
     if (!selectedCard || categories.length === 0) return;
 
-    const activeCat = categories.find((c) => c.name === activeCategory);
-    if (!activeCat || !activeCat.images.includes("quickconnect.to")) return;
-
     setNasPage(1);
-    setHasMoreNasImages(true); // reset "load more" flag
+    setHasMoreNasImages(true);
     window.scrollTo(0, 0);
   }, [activeCategory, selectedCard, categories]);
 
@@ -240,7 +269,14 @@ const ClientHome = () => {
         const cachedImages = sessionStorage.getItem(imageCacheKey);
 
         if (cachedImages) {
-          setImages(JSON.parse(cachedImages));
+          const parsed = JSON.parse(cachedImages);
+          if (isDrive) {
+            applyPaginatedImages(parsed);
+          } else {
+            setImages(parsed);
+            setHasMoreNasImages(parsed.length >= nasPageSize);
+            setNasTotalCount(parsed.length);
+          }
           setNasLoading(false);
         } else {
           isDrive
@@ -302,7 +338,7 @@ const ClientHome = () => {
 
       fetchSelectedCard();
     }
-  }, [fetchImagesFromDrive, fetchImagesFromNAS, pathname]);
+  }, [fetchImagesFromDrive, fetchImagesFromNAS, pathname, applyPaginatedImages]);
 
   useEffect(() => {
     const updateColumns = () => {
@@ -869,6 +905,9 @@ const ClientHome = () => {
         setSlideshowVisible={setSlideshowVisible}
         imageContainerRef={imageContainerRef}
         nasLoading={nasLoading}
+        showLoadMore={hasMoreNasImages && images.length > 0}
+        onLoadMore={handleLoadMore}
+        isLoadingMore={nasLoading && images.length > 0}
       />
 
       {/* We we click on download Icon, this page opens...Download Modal */}

@@ -18,6 +18,9 @@ const ImageGalleryList = ({
   setSlideshowVisible = () => {},
   startAutoPlay = () => {},
   nasLoading,
+  showLoadMore = false,
+  onLoadMore = () => {},
+  isLoadingMore = false,
 }) => {
   const primaryColor = '#1b4b7a';
   const [loadedImages, setLoadedImages] = useState({});
@@ -28,9 +31,9 @@ const ImageGalleryList = ({
   };
 
   const getDimsFromUrl = (url) => {
-    if (!url || typeof url !== "string") return { width: 200, height: 200 };
+    if (!url || typeof url !== "string") return { width: 1200, height: 1600 };
     const match = url.match(/w(\d+)-h(\d+)/i);
-    if (!match) return { width: 200, height: 200 };
+    if (!match) return { width: 1200, height: 1600 };
     return { width: Number(match[1]), height: Number(match[2]) };
   };
 
@@ -72,7 +75,7 @@ const ImageGalleryList = ({
                 }
               }}
             >
-              <div className="relative w-full aspect-square md:aspect-auto">
+              <div className="relative w-full">
                 {!isLoaded && (
                   <div className="w-full">
                      <ImageSkeleton />
@@ -83,7 +86,8 @@ const ImageGalleryList = ({
                   alt={image.name || 'photo'}
                   width={getDimsFromUrl(loadedImages[image.id] || image.lowRes).width}
                   height={getDimsFromUrl(loadedImages[image.id] || image.lowRes).height}
-                  className={`w-full transition duration-500 ${!isLoaded ? 'opacity-0 h-0' : 'opacity-100'} ${canView ? '' : 'blur-md'} h-full object-cover md:h-auto`}
+                  sizes="(max-width: 767px) 100vw, 25vw"
+                  className={`w-full h-auto transition duration-500 ${!isLoaded ? 'opacity-0 h-0' : 'opacity-100'} ${canView ? '' : 'blur-md'}`}
                   onLoadingComplete={() => {
                     setInitialLoad((prev) => ({ ...prev, [image.id]: true }));
                     if (!loadedImages[image.id]) {
@@ -140,6 +144,19 @@ const ImageGalleryList = ({
           );
         })}
       </ul>
+
+      {showLoadMore && (
+        <div className="flex justify-center py-8 pb-12">
+          <button
+            type="button"
+            onClick={onLoadMore}
+            disabled={isLoadingMore}
+            className="px-8 py-3 bg-[#5C899D] text-white font-medium rounded-full shadow-sm transition hover:bg-[#4a7080] disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {isLoadingMore ? "Loading..." : "Load More"}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

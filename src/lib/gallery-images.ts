@@ -1,29 +1,70 @@
 export interface GalleryImage {
   id: number;
-  src: string;          // path relative to /public, e.g. "/gallery/img-01.jpg"
-  caption: string;      // short poetic label shown on hover & in lightbox
-  featured?: boolean;   // set true on the one image used as the hero
+  src: string;         // path relative to /public
+  caption: string;     // shown on hover & in lightbox
+  featured?: boolean;  // first featured image = hero
 }
 
-// ─── EDIT THIS LIST ────────────────────────────────────────────────────────────
-// Place your images in:  public/gallery/
-// Then update src + caption for each entry.
-// The first image with featured: true becomes the full-bleed hero.
-// ──────────────────────────────────────────────────────────────────────────────
+// ─── PUT YOUR IMAGES IN: public/gallery/ ──────────────────────────────────────
+// Change featured: true to whichever image you want as the full-bleed hero.
+// Captions are optional — leave "" or add poetic labels.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const galleryImages: GalleryImage[] = [
-  { id: 1,  src: "/gallery/img-01.jpeg", caption: "Golden Hour",    featured: true },
-  { id: 2,  src: "/gallery/img-02.jpg", caption: "First Glance" },
-  { id: 3,  src: "/gallery/img-03.jpg", caption: "Ceremony" },
-  { id: 4,  src: "/gallery/img-04.jpg", caption: "The Vows" },
-  { id: 5,  src: "/gallery/img-05.jpg", caption: "First Dance" },
-  { id: 6,  src: "/gallery/img-06.jpg", caption: "Joy" },
-  { id: 7,  src: "/gallery/img-07.jpg", caption: "Together" },
-  { id: 8,  src: "/gallery/img-08.jpg", caption: "Details" },
-  { id: 9,  src: "/gallery/img-09.jpg", caption: "Reception" },
-  { id: 10, src: "/gallery/img-10.jpg", caption: "Celebration" },
-  { id: 11, src: "/gallery/img-11.jpg", caption: "In Bloom" },
-  { id: 12, src: "/gallery/img-12.jpg", caption: "Timeless" },
+  { id:  1, src: "/gallery/1N4A0025.JPG", featured: true, caption: "" },
+  { id:  2, src: "/gallery/1N4A0031.JPG", caption: "" },
+  { id:  3, src: "/gallery/1N4A0032.JPG", caption: "" },
+  { id:  4, src: "/gallery/1N4A0045.JPG", caption: "" },
+  { id:  5, src: "/gallery/1N4A0053.JPG", caption: "" },
+  { id:  6, src: "/gallery/1N4A0072.JPG", caption: "" },
+  { id:  7, src: "/gallery/1N4A0088.JPG", caption: "" },
+  { id:  8, src: "/gallery/1N4A0099.JPG", caption: "" },
+  { id:  9, src: "/gallery/1N4A0135.JPG", caption: "" },
+  { id: 10, src: "/gallery/1N4A0141.JPG", caption: "" },
+  { id: 11, src: "/gallery/1N4A0164.JPG", caption: "" },
+  { id: 12, src: "/gallery/1N4A0167.JPG", caption: "" },
+  { id: 13, src: "/gallery/1N4A0235.JPG", caption: "" },
+  { id: 14, src: "/gallery/1N4A0247.JPG", caption: "" },
+  { id: 15, src: "/gallery/1N4A0291.JPG", caption: "" },
+  { id: 16, src: "/gallery/1N4A0294.JPG", caption: "" },
+  { id: 17, src: "/gallery/1N4A0295.JPG", caption: "" },
+  { id: 18, src: "/gallery/1N4A0307.JPG", caption: "" },
+  { id: 19, src: "/gallery/1N4A0328.JPG", caption: "" },
+  { id: 20, src: "/gallery/1N4A0340.JPG", caption: "" },
+  { id: 21, src: "/gallery/1N4A0359.JPG", caption: "" },
+  { id: 22, src: "/gallery/1N4A0382.JPG", caption: "" },
+  { id: 23, src: "/gallery/1N4A0387.JPG", caption: "" },
+  { id: 24, src: "/gallery/1N4A0399.JPG", caption: "" },
+  { id: 25, src: "/gallery/1N4A0407.JPG", caption: "" },
+  { id: 26, src: "/gallery/1N4A0410.JPG", caption: "" },
+  { id: 27, src: "/gallery/1N4A0422.JPG", caption: "" },
+  { id: 28, src: "/gallery/1N4A0441.JPG", caption: "" },
+  { id: 29, src: "/gallery/1N4A0443.JPG", caption: "" },
+  { id: 30, src: "/gallery/1N4A0444.JPG", caption: "" },
+  { id: 31, src: "/gallery/1N4A0454.JPG", caption: "" },
+  { id: 32, src: "/gallery/1N4A0460.JPG", caption: "" },
+  { id: 33, src: "/gallery/1N4A0464.JPG", caption: "" },
+  { id: 34, src: "/gallery/1N4A0472.JPG", caption: "" },
+  { id: 35, src: "/gallery/1N4A0478.JPG", caption: "" },
+  { id: 36, src: "/gallery/1N4A0504.JPG", caption: "" },
+  { id: 37, src: "/gallery/1N4A0513.JPG", caption: "" },
+  { id: 38, src: "/gallery/1N4A0514.JPG", caption: "" },
+  { id: 39, src: "/gallery/1N4A0522.JPG", caption: "" },
+  { id: 40, src: "/gallery/1N4A0527.JPG", caption: "" },
+  { id: 41, src: "/gallery/1N4A0541.JPG", caption: "" },
+  { id: 42, src: "/gallery/1N4A0551.JPG", caption: "" },
+  { id: 43, src: "/gallery/1N4A0555.JPG", caption: "" },
+  { id: 44, src: "/gallery/1N4A0564.JPG", caption: "" },
+  { id: 45, src: "/gallery/1N4A0576.JPG", caption: "" },
+  { id: 46, src: "/gallery/1N4A0582.JPG", caption: "" },
+  { id: 47, src: "/gallery/1N4A0583.JPG", caption: "" },
+  { id: 48, src: "/gallery/1N4A0609.JPG", caption: "" },
+  { id: 49, src: "/gallery/1N4A0673.JPG", caption: "" },
+  { id: 50, src: "/gallery/1N4A0683.JPG", caption: "" },
+  { id: 51, src: "/gallery/1N4A0697.JPG", caption: "" },
+  { id: 52, src: "/gallery/1N4A0706.JPG", caption: "" },
+  { id: 53, src: "/gallery/1N4A0714.JPG", caption: "" },
+  { id: 54, src: "/gallery/1N4A0724.JPG", caption: "" },
 ];
 
 export const heroImage = galleryImages.find(img => img.featured) ?? galleryImages[0];

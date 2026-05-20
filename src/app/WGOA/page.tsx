@@ -17,8 +17,8 @@ export default function GalleryPage() {
       {/* Hero */}
       <HeroSection
         image={heroImage}
-        clientName="W GOA"    // ← e.g. "Priya & Arjun"
-        eventLabel="Event · 2026"      // ← e.g. "Wedding · December 2024, Mumbai"
+        clientName="The Inner Circle"    // ← e.g. "Priya & Arjun"
+        eventLabel="Location: W Goa · Date: 20th May 2026"      // ← e.g. "Wedding · December 2024, Mumbai"
       />
 
       {/* Section break */}

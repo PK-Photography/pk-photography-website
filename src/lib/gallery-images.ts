@@ -66,6 +66,16 @@ export const galleryImages: GalleryImage[] = [
   { id: 52, src: "/gallery/1N4A0706.JPG", caption: "" },
   { id: 53, src: "/gallery/1N4A0714.JPG", caption: "" },
   { id: 54, src: "/gallery/1N4A0724.JPG", caption: "" },
+  { id: 55, src: "/drive-download-20260521T070728Z-3-001/1N4A0737.JPG", caption: "" },
+  { id: 56, src: "/drive-download-20260521T070728Z-3-001/1N4A0742.JPG", caption: "" },
+  { id: 57, src: "/drive-download-20260521T070728Z-3-001/1N4A0751.JPG", caption: "" },
+  { id: 58, src: "/drive-download-20260521T070728Z-3-001/1N4A0766.JPG", caption: "" },
+  { id: 59, src: "/drive-download-20260521T070728Z-3-001/1N4A0773.JPG", caption: "" },
+  { id: 60, src: "/drive-download-20260521T070728Z-3-001/1N4A0782.JPG", caption: "" },
+  { id: 61, src: "/drive-download-20260521T070728Z-3-001/1N4A0795.JPG", caption: "" },
+  { id: 62, src: "/drive-download-20260521T070728Z-3-001/1N4A0809.JPG", caption: "" },
+  { id: 63, src: "/drive-download-20260521T070728Z-3-001/1N4A0855.JPG", caption: "" },
+  { id: 64, src: "/drive-download-20260521T070728Z-3-001/1N4A0876.JPG", caption: "" },
 ];
 
 export const heroImage: GalleryImage = {

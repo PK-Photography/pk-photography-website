@@ -63,9 +63,10 @@ const originalImages: Omit<GalleryImage, 'id'>[] = [
   { src: '/gallery/1N4A0724.JPG', caption: '' },
 ];
 
-// New batch (public/drive-download-20260521T070728Z-3-001/)
-const newBatchDir = '/drive-download-20260521T070728Z-3-001';
+// New batch (public/drive-download-20260521T094854Z-3-001/) — one entry per file, no duplicates
+const newBatchDir = '/drive-download-20260521T094854Z-3-001';
 const newImages: Omit<GalleryImage, 'id'>[] = [
+  { src: `${newBatchDir}/1N4A0489.JPG`, caption: '' },
   { src: `${newBatchDir}/1N4A0737.JPG`, caption: '' },
   { src: `${newBatchDir}/1N4A0742.JPG`, caption: '' },
   { src: `${newBatchDir}/1N4A0751.JPG`, caption: '' },
@@ -76,7 +77,6 @@ const newImages: Omit<GalleryImage, 'id'>[] = [
   { src: `${newBatchDir}/1N4A0809.JPG`, caption: '' },
   { src: `${newBatchDir}/1N4A0855.JPG`, caption: '' },
   { src: `${newBatchDir}/1N4A0876.JPG`, caption: '' },
-  { src: '/drive-download-20260521T091715Z-3-001/1N4A0489.JPG', caption: '' },
 ];
 
 const allImages = [...originalImages, ...newImages];

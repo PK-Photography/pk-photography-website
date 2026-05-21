@@ -6,12 +6,13 @@ export interface GalleryImage {
 }
 
 // ─── PUT YOUR IMAGES IN: public/gallery/ ──────────────────────────────────────
-// Change featured: true to whichever image you want as the full-bleed hero.
+// Hero cover: public/gallery/wgoa-cover.png (see heroImage export below).
+// Optional: featured: true excludes an image from the grid (legacy).
 // Captions are optional — leave "" or add poetic labels.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const galleryImages: GalleryImage[] = [
-  { id:  1, src: "/gallery/1N4A0025.JPG", featured: true, caption: "" },
+  { id:  1, src: "/gallery/1N4A0025.JPG", caption: "" },
   { id:  2, src: "/gallery/1N4A0031.JPG", caption: "" },
   { id:  3, src: "/gallery/1N4A0032.JPG", caption: "" },
   { id:  4, src: "/gallery/1N4A0045.JPG", caption: "" },
@@ -67,5 +68,10 @@ export const galleryImages: GalleryImage[] = [
   { id: 54, src: "/gallery/1N4A0724.JPG", caption: "" },
 ];
 
-export const heroImage = galleryImages.find(img => img.featured) ?? galleryImages[0];
-export const gridImages = galleryImages.filter(img => !img.featured);
+export const heroImage: GalleryImage = {
+  id: 0,
+  src: '/gallery/wgoa-cover.png',
+  caption: 'The Inner Circle at W Goa',
+};
+
+export const gridImages = galleryImages;

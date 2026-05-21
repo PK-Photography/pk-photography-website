@@ -172,7 +172,18 @@
 
 /* ── GALLERY GRID ─────────────────────────────────────────────────── */
 .gallery-grid-section {
-  padding: 0 32px 100px;
+  padding: 0 32px 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.gallery-upload-notice {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--pk-muted);
+  padding: 0 32px 72px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -398,6 +409,7 @@
 @media (max-width: 640px) {
   .hero-content { padding: 0 24px 56px; }
   .section-divider { padding: 48px 24px 36px; }
-  .gallery-grid-section { padding: 0 16px 80px; }
+  .gallery-grid-section { padding: 0 16px 40px; }
+  .gallery-upload-notice { padding: 0 24px 56px; font-size: 12px; }
   .lb-nav { display: none; }
 }

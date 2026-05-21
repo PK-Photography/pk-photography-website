@@ -35,6 +35,10 @@ export default function GalleryPage() {
         <GalleryGrid images={gridImages} />
       </section>
 
+      <p className="gallery-upload-notice">
+        Remaining photos will be uploaded in 2 days
+      </p>
+
     </div>
   );
 }

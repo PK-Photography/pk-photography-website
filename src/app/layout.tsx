@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Header from "@/components/header/Header";
-import { Footer } from "@/sections/Footer";
+import { SiteFooter } from "@/components/SiteFooter";
 import WhatsAppIcon from "@/components/globalIcons/WhatAppIcon";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/components/SessionProvider";
@@ -74,8 +74,7 @@ export default function RootLayout({
           {/* {children} */}
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
 
-          {/* Footer component */}
-          <Footer />
+          <SiteFooter />
 
           {/* WhatsApp icon displayed globally */}
           <WhatsAppIcon />

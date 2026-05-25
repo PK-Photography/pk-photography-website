@@ -81,8 +81,59 @@ const FAQ: React.FC = () => {
     }, 100);
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes PK Photography unique in Andheri, Mumbai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At PK Photography, we combine technical expertise with a personalized touch to capture your true essence. Our Andheri studio offers a relaxed yet professional environment that reflects the vibrant energy of Mumbai."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I book a photography or videography session?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can easily book a session by calling us directly, filling out the inquiry form on our website, contacting us via Instagram, or using WhatsApp for quick queries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How soon do I receive the edited photos and videos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Final deliverables are typically shared within 7 to 10 working days, depending on the project's scale and type. Files are delivered via a secure online gallery, with pen drive or printed albums available for an additional cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get a customized package for my event or shoot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! Contact us to create a custom photography or videography package tailored to your unique needs and budget."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is your studio located in Mumbai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our studio is located in Andheri West, Mumbai. We offer indoor shoots at our professional setup and outdoor shoots throughout the city based on your preference."
+        }
+      }
+    ]
+  };
+
   return (
     <section className="bg-white px-4 py-16 sm:mx-auto   md:py-14 lg:py-16 ">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left Illustration */}
         <div className="relative hidden lg:flex justify-center">
@@ -92,6 +143,7 @@ const FAQ: React.FC = () => {
             width={170}
             height={258}
             className="max-w-full h-auto"
+            loading="lazy"
           />
         </div>
 
@@ -114,6 +166,10 @@ const FAQ: React.FC = () => {
                   backgroundColor:
                     item.id === activeQuestion ? item.bgColor : "#f9f9f9",
                 }}
+                role="button"
+                aria-expanded={item.id === activeQuestion}
+                aria-controls={`faq-answer-${item.id}`}
+                tabIndex={0}
               >
                 <h3
                   className={`text-base sm:text-lg font-${
@@ -123,9 +179,9 @@ const FAQ: React.FC = () => {
                   {item.question}
                 </h3>
                 {item.id === activeQuestion && (
-                  <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed font-light">
+                  <div id={`faq-answer-${item.id}`} className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed font-light">
                     {item.answer}
-                  </p>
+                  </div>
                 )}
               </div>
             ))}

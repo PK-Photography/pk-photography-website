@@ -1,5 +1,4 @@
-// pages/index.tsx
-
+"use client";
 import React from "react";
 import PricingCards from "@/components/pricingCard/PricingCards";
 
@@ -63,9 +62,9 @@ const packages = [
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <section aria-label="Shoot Pricing Options">
       <PricingCards packages={packages} />
-    </div>
+    </section>
   );
 };
 

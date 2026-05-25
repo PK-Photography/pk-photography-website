@@ -77,7 +77,10 @@ export const Hero = () => {
 
           <div className="mt-4">
             <Link href="/booking">
-              <button className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium">
+              <button 
+                className="border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition font-medium"
+                aria-label="Book a photography session with PK Photography"
+              >
                 Book Your Session
               </button>
             </Link>

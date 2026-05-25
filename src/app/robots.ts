@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots{
                 allow: "/",
             }
         ],
-        sitemap: 'https://pkphotography.vercel.app/sitemap.xml'
+        sitemap: 'https://pkphotography.in/sitemap.xml'
     }
 }

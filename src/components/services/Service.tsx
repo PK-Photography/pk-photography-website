@@ -1,8 +1,10 @@
+"use client";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Btn from "../EncrptButton/BtnMin";
 import "@fontsource/montserrat";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import service1 from "@/assets/service1.webp";
 import service2 from "@/assets/service2.webp";
@@ -143,12 +145,18 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
   index,
 }) => {
   const isLastThree = index >= cards.length - 3;
+  const router = useRouter();
 
   return (
-    // Entire card links to link2
-    <Link href={card.link2} key={card.id} className="no-underline">
+    // Replaced outer Link with div to prevent hydration error (nested <a> tags)
+    <div
+      key={card.id}
+      className="no-underline cursor-pointer"
+      aria-label={`View ${card.title} Photography Services`}
+      onClick={() => router.push(card.link2)}
+    >
       <div
-        className={`group relative h-[620px] md:w-[468px] md:h-[650px] sm:w-[404px] overflow-hidden bg-neutral-200 rounded-3xl cursor-pointer ${
+        className={`group relative h-[620px] md:w-[468px] md:h-[650px] sm:w-[404px] overflow-hidden bg-neutral-200 rounded-3xl ${
           card.isLightBackground ? "text-black" : "text-white"
         }`}
       >
@@ -180,13 +188,13 @@ const Card: React.FC<{ card: CardProps; index: number }> = ({
 
           {/* View Gallery Button → link */}
           <div className="mt-1 flex justify-center">
-            <Link href={card.link} className="z-20">
+            <Link href={card.link} className="z-20" onClick={(e) => e.stopPropagation()}>
               <Btn className={card.isLightBackground ? "text-black" : "text-white"} />
             </Link>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 const HorizontalScrollCarousel: React.FC<{ cards: CardProps[] }> = ({

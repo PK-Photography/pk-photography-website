@@ -11,22 +11,109 @@ import { SiteFooter } from "@/components/SiteFooter";
 import WhatsAppIcon from "@/components/globalIcons/WhatAppIcon";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/components/SessionProvider";
+import StyledComponentsRegistry from "@/lib/registry";
 
 const dmSans = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pkphotography.in"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
-    default: "PK Photography-Best in photography and videography.",
-    template: "%s - Best photography and videography service in Mumbai",
+    default: "PK Photography - Best Photography and Videography in Mumbai",
+    template: "%s | PK Photography",
   },
   description:
-    "We offer Portrait, Event, Commercial, Lifestyle, Corporate Headshots, Real Estate shoots and Wedding and Events Photography.",
+    "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
+  keywords: [
+    "Photography in Mumbai",
+    "Best Videography",
+    "Wedding Photographer Mumbai",
+    "Portrait Photography",
+    "Corporate Headshots",
+    "Real Estate Photography",
+    "Event Photography",
+    "PK Photography"
+  ],
+  authors: [{ name: "PK Photography", url: "https://pkphotography.in" }],
+  publisher: "PK Photography",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: "PK Photography - Best Photography and Videography in Mumbai",
+    description: "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
+    url: "https://pkphotography.in",
+    siteName: "PK Photography",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PK Photography Mumbai",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
   twitter: {
     card: "summary_large_image",
+    title: "PK Photography - Best Photography and Videography in Mumbai",
+    description: "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
+    images: ["/opengraph-image.png"],
   },
 };
-import StyledComponentsRegistry from "@/lib/registry";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "PhotographyService",
+      "@id": "https://pkphotography.in/#organization",
+      "name": "PK Photography",
+      "url": "https://pkphotography.in",
+      "logo": "https://pkphotography.in/logo.png",
+      "image": "https://pkphotography.in/hero-img.jpg",
+      "description": "Premium photography and videography services in Mumbai. Specializing in weddings, portraits, and commercial events.",
+      "telephone": "+91-8889766739",
+      "email": "info@pkphotography.in",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.0760,
+        "longitude": 72.8777
+      },
+      "sameAs": [
+        "https://www.instagram.com/",
+        "https://www.facebook.com/"
+      ],
+      "priceRange": "$$"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pkphotography.in/#website",
+      "url": "https://pkphotography.in",
+      "name": "PK Photography",
+      "publisher": {
+        "@id": "https://pkphotography.in/#organization"
+      }
+    }
+  ]
+};
 
 export default function RootLayout({
   children,
@@ -39,6 +126,10 @@ export default function RootLayout({
           content="xkkbCA30-55oudh-aQAwydfWkzUga0omPDIZ6lN9RB4"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>
         <Script
@@ -71,8 +162,9 @@ export default function RootLayout({
             pauseOnHover
           />
 
-          {/* {children} */}
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <main>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </main>
 
           <SiteFooter />
 

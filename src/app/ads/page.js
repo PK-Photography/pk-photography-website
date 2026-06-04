@@ -21,7 +21,7 @@ import MultiCard from "@/components/ads/MultiCard";
 import { ChevronRight } from "lucide-react";
 
 const Pricing = dynamic (() => import("@/components/ads/Pricing"),{
-  ssr:true,
+  ssr:false,
 });
 
 export default function Ads() {

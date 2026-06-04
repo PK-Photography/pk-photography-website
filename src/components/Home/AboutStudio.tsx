@@ -10,9 +10,10 @@ const AboutStudio = () => {
           <div className="relative w-full h-80 md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
             <Image
               src="/images/studio.jpeg"
-              alt="Studio"
+              alt="Professional Photography Studio in Mumbai - PK Photography"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>
@@ -20,11 +21,11 @@ const AboutStudio = () => {
         {/* Right – Text Content */}
         <div className="w-full md:w-1/2 text-left">
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">About Our Studio</h2>
-          <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+          <article className="text-gray-600 mb-8 text-lg leading-relaxed">
             With over a decade of experience in creative services, our studio has become a trusted name in
             professional photography and visual storytelling. We combine technical expertise with artistic vision to
             deliver exceptional results for our clients.
-          </p>
+          </article>
 
           {/* Stats */}
           <div className="grid grid-cols-2 gap-x-8 gap-y-6 text-left text-gray-700 text-base mb-8">

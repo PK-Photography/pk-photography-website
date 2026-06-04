@@ -31,9 +31,10 @@ const OurClients: React.FC = () => {
             >
               <Image
                 src={logo}
-                alt={`Client Logo ${index + 1}`}
+                alt={`PK Photography Client Logo ${index + 1}`}
                 fill
                 className="object-contain"
+                loading="lazy"
               />
             </div>
           ))}

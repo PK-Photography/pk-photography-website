@@ -232,7 +232,7 @@ export const Footer = () => {
                 </span>
                 <h2 className="text-xl mt-5">
                   <a
-                    href="https://www.google.com/maps/place/Shaadi+Films+I+Wedding+Photography+and+Videography+mumbai/@19.1412379,72.836069,1065m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7b7811d656dc5:0x7ce9c50c36f26d59!8m2!3d19.1412379!4d72.836069!16s%2Fg%2F11ylzns6kc?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                    href="https://www.google.com/search?kgmid=/g/11cmybrdhv&hl=en-IN&q=PK+PHOTOGRAPHY+I+Photography+and+Videography+services+in+Mumbai&shem=rimspwouoe&shndl=30&source=sh/x/loc/osrp/m5/1&kgs=2e46179db7eca78e&utm_source=rimspwouoe,sh/x/loc/osrp/m5/1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline"
@@ -242,7 +242,7 @@ export const Footer = () => {
                 </h2>
                 <h3 className="text-sx text-[#666666] mt-1 mb-3">
                   <a
-                    href="https://www.google.com/maps/place/Shaadi+Films+I+Wedding+Photography+and+Videography+mumbai/@19.1412379,72.836069,1065m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be7b7811d656dc5:0x7ce9c50c36f26d59!8m2!3d19.1412379!4d72.836069!16s%2Fg%2F11ylzns6kc?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                    href="https://www.google.com/search?kgmid=/g/11cmybrdhv&hl=en-IN&q=PK+PHOTOGRAPHY+I+Photography+and+Videography+services+in+Mumbai&shem=rimspwouoe&shndl=30&source=sh/x/loc/osrp/m5/1&kgs=2e46179db7eca78e&utm_source=rimspwouoe,sh/x/loc/osrp/m5/1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline"

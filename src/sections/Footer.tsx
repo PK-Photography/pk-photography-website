@@ -272,8 +272,8 @@ export const Footer = () => {
                     rel="noopener noreferrer"
                     className="hover:underline"
                   >
-                    246, Katte Wada Rd, Morjim, <br />
-                    Goa 403512
+                    House No, 1053 A, Madhlavaddo, <br />
+                    Morjim, Goa 403512
                   </a>
                   <br />
                   Tel: <a href="tel:+918888766739" className="hover:underline">+91 8888766739</a>

@@ -14,10 +14,10 @@ const FooterLink = ({
   text,
   href,
 }:
-{
-  text: string;
-  href: string;
-}) => {
+  {
+    text: string;
+    href: string;
+  }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [linkText, setLinkText] = useState(text);
 
@@ -276,7 +276,8 @@ export const Footer = () => {
                     Morjim, Goa 403512
                   </a>
                   <br />
-                  Tel: <a href="tel:+918888766739" className="hover:underline">+91 8888766739</a>
+                  Tel: <a href="tel:+918888766739" className="hover:underline">+91 8888766739</a> <br />
+                  <a href="tel:+918188881165" className="hover:underline">+91 8188881165</a>
                 </h3>
               </div>
               <div className="text-start mr-40 ">

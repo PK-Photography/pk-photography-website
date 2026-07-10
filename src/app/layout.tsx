@@ -21,21 +21,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "PK Photography - Best Photography and Videography in Mumbai",
+    default: "Photography & Videography Studio in Mumbai | PK Photography",
     template: "%s | PK Photography",
   },
   description:
-    "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
-  keywords: [
-    "Photography in Mumbai",
-    "Best Videography",
-    "Wedding Photographer Mumbai",
-    "Portrait Photography",
-    "Corporate Headshots",
-    "Real Estate Photography",
-    "Event Photography",
-    "PK Photography"
-  ],
+    "PK Photography is Mumbai's trusted photography and videography studio in Andheri West. Specialists in weddings, portraits, events, corporate, fashion, real estate, and drone photography. 12+ years. 2000+ projects. Book your session today.",
   authors: [{ name: "PK Photography", url: "https://pkphotography.in" }],
   publisher: "PK Photography",
   robots: {
@@ -50,8 +40,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "PK Photography - Best Photography and Videography in Mumbai",
-    description: "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
+    title: "Photography & Videography Studio in Mumbai | PK Photography",
+    description: "PK Photography is Mumbai's trusted photography and videography studio in Andheri West. Specialists in weddings, portraits, events, corporate, fashion, real estate, and drone photography. 12+ years. 2000+ projects. Book your session today.",
     url: "https://pkphotography.in",
     siteName: "PK Photography",
     images: [
@@ -67,49 +57,91 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PK Photography - Best Photography and Videography in Mumbai",
-    description: "Premium photography and videography services in Mumbai. We specialize in Weddings, Portraits, Events, Corporate Headshots, Commercial, and Real Estate shoots.",
+    title: "Photography & Videography Studio in Mumbai | PK Photography",
+    description: "PK Photography is Mumbai's trusted photography and videography studio in Andheri West. Specialists in weddings, portraits, events, corporate, fashion, real estate, and drone photography. 12+ years. 2000+ projects. Book your session today.",
     images: ["/opengraph-image.png"],
   },
 };
 
-const jsonLd = {
+const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "LocalBusiness",
+  "@id": "https://pkphotography.in/#organization",
+  "name": "PK Photography",
+  "url": "https://pkphotography.in",
+  "logo": "https://pkphotography.in/_next/static/media/logo.2604e02f.webp",
+  "image": "https://pkphotography.in/opengraph-image.png",
+  "description": "Premium photography and videography studio in Andheri West, Mumbai. Specialising in weddings, portraits, events, fashion, corporate, food, real estate, and drone photography.",
+  "telephone": "+918888766739",
+  "email": "prabhakar@pkphotography.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "EVERSHINE COSMIC, C1302, Veera Desai Industrial Estate, Andheri West",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "400053",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 19.1412,
+    "longitude": 72.8361
+  },
+  "areaServed": ["Mumbai", "Goa", "Delhi"],
+  "priceRange": "₹₹₹",
+  "sameAs": [
+    "https://www.instagram.com/itspkphotography.in/",
+    "https://www.youtube.com/@itspkphotography",
+    "https://www.facebook.com/pkfashionphotography",
+    "https://www.linkedin.com/company/pkphotography/"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://pkphotography.in/#website",
+  "url": "https://pkphotography.in",
+  "name": "PK Photography",
+  "publisher": {
+    "@id": "https://pkphotography.in/#organization"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@type": "PhotographyService",
-      "@id": "https://pkphotography.in/#organization",
-      "name": "PK Photography",
-      "url": "https://pkphotography.in",
-      "logo": "https://pkphotography.in/logo.png",
-      "image": "https://pkphotography.in/hero-img.jpg",
-      "description": "Premium photography and videography services in Mumbai. Specializing in weddings, portraits, and commercial events.",
-      "telephone": "+91-8889766739",
-      "email": "info@pkphotography.in",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Mumbai",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 19.0760,
-        "longitude": 72.8777
-      },
-      "sameAs": [
-        "https://www.instagram.com/",
-        "https://www.facebook.com/"
-      ],
-      "priceRange": "$$"
+      "@type": "Question",
+      "name": "What makes PK Photography unique in Andheri, Mumbai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PK Photography combines 12+ years of experience with a full-service studio in Andheri West, offering 19 categories of photography and videography. We have completed 2000+ projects and won 25+ industry awards."
+      }
     },
     {
-      "@type": "WebSite",
-      "@id": "https://pkphotography.in/#website",
-      "url": "https://pkphotography.in",
-      "name": "PK Photography",
-      "publisher": {
-        "@id": "https://pkphotography.in/#organization"
+      "@type": "Question",
+      "name": "How can I book a photography or videography session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book online at pkphotography.in/booking or contact us via WhatsApp at +91 8888766739 or email at prabhakar@pkphotography.in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is your studio located in Mumbai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our studio is located at EVERSHINE COSMIC, C1302, Veera Desai Industrial Estate, Andheri West, Mumbai, Maharashtra 400053."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How soon do I receive the edited photos and videos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turnaround times vary by service. Event photos are delivered in 3–5 business days, portrait sessions in 7–10 days, and wedding films in 8–10 weeks. Rush delivery is available on select packages."
       }
     }
   ]
@@ -128,7 +160,15 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
       <body className={clsx(dmSans.className, "antialiased")}>

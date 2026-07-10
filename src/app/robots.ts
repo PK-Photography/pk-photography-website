@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots{
             {
                 userAgent: "*",
                 allow: "/",
+                disallow: ["/client", "/login"],
             }
         ],
         sitemap: 'https://pkphotography.in/sitemap.xml'

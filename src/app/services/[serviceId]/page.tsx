@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const { pageContent } = service;
   
   const heroSubheadline = heroSubheadlines[service.id] || `Expert ${service.categoryName} Photography Services in Mumbai`;
-  const pageTitle = `Professional ${service.name} in Mumbai | PK Photography`;
+  const pageTitle = `Professional ${service.name} in Mumbai`;
 
   const serviceSchema = {
     "@context": "https://schema.org",
